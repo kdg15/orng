@@ -10,6 +10,8 @@
 
 @interface ViewController : UIViewController
 
+- (IBAction)clockTapped:(id)sender;
+- (IBAction)listTapped:(id)sender;
 
 @end
 
