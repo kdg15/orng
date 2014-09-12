@@ -14,6 +14,8 @@
 		0CA5B94619C36740001322A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CA5B94519C36740001322A0 /* Images.xcassets */; };
 		0CA5B94919C36740001322A0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CA5B94719C36740001322A0 /* LaunchScreen.xib */; };
 		0CA5B95519C36740001322A0 /* orngTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA5B95419C36740001322A0 /* orngTests.m */; };
+		0CA5B96119C3759D001322A0 /* ClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA5B96019C3759D001322A0 /* ClockViewController.m */; };
+		0CA5B96419C375AF001322A0 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA5B96319C375AF001322A0 /* ListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,10 @@
 		0CA5B94E19C36740001322A0 /* orngTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = orngTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CA5B95319C36740001322A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CA5B95419C36740001322A0 /* orngTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = orngTests.m; sourceTree = "<group>"; };
+		0CA5B95F19C3759D001322A0 /* ClockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClockViewController.h; sourceTree = "<group>"; };
+		0CA5B96019C3759D001322A0 /* ClockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClockViewController.m; sourceTree = "<group>"; };
+		0CA5B96219C375AF001322A0 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		0CA5B96319C375AF001322A0 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,10 @@
 				0CA5B93D19C36740001322A0 /* AppDelegate.m */,
 				0CA5B93F19C36740001322A0 /* ViewController.h */,
 				0CA5B94019C36740001322A0 /* ViewController.m */,
+				0CA5B95F19C3759D001322A0 /* ClockViewController.h */,
+				0CA5B96019C3759D001322A0 /* ClockViewController.m */,
+				0CA5B96219C375AF001322A0 /* ListViewController.h */,
+				0CA5B96319C375AF001322A0 /* ListViewController.m */,
 				0CA5B93819C36740001322A0 /* Supporting Files */,
 			);
 			path = orng;
@@ -219,9 +229,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CA5B96419C375AF001322A0 /* ListViewController.m in Sources */,
 				0CA5B94119C36740001322A0 /* ViewController.m in Sources */,
 				0CA5B93E19C36740001322A0 /* AppDelegate.m in Sources */,
 				0CA5B93B19C36740001322A0 /* main.m in Sources */,
+				0CA5B96119C3759D001322A0 /* ClockViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
