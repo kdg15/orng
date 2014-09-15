@@ -16,6 +16,10 @@
 		0CA5B95519C36740001322A0 /* orngTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA5B95419C36740001322A0 /* orngTests.m */; };
 		0CA5B96119C3759D001322A0 /* ClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA5B96019C3759D001322A0 /* ClockViewController.m */; };
 		0CA5B96419C375AF001322A0 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA5B96319C375AF001322A0 /* ListViewController.m */; };
+		0CFCC3EE19C7700B00F23DC6 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFCC3ED19C7700B00F23DC6 /* NavigationController.m */; };
+		0CFCC3F119C78C0800F23DC6 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFCC3F019C78C0800F23DC6 /* DataModel.m */; };
+		0CFCC3F419C78E0000F23DC6 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFCC3F319C78E0000F23DC6 /* NSString+Utilities.m */; };
+		0CFCC3F819C78FC700F23DC6 /* UIColor+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFCC3F719C78FC700F23DC6 /* UIColor+Utilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +50,14 @@
 		0CA5B96019C3759D001322A0 /* ClockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClockViewController.m; sourceTree = "<group>"; };
 		0CA5B96219C375AF001322A0 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		0CA5B96319C375AF001322A0 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		0CFCC3EC19C7700B00F23DC6 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
+		0CFCC3ED19C7700B00F23DC6 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
+		0CFCC3EF19C78C0800F23DC6 /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
+		0CFCC3F019C78C0800F23DC6 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
+		0CFCC3F219C78E0000F23DC6 /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Utilities.h"; path = "NSString+/NSString+Utilities.h"; sourceTree = "<group>"; };
+		0CFCC3F319C78E0000F23DC6 /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Utilities.m"; path = "NSString+/NSString+Utilities.m"; sourceTree = "<group>"; };
+		0CFCC3F619C78FC700F23DC6 /* UIColor+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Utilities.h"; path = "UIColor+/UIColor+Utilities.h"; sourceTree = "<group>"; };
+		0CFCC3F719C78FC700F23DC6 /* UIColor+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Utilities.m"; path = "UIColor+/UIColor+Utilities.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,14 +102,20 @@
 				0CA5B94719C36740001322A0 /* LaunchScreen.xib */,
 				0CA5B94219C36740001322A0 /* Main.storyboard */,
 				0CA5B94519C36740001322A0 /* Images.xcassets */,
+				0CFCC3EF19C78C0800F23DC6 /* DataModel.h */,
+				0CFCC3F019C78C0800F23DC6 /* DataModel.m */,
 				0CA5B93C19C36740001322A0 /* AppDelegate.h */,
 				0CA5B93D19C36740001322A0 /* AppDelegate.m */,
+				0CFCC3EC19C7700B00F23DC6 /* NavigationController.h */,
+				0CFCC3ED19C7700B00F23DC6 /* NavigationController.m */,
 				0CA5B93F19C36740001322A0 /* ViewController.h */,
 				0CA5B94019C36740001322A0 /* ViewController.m */,
 				0CA5B95F19C3759D001322A0 /* ClockViewController.h */,
 				0CA5B96019C3759D001322A0 /* ClockViewController.m */,
 				0CA5B96219C375AF001322A0 /* ListViewController.h */,
 				0CA5B96319C375AF001322A0 /* ListViewController.m */,
+				0CFCC3F519C78E0900F23DC6 /* NSString+ */,
+				0CFCC3F919C78FCD00F23DC6 /* UIColor+ */,
 				0CA5B93819C36740001322A0 /* Supporting Files */,
 			);
 			path = orng;
@@ -127,6 +145,24 @@
 				0CA5B95319C36740001322A0 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0CFCC3F519C78E0900F23DC6 /* NSString+ */ = {
+			isa = PBXGroup;
+			children = (
+				0CFCC3F219C78E0000F23DC6 /* NSString+Utilities.h */,
+				0CFCC3F319C78E0000F23DC6 /* NSString+Utilities.m */,
+			);
+			name = "NSString+";
+			sourceTree = "<group>";
+		};
+		0CFCC3F919C78FCD00F23DC6 /* UIColor+ */ = {
+			isa = PBXGroup;
+			children = (
+				0CFCC3F619C78FC700F23DC6 /* UIColor+Utilities.h */,
+				0CFCC3F719C78FC700F23DC6 /* UIColor+Utilities.m */,
+			);
+			name = "UIColor+";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,8 +268,12 @@
 				0CA5B96419C375AF001322A0 /* ListViewController.m in Sources */,
 				0CA5B94119C36740001322A0 /* ViewController.m in Sources */,
 				0CA5B93E19C36740001322A0 /* AppDelegate.m in Sources */,
+				0CFCC3EE19C7700B00F23DC6 /* NavigationController.m in Sources */,
+				0CFCC3F119C78C0800F23DC6 /* DataModel.m in Sources */,
 				0CA5B93B19C36740001322A0 /* main.m in Sources */,
+				0CFCC3F419C78E0000F23DC6 /* NSString+Utilities.m in Sources */,
 				0CA5B96119C3759D001322A0 /* ClockViewController.m in Sources */,
+				0CFCC3F819C78FC700F23DC6 /* UIColor+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

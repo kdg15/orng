@@ -10,6 +10,9 @@
 
 @interface ClockViewController : UIViewController
 
+@property (nonatomic, strong) IBOutlet UILabel *timeLabel;
+@property (nonatomic, strong) IBOutlet UIButton *backButton;
+
 - (IBAction)backAction:(id)sender;
 
 @end

@@ -42,4 +42,20 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    return [self.window.rootViewController supportedInterfaceOrientations];
+}
+
+//- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+//    //NSLog(@"PlayWithWSWithLibAppDelegate -- supportedInterfaceOrientationsForWindow");
+//    if([UICommonUtils isiPad]){
+//        return UIInterfaceOrientationMaskAll;
+//    }else if(flagOrientationAll == YES){
+//        return UIInterfaceOrientationMaskAll;
+//    } else {
+//        return UIInterfaceOrientationMaskPortrait;
+//    }
+//}
+
 @end

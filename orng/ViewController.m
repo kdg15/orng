@@ -26,6 +26,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskAll;
+}
+
 - (IBAction)clockTapped:(id)sender
 {
     NSLog(@"clockTapped");
