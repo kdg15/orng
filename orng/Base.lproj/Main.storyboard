@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zo7-CC-fKL">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -86,7 +85,6 @@
                                 </state>
                                 <connections>
                                     <action selector="backAction:" destination="7V9-tp-wcj" eventType="touchUpInside" id="fbd-jj-tLe"/>
-                                    <action selector="backAction:" destination="cNe-7H-Vq0" eventType="touchUpInside" id="pWc-Gd-Xty"/>
                                 </connections>
                             </button>
                         </subviews>
