@@ -37,7 +37,13 @@ static CGFloat kFontSize = 256.0;
     [super viewDidLoad];
 
     self.fontNames = @[@"AvenirNext-UltraLight",
-                       @"Noteworthy-Light",
+                       @"Gruppo",
+                       @"Iceland-Regular",
+                       @"NixieOne-Regular",
+                       @"Graduate-Regular",
+                       @"Audiowide-Regular",
+                       @"PoiretOne-Regular",
+                       @"Righteous-Regular",
                        @"GillSans-Light",
                        @"Avenir-Light",
                        @"HelveticaNeue-UltraLight"];
@@ -57,6 +63,7 @@ static CGFloat kFontSize = 256.0;
     [self setUpFont];
     [self setUpColor];
     [self setUpDateFormatter];
+    //[self printFonts];
 }
 
 - (void)viewDidUnload
@@ -107,6 +114,19 @@ static CGFloat kFontSize = 256.0;
  */
 
 #pragma mark - set up
+
+- (void)printFonts
+{
+    for (NSString* family in [UIFont familyNames])
+    {
+        NSLog(@"%@", family);
+
+        for (NSString* name in [UIFont fontNamesForFamilyName: family])
+        {
+            NSLog(@"  %@", name);
+        }
+    }
+}
 
 - (void)setUpGestures
 {
@@ -279,6 +299,7 @@ static CGFloat kFontSize = 256.0;
 
             UIFont *font = [UIFont fontWithName:fontName size:kFontSize];
             self.timeLabel.font = font;
+            self.helpLabel.text = fontName;
 
             break;
         }

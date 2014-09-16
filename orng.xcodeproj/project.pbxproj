@@ -20,6 +20,13 @@
 		0CFCC3F119C78C0800F23DC6 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFCC3F019C78C0800F23DC6 /* DataModel.m */; };
 		0CFCC3F419C78E0000F23DC6 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFCC3F319C78E0000F23DC6 /* NSString+Utilities.m */; };
 		0CFCC3F819C78FC700F23DC6 /* UIColor+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFCC3F719C78FC700F23DC6 /* UIColor+Utilities.m */; };
+		D37F832119C7D1FB002D4C58 /* Gruppo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F832019C7D1FB002D4C58 /* Gruppo-Regular.ttf */; };
+		D37F832E19C7D35C002D4C58 /* Audiowide-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F832419C7D35C002D4C58 /* Audiowide-Regular.ttf */; };
+		D37F833119C7D35C002D4C58 /* Graduate-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F832719C7D35C002D4C58 /* Graduate-Regular.ttf */; };
+		D37F833219C7D35C002D4C58 /* Iceland-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F832819C7D35C002D4C58 /* Iceland-Regular.ttf */; };
+		D37F833519C7D35C002D4C58 /* NixieOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F832B19C7D35C002D4C58 /* NixieOne-Regular.ttf */; };
+		D37F834619C7D408002D4C58 /* PoiretOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F834119C7D408002D4C58 /* PoiretOne-Regular.ttf */; };
+		D37F834819C7D408002D4C58 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F834419C7D408002D4C58 /* Righteous-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +65,13 @@
 		0CFCC3F319C78E0000F23DC6 /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Utilities.m"; path = "NSString+/NSString+Utilities.m"; sourceTree = "<group>"; };
 		0CFCC3F619C78FC700F23DC6 /* UIColor+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Utilities.h"; path = "UIColor+/UIColor+Utilities.h"; sourceTree = "<group>"; };
 		0CFCC3F719C78FC700F23DC6 /* UIColor+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Utilities.m"; path = "UIColor+/UIColor+Utilities.m"; sourceTree = "<group>"; };
+		D37F832019C7D1FB002D4C58 /* Gruppo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gruppo-Regular.ttf"; path = "Fonts/Gruppo/Gruppo-Regular.ttf"; sourceTree = "<group>"; };
+		D37F832419C7D35C002D4C58 /* Audiowide-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Audiowide-Regular.ttf"; path = "Fonts/Audiowide/Audiowide-Regular.ttf"; sourceTree = "<group>"; };
+		D37F832719C7D35C002D4C58 /* Graduate-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Graduate-Regular.ttf"; path = "Fonts/Graduate/Graduate-Regular.ttf"; sourceTree = "<group>"; };
+		D37F832819C7D35C002D4C58 /* Iceland-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Iceland-Regular.ttf"; path = "Fonts/Iceland/Iceland-Regular.ttf"; sourceTree = "<group>"; };
+		D37F832B19C7D35C002D4C58 /* NixieOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NixieOne-Regular.ttf"; path = "Fonts/Nixie_One/NixieOne-Regular.ttf"; sourceTree = "<group>"; };
+		D37F834119C7D408002D4C58 /* PoiretOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoiretOne-Regular.ttf"; sourceTree = "<group>"; };
+		D37F834419C7D408002D4C58 /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Righteous-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +116,7 @@
 				0CA5B94719C36740001322A0 /* LaunchScreen.xib */,
 				0CA5B94219C36740001322A0 /* Main.storyboard */,
 				0CA5B94519C36740001322A0 /* Images.xcassets */,
+				D37F832219C7D20B002D4C58 /* Fonts */,
 				0CFCC3EF19C78C0800F23DC6 /* DataModel.h */,
 				0CFCC3F019C78C0800F23DC6 /* DataModel.m */,
 				0CA5B93C19C36740001322A0 /* AppDelegate.h */,
@@ -163,6 +178,78 @@
 				0CFCC3F719C78FC700F23DC6 /* UIColor+Utilities.m */,
 			);
 			name = "UIColor+";
+			sourceTree = "<group>";
+		};
+		D37F832219C7D20B002D4C58 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D37F833819C7D369002D4C58 /* Audiowide */,
+				D37F833A19C7D381002D4C58 /* Graduate */,
+				D37F832319C7D214002D4C58 /* Gruppo */,
+				D37F833B19C7D389002D4C58 /* Iceland */,
+				D37F833E19C7D3A2002D4C58 /* Nixie_One */,
+				D37F833F19C7D408002D4C58 /* Poiret_One */,
+				D37F834219C7D408002D4C58 /* Righteous */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		D37F832319C7D214002D4C58 /* Gruppo */ = {
+			isa = PBXGroup;
+			children = (
+				D37F832019C7D1FB002D4C58 /* Gruppo-Regular.ttf */,
+			);
+			name = Gruppo;
+			sourceTree = "<group>";
+		};
+		D37F833819C7D369002D4C58 /* Audiowide */ = {
+			isa = PBXGroup;
+			children = (
+				D37F832419C7D35C002D4C58 /* Audiowide-Regular.ttf */,
+			);
+			name = Audiowide;
+			sourceTree = "<group>";
+		};
+		D37F833A19C7D381002D4C58 /* Graduate */ = {
+			isa = PBXGroup;
+			children = (
+				D37F832719C7D35C002D4C58 /* Graduate-Regular.ttf */,
+			);
+			name = Graduate;
+			sourceTree = "<group>";
+		};
+		D37F833B19C7D389002D4C58 /* Iceland */ = {
+			isa = PBXGroup;
+			children = (
+				D37F832819C7D35C002D4C58 /* Iceland-Regular.ttf */,
+			);
+			name = Iceland;
+			sourceTree = "<group>";
+		};
+		D37F833E19C7D3A2002D4C58 /* Nixie_One */ = {
+			isa = PBXGroup;
+			children = (
+				D37F832B19C7D35C002D4C58 /* NixieOne-Regular.ttf */,
+			);
+			name = Nixie_One;
+			sourceTree = "<group>";
+		};
+		D37F833F19C7D408002D4C58 /* Poiret_One */ = {
+			isa = PBXGroup;
+			children = (
+				D37F834119C7D408002D4C58 /* PoiretOne-Regular.ttf */,
+			);
+			name = Poiret_One;
+			path = Fonts/Poiret_One;
+			sourceTree = "<group>";
+		};
+		D37F834219C7D408002D4C58 /* Righteous */ = {
+			isa = PBXGroup;
+			children = (
+				D37F834419C7D408002D4C58 /* Righteous-Regular.ttf */,
+			);
+			name = Righteous;
+			path = Fonts/Righteous;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,9 +333,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D37F834619C7D408002D4C58 /* PoiretOne-Regular.ttf in Resources */,
 				0CA5B94419C36740001322A0 /* Main.storyboard in Resources */,
+				D37F833519C7D35C002D4C58 /* NixieOne-Regular.ttf in Resources */,
 				0CA5B94919C36740001322A0 /* LaunchScreen.xib in Resources */,
+				D37F832119C7D1FB002D4C58 /* Gruppo-Regular.ttf in Resources */,
+				D37F833119C7D35C002D4C58 /* Graduate-Regular.ttf in Resources */,
+				D37F834819C7D408002D4C58 /* Righteous-Regular.ttf in Resources */,
+				D37F832E19C7D35C002D4C58 /* Audiowide-Regular.ttf in Resources */,
 				0CA5B94619C36740001322A0 /* Images.xcassets in Resources */,
+				D37F833219C7D35C002D4C58 /* Iceland-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
