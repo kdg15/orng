@@ -22,6 +22,8 @@
 {
     [super viewDidLoad];
 
+    self.backButton.hidden = YES;
+
     [self setUpGestures];
     [self setUpFont];
     [self setUpColor];
@@ -78,7 +80,14 @@
 
 - (void)setUpGestures
 {
-    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapAction:)];
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                action:@selector(singleTapAction:)];
+    singleTap.numberOfTapsRequired = 1;
+    singleTap.numberOfTouchesRequired = 1;
+    [self.view addGestureRecognizer:singleTap];
+
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                action:@selector(doubleTapAction:)];
     doubleTap.numberOfTapsRequired = 2;
     doubleTap.numberOfTouchesRequired = 2;
     [self.view addGestureRecognizer:doubleTap];
@@ -102,7 +111,7 @@
     UIColor *textColor = [DataModel clockTextColor];
     self.timeLabel.textColor = textColor;
     self.view.backgroundColor = [DataModel clockBackgroundColor];
-    self.backButton.titleLabel.textColor = textColor;
+    [self.backButton setTitleColor:textColor forState:UIControlStateNormal];
 }
 
 - (void)setUpDateFormatter
@@ -178,10 +187,20 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)singleTapAction:(id)sender
+{
+    if (self.backButton.hidden)
+    {
+        self.backButton.hidden = NO;
+    }
+    else
+    {
+        self.backButton.hidden = YES;
+    }
+}
+
 - (IBAction)doubleTapAction:(id)sender
 {
-    NSLog(@"doubleTapAction");
-
     static BOOL sDimmed = NO;
     static CGFloat sOriginalBrightness = 0.0;
 
@@ -192,7 +211,8 @@
     }
     else
     {
-        screen.brightness = 0.0;
+        sOriginalBrightness = screen.brightness;
+        screen.brightness = 0;
     }
 
     sDimmed = !sDimmed;
