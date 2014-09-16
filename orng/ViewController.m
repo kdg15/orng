@@ -33,12 +33,10 @@
 
 - (IBAction)clockTapped:(id)sender
 {
-    NSLog(@"clockTapped");
 }
 
 - (IBAction)listTapped:(id)sender
 {
-    NSLog(@"listTapped");
 }
 
 @end
