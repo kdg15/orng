@@ -34,4 +34,38 @@
     return color;
 }
 
+- (UIColor *)lighterColor
+{
+    UIColor *color = [UIColor colorWithCGColor:self.CGColor];
+
+    CGFloat hue, saturation, brightness, alpha;
+
+    if ([self getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha])
+    {
+        color = [UIColor colorWithHue:hue
+                           saturation:saturation
+                           brightness:MIN(brightness * 1.333, 1.0)
+                                alpha:alpha];
+    }
+
+    return color;
+}
+
+- (UIColor *)darkerColor
+{
+    UIColor *color = [UIColor colorWithCGColor:self.CGColor];
+
+    CGFloat hue, saturation, brightness, alpha;
+
+    if ([self getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha])
+    {
+        color = [UIColor colorWithHue:hue
+                           saturation:saturation
+                           brightness:brightness * 0.75
+                                alpha:alpha];
+    }
+
+    return color;
+}
+
 @end

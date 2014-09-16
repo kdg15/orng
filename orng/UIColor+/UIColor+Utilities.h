@@ -12,4 +12,7 @@
 
 + (UIColor *)colorFromNSString:(NSString *)string;
 
+- (UIColor *)lighterColor;
+- (UIColor *)darkerColor;
+
 @end
