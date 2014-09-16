@@ -9,10 +9,24 @@
 #import "ClockViewController.h"
 #import "DataModel.h"
 
+typedef NS_ENUM(NSInteger, SettingsMode)
+{
+    SettingsModeFont,
+    SettingsModeTextColor,
+    SettingsModeBackgroundColor
+};
+
+static CGFloat kFontSize = 256.0;
+
 @interface ClockViewController ()
 
+@property (nonatomic, assign) SettingsMode settingsMode;
+@property (nonatomic, assign) CGFloat fontValue;
+@property (nonatomic, assign) CGFloat textColorValue;
+@property (nonatomic, assign) CGFloat backgroundColorValue;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong) NSArray *fontNames;
 
 @end
 
@@ -22,7 +36,22 @@
 {
     [super viewDidLoad];
 
+    self.fontNames = @[@"AvenirNext-UltraLight",
+                       @"Noteworthy-Light",
+                       @"GillSans-Light",
+                       @"Avenir-Light",
+                       @"HelveticaNeue-UltraLight"];
+
+    self.settingsMode = SettingsModeFont;
+    self.fontValue = 0.0;
+    self.textColorValue = 0.0;
+    self.backgroundColorValue = 0.0;
+    self.slider.value = self.fontValue;
+
+    self.helpLabel.hidden = YES;
     self.backButton.hidden = YES;
+    self.settingsButton.hidden = YES;
+    self.slider.hidden = YES;
 
     [self setUpGestures];
     [self setUpFont];
@@ -49,7 +78,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self updateUI];
+    [self updateTimeDisplay];
+    [self updateSettingsMode];
     [self startTimer];
     [self disableSleepMode];
 }
@@ -95,11 +125,7 @@
 
 - (void)setUpFont
 {
-    //UIFont *font = [UIFont fontWithName:@"Noteworthy-Light" size:256.0];
-    //UIFont *font = [UIFont fontWithName:@"GillSans-Light" size:256.0];
-    //UIFont *font = [UIFont fontWithName:@"Avenir-Light" size:256.0];
-    UIFont *font = [UIFont fontWithName:@"AvenirNext-UltraLight" size:256.0];
-    //UIFont *font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:256.0];
+    UIFont *font = [UIFont fontWithName:self.fontNames[0] size:kFontSize];
     self.timeLabel.font = font;
     self.timeLabel.adjustsFontSizeToFitWidth = YES;
     self.timeLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
@@ -111,7 +137,10 @@
     UIColor *textColor = [DataModel clockTextColor];
     self.timeLabel.textColor = textColor;
     self.view.backgroundColor = [DataModel clockBackgroundColor];
+
+    self.helpLabel.textColor = textColor;
     [self.backButton setTitleColor:textColor forState:UIControlStateNormal];
+    [self.settingsButton setTitleColor:textColor forState:UIControlStateNormal];
 }
 
 - (void)setUpDateFormatter
@@ -168,16 +197,51 @@
 
 - (void)timerFired:(NSTimer *)timer
 {
-    [self updateUI];
+    [self updateTimeDisplay];
 }
 
 #pragma mark - ui
 
-- (void)updateUI
+- (void)updateTimeDisplay
 {
     NSDate *now = [NSDate date];
     NSString *time = [self.dateFormatter stringFromDate:now];
     self.timeLabel.text = time;
+}
+
+- (void)updateSettingsMode
+{
+    switch (self.settingsMode)
+    {
+        case SettingsModeFont:
+            self.helpLabel.text = @"font";
+            self.slider.value = self.fontValue;
+            break;
+
+        case SettingsModeTextColor:
+            self.helpLabel.text = @"text color";
+            self.slider.value = self.textColorValue;
+           break;
+
+        case SettingsModeBackgroundColor:
+            self.helpLabel.text = @"background color";
+            self.slider.value = self.backgroundColorValue;
+            break;
+    }
+}
+
+- (void)nextSettingsMode
+{
+    SettingsMode mode = self.settingsMode;
+
+    switch (self.settingsMode)
+    {
+        case SettingsModeFont:            mode = SettingsModeTextColor;       break;
+        case SettingsModeTextColor:       mode = SettingsModeBackgroundColor; break;
+        case SettingsModeBackgroundColor: mode = SettingsModeFont;            break;
+    }
+
+    self.settingsMode = mode;
 }
 
 #pragma mark - actions
@@ -187,15 +251,90 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)settingsAction:(id)sender
+{
+    CGFloat value = self.slider.value;
+
+    switch (self.settingsMode)
+    {
+        case SettingsModeFont:            self.fontValue = value;            break;
+        case SettingsModeTextColor:       self.textColorValue = value;       break;
+        case SettingsModeBackgroundColor: self.backgroundColorValue = value; break;
+    }
+    [self nextSettingsMode];
+    [self updateSettingsMode];
+}
+
+- (IBAction)sliderChangedAction:(id)sender
+{
+    UISlider *slider = (UISlider *)sender;
+
+    switch (self.settingsMode)
+    {
+        case SettingsModeFont:
+        {
+            NSInteger fontCount = self.fontNames.count;
+            NSInteger fontIndex = (fontCount - 1) * slider.value;
+            NSString *fontName = self.fontNames[fontIndex];
+
+            UIFont *font = [UIFont fontWithName:fontName size:kFontSize];
+            self.timeLabel.font = font;
+
+            break;
+        }
+
+        case SettingsModeTextColor:
+        case SettingsModeBackgroundColor:
+        {
+            UIColor *color;
+
+            CGFloat whiteThreshold = 0.05;
+            CGFloat blackThreshold = 0.05;
+
+            if (slider.value < whiteThreshold)
+            {
+                color = [UIColor whiteColor];
+            }
+            else if (slider.value > 1.0 - blackThreshold)
+            {
+                color = [UIColor blackColor];
+            }
+            else
+            {
+                CGFloat hue;
+                hue = (slider.value - whiteThreshold) / (1.0 - whiteThreshold - blackThreshold);
+                color = [UIColor colorWithHue:hue saturation:1.0 brightness:1.0 alpha:1.0];
+            }
+
+            if (SettingsModeTextColor == self.settingsMode)
+            {
+                self.timeLabel.textColor = color;
+            }
+            else
+            {
+                self.view.backgroundColor = color;
+            }
+
+            break;
+        }
+    }
+}
+
 - (IBAction)singleTapAction:(id)sender
 {
     if (self.backButton.hidden)
     {
+        self.helpLabel.hidden = NO;
         self.backButton.hidden = NO;
+        self.settingsButton.hidden = NO;
+        self.slider.hidden = NO;
     }
     else
     {
+        self.helpLabel.hidden = YES;
         self.backButton.hidden = YES;
+        self.settingsButton.hidden = YES;
+        self.slider.hidden = YES;
     }
 }
 
