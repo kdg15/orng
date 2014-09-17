@@ -8,7 +8,7 @@
 
 #import "ListViewController.h"
 
-@interface ListViewController ()
+@interface ListViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -36,6 +36,33 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - table view
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 4;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyIdentifier"];
+
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MyIdentifier"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    }
+
+    cell.textLabel.text = @"label";
+    cell.detailTextLabel.text = @"detail";
+
+    //UIImage *theImage = [UIImage imageWithContentsOfFile:path];
+    //cell.imageView.image = theImage;
+
+    return cell;
+}
 
 - (IBAction)backAction:(id)sender
 {

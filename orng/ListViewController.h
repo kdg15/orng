@@ -10,6 +10,10 @@
 
 @interface ListViewController : UIViewController
 
+@property (nonatomic, strong) IBOutlet UILabel *summaryLabel;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UITableViewCell *tableViewCell;
+
 - (IBAction)backAction:(id)sender;
 
 @end
