@@ -7,10 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
 @interface NSString (Utilities)
-
-+ (NSString *)stringFromUIColor:(UIColor *)color;
 
 @end

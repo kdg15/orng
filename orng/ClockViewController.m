@@ -8,6 +8,10 @@
 
 #import "ClockViewController.h"
 #import "DataModel.h"
+#import "UIColor+Utilities.h"
+
+static const CGFloat kWhiteSliderThreshold = 0.05;
+static const CGFloat kBlackSliderThreshold = 0.05;
 
 typedef NS_ENUM(NSInteger, SettingsMode)
 {
@@ -36,23 +40,19 @@ static CGFloat kFontSize = 256.0;
 {
     [super viewDidLoad];
 
-    self.fontNames = @[@"AvenirNext-UltraLight",
+    self.fontNames = @[@"Avenir-Light",
+                       @"AvenirNext-UltraLight",
+                       @"GillSans-Light",
+                       @"HelveticaNeue-UltraLight",
                        @"Gruppo",
                        @"Iceland-Regular",
                        @"NixieOne-Regular",
                        @"Graduate-Regular",
                        @"Audiowide-Regular",
                        @"PoiretOne-Regular",
-                       @"Righteous-Regular",
-                       @"GillSans-Light",
-                       @"Avenir-Light",
-                       @"HelveticaNeue-UltraLight"];
+                       @"Righteous-Regular"];
 
     self.settingsMode = SettingsModeFont;
-    self.fontValue = 0.0;
-    self.textColorValue = 0.0;
-    self.backgroundColorValue = 0.0;
-    self.slider.value = self.fontValue;
 
     self.helpLabel.hidden = YES;
     self.backButton.hidden = YES;
@@ -61,7 +61,8 @@ static CGFloat kFontSize = 256.0;
 
     [self setUpGestures];
     [self setUpFont];
-    [self setUpColor];
+    [self setUpTextColor];
+    [self setUpBackgroundColor];
     [self setUpDateFormatter];
     //[self printFonts];
 }
@@ -145,22 +146,57 @@ static CGFloat kFontSize = 256.0;
 
 - (void)setUpFont
 {
-    UIFont *font = [UIFont fontWithName:self.fontNames[0] size:kFontSize];
-    self.timeLabel.font = font;
+    NSString *fontName = [DataModel clockFontName];
+    NSUInteger index = [self.fontNames indexOfObject:fontName];
+    if (NSNotFound == index)
+    {
+        index = 0;
+    }
+
     self.timeLabel.adjustsFontSizeToFitWidth = YES;
     self.timeLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
     self.timeLabel.minimumScaleFactor = 0.1;
+
+    self.fontValue = (CGFloat)index / self.fontNames.count;
+
+    UIFont *font = [UIFont fontWithName:self.fontNames[index] size:kFontSize];
+    [self updateDisplayFont:font];
 }
 
-- (void)setUpColor
+- (void)setUpTextColor
 {
     UIColor *textColor = [DataModel clockTextColor];
-    self.timeLabel.textColor = textColor;
-    self.view.backgroundColor = [DataModel clockBackgroundColor];
+    self.textColorValue = [self calculateValue:textColor];
+    [self updateTextColor:textColor];
+}
 
-    self.helpLabel.textColor = textColor;
-    [self.backButton setTitleColor:textColor forState:UIControlStateNormal];
-    [self.settingsButton setTitleColor:textColor forState:UIControlStateNormal];
+- (void)setUpBackgroundColor
+{
+    UIColor *backgroundColor = [DataModel clockBackgroundColor];
+    self.backgroundColorValue = [self calculateValue:backgroundColor];
+    [self updateBackgroundColor:backgroundColor];
+}
+
+- (CGFloat)calculateValue:(UIColor *)color
+{
+    CGFloat value = 0.0;
+
+    if ([color isEqualToColor:[UIColor whiteColor]])
+    {
+        value = 0.0;
+    }
+    else if ([color isEqualToColor:[UIColor blackColor]])
+    {
+        value = 1.0;
+    }
+    else
+    {
+        CGFloat hue, saturation, brightness, alpha;
+        [color getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
+        value = kWhiteSliderThreshold + hue * (1.0 - kWhiteSliderThreshold - kBlackSliderThreshold);
+    }
+
+    return value;
 }
 
 - (void)setUpDateFormatter
@@ -229,22 +265,48 @@ static CGFloat kFontSize = 256.0;
     self.timeLabel.text = time;
 }
 
+- (void)updateDisplayFont:(UIFont *)font
+{
+    self.timeLabel.font = font;
+}
+
+- (void)updateTextColor:(UIColor *)color
+{
+    self.timeLabel.textColor = color;
+    self.helpLabel.textColor = color;
+    [self.backButton setTitleColor:color forState:UIControlStateNormal];
+    [self.settingsButton setTitleColor:color forState:UIControlStateNormal];
+}
+
+- (void)updateBackgroundColor:(UIColor *)color
+{
+    self.view.backgroundColor = color;
+}
+
+- (void)updateHelpLabel:(NSString *)string
+{
+    self.helpLabel.text = string;
+}
+
 - (void)updateSettingsMode
 {
     switch (self.settingsMode)
     {
         case SettingsModeFont:
-            self.helpLabel.text = @"font";
+        {
+            NSString *fontName = [DataModel clockFontName];
+            [self updateHelpLabel:fontName];
             self.slider.value = self.fontValue;
             break;
+        }
 
         case SettingsModeTextColor:
-            self.helpLabel.text = @"text color";
+            [self updateHelpLabel:@"text color"];
             self.slider.value = self.textColorValue;
            break;
 
         case SettingsModeBackgroundColor:
-            self.helpLabel.text = @"background color";
+            [self updateHelpLabel:@"background color"];
             self.slider.value = self.backgroundColorValue;
             break;
     }
@@ -297,9 +359,11 @@ static CGFloat kFontSize = 256.0;
             NSInteger fontIndex = (fontCount - 1) * slider.value;
             NSString *fontName = self.fontNames[fontIndex];
 
+            [DataModel setClockFontName:fontName];
+
             UIFont *font = [UIFont fontWithName:fontName size:kFontSize];
-            self.timeLabel.font = font;
-            self.helpLabel.text = fontName;
+            [self updateDisplayFont:font];
+            [self updateHelpLabel:fontName];
 
             break;
         }
@@ -309,31 +373,30 @@ static CGFloat kFontSize = 256.0;
         {
             UIColor *color;
 
-            CGFloat whiteThreshold = 0.05;
-            CGFloat blackThreshold = 0.05;
-
-            if (slider.value < whiteThreshold)
+            if (slider.value < kWhiteSliderThreshold)
             {
                 color = [UIColor whiteColor];
             }
-            else if (slider.value > 1.0 - blackThreshold)
+            else if (slider.value > 1.0 - kBlackSliderThreshold)
             {
                 color = [UIColor blackColor];
             }
             else
             {
                 CGFloat hue;
-                hue = (slider.value - whiteThreshold) / (1.0 - whiteThreshold - blackThreshold);
+                hue = (slider.value - kWhiteSliderThreshold) / (1.0 - kWhiteSliderThreshold - kBlackSliderThreshold);
                 color = [UIColor colorWithHue:hue saturation:1.0 brightness:1.0 alpha:1.0];
             }
 
             if (SettingsModeTextColor == self.settingsMode)
             {
-                self.timeLabel.textColor = color;
+                [DataModel setClockTextColor:color];
+                [self updateTextColor:color];
             }
             else
             {
-                self.view.backgroundColor = color;
+                [DataModel setClockBackgroundColor:color];
+                [self updateBackgroundColor:color];
             }
 
             break;

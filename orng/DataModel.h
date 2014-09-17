@@ -11,7 +11,13 @@
 
 @interface DataModel : NSObject
 
++ (NSString *)clockFontName;
++ (void)setClockFontName:(NSString *)fontName;
+
 + (UIColor *)clockTextColor;
++ (void)setClockTextColor:(UIColor *)color;
+
 + (UIColor *)clockBackgroundColor;
++ (void)setClockBackgroundColor:(UIColor *)color;
 
 @end

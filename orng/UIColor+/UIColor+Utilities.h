@@ -10,7 +10,11 @@
 
 @interface UIColor (Utilities)
 
-+ (UIColor *)colorFromNSString:(NSString *)string;
++ (UIColor *)colorWithString:(NSString *)string;
+
+- (NSString *)colorString;
+
+- (BOOL)isEqualToColor:(UIColor *)color;
 
 - (UIColor *)lighterColor;
 - (UIColor *)darkerColor;

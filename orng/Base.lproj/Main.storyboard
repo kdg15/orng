@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zo7-CC-fKL">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -111,9 +112,9 @@
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="help" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="foE-vt-257">
-                                <rect key="frame" x="16" y="28" width="568" height="21"/>
+                                <rect key="frame" x="16" y="531" width="568" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="TXM-ER-kW8"/>
+                                    <constraint firstAttribute="height" constant="21" id="Vcr-zW-3gv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -123,20 +124,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="foE-vt-257" firstAttribute="trailing" secondItem="A3H-oD-duB" secondAttribute="trailingMargin" id="9P3-CT-f6x"/>
                             <constraint firstItem="T36-Jd-DKN" firstAttribute="top" secondItem="rpZ-t7-ghF" secondAttribute="bottom" id="Agz-vg-UAD"/>
                             <constraint firstItem="T36-Jd-DKN" firstAttribute="top" secondItem="n6a-Rn-Dw7" secondAttribute="bottom" constant="40" id="E1J-v0-VrT"/>
                             <constraint firstAttribute="trailing" secondItem="rpZ-t7-ghF" secondAttribute="trailing" id="Etj-6X-snd"/>
-                            <constraint firstItem="foE-vt-257" firstAttribute="leading" secondItem="A3H-oD-duB" secondAttribute="leadingMargin" id="NJ0-rh-o39"/>
                             <constraint firstItem="n6a-Rn-Dw7" firstAttribute="top" secondItem="ncn-zq-l9c" secondAttribute="bottom" constant="40" id="PMW-QD-FUK"/>
                             <constraint firstItem="lBJ-9Y-WWT" firstAttribute="leading" secondItem="A3H-oD-duB" secondAttribute="leading" id="Rwf-zj-ZL4"/>
                             <constraint firstAttribute="trailing" secondItem="n6a-Rn-Dw7" secondAttribute="trailing" id="S6s-hM-DeB"/>
                             <constraint firstItem="g8u-Bc-dvz" firstAttribute="leading" secondItem="lBJ-9Y-WWT" secondAttribute="trailing" constant="8" id="Tsh-58-anM"/>
                             <constraint firstItem="T36-Jd-DKN" firstAttribute="top" secondItem="g8u-Bc-dvz" secondAttribute="bottom" constant="5" id="U80-VX-dvG"/>
-                            <constraint firstItem="foE-vt-257" firstAttribute="trailing" secondItem="A3H-oD-duB" secondAttribute="trailingMargin" id="Vun-kX-j40"/>
+                            <constraint firstItem="rpZ-t7-ghF" firstAttribute="top" secondItem="foE-vt-257" secondAttribute="bottom" constant="8" id="YPv-3H-Hpf"/>
                             <constraint firstItem="rpZ-t7-ghF" firstAttribute="leading" secondItem="g8u-Bc-dvz" secondAttribute="trailing" constant="8" id="guB-O4-M33"/>
                             <constraint firstItem="T36-Jd-DKN" firstAttribute="top" secondItem="lBJ-9Y-WWT" secondAttribute="bottom" id="l3c-yQ-KS2"/>
                             <constraint firstItem="n6a-Rn-Dw7" firstAttribute="leading" secondItem="A3H-oD-duB" secondAttribute="leading" id="mRq-3g-kMS"/>
-                            <constraint firstItem="foE-vt-257" firstAttribute="top" secondItem="ncn-zq-l9c" secondAttribute="bottom" constant="8" id="o0k-A0-GCb"/>
+                            <constraint firstItem="foE-vt-257" firstAttribute="leading" secondItem="A3H-oD-duB" secondAttribute="leadingMargin" id="rKi-sT-URN"/>
                         </constraints>
                     </view>
                     <connections>

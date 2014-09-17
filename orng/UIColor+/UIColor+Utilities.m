@@ -14,7 +14,7 @@
 //  green, blue, and alpha components.
 //  For exampe: "0.5 0.0 0.25 1.0"
 //
-+ (UIColor *)colorFromNSString:(NSString *)string
++ (UIColor *)colorWithString:(NSString *)string
 {
     UIColor *color = [UIColor whiteColor];
 
@@ -32,6 +32,39 @@
     }
 
     return color;
+}
+
+//  Returned string is 4 float values separated by a space representing the red,
+//  green, blue, and alpha components.
+//  For exampe: "0.5 0.0 0.25 1.0"
+//
+- (NSString *)colorString;
+{
+    NSString *colorString = @"0.0 0.0 0.0 1.0";
+
+    CGFloat white, red, green, blue, alpha;
+
+    if ([self getRed:&red green:&green blue:&blue alpha:&alpha])
+    {
+        colorString = [NSString stringWithFormat:@"%.3f %.3f %.3f %.3f", red, green, blue, alpha];
+    }
+    else if ([self getWhite:&white alpha:&alpha])
+    {
+        colorString = [NSString stringWithFormat:@"%.3f %.3f %.3f %.3f", white, white, white, alpha];
+    }
+    else
+    {
+        NSLog(@"# error: couldn't convert color to string.");
+    }
+
+    return colorString;
+}
+
+- (BOOL)isEqualToColor:(UIColor *)color
+{
+    NSString *aString = [self colorString];
+    NSString *bString = [color colorString];
+    return [aString isEqualToString:bString];
 }
 
 - (UIColor *)lighterColor
