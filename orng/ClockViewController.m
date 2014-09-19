@@ -55,7 +55,6 @@ static CGFloat kFontSize = 256.0;
     self.settingsMode = SettingsModeFont;
 
     self.helpLabel.hidden = YES;
-    self.backButton.hidden = YES;
     self.settingsButton.hidden = YES;
     self.slider.hidden = YES;
 
@@ -406,17 +405,15 @@ static CGFloat kFontSize = 256.0;
 
 - (IBAction)singleTapAction:(id)sender
 {
-    if (self.backButton.hidden)
+    if (self.helpLabel.hidden)
     {
         self.helpLabel.hidden = NO;
-        self.backButton.hidden = NO;
         self.settingsButton.hidden = NO;
         self.slider.hidden = NO;
     }
     else
     {
         self.helpLabel.hidden = YES;
-        self.backButton.hidden = YES;
         self.settingsButton.hidden = YES;
         self.slider.hidden = YES;
     }
