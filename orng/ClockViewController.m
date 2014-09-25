@@ -22,6 +22,9 @@ typedef NS_ENUM(NSInteger, SettingsMode)
 
 static CGFloat kFontSize = 256.0;
 
+static NSTimeInterval kTimerInterval   = 0.2;
+static NSTimeInterval kUITimerInterval = 2.0;
+
 @interface ClockViewController ()
 
 @property (nonatomic, assign) SettingsMode settingsMode;
@@ -29,6 +32,7 @@ static CGFloat kFontSize = 256.0;
 @property (nonatomic, assign) CGFloat textColorValue;
 @property (nonatomic, assign) CGFloat backgroundColorValue;
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) NSTimer *uiTimer;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, strong) NSArray *fontNames;
 
@@ -55,7 +59,7 @@ static CGFloat kFontSize = 256.0;
     self.settingsMode = SettingsModeFont;
 
     self.helpLabel.hidden = YES;
-    self.settingsButton.hidden = YES;
+    self.settingsButton.hidden = NO;
     self.slider.hidden = YES;
 
     [self setUpGestures];
@@ -69,6 +73,7 @@ static CGFloat kFontSize = 256.0;
 - (void)viewDidUnload
 {
     [self stopTimer];
+    [self stopUITimer];
     [super viewDidUnload];
 }
 
@@ -130,16 +135,10 @@ static CGFloat kFontSize = 256.0;
 
 - (void)setUpGestures
 {
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                action:@selector(singleTapAction:)];
-    singleTap.numberOfTapsRequired = 1;
-    singleTap.numberOfTouchesRequired = 1;
-    [self.view addGestureRecognizer:singleTap];
-
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                 action:@selector(doubleTapAction:)];
     doubleTap.numberOfTapsRequired = 2;
-    doubleTap.numberOfTouchesRequired = 2;
+    doubleTap.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:doubleTap];
 }
 
@@ -236,12 +235,11 @@ static CGFloat kFontSize = 256.0;
 - (void)startTimer
 {
     [self stopTimer];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:kTimerInterval
                                                   target:self
                                                 selector:@selector(timerFired:)
                                                 userInfo:nil
                                                  repeats:YES];
-
 }
 
 - (void)stopTimer
@@ -253,6 +251,29 @@ static CGFloat kFontSize = 256.0;
 - (void)timerFired:(NSTimer *)timer
 {
     [self updateTimeDisplay];
+}
+
+#pragma mark - ui timer
+
+- (void)startUITimer
+{
+    [self stopUITimer];
+    self.uiTimer = [NSTimer scheduledTimerWithTimeInterval:kUITimerInterval
+                                                  target:self
+                                                selector:@selector(uiTimerFired:)
+                                                userInfo:nil
+                                                 repeats:NO];
+}
+
+- (void)stopUITimer
+{
+    [self.uiTimer invalidate];
+    self.uiTimer = nil;
+}
+
+- (void)uiTimerFired:(NSTimer *)timer
+{
+    [self showSettingUI:NO];
 }
 
 #pragma mark - ui
@@ -325,6 +346,12 @@ static CGFloat kFontSize = 256.0;
     self.settingsMode = mode;
 }
 
+- (void)showSettingUI:(BOOL)show
+{
+    self.helpLabel.hidden = !show;
+    self.slider.hidden = !show;
+}
+
 #pragma mark - actions
 
 - (IBAction)backAction:(id)sender
@@ -334,16 +361,26 @@ static CGFloat kFontSize = 256.0;
 
 - (IBAction)settingsAction:(id)sender
 {
-    CGFloat value = self.slider.value;
-
-    switch (self.settingsMode)
+    if (self.helpLabel.hidden)
     {
-        case SettingsModeFont:            self.fontValue = value;            break;
-        case SettingsModeTextColor:       self.textColorValue = value;       break;
-        case SettingsModeBackgroundColor: self.backgroundColorValue = value; break;
+        [self showSettingUI:YES];
+        [self updateSettingsMode];
+        [self startUITimer];
     }
-    [self nextSettingsMode];
-    [self updateSettingsMode];
+    else
+    {
+        CGFloat value = self.slider.value;
+
+        switch (self.settingsMode)
+        {
+            case SettingsModeFont:            self.fontValue = value;            break;
+            case SettingsModeTextColor:       self.textColorValue = value;       break;
+            case SettingsModeBackgroundColor: self.backgroundColorValue = value; break;
+        }
+        [self nextSettingsMode];
+        [self updateSettingsMode];
+        [self startUITimer];
+    }
 }
 
 - (IBAction)sliderChangedAction:(id)sender
@@ -401,22 +438,8 @@ static CGFloat kFontSize = 256.0;
             break;
         }
     }
-}
 
-- (IBAction)singleTapAction:(id)sender
-{
-    if (self.helpLabel.hidden)
-    {
-        self.helpLabel.hidden = NO;
-        self.settingsButton.hidden = NO;
-        self.slider.hidden = NO;
-    }
-    else
-    {
-        self.helpLabel.hidden = YES;
-        self.settingsButton.hidden = YES;
-        self.slider.hidden = YES;
-    }
+    [self startUITimer];
 }
 
 - (IBAction)doubleTapAction:(id)sender

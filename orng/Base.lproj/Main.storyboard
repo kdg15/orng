@@ -97,11 +97,11 @@
                                     <constraint firstAttribute="height" constant="40" id="lkQ-My-rW0"/>
                                     <constraint firstAttribute="width" constant="40" id="yy0-G8-Ua6"/>
                                 </constraints>
-                                <state key="normal" title=":">
+                                <state key="normal" title="...">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="settingsAction:" destination="7V9-tp-wcj" eventType="touchUpInside" id="Kyt-63-D1d"/>
+                                    <action selector="settingsAction:" destination="7V9-tp-wcj" eventType="touchDown" id="LAf-TG-uUf"/>
                                 </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="g8u-Bc-dvz">
