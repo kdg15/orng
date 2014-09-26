@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -18,39 +18,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thh-KH-yzv">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thh-KH-yzv">
                                 <rect key="frame" x="225" y="144" width="150" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="XB7-iy-Fsj"/>
+                                    <constraint firstAttribute="width" constant="150" id="Qhu-qu-sq4"/>
                                 </constraints>
                                 <state key="normal" title="clock">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="clockTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZCn-Ot-Xdr"/>
                                     <segue destination="7V9-tp-wcj" kind="show" id="Xf0-wZ-1lu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ss-er-kKK">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ss-er-kKK">
                                 <rect key="frame" x="225" y="209" width="150" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="jba-dc-sNF"/>
-                                </constraints>
                                 <state key="normal" title="list">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="listTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sdl-jj-ADo"/>
                                     <segue destination="cNe-7H-Vq0" kind="show" id="YHf-Kk-RBe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ddg-iC-X1i">
+                                <rect key="frame" x="225" y="274" width="150" height="30"/>
+                                <state key="normal" title="test">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="AqV-yM-0wU" kind="show" id="02V-fO-Y52"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="Thh-KH-yzv" secondAttribute="centerX" id="3an-Lh-OLD"/>
-                            <constraint firstAttribute="centerX" secondItem="7ss-er-kKK" secondAttribute="centerX" id="7D9-Py-cez"/>
-                            <constraint firstItem="Thh-KH-yzv" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="144" id="W8f-uz-Vof"/>
-                            <constraint firstItem="7ss-er-kKK" firstAttribute="top" secondItem="Thh-KH-yzv" secondAttribute="bottom" constant="35" id="r34-DP-w8K"/>
+                            <constraint firstItem="Thh-KH-yzv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="124" id="7Cq-n1-Z5T"/>
+                            <constraint firstItem="Ddg-iC-X1i" firstAttribute="top" secondItem="7ss-er-kKK" secondAttribute="bottom" constant="35" id="7M2-Ea-NAM"/>
+                            <constraint firstItem="7ss-er-kKK" firstAttribute="top" secondItem="Thh-KH-yzv" secondAttribute="bottom" constant="35" id="FLG-N8-tub"/>
+                            <constraint firstItem="Thh-KH-yzv" firstAttribute="trailing" secondItem="7ss-er-kKK" secondAttribute="trailing" id="Hoa-1K-oC5"/>
+                            <constraint firstItem="7ss-er-kKK" firstAttribute="trailing" secondItem="Ddg-iC-X1i" secondAttribute="trailing" id="WhE-jf-ht5"/>
+                            <constraint firstItem="Ddg-iC-X1i" firstAttribute="leading" secondItem="7ss-er-kKK" secondAttribute="leading" id="XNp-Pv-KXi"/>
+                            <constraint firstItem="7ss-er-kKK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="obG-ns-6aY"/>
+                            <constraint firstItem="7ss-er-kKK" firstAttribute="leading" secondItem="Thh-KH-yzv" secondAttribute="leading" id="uQE-8e-2AB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="avv-uD-tFl"/>
@@ -58,6 +66,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="952" y="136"/>
+        </scene>
+        <!--Test View Controller-->
+        <scene sceneID="HZV-HG-pkI">
+            <objects>
+                <viewController id="AqV-yM-0wU" customClass="TestViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="itg-aD-FlT"/>
+                        <viewControllerLayoutGuide type="bottom" id="b6q-rN-A26"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cJL-g8-qir">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E99-NS-84h">
+                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="5t1-NL-EmR"/>
+                                    <constraint firstAttribute="width" constant="40" id="8zi-5L-o8e"/>
+                                </constraints>
+                                <state key="normal" title="&lt;">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backAction:" destination="AqV-yM-0wU" eventType="touchUpInside" id="1ot-Eb-09U"/>
+                                    <action selector="backAction:" destination="7V9-tp-wcj" eventType="touchUpInside" id="7Ih-5d-goT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="E99-NS-84h" firstAttribute="top" secondItem="cJL-g8-qir" secondAttribute="top" id="elD-Ua-nKN"/>
+                            <constraint firstItem="E99-NS-84h" firstAttribute="leading" secondItem="cJL-g8-qir" secondAttribute="leading" id="pH5-MZ-haz"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zdy-YK-MvD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="952" y="929"/>
         </scene>
         <!--Clock View Controller-->
         <scene sceneID="xCF-se-uF7">

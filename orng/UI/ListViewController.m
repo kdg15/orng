@@ -64,9 +64,10 @@
     return cell;
 }
 
+#pragma mark - actions
+
 - (IBAction)backAction:(id)sender
 {
-    NSLog(@"list backAction");
     [self.navigationController popViewControllerAnimated:YES];
 }
 

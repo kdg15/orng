@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  TestViewController.h
 //  orng
 //
 //  Created by Brian Kramer on 12.09.14.
@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface TestViewController : UIViewController
 
-- (IBAction)clockTapped:(id)sender;
-- (IBAction)listTapped:(id)sender;
+- (IBAction)backAction:(id)sender;
 
 @end
-

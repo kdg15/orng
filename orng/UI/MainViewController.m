@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 mitchkram. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MainViewController.h"
 
-@interface ViewController ()
+@interface MainViewController ()
 
 @end
 
-@implementation ViewController
+@implementation MainViewController
 
 - (void)viewDidLoad
 {
@@ -26,17 +26,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 - (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
-}
-
-- (IBAction)clockTapped:(id)sender
-{
-}
-
-- (IBAction)listTapped:(id)sender
-{
 }
 
 @end
