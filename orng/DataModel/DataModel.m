@@ -7,7 +7,7 @@
 //
 
 #import "DataModel.h"
-#import "UIColor+Utilities.h"
+#import "UIColor+KDGUtilities.h"
 
 static NSString * const kPrefClockFontName = @"clockFontName";
 static NSString * const kPrefClockTextColor = @"clockTextColor";
@@ -43,7 +43,7 @@ static NSString * const kPrefClockBackgroundColor = @"clockBackgroundColor";
     NSString *string = [userDefaults stringForKey:kPrefClockTextColor];
     if (string)
     {
-        color = [UIColor colorWithString:string];
+        color = [UIColor kdgColorWithString:string];
     }
 
     return color;
@@ -52,7 +52,7 @@ static NSString * const kPrefClockBackgroundColor = @"clockBackgroundColor";
 + (void)setClockTextColor:(UIColor *)color
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *colorString = [color colorString];
+    NSString *colorString = [color kdgColorString];
     [userDefaults setObject:colorString forKey:kPrefClockTextColor];
 }
 
@@ -64,7 +64,7 @@ static NSString * const kPrefClockBackgroundColor = @"clockBackgroundColor";
     NSString *string = [userDefaults stringForKey:kPrefClockBackgroundColor];
     if (string)
     {
-        color = [UIColor colorWithString:string];
+        color = [UIColor kdgColorWithString:string];
     }
 
     return color;
@@ -73,7 +73,7 @@ static NSString * const kPrefClockBackgroundColor = @"clockBackgroundColor";
 + (void)setClockBackgroundColor:(UIColor *)color
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *colorString = [color colorString];
+    NSString *colorString = [color kdgColorString];
     [userDefaults setObject:colorString forKey:kPrefClockBackgroundColor];
 }
 

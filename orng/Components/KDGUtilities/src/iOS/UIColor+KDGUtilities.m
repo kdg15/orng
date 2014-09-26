@@ -6,15 +6,11 @@
 //  Copyright (c) 2014 mitchkram. All rights reserved.
 //
 
-#import "UIColor+Utilities.h"
+#import "UIColor+KDGUtilities.h"
 
-@implementation UIColor (Utilities)
+@implementation UIColor (KDGUtilities)
 
-//  String must be 4 float values separated by a space representing the red,
-//  green, blue, and alpha components.
-//  For exampe: "0.5 0.0 0.25 1.0"
-//
-+ (UIColor *)colorWithString:(NSString *)string
++ (UIColor *)kdgColorWithString:(NSString *)string
 {
     UIColor *color = [UIColor whiteColor];
 
@@ -34,11 +30,7 @@
     return color;
 }
 
-//  Returned string is 4 float values separated by a space representing the red,
-//  green, blue, and alpha components.
-//  For exampe: "0.5 0.0 0.25 1.0"
-//
-- (NSString *)colorString;
+- (NSString *)kdgColorString;
 {
     NSString *colorString = @"0.0 0.0 0.0 1.0";
 
@@ -60,14 +52,14 @@
     return colorString;
 }
 
-- (BOOL)isEqualToColor:(UIColor *)color
+- (BOOL)kdgIsEqualToColor:(UIColor *)color
 {
-    NSString *aString = [self colorString];
-    NSString *bString = [color colorString];
+    NSString *aString = [self kdgColorString];
+    NSString *bString = [color kdgColorString];
     return [aString isEqualToString:bString];
 }
 
-- (UIColor *)lighterColor
+- (UIColor *)kdgLighterColor
 {
     UIColor *color = [UIColor colorWithCGColor:self.CGColor];
 
@@ -84,7 +76,7 @@
     return color;
 }
 
-- (UIColor *)darkerColor
+- (UIColor *)kdgDarkerColor
 {
     UIColor *color = [UIColor colorWithCGColor:self.CGColor];
 

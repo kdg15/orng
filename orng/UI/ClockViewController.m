@@ -8,7 +8,7 @@
 
 #import "ClockViewController.h"
 #import "DataModel.h"
-#import "UIColor+Utilities.h"
+#import "UIColor+KDGUtilities.h"
 
 static const CGFloat kWhiteSliderThreshold = 0.05;
 static const CGFloat kBlackSliderThreshold = 0.05;
@@ -179,11 +179,11 @@ static NSTimeInterval kUITimerInterval = 2.0;
 {
     CGFloat value = 0.0;
 
-    if ([color isEqualToColor:[UIColor whiteColor]])
+    if ([color kdgIsEqualToColor:[UIColor whiteColor]])
     {
         value = 0.0;
     }
-    else if ([color isEqualToColor:[UIColor blackColor]])
+    else if ([color kdgIsEqualToColor:[UIColor blackColor]])
     {
         value = 1.0;
     }
