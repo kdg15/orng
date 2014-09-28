@@ -1,7 +1,4 @@
 //
-//  KDGGridView.h
-//  orng
-//
 //  Created by Brian Kramer on 12.09.14.
 //  Copyright (c) 2014 mitchkram. All rights reserved.
 //
@@ -59,7 +56,33 @@
 //
 //  KDGGridView supports a selection mode where tapping on an item will draw it
 //  with a selection view if you provide one on KDGGridViewCell.
-
+//
+//  Set up:
+//
+//  Your view controller should have a couple properties for example:
+//
+//      @property (nonatomic, strong) IBOutlet KDGGridView *gridView;
+//      @property (nonatomic, strong) IBOutlet TestViewCell *gridCell;
+//
+//  Where TestViewCell is a sub-class of KDGGridViewCell.
+//
+//  In the private interface of your view controller be sure to add the grid view
+//  data source and delegate, like so:
+//
+//      @interface TestViewController () <KDGGridViewDataSource, KDGGridViewDelegate>
+//
+//  In viewDidLoad set the grid cell size and space with:
+//
+//      self.gridView.itemSize = CGSizeMake(200, 70);
+//      self.gridView.itemSpace = 2;
+//
+//  Then implement all the data source and delegate methods.
+//
+//  Create a new xib file for you cell and layout the content. Make the File Owner
+//  your view controller.
+//
+//  And don't forget to make all the connections in your view controller xib file
+//
 @protocol KDGGridViewDelegate;
 @protocol KDGGridViewDataSource;
 

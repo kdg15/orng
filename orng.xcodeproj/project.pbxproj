@@ -29,6 +29,8 @@
 		D37F834819C7D408002D4C58 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F834419C7D408002D4C58 /* Righteous-Regular.ttf */; };
 		D3ACBCB519D625E600BE15CB /* KDGGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3ACBCB019D625E600BE15CB /* KDGGridView.m */; };
 		D3ACBCB619D625E600BE15CB /* KDGGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3ACBCB219D625E600BE15CB /* KDGGridViewCell.m */; };
+		D3F703A519D8AD0700B55D16 /* GridCell_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F703A319D8AD0700B55D16 /* GridCell_iPhone.xib */; };
+		D3F703A819D8B2F500B55D16 /* TestViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F703A719D8B2F500B55D16 /* TestViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,9 @@
 		D3ACBCB019D625E600BE15CB /* KDGGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGGridView.m; sourceTree = "<group>"; };
 		D3ACBCB119D625E600BE15CB /* KDGGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGGridViewCell.h; sourceTree = "<group>"; };
 		D3ACBCB219D625E600BE15CB /* KDGGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGGridViewCell.m; sourceTree = "<group>"; };
+		D3F703A419D8AD0700B55D16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GridCell_iPhone.xib; sourceTree = "<group>"; };
+		D3F703A619D8B2F500B55D16 /* TestViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewCell.h; sourceTree = "<group>"; };
+		D3F703A719D8B2F500B55D16 /* TestViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +128,7 @@
 			children = (
 				0CA5B94719C36740001322A0 /* LaunchScreen.xib */,
 				0CA5B94219C36740001322A0 /* Main.storyboard */,
+				D3F703A319D8AD0700B55D16 /* GridCell_iPhone.xib */,
 				0CA5B94519C36740001322A0 /* Images.xcassets */,
 				D37F832219C7D20B002D4C58 /* Fonts */,
 				0CA5B93C19C36740001322A0 /* AppDelegate.h */,
@@ -183,6 +189,8 @@
 				D3157F4719D50766008812CA /* MainViewController.m */,
 				D3157F4E19D5084E008812CA /* TestViewController.h */,
 				D3157F4D19D5084E008812CA /* TestViewController.m */,
+				D3F703A619D8B2F500B55D16 /* TestViewCell.h */,
+				D3F703A719D8B2F500B55D16 /* TestViewCell.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -442,6 +450,7 @@
 				D37F832119C7D1FB002D4C58 /* Gruppo-Regular.ttf in Resources */,
 				D37F833119C7D35C002D4C58 /* Graduate-Regular.ttf in Resources */,
 				D37F834819C7D408002D4C58 /* Righteous-Regular.ttf in Resources */,
+				D3F703A519D8AD0700B55D16 /* GridCell_iPhone.xib in Resources */,
 				D37F832E19C7D35C002D4C58 /* Audiowide-Regular.ttf in Resources */,
 				0CA5B94619C36740001322A0 /* Images.xcassets in Resources */,
 				D37F833219C7D35C002D4C58 /* Iceland-Regular.ttf in Resources */,
@@ -470,6 +479,7 @@
 				D3157F4819D50766008812CA /* DataModel.m in Sources */,
 				D3157F4A19D50766008812CA /* ListViewController.m in Sources */,
 				D3157F4F19D5084E008812CA /* TestViewController.m in Sources */,
+				D3F703A819D8B2F500B55D16 /* TestViewCell.m in Sources */,
 				0CA5B93B19C36740001322A0 /* main.m in Sources */,
 				D3157F4919D50766008812CA /* ClockViewController.m in Sources */,
 				D3157F4B19D50766008812CA /* NavigationController.m in Sources */,
@@ -509,6 +519,14 @@
 				0CA5B94819C36740001322A0 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		D3F703A319D8AD0700B55D16 /* GridCell_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3F703A419D8AD0700B55D16 /* Base */,
+			);
+			name = GridCell_iPhone.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
