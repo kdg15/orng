@@ -14,9 +14,9 @@
  * (Rights  in Technical Data and Computer Software),  as applicable.
  *******************************************************************/
 
-#import "awGridViewCell.h"
+#import "KDGGridViewCell.h"
 
-@implementation awGridViewCell
+@implementation KDGGridViewCell
 
 @synthesize reuseIdentifier=_reuseIdentifier;
 @synthesize selectedView=_selectedView;

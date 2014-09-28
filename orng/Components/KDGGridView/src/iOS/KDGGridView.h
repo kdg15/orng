@@ -1,26 +1,18 @@
-/********************************************************************
- * (C) Copyright 2011 by Autodesk, Inc. All Rights Reserved. By using
- * this code,  you  are  agreeing  to the terms and conditions of the
- * License  Agreement  included  in  the documentation for this code.
- * AUTODESK  MAKES  NO  WARRANTIES,  EXPRESS  OR  IMPLIED,  AS TO THE
- * CORRECTNESS OF THIS CODE OR ANY DERIVATIVE WORKS WHICH INCORPORATE
- * IT.  AUTODESK PROVIDES THE CODE ON AN 'AS-IS' BASIS AND EXPLICITLY
- * DISCLAIMS  ANY  LIABILITY,  INCLUDING CONSEQUENTIAL AND INCIDENTAL
- * DAMAGES  FOR ERRORS, OMISSIONS, AND  OTHER  PROBLEMS IN THE  CODE.
- *
- * Use, duplication,  or disclosure by the U.S. Government is subject
- * to  restrictions  set forth  in FAR 52.227-19 (Commercial Computer
- * Software Restricted Rights) as well as DFAR 252.227-7013(c)(1)(ii)
- * (Rights  in Technical Data and Computer Software),  as applicable.
- *******************************************************************/
+//
+//  KDGGridView.h
+//  orng
+//
+//  Created by Brian Kramer on 12.09.14.
+//  Copyright (c) 2014 mitchkram. All rights reserved.
+//
 
 #import <UIKit/UIKit.h>
-#import "awGridViewCell.h"
+#import "KDGGridViewCell.h"
 
-//  The awGridView class provides support for displaying a list of items
+//  The KDGGridView class provides support for displaying a list of items
 //  in a grid layout.
 //
-//  The grid view arranges its items in a grid of rows and columns. awGridView
+//  The grid view arranges its items in a grid of rows and columns. KDGGridView
 //  is a subclass of UIScrollView which allows the user to scroll through the
 //  content. The grid view may have a vertical orientation (the default) or
 //  a horizontal orientation.
@@ -33,22 +25,22 @@
 //  and additional columns are added to accommodate more content. The user
 //  scrolls left and right to see the additional content.
 //
-//  A awGridView object must have an object that acts as a data source and an
+//  A KDGGridView object must have an object that acts as a data source and an
 //  object that acts as a delegate. The data source must adopt the
-//  awGridViewDataSource protocol and the delegate must adopt the
-//  awGridViewDelegate protocol.
+//  KDGGridViewDataSource protocol and the delegate must adopt the
+//  KDGGridViewDelegate protocol.
 //
-//  awGridView only displays visible cells (awGridViewCell). Non-visible cells
+//  KDGGridView only displays visible cells (KDGGridViewCell). Non-visible cells
 //  are cached for reuse.
 //
 //  The gridView:cellAtIndex delegate method requires you to instantiate and
-//  return an awGridViewCell object. For example:
+//  return an KDGGridViewCell object. For example:
 //
-//    - (awGridViewCell *)gridView:(awGridView *)gridView cellAtIndex:(NSUInteger)index
+//    - (KDGGridViewCell *)gridView:(KDGGridView *)gridView cellAtIndex:(NSUInteger)index
 //    {
 //        static NSString *CellIdentifier = @"GridCell";
 //        
-//        awGridViewCell *cell = [gridView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        KDGGridViewCell *cell = [gridView dequeueReusableCellWithIdentifier:CellIdentifier];
 //        if (cell == nil)
 //        {
 //            NSString *nibName = @"GridCell_iPad";
@@ -65,19 +57,19 @@
 //        return cell;
 //    }
 //
-//  awGridView supports a selection mode where tapping on an item will draw it
-//  with a selection view if you provide one on awGridViewCell.
+//  KDGGridView supports a selection mode where tapping on an item will draw it
+//  with a selection view if you provide one on KDGGridViewCell.
 
-@protocol awGridViewDelegate;
-@protocol awGridViewDataSource;
+@protocol KDGGridViewDelegate;
+@protocol KDGGridViewDataSource;
 
-enum awGridViewOrientation
+enum KDGGridViewOrientation
 {
-    awGridViewOrientationVertical,
-    awGridViewOrientationHorizontal
+    KDGGridViewOrientationVertical,
+    KDGGridViewOrientationHorizontal
 };
 
-@interface awGridView : UIScrollView
+@interface KDGGridView : UIScrollView
 
 //  The size of cell items.
 //
@@ -89,7 +81,7 @@ enum awGridViewOrientation
 
 //  A vertical orientation is the default.
 //
-@property (nonatomic) enum awGridViewOrientation orientation;
+@property (nonatomic) enum KDGGridViewOrientation orientation;
 
 //  A Boolean value that determines whether the receiver is in selection mode.
 //
@@ -99,12 +91,12 @@ enum awGridViewOrientation
 //
 @property (nonatomic) BOOL selecting;
 
-@property (nonatomic, assign) IBOutlet id <awGridViewDelegate> gridViewDelegate;
-@property (nonatomic, assign) IBOutlet id <awGridViewDataSource> dataSource;
+@property (nonatomic, assign) IBOutlet id <KDGGridViewDelegate> gridViewDelegate;
+@property (nonatomic, assign) IBOutlet id <KDGGridViewDataSource> dataSource;
 
 - (void)reloadData;
 
-- (awGridViewCell *)cellAtIndex:(NSUInteger)index;
+- (KDGGridViewCell *)cellAtIndex:(NSUInteger)index;
 
 - (id)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 
@@ -115,21 +107,21 @@ enum awGridViewOrientation
 
 @end
 
-@protocol awGridViewDelegate <NSObject>
+@protocol KDGGridViewDelegate <NSObject>
 
 @optional
 
 //  Called whenever a cell is tapped, regardless of selecting property value.
 //
-- (void)gridView:(awGridView *)gridView didSelectCellAtIndex:(NSUInteger)index;
+- (void)gridView:(KDGGridView *)gridView didSelectCellAtIndex:(NSUInteger)index;
 
 @end
 
-@protocol awGridViewDataSource <NSObject>
+@protocol KDGGridViewDataSource <NSObject>
 
 @required
-- (NSInteger)numberOfItemsInGridView:(awGridView *)gridView;
-- (awGridViewCell *)gridView:(awGridView *)gridView cellAtIndex:(NSUInteger)index;
+- (NSInteger)numberOfItemsInGridView:(KDGGridView *)gridView;
+- (KDGGridViewCell *)gridView:(KDGGridView *)gridView cellAtIndex:(NSUInteger)index;
 
 @end
 

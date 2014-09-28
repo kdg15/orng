@@ -1,24 +1,16 @@
-/********************************************************************
- * (C) Copyright 2011 by Autodesk, Inc. All Rights Reserved. By using
- * this code,  you  are  agreeing  to the terms and conditions of the
- * License  Agreement  included  in  the documentation for this code.
- * AUTODESK  MAKES  NO  WARRANTIES,  EXPRESS  OR  IMPLIED,  AS TO THE
- * CORRECTNESS OF THIS CODE OR ANY DERIVATIVE WORKS WHICH INCORPORATE
- * IT.  AUTODESK PROVIDES THE CODE ON AN 'AS-IS' BASIS AND EXPLICITLY
- * DISCLAIMS  ANY  LIABILITY,  INCLUDING CONSEQUENTIAL AND INCIDENTAL
- * DAMAGES  FOR ERRORS, OMISSIONS, AND  OTHER  PROBLEMS IN THE  CODE.
- *
- * Use, duplication,  or disclosure by the U.S. Government is subject
- * to  restrictions  set forth  in FAR 52.227-19 (Commercial Computer
- * Software Restricted Rights) as well as DFAR 252.227-7013(c)(1)(ii)
- * (Rights  in Technical Data and Computer Software),  as applicable.
- *******************************************************************/
+//
+//  KDGGridView.m
+//  orng
+//
+//  Created by Brian Kramer on 12.09.14.
+//  Copyright (c) 2014 mitchkram. All rights reserved.
+//
 
-#import "awGridView.h"
+#import "KDGGridView.h"
 
 #pragma mark - Private Interface
 
-@interface awGridView ()
+@interface KDGGridView ()
 
 @property (nonatomic) NSInteger  numberOfRows;
 @property (nonatomic) NSInteger  numberOfColumns;
@@ -50,14 +42,14 @@
 
 - (void)_resetTouchedIndex;
 
-- (void)_addSelectedViewToCell:(awGridViewCell *)cell;
-- (void)_removeSelectedViewFromCell:(awGridViewCell *)cell;
+- (void)_addSelectedViewToCell:(KDGGridViewCell *)cell;
+- (void)_removeSelectedViewFromCell:(KDGGridViewCell *)cell;
 
 @end
 
 #pragma mark - Implementation
 
-@implementation awGridView
+@implementation KDGGridView
 
 @synthesize itemSize=_itemSize;
 @synthesize itemSpace=_itemSpace;
@@ -104,7 +96,7 @@
 {
     self.itemSize = CGSizeMake(64.0f, 64.0f);
     self.itemSpace = 18.0f;
-    self.orientation = awGridViewOrientationVertical;
+    self.orientation = KDGGridViewOrientationVertical;
     self.selecting = NO;
 
     self.visibleCellRange = NSMakeRange(0, 0);
@@ -161,7 +153,7 @@
     [self _configureLayout];
 }
 
-- (void)setOrientation:(enum awGridViewOrientation)orientation
+- (void)setOrientation:(enum KDGGridViewOrientation)orientation
 {
     _orientation = orientation;
     [self _configureLayout];
@@ -203,7 +195,7 @@
     NSInteger itemCount = [self _numberOfItems];
     CGSize size = self.bounds.size;
 
-    if (self.orientation == awGridViewOrientationVertical)
+    if (self.orientation == KDGGridViewOrientationVertical)
     {        
         self.numberOfColumns = (size.width - self.itemSpace) / (self.itemSize.width + self.itemSpace);
         self.extraSpace = size.width - self.itemSpace - self.numberOfColumns * (self.itemSize.width + self.itemSpace);
@@ -273,7 +265,7 @@
 
 - (void)_repositionCells
 {
-    [self.visibleCells enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, awGridViewCell *cell, BOOL *stop) {
+    [self.visibleCells enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, KDGGridViewCell *cell, BOOL *stop) {
         CGRect cellRect = [self _getCellRect:[key integerValue]];
         cell.frame = cellRect;
     }];
@@ -283,7 +275,7 @@
 {
     CGRect rect;
 
-    if (self.orientation == awGridViewOrientationVertical)
+    if (self.orientation == KDGGridViewOrientationVertical)
     {
         NSInteger row = index / self.numberOfColumns;
         NSInteger column = index % self.numberOfColumns;
@@ -309,7 +301,7 @@
 
 - (void)_showCell:(NSInteger)index
 {
-    awGridViewCell *cell = [self.dataSource gridView:self cellAtIndex:index];
+    KDGGridViewCell *cell = [self.dataSource gridView:self cellAtIndex:index];
     NSAssert(cell != nil, @"### ASSERT: dataSource must return a cell!");
     cell.frame = [self _getCellRect:index];
     [self addSubview:cell];
@@ -329,7 +321,7 @@
 - (void)_hideCell:(NSInteger)index
 {
     NSNumber *key = [NSNumber numberWithUnsignedInteger:index];
-    awGridViewCell *cell = [self.visibleCells objectForKey:key];
+    KDGGridViewCell *cell = [self.visibleCells objectForKey:key];
     if (cell)
     {
         if (self.selecting)
@@ -409,7 +401,7 @@
     NSInteger startIndex = 0, endIndex = 0;
     NSRange newVisibleCellRange = NSMakeRange(0, 0);
 
-    if (self.orientation == awGridViewOrientationVertical)
+    if (self.orientation == KDGGridViewOrientationVertical)
     {
         CGRect visibleRect = CGRectMake(0,
                                         self.contentOffset.y,
@@ -614,9 +606,9 @@
     if (!self.hidden) [self _updateCellVisibility:YES];
 }
 
-- (awGridViewCell *)cellAtIndex:(NSUInteger)index
+- (KDGGridViewCell *)cellAtIndex:(NSUInteger)index
 {
-    awGridViewCell *cell = nil;
+    KDGGridViewCell *cell = nil;
 
     if (NSLocationInRange(index, self.visibleCellRange))
     {
@@ -632,7 +624,7 @@
     //  TODO: Will need a queue for each identifier. Currently assuming only
     //  only cell identifier.
     //
-    awGridViewCell *cell = [self.reuseQueue lastObject];
+    KDGGridViewCell *cell = [self.reuseQueue lastObject];
     if (cell)
     {
 #if !__has_feature(objc_arc)
@@ -667,7 +659,7 @@
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:self];
 
-    if (self.orientation == awGridViewOrientationVertical)
+    if (self.orientation == KDGGridViewOrientationVertical)
     {
         NSUInteger row = touchPoint.y / (self.itemSize.height + self.itemSpace);
         NSUInteger column = (touchPoint.x - self.extraSpace / 2.0) / (self.itemSize.width + self.itemSpace);
@@ -724,7 +716,7 @@
         if (self.selecting)
         {
             NSNumber *cellIndex = [NSNumber numberWithUnsignedInteger:self.touchedIndex];
-            awGridViewCell *cell = [self.visibleCells objectForKey:cellIndex];
+            KDGGridViewCell *cell = [self.visibleCells objectForKey:cellIndex];
 
             NSUInteger index = [self.selectedIndices indexOfObject:cellIndex];
 
@@ -764,7 +756,7 @@
             //
             for (NSNumber *cellIndex in self.selectedIndices)
             {
-                awGridViewCell *cell = [self.visibleCells objectForKey:cellIndex];
+                KDGGridViewCell *cell = [self.visibleCells objectForKey:cellIndex];
                 [self _removeSelectedViewFromCell:cell];
             }
             [self.selectedIndices removeAllObjects];
@@ -788,7 +780,7 @@
     self.haveTouchedIndex = NO;
 }
 
-- (void)_addSelectedViewToCell:(awGridViewCell *)cell
+- (void)_addSelectedViewToCell:(KDGGridViewCell *)cell
 {
     if (cell)
     {
@@ -800,7 +792,7 @@
     }
 }
 
-- (void)_removeSelectedViewFromCell:(awGridViewCell *)cell
+- (void)_removeSelectedViewFromCell:(KDGGridViewCell *)cell
 {
     if (cell)
     {

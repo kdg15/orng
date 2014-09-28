@@ -16,7 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface awGridViewCell : UIView
+@interface KDGGridViewCell : UIView
 
 @property(nonatomic, retain) NSString *reuseIdentifier;
 @property(nonatomic, retain) UIView   *selectedView;
