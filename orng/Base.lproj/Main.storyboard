@@ -93,6 +93,9 @@
                                     <action selector="backAction:" destination="7V9-tp-wcj" eventType="touchUpInside" id="7Ih-5d-goT"/>
                                 </connections>
                             </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r3b-lU-Dz0">
+                                <rect key="frame" x="16" y="48" width="568" height="532"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -168,12 +171,27 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6AN-gj-ybg">
+                                <rect key="frame" x="560" y="0.0" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="HMF-w7-LcR"/>
+                                    <constraint firstAttribute="height" constant="40" id="vHn-Zz-i0S"/>
+                                </constraints>
+                                <state key="normal" title="*">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dimAction:" destination="7V9-tp-wcj" eventType="touchUpInside" id="xyd-MZ-1Qn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="6AN-gj-ybg" firstAttribute="top" secondItem="A3H-oD-duB" secondAttribute="top" id="7zv-p6-rE1"/>
                             <constraint firstItem="lBJ-9Y-WWT" firstAttribute="leading" secondItem="A3H-oD-duB" secondAttribute="leading" id="9yx-o3-VZx"/>
                             <constraint firstAttribute="bottom" secondItem="rpZ-t7-ghF" secondAttribute="bottom" id="A5v-hJ-KGB"/>
+                            <constraint firstAttribute="trailing" secondItem="6AN-gj-ybg" secondAttribute="trailing" id="AHD-fd-k4h"/>
                             <constraint firstItem="foE-vt-257" firstAttribute="top" secondItem="A3H-oD-duB" secondAttribute="top" constant="9" id="COT-6n-3Ba"/>
                             <constraint firstItem="T36-Jd-DKN" firstAttribute="top" secondItem="n6a-Rn-Dw7" secondAttribute="bottom" constant="40" id="E1J-v0-VrT"/>
                             <constraint firstAttribute="trailing" secondItem="foE-vt-257" secondAttribute="trailing" constant="48" id="Jfg-FP-76T"/>
@@ -190,6 +208,7 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="lBJ-9Y-WWT" id="03d-jA-qrt"/>
+                        <outlet property="dimButton" destination="6AN-gj-ybg" id="oU2-Dg-8HY"/>
                         <outlet property="helpLabel" destination="foE-vt-257" id="PjS-fe-JG9"/>
                         <outlet property="settingsButton" destination="rpZ-t7-ghF" id="RAC-k9-V5X"/>
                         <outlet property="slider" destination="g8u-Bc-dvz" id="gYA-GL-boR"/>

@@ -135,11 +135,11 @@ static NSTimeInterval kUITimerInterval = 2.0;
 
 - (void)setUpGestures
 {
-    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                action:@selector(doubleTapAction:)];
-    doubleTap.numberOfTapsRequired = 2;
-    doubleTap.numberOfTouchesRequired = 1;
-    [self.view addGestureRecognizer:doubleTap];
+//    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+//                                                                                action:@selector(doubleTapAction:)];
+//    doubleTap.numberOfTapsRequired = 2;
+//    doubleTap.numberOfTouchesRequired = 1;
+//    [self.view addGestureRecognizer:doubleTap];
 }
 
 - (void)setUpFont
@@ -295,6 +295,7 @@ static NSTimeInterval kUITimerInterval = 2.0;
     self.timeLabel.textColor = color;
     self.helpLabel.textColor = color;
     [self.backButton setTitleColor:color forState:UIControlStateNormal];
+    [self.dimButton setTitleColor:color forState:UIControlStateNormal];
     [self.settingsButton setTitleColor:color forState:UIControlStateNormal];
 }
 
@@ -357,6 +358,25 @@ static NSTimeInterval kUITimerInterval = 2.0;
 - (IBAction)backAction:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)dimAction:(id)sender
+{
+    static BOOL sDimmed = NO;
+    static CGFloat sOriginalBrightness = 0.0;
+
+    UIScreen *screen = [UIScreen mainScreen];
+    if (sDimmed)
+    {
+        screen.brightness = sOriginalBrightness;
+    }
+    else
+    {
+        sOriginalBrightness = screen.brightness;
+        screen.brightness = 0;
+    }
+
+    sDimmed = !sDimmed;
 }
 
 - (IBAction)settingsAction:(id)sender
@@ -442,23 +462,23 @@ static NSTimeInterval kUITimerInterval = 2.0;
     [self startUITimer];
 }
 
-- (IBAction)doubleTapAction:(id)sender
-{
-    static BOOL sDimmed = NO;
-    static CGFloat sOriginalBrightness = 0.0;
-
-    UIScreen *screen = [UIScreen mainScreen];
-    if (sDimmed)
-    {
-        screen.brightness = sOriginalBrightness;
-    }
-    else
-    {
-        sOriginalBrightness = screen.brightness;
-        screen.brightness = 0;
-    }
-
-    sDimmed = !sDimmed;
-}
+//- (IBAction)doubleTapAction:(id)sender
+//{
+//    static BOOL sDimmed = NO;
+//    static CGFloat sOriginalBrightness = 0.0;
+//
+//    UIScreen *screen = [UIScreen mainScreen];
+//    if (sDimmed)
+//    {
+//        screen.brightness = sOriginalBrightness;
+//    }
+//    else
+//    {
+//        sOriginalBrightness = screen.brightness;
+//        screen.brightness = 0;
+//    }
+//
+//    sDimmed = !sDimmed;
+//}
 
 @end
