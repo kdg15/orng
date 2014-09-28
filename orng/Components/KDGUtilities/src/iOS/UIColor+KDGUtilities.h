@@ -1,5 +1,5 @@
 //
-//  UIColor+Utilities.h
+//  UIColor+KDGUtilities.h
 //  orng
 //
 //  Created by Brian Kramer on 15.09.14.
