@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "KDGCommandEngine+Application.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(executedCommand:)
+                                                 name:@"executedCommand" object:nil];
+
+    NSLog(@"setUpCommandEngine");
+    [self setUpCommandEngine];
+    NSLog(@"done");
+
     return YES;
 }
 
@@ -57,5 +67,26 @@
 //        return UIInterfaceOrientationMaskPortrait;
 //    }
 //}
+
+#pragma Command System
+
+- (void)setUpCommandEngine
+{
+    KDGCommandEngine *commandEngine = [KDGCommandEngine sharedInstance];
+    [commandEngine setUpCommands];
+
+    NSArray *commands = [commandEngine getCommands];
+    for (KDGCommand *command in commands)
+    {
+        NSLog(@"command = %@", command);
+    }
+
+    //[commandEngine executeCommand:[KDGCommand orangeCommand]];
+}
+
+- (void)executedCommand:(NSNotification *)notification
+{
+    NSLog(@"*** executedCommand %@", notification);
+}
 
 @end

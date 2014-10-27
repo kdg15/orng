@@ -29,6 +29,9 @@
 		D37F834819C7D408002D4C58 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F834419C7D408002D4C58 /* Righteous-Regular.ttf */; };
 		D3ACBCB519D625E600BE15CB /* KDGGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3ACBCB019D625E600BE15CB /* KDGGridView.m */; };
 		D3ACBCB619D625E600BE15CB /* KDGGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3ACBCB219D625E600BE15CB /* KDGGridViewCell.m */; };
+		D3E7037419FDABDA00E38E71 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = D3E7036F19FDABDA00E38E71 /* README.md */; };
+		D3E7037519FDABDA00E38E71 /* KDGCommandEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E7037319FDABDA00E38E71 /* KDGCommandEngine.m */; };
+		D3E7037B19FDB9DE00E38E71 /* KDGCommandEngine+Application.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E7037A19FDB9DE00E38E71 /* KDGCommandEngine+Application.m */; };
 		D3F703A519D8AD0700B55D16 /* GridCell_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F703A319D8AD0700B55D16 /* GridCell_iPhone.xib */; };
 		D3F703A819D8B2F500B55D16 /* TestViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F703A719D8B2F500B55D16 /* TestViewCell.m */; };
 /* End PBXBuildFile section */
@@ -82,6 +85,11 @@
 		D3ACBCB019D625E600BE15CB /* KDGGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGGridView.m; sourceTree = "<group>"; };
 		D3ACBCB119D625E600BE15CB /* KDGGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGGridViewCell.h; sourceTree = "<group>"; };
 		D3ACBCB219D625E600BE15CB /* KDGGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGGridViewCell.m; sourceTree = "<group>"; };
+		D3E7036F19FDABDA00E38E71 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D3E7037219FDABDA00E38E71 /* KDGCommandEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGCommandEngine.h; sourceTree = "<group>"; };
+		D3E7037319FDABDA00E38E71 /* KDGCommandEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGCommandEngine.m; sourceTree = "<group>"; };
+		D3E7037919FDB9DE00E38E71 /* KDGCommandEngine+Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KDGCommandEngine+Application.h"; sourceTree = "<group>"; };
+		D3E7037A19FDB9DE00E38E71 /* KDGCommandEngine+Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KDGCommandEngine+Application.m"; sourceTree = "<group>"; };
 		D3F703A419D8AD0700B55D16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GridCell_iPhone.xib; sourceTree = "<group>"; };
 		D3F703A619D8B2F500B55D16 /* TestViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewCell.h; sourceTree = "<group>"; };
 		D3F703A719D8B2F500B55D16 /* TestViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewCell.m; sourceTree = "<group>"; };
@@ -133,6 +141,8 @@
 				D37F832219C7D20B002D4C58 /* Fonts */,
 				0CA5B93C19C36740001322A0 /* AppDelegate.h */,
 				0CA5B93D19C36740001322A0 /* AppDelegate.m */,
+				D3E7037919FDB9DE00E38E71 /* KDGCommandEngine+Application.h */,
+				D3E7037A19FDB9DE00E38E71 /* KDGCommandEngine+Application.m */,
 				D3157F3C19D50766008812CA /* DataModel */,
 				D3157F3F19D50766008812CA /* UI */,
 				D3157F5019D50DA9008812CA /* Components */,
@@ -198,6 +208,7 @@
 		D3157F5019D50DA9008812CA /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D3E7036E19FDABDA00E38E71 /* KDGCommandEngine */,
 				D3ACBCAA19D625E600BE15CB /* KDGGridView */,
 				D3157F5119D50DA9008812CA /* KDGUtilities */,
 			);
@@ -362,6 +373,32 @@
 			path = MacOS;
 			sourceTree = "<group>";
 		};
+		D3E7036E19FDABDA00E38E71 /* KDGCommandEngine */ = {
+			isa = PBXGroup;
+			children = (
+				D3E7036F19FDABDA00E38E71 /* README.md */,
+				D3E7037019FDABDA00E38E71 /* src */,
+			);
+			path = KDGCommandEngine;
+			sourceTree = "<group>";
+		};
+		D3E7037019FDABDA00E38E71 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D3E7037119FDABDA00E38E71 /* Cocoa */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D3E7037119FDABDA00E38E71 /* Cocoa */ = {
+			isa = PBXGroup;
+			children = (
+				D3E7037219FDABDA00E38E71 /* KDGCommandEngine.h */,
+				D3E7037319FDABDA00E38E71 /* KDGCommandEngine.m */,
+			);
+			path = Cocoa;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -475,11 +512,14 @@
 				D3ACBCB519D625E600BE15CB /* KDGGridView.m in Sources */,
 				D3157F4C19D50766008812CA /* MainViewController.m in Sources */,
 				D3ACBCB619D625E600BE15CB /* KDGGridViewCell.m in Sources */,
+				D3E7037419FDABDA00E38E71 /* README.md in Sources */,
 				0CA5B93E19C36740001322A0 /* AppDelegate.m in Sources */,
+				D3E7037519FDABDA00E38E71 /* KDGCommandEngine.m in Sources */,
 				D3157F4819D50766008812CA /* DataModel.m in Sources */,
 				D3157F4A19D50766008812CA /* ListViewController.m in Sources */,
 				D3157F4F19D5084E008812CA /* TestViewController.m in Sources */,
 				D3F703A819D8B2F500B55D16 /* TestViewCell.m in Sources */,
+				D3E7037B19FDB9DE00E38E71 /* KDGCommandEngine+Application.m in Sources */,
 				0CA5B93B19C36740001322A0 /* main.m in Sources */,
 				D3157F4919D50766008812CA /* ClockViewController.m in Sources */,
 				D3157F4B19D50766008812CA /* NavigationController.m in Sources */,
