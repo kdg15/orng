@@ -4,8 +4,9 @@
 //
 
 #import "TestViewController.h"
+#import "CommandSystem.h"
 
-@interface TestViewController () <KDGGridViewDataSource, KDGGridViewDelegate>
+@interface TestViewController () <KDGGridViewDataSource, KDGGridViewDelegate, KDGCommandEngineResponder>
 
 @end
 
@@ -18,6 +19,13 @@
 
     self.gridView.itemSize = CGSizeMake(200, 70);
     self.gridView.itemSpace = 2;
+
+    [[CommandEngine sharedInstance] addResponder:self];
+}
+
+- (void)dealloc
+{
+    [[CommandEngine sharedInstance] removeResponder:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,7 +90,21 @@
 
 - (IBAction)backAction:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    CommandEngine *commandEngine = [CommandEngine sharedInstance];
+    [commandEngine executeCommand:[Command dismissTestViewCommand]];
+}
+
+#pragma mark - command system
+
+- (void)executedCommand:(NSNotification *)notification
+{
+    CommandEngine *commandEngine = [CommandEngine sharedInstance];
+    Command *command = [commandEngine getCommandFromNotification:notification];
+    
+    if ([command isEqualToCommand:[Command dismissTestViewCommand]])
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

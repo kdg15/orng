@@ -1,25 +1,17 @@
 //
-//  ListViewController.m
-//  orng
-//
 //  Created by Brian Kramer on 12.09.14.
 //  Copyright (c) 2014 mitchkram. All rights reserved.
 //
 
-#import "ListViewController.h"
+#import "DummyViewController.h"
 #import "CommandSystem.h"
 
-@interface ListViewController () <UITableViewDataSource, UITableViewDelegate, KDGCommandEngineResponder>
-
-@end
-
-@implementation ListViewController
+@implementation DummyViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-
+    
     [[CommandEngine sharedInstance] addResponder:self];
 }
 
@@ -34,6 +26,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 /*
 #pragma mark - Navigation
 
@@ -45,40 +42,12 @@
 }
 */
 
-#pragma mark - table view
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 4;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyIdentifier"];
-
-    if (cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MyIdentifier"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-    }
-
-    cell.textLabel.text = @"label";
-    cell.detailTextLabel.text = @"detail";
-
-    //UIImage *theImage = [UIImage imageWithContentsOfFile:path];
-    //cell.imageView.image = theImage;
-
-    return cell;
-}
-
 #pragma mark - actions
 
 - (IBAction)backAction:(id)sender
 {
-//    [self.navigationController popViewControllerAnimated:YES];
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command dismissListViewCommand]];
+    [commandEngine executeCommand:[Command dismissDummyViewCommand]];
 }
 
 #pragma mark - command system
@@ -88,7 +57,7 @@
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     Command *command = [commandEngine getCommandFromNotification:notification];
     
-    if ([command isEqualToCommand:[Command dismissListViewCommand]])
+    if ([command isEqualToCommand:[Command dismissDummyViewCommand]])
     {
         [self.navigationController popViewControllerAnimated:YES];
     }

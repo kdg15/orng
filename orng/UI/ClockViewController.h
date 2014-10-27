@@ -17,6 +17,19 @@
 @property (nonatomic, strong) IBOutlet UIButton *settingsButton;
 @property (nonatomic, strong) IBOutlet UISlider *slider;
 
+@property (nonatomic, strong) IBOutlet UIButton *optionsButton;
+@property (nonatomic, strong) IBOutlet UIButton *fontButton;
+@property (nonatomic, strong) IBOutlet UIButton *foregroundButton;
+@property (nonatomic, strong) IBOutlet UIButton *backgroundButton;
+@property (nonatomic, strong) IBOutlet UIButton *brightnessButton;
+
+- (IBAction)optionsAction:(id)sender;
+
+- (IBAction)fontAction:(id)sender;
+- (IBAction)foregroundAction:(id)sender;
+- (IBAction)backgroundAction:(id)sender;
+- (IBAction)brightnessAction:(id)sender;
+
 - (IBAction)backAction:(id)sender;
 - (IBAction)dimAction:(id)sender;
 - (IBAction)sliderChangedAction:(id)sender;

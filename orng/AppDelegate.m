@@ -7,24 +7,26 @@
 //
 
 #import "AppDelegate.h"
-#import "KDGCommandEngine+Application.h"
+#import "CommandSystem.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <KDGCommandEngineResponder>
 
 @end
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
+    /*
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(executedCommand:)
-                                                 name:@"executedCommand" object:nil];
+                                                 name:KDGCommandExecutedNotification
+                                               object:nil];
+     */
 
-    NSLog(@"setUpCommandEngine");
-    [self setUpCommandEngine];
+    NSLog(@"setUpCommandSystem");
+    [self setUpCommandSystem];
     NSLog(@"done");
 
     return YES;
@@ -68,25 +70,31 @@
 //    }
 //}
 
-#pragma Command System
+#pragma mark - command system
 
-- (void)setUpCommandEngine
+- (void)setUpCommandSystem
 {
-    KDGCommandEngine *commandEngine = [KDGCommandEngine sharedInstance];
+    CommandEngine *commandEngine = [CommandEngine sharedInstance];
     [commandEngine setUpCommands];
 
     NSArray *commands = [commandEngine getCommands];
-    for (KDGCommand *command in commands)
+    for (Command *command in commands)
     {
         NSLog(@"command = %@", command);
     }
-
-    //[commandEngine executeCommand:[KDGCommand orangeCommand]];
+    
+    [commandEngine addResponder:self];
 }
 
 - (void)executedCommand:(NSNotification *)notification
 {
-    NSLog(@"*** executedCommand %@", notification);
+    CommandEngine *commandEngine = [CommandEngine sharedInstance];
+    Command *command = [commandEngine getCommandFromNotification:notification];
+
+    if ([command isEqualToCommand:[Command printLogCommand]])
+    {
+        NSLog(@"logged commands:\n%@", [commandEngine getCommandLog]);
+    }
 }
 
 @end

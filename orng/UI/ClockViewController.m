@@ -8,7 +8,9 @@
 
 #import "ClockViewController.h"
 #import "DataModel.h"
+#import "CommandSystem.h"
 #import "UIColor+KDGUtilities.h"
+#import "KDGUtilities.h"
 
 static const CGFloat kWhiteSliderThreshold = 0.05;
 static const CGFloat kBlackSliderThreshold = 0.05;
@@ -24,8 +26,9 @@ static CGFloat kFontSize = 256.0;
 
 static NSTimeInterval kTimerInterval   = 0.2;
 static NSTimeInterval kUITimerInterval = 2.0;
+static NSTimeInterval kOptionsTimerInterval = 3.0;
 
-@interface ClockViewController ()
+@interface ClockViewController () <KDGCommandEngineResponder>
 
 @property (nonatomic, assign) SettingsMode settingsMode;
 @property (nonatomic, assign) CGFloat fontValue;
@@ -33,6 +36,7 @@ static NSTimeInterval kUITimerInterval = 2.0;
 @property (nonatomic, assign) CGFloat backgroundColorValue;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) NSTimer *uiTimer;
+@property (nonatomic, strong) NSTimer *optionsTimer;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, strong) NSArray *fontNames;
 
@@ -68,12 +72,29 @@ static NSTimeInterval kUITimerInterval = 2.0;
     [self setUpBackgroundColor];
     [self setUpDateFormatter];
     //[self printFonts];
+    
+    for (UIView *view in @[self.fontButton,
+                           self.foregroundButton,
+                           self.backgroundButton,
+                           self.brightnessButton])
+    {
+        view.hidden = YES;
+        view.layer.cornerRadius = 0.5 * view.bounds.size.width;
+    }
+    
+    [[CommandEngine sharedInstance] addResponder:self];
+}
+
+- (void)dealloc
+{
+    [[CommandEngine sharedInstance] removeResponder:self];
 }
 
 - (void)viewDidUnload
 {
     [self stopTimer];
     [self stopUITimer];
+    [self stopOptionsTimer];
     [super viewDidUnload];
 }
 
@@ -276,6 +297,30 @@ static NSTimeInterval kUITimerInterval = 2.0;
     [self showSettingUI:NO];
 }
 
+#pragma mark - dismiss options timer
+
+- (void)startOptionsTimer
+{
+    [self stopOptionsTimer];
+    self.optionsTimer = [NSTimer scheduledTimerWithTimeInterval:kOptionsTimerInterval
+                                                         target:self
+                                                       selector:@selector(optionsTimerFired:)
+                                                       userInfo:nil
+                                                        repeats:NO];
+}
+
+- (void)stopOptionsTimer
+{
+    [self.optionsTimer invalidate];
+    self.optionsTimer = nil;
+}
+
+- (void)optionsTimerFired:(NSTimer *)timer
+{
+    CommandEngine *commandEngine = [CommandEngine sharedInstance];
+    [commandEngine executeCommand:[Command dismissClockOptionsCommand]];
+}
+
 #pragma mark - ui
 
 - (void)updateTimeDisplay
@@ -297,11 +342,28 @@ static NSTimeInterval kUITimerInterval = 2.0;
     [self.backButton setTitleColor:color forState:UIControlStateNormal];
     [self.dimButton setTitleColor:color forState:UIControlStateNormal];
     [self.settingsButton setTitleColor:color forState:UIControlStateNormal];
+    [self.optionsButton setTitleColor:color forState:UIControlStateNormal];
+    
+    for (UIButton *button in @[self.fontButton,
+                               self.foregroundButton,
+                               self.backgroundButton,
+                               self.brightnessButton])
+    {
+        [button setBackgroundColor:color];
+    }
 }
 
 - (void)updateBackgroundColor:(UIColor *)color
 {
     self.view.backgroundColor = color;
+
+    for (UIButton *button in @[self.fontButton,
+                               self.foregroundButton,
+                               self.backgroundButton,
+                               self.brightnessButton])
+    {
+        [button setTitleColor:color forState:UIControlStateNormal];
+    }
 }
 
 - (void)updateHelpLabel:(NSString *)string
@@ -355,9 +417,44 @@ static NSTimeInterval kUITimerInterval = 2.0;
 
 #pragma mark - actions
 
+- (IBAction)optionsAction:(id)sender
+{
+    CommandEngine *commandEngine = [CommandEngine sharedInstance];
+    [commandEngine executeCommand:[Command presentClockOptionsCommand]];
+}
+
 - (IBAction)backAction:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    CommandEngine *commandEngine = [CommandEngine sharedInstance];
+    [commandEngine executeCommand:[Command dismissClockViewCommand]];
+}
+
+- (IBAction)fontAction:(id)sender
+{
+    [self stopOptionsTimer];
+    CommandEngine *commandEngine = [CommandEngine sharedInstance];
+    [commandEngine executeCommand:[Command dismissClockOptionsCommand]];
+}
+
+- (IBAction)foregroundAction:(id)sender
+{
+    [self stopOptionsTimer];
+    CommandEngine *commandEngine = [CommandEngine sharedInstance];
+    [commandEngine executeCommand:[Command dismissClockOptionsCommand]];
+}
+
+- (IBAction)backgroundAction:(id)sender
+{
+    [self stopOptionsTimer];
+    CommandEngine *commandEngine = [CommandEngine sharedInstance];
+    [commandEngine executeCommand:[Command dismissClockOptionsCommand]];
+}
+
+- (IBAction)brightnessAction:(id)sender
+{
+    [self stopOptionsTimer];
+    CommandEngine *commandEngine = [CommandEngine sharedInstance];
+    [commandEngine executeCommand:[Command dismissClockOptionsCommand]];
 }
 
 - (IBAction)dimAction:(id)sender
@@ -480,5 +577,109 @@ static NSTimeInterval kUITimerInterval = 2.0;
 //
 //    sDimmed = !sDimmed;
 //}
+
+- (void)presentOptions
+{
+    NSTimeInterval interval = 0.7;
+
+    [UIView animateWithDuration:0.2
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         self.optionsButton.alpha = 0.0;
+                     } completion:^(BOOL finished) {
+                         self.optionsButton.hidden = YES;
+                         self.optionsButton.alpha = 1.0;
+                     }];
+
+    self.optionsButton.hidden = YES;
+    
+    CGAffineTransform startScale = CGAffineTransformMakeScale(0.01, 0.01);
+    CGAffineTransform endScale = CGAffineTransformIdentity;
+    
+    for (UIView *view in @[self.fontButton,
+                           self.foregroundButton,
+                           self.backgroundButton,
+                           self.brightnessButton])
+    {
+        NSTimeInterval delay = FloatRandomInRange(0.0, 0.2);
+        
+        view.transform = startScale;
+        view.hidden = NO;
+
+        [UIView animateWithDuration:interval
+                              delay:delay
+             usingSpringWithDamping:0.5
+              initialSpringVelocity:20.0
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             view.transform = endScale;
+                         } completion:^(BOOL finished) {
+                             [self startOptionsTimer];
+                         }];
+    }
+}
+
+- (void)dismissOptions
+{
+    NSTimeInterval interval = 0.3;
+    
+    self.optionsButton.alpha = 0.0;
+    self.optionsButton.hidden = NO;
+
+    [UIView animateWithDuration:interval
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         self.optionsButton.alpha = 1.0;
+                     } completion:^(BOOL finished) {
+                     }];
+
+    CGAffineTransform startScale = CGAffineTransformIdentity;
+    CGAffineTransform endScale = CGAffineTransformMakeScale(0.01, 0.01);
+    
+    for (UIView *view in @[self.fontButton,
+                           self.foregroundButton,
+                           self.backgroundButton,
+                           self.brightnessButton])
+    {
+        NSTimeInterval delay = FloatRandomInRange(0.0, 0.1);
+        
+        view.transform = startScale;
+        view.hidden = NO;
+        
+        [UIView animateWithDuration:interval
+                              delay:delay
+             usingSpringWithDamping:1.0
+              initialSpringVelocity:20.0
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             view.transform = endScale;
+                         } completion:^(BOOL finished) {
+                             view.hidden = YES;
+                         }];
+    }
+}
+
+#pragma mark - command system
+
+- (void)executedCommand:(NSNotification *)notification
+{
+    CommandEngine *commandEngine = [CommandEngine sharedInstance];
+    Command *command = [commandEngine getCommandFromNotification:notification];
+    
+    if ([command isEqualToCommand:[Command dismissClockViewCommand]])
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if ([command isEqualToCommand:[Command presentClockOptionsCommand]])
+    {
+        [self presentOptions];
+    }
+    else if ([command isEqualToCommand:[Command dismissClockOptionsCommand]])
+    {
+        [self dismissOptions];
+    }
+}
 
 @end
