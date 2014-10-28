@@ -14,6 +14,8 @@
 + (Command *)dismissClockViewCommand { return [[Command alloc] initWithName:@"dismissClockView"]; }
 + (Command *)presentClockOptionsCommand { return [[Command alloc] initWithName:@"presentClockOptions"]; }
 + (Command *)dismissClockOptionsCommand { return [[Command alloc] initWithName:@"dismissClockOptions"]; }
++ (Command *)presentClockForegroundOptionsCommand { return [[Command alloc] initWithName:@"presentClockForegroundOptions"]; }
++ (Command *)dismissClockForegroundOptionsCommand { return [[Command alloc] initWithName:@"dismissClockForegroundOptions"]; }
 
 + (Command *)presentListViewCommand { return [[Command alloc] initWithName:@"presentListView"]; }
 + (Command *)dismissListViewCommand { return [[Command alloc] initWithName:@"dismissListView"]; }
@@ -55,6 +57,8 @@
     [self registerCommand:[Command dismissClockViewCommand]];
     [self registerCommand:[Command presentClockOptionsCommand]];
     [self registerCommand:[Command dismissClockOptionsCommand]];
+    [self registerCommand:[Command presentClockForegroundOptionsCommand]];
+    [self registerCommand:[Command dismissClockForegroundOptionsCommand]];
     
     [self registerCommand:[Command presentListViewCommand]];
     [self registerCommand:[Command dismissListViewCommand]];

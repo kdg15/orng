@@ -76,7 +76,9 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
     for (UIView *view in @[self.fontButton,
                            self.foregroundButton,
                            self.backgroundButton,
-                           self.brightnessButton])
+                           self.brightnessButton,
+                           self.cancelButton,
+                           self.okayButton])
     {
         view.hidden = YES;
         view.layer.cornerRadius = 0.5 * view.bounds.size.width;
@@ -347,7 +349,9 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
     for (UIButton *button in @[self.fontButton,
                                self.foregroundButton,
                                self.backgroundButton,
-                               self.brightnessButton])
+                               self.brightnessButton,
+                               self.cancelButton,
+                               self.okayButton])
     {
         [button setBackgroundColor:color];
     }
@@ -360,7 +364,9 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
     for (UIButton *button in @[self.fontButton,
                                self.foregroundButton,
                                self.backgroundButton,
-                               self.brightnessButton])
+                               self.brightnessButton,
+                               self.cancelButton,
+                               self.okayButton])
     {
         [button setTitleColor:color forState:UIControlStateNormal];
     }
@@ -521,6 +527,72 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
     }
 }
 
+- (void)presentForegroundOptions
+{
+    //  Show foreground options.
+    //
+    {
+        NSTimeInterval interval = 0.3;//0.7;
+        NSTimeInterval delay = 0.0;
+        
+        CGPoint startPoint = self.foregroundButton.center;
+        
+        for (UIView *view in @[self.cancelButton,
+                               self.okayButton])
+        {
+            CGPoint endPoint = view.center;
+            
+            CGAffineTransform endTransform = CGAffineTransformIdentity;
+            CGAffineTransform startTransform = CGAffineTransformMakeTranslation(startPoint.x - endPoint.x,
+                                                                                startPoint.y - endPoint.y);
+            //startTransform = CGAffineTransformScale(startTransform, 0.01, 0.01);
+            
+            view.transform = startTransform;
+            view.hidden = NO;
+            
+            [UIView animateWithDuration:interval
+                                  delay:delay
+                 usingSpringWithDamping:0.8
+                  initialSpringVelocity:10.0
+                                options:UIViewAnimationOptionCurveLinear
+                             animations:^{
+                                 view.transform = endTransform;
+                             } completion:^(BOOL finished) {
+                                 [self startOptionsTimer];
+                             }];
+        }
+    }
+}
+
+- (void)dismissForegroundOptions
+{
+    //  Hide options.
+    //
+    {
+        NSTimeInterval interval = 0.3;
+        
+        CGAffineTransform startTransform = CGAffineTransformIdentity;
+        CGAffineTransform endTransform = CGAffineTransformMakeScale(0.01, 0.01);
+        
+        for (UIView *view in @[self.cancelButton,
+                               self.okayButton])
+        {
+            NSTimeInterval delay = FloatRandomInRange(0.0, 0.1);
+            
+            view.transform = startTransform;
+            
+            [UIView animateWithDuration:interval
+                                  delay:delay
+                                options:UIViewAnimationOptionCurveLinear
+                             animations:^{
+                                 view.transform = endTransform;
+                             } completion:^(BOOL finished) {
+                                 view.hidden = YES;
+                             }];
+        }
+    }
+}
+
 #pragma mark - actions
 
 - (IBAction)optionsAction:(id)sender
@@ -547,6 +619,7 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
     [self stopOptionsTimer];
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     [commandEngine executeCommand:[Command dismissClockOptionsCommand]];
+    [commandEngine executeCommand:[Command presentClockForegroundOptionsCommand]];
 }
 
 - (IBAction)backgroundAction:(id)sender
@@ -561,6 +634,18 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
     [self stopOptionsTimer];
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     [commandEngine executeCommand:[Command dismissClockOptionsCommand]];
+}
+
+- (IBAction)cancelAction:(id)sender
+{
+    CommandEngine *commandEngine = [CommandEngine sharedInstance];
+    [commandEngine executeCommand:[Command dismissClockForegroundOptionsCommand]];
+}
+
+- (IBAction)okayAction:(id)sender
+{
+    CommandEngine *commandEngine = [CommandEngine sharedInstance];
+    [commandEngine executeCommand:[Command dismissClockForegroundOptionsCommand]];
 }
 
 - (IBAction)dimAction:(id)sender
@@ -702,6 +787,14 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
     else if ([command isEqualToCommand:[Command dismissClockOptionsCommand]])
     {
         [self dismissOptions];
+    }
+    else if ([command isEqualToCommand:[Command presentClockForegroundOptionsCommand]])
+    {
+        [self presentForegroundOptions];
+    }
+    else if ([command isEqualToCommand:[Command dismissClockForegroundOptionsCommand]])
+    {
+        [self dismissForegroundOptions];
     }
 }
 

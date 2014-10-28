@@ -22,6 +22,8 @@
 @property (nonatomic, strong) IBOutlet UIButton *foregroundButton;
 @property (nonatomic, strong) IBOutlet UIButton *backgroundButton;
 @property (nonatomic, strong) IBOutlet UIButton *brightnessButton;
+@property (nonatomic, strong) IBOutlet UIButton *cancelButton;
+@property (nonatomic, strong) IBOutlet UIButton *okayButton;
 
 - (IBAction)optionsAction:(id)sender;
 
@@ -29,6 +31,8 @@
 - (IBAction)foregroundAction:(id)sender;
 - (IBAction)backgroundAction:(id)sender;
 - (IBAction)brightnessAction:(id)sender;
+- (IBAction)cancelAction:(id)sender;
+- (IBAction)okayAction:(id)sender;
 
 - (IBAction)backAction:(id)sender;
 - (IBAction)dimAction:(id)sender;

@@ -309,6 +309,32 @@
                                     <action selector="brightnessAction:" destination="7V9-tp-wcj" eventType="touchUpInside" id="Cqp-ZU-tTm"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJx-6m-eFm">
+                                <rect key="frame" x="160" y="540" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="8qb-eB-fMy"/>
+                                    <constraint firstAttribute="height" constant="40" id="fhI-er-gux"/>
+                                </constraints>
+                                <state key="normal" title="✘">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelAction:" destination="7V9-tp-wcj" eventType="touchUpInside" id="yCv-0Z-kwv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VlO-sc-M7s">
+                                <rect key="frame" x="400" y="540" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="G7z-VP-NTx"/>
+                                    <constraint firstAttribute="width" constant="40" id="nDj-Nv-HRs"/>
+                                </constraints>
+                                <state key="normal" title="✔︎">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="okayAction:" destination="7V9-tp-wcj" eventType="touchUpInside" id="KBs-as-irr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -320,7 +346,9 @@
                             <constraint firstAttribute="centerX" secondItem="KYo-Nb-xej" secondAttribute="centerX" constant="-24" id="B35-CQ-c2i"/>
                             <constraint firstItem="foE-vt-257" firstAttribute="top" secondItem="A3H-oD-duB" secondAttribute="top" constant="9" id="COT-6n-3Ba"/>
                             <constraint firstItem="T36-Jd-DKN" firstAttribute="top" secondItem="n6a-Rn-Dw7" secondAttribute="bottom" constant="40" id="E1J-v0-VrT"/>
+                            <constraint firstAttribute="centerX" secondItem="VlO-sc-M7s" secondAttribute="centerX" constant="-120" id="IYa-sU-V7G"/>
                             <constraint firstAttribute="trailing" secondItem="foE-vt-257" secondAttribute="trailing" constant="48" id="Jfg-FP-76T"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="VlO-sc-M7s" secondAttribute="bottom" constant="20" id="JrV-Tk-3Io"/>
                             <constraint firstAttribute="trailing" secondItem="g8u-Bc-dvz" secondAttribute="trailing" constant="48" id="Kpj-ul-2H6"/>
                             <constraint firstItem="n6a-Rn-Dw7" firstAttribute="top" secondItem="ncn-zq-l9c" secondAttribute="bottom" constant="40" id="PMW-QD-FUK"/>
                             <constraint firstAttribute="trailing" secondItem="n6a-Rn-Dw7" secondAttribute="trailing" id="S6s-hM-DeB"/>
@@ -330,6 +358,7 @@
                             <constraint firstAttribute="bottomMargin" secondItem="IiP-HF-UMW" secondAttribute="bottom" constant="20" id="c2I-mE-pen"/>
                             <constraint firstItem="g8u-Bc-dvz" firstAttribute="top" secondItem="foE-vt-257" secondAttribute="bottom" constant="8" id="eKB-fw-CuM"/>
                             <constraint firstAttribute="centerX" secondItem="IiP-HF-UMW" secondAttribute="centerX" constant="-72" id="ebR-Gc-yWZ"/>
+                            <constraint firstAttribute="bottom" secondItem="OJx-6m-eFm" secondAttribute="bottom" constant="20" id="g0Y-gr-9Px"/>
                             <constraint firstItem="lBJ-9Y-WWT" firstAttribute="top" secondItem="A3H-oD-duB" secondAttribute="top" id="iGg-JK-NDY"/>
                             <constraint firstItem="rpZ-t7-ghF" firstAttribute="leading" secondItem="A3H-oD-duB" secondAttribute="leading" id="k9p-2i-YJl"/>
                             <constraint firstItem="foE-vt-257" firstAttribute="leading" secondItem="A3H-oD-duB" secondAttribute="leading" constant="48" id="kHM-4Q-lI5"/>
@@ -338,6 +367,7 @@
                             <constraint firstAttribute="bottomMargin" secondItem="xj3-QF-NRF" secondAttribute="bottom" constant="20" id="nUf-cO-LEn"/>
                             <constraint firstAttribute="centerX" secondItem="aO5-4f-XBk" secondAttribute="centerX" constant="72" id="oGB-Tk-g45"/>
                             <constraint firstItem="B74-E6-GSm" firstAttribute="bottom" secondItem="A3H-oD-duB" secondAttribute="bottomMargin" id="pBy-Q4-Ow2"/>
+                            <constraint firstAttribute="centerX" secondItem="OJx-6m-eFm" secondAttribute="centerX" constant="120" id="qQh-SD-F5W"/>
                             <constraint firstAttribute="centerX" secondItem="xj3-QF-NRF" secondAttribute="centerX" constant="24" id="wtT-T2-PfN"/>
                         </constraints>
                     </view>
@@ -345,10 +375,12 @@
                         <outlet property="backButton" destination="lBJ-9Y-WWT" id="03d-jA-qrt"/>
                         <outlet property="backgroundButton" destination="KYo-Nb-xej" id="QmJ-Tt-85U"/>
                         <outlet property="brightnessButton" destination="IiP-HF-UMW" id="YnE-HO-0eP"/>
+                        <outlet property="cancelButton" destination="OJx-6m-eFm" id="7zc-tc-XdY"/>
                         <outlet property="dimButton" destination="6AN-gj-ybg" id="oU2-Dg-8HY"/>
                         <outlet property="fontButton" destination="aO5-4f-XBk" id="s4T-JQ-cFG"/>
                         <outlet property="foregroundButton" destination="xj3-QF-NRF" id="yUC-Ef-T1S"/>
                         <outlet property="helpLabel" destination="foE-vt-257" id="PjS-fe-JG9"/>
+                        <outlet property="okayButton" destination="VlO-sc-M7s" id="y99-t1-uFl"/>
                         <outlet property="optionsButton" destination="B74-E6-GSm" id="41u-ET-f2n"/>
                         <outlet property="settingsButton" destination="rpZ-t7-ghF" id="RAC-k9-V5X"/>
                         <outlet property="slider" destination="g8u-Bc-dvz" id="gYA-GL-boR"/>
