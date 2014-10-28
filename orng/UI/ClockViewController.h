@@ -23,6 +23,9 @@
 @property (nonatomic, strong) IBOutlet UIButton *backgroundButton;
 @property (nonatomic, strong) IBOutlet UIButton *brightnessButton;
 
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *fontButtonXLayoutConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *fontButtonYLayoutConstraint;
+
 - (IBAction)optionsAction:(id)sender;
 
 - (IBAction)fontAction:(id)sender;

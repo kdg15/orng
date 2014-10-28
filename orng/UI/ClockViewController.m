@@ -40,6 +40,8 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, strong) NSArray *fontNames;
 
+@property (nonatomic, strong) UIButton *dummyButton;
+
 @end
 
 @implementation ClockViewController
@@ -81,7 +83,14 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
         view.hidden = YES;
         view.layer.cornerRadius = 0.5 * view.bounds.size.width;
     }
-    
+
+    self.dummyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+
+    self.dummyButton.frame = CGRectMake(10, 10, 30, 30);
+    self.dummyButton.backgroundColor = [UIColor orangeColor];
+    [self.dummyButton setTitle:@"dbg" forState:UIControlStateNormal];
+    [self.view addSubview:self.dummyButton];
+
     [[CommandEngine sharedInstance] addResponder:self];
 }
 
@@ -596,14 +605,26 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
     
     CGAffineTransform startScale = CGAffineTransformMakeScale(0.01, 0.01);
     CGAffineTransform endScale = CGAffineTransformIdentity;
-    
+
+    CGPoint startPoint = self.optionsButton.center;
+
+    __block CGPoint endPoint = startPoint;//CGPointMake(100.0, 100.0);
+    endPoint.y -= 50.0;
+
+    NSLog(@"startPoint = %@", NSStringFromCGPoint(startPoint));
+    NSLog(@"endPoint = %@", NSStringFromCGPoint(startPoint));
+
     for (UIView *view in @[self.fontButton,
                            self.foregroundButton,
                            self.backgroundButton,
                            self.brightnessButton])
     {
         NSTimeInterval delay = FloatRandomInRange(0.0, 0.2);
-        
+
+        //NSLog(@"present view.frame = %@", NSStringFromCGRect(view.frame));
+        //NSLog(@"present view.center = %@", NSStringFromCGPoint(view.center));
+
+        //view.center = startPoint;
         view.transform = startScale;
         view.hidden = NO;
 
@@ -614,10 +635,25 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
                              view.transform = endScale;
+                             view.center = endPoint;
+                             //endPoint.x += 60.0;
                          } completion:^(BOOL finished) {
                              [self startOptionsTimer];
                          }];
     }
+
+    self.dummyButton.center = startPoint;
+    self.dummyButton.transform = startScale;
+
+    [UIView animateWithDuration:interval
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         self.dummyButton.center = endPoint;
+                         self.dummyButton.transform = endScale;
+                     } completion:^(BOOL finished) {
+                         //
+                     }];
 }
 
 - (void)dismissOptions
@@ -636,18 +672,35 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
                      }];
 
     CGAffineTransform startScale = CGAffineTransformIdentity;
+    //CGAffineTransform endScale = CGAffineTransformMakeScale(0.5, 0.5);
     CGAffineTransform endScale = CGAffineTransformMakeScale(0.01, 0.01);
-    
+    //CGAffineTransform endScale = CGAffineTransformIdentity;
+
     for (UIView *view in @[self.fontButton,
                            self.foregroundButton,
                            self.backgroundButton,
                            self.brightnessButton])
     {
         NSTimeInterval delay = FloatRandomInRange(0.0, 0.1);
-        
+
+        //NSLog(@"dismiss view.frame = %@", NSStringFromCGRect(view.frame));
+        //NSLog(@"dismiss view.center = %@", NSStringFromCGPoint(view.center));
+
         view.transform = startScale;
-        view.hidden = NO;
-        
+        //view.hidden = NO;
+        //view.alpha = 1.0;
+
+        [UIView animateWithDuration:interval
+                              delay:delay
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             view.transform = endScale;
+                             //view.alpha = 0.0;
+                         } completion:^(BOOL finished) {
+                             view.hidden = YES;
+                         }];
+
+        /*
         [UIView animateWithDuration:interval
                               delay:delay
              usingSpringWithDamping:1.0
@@ -658,6 +711,8 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
                          } completion:^(BOOL finished) {
                              view.hidden = YES;
                          }];
+         */
+        //view.hidden = YES;
     }
 }
 
