@@ -40,8 +40,6 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, strong) NSArray *fontNames;
 
-@property (nonatomic, strong) UIButton *dummyButton;
-
 @end
 
 @implementation ClockViewController
@@ -83,14 +81,7 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
         view.hidden = YES;
         view.layer.cornerRadius = 0.5 * view.bounds.size.width;
     }
-
-    self.dummyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-
-    self.dummyButton.frame = CGRectMake(10, 10, 30, 30);
-    self.dummyButton.backgroundColor = [UIColor orangeColor];
-    [self.dummyButton setTitle:@"dbg" forState:UIControlStateNormal];
-    [self.view addSubview:self.dummyButton];
-
+    
     [[CommandEngine sharedInstance] addResponder:self];
 }
 
@@ -424,6 +415,112 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
     self.slider.hidden = !show;
 }
 
+- (void)presentOptions
+{
+    //  Hide options button.
+    //
+    {
+        NSTimeInterval interval = 0.2;
+        NSTimeInterval delay = 0.0;
+
+        [UIView animateWithDuration:interval
+                              delay:delay
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             self.optionsButton.alpha = 0.0;
+                         } completion:^(BOOL finished) {
+                             self.optionsButton.hidden = YES;
+                             self.optionsButton.alpha = 1.0;
+                         }];
+    }
+    
+    //  Show options.
+    //
+    {
+        NSTimeInterval interval = 0.7;
+        
+        CGPoint startPoint = self.optionsButton.center;
+        
+        for (UIView *view in @[self.fontButton,
+                               self.foregroundButton,
+                               self.backgroundButton,
+                               self.brightnessButton])
+        {
+            NSTimeInterval delay = FloatRandomInRange(0.0, 0.2);
+            
+            CGPoint endPoint = view.center;
+            
+            CGAffineTransform endTransform = CGAffineTransformIdentity;
+            CGAffineTransform startTransform = CGAffineTransformMakeTranslation(startPoint.x - endPoint.x,
+                                                                                startPoint.y - endPoint.y);
+            startTransform = CGAffineTransformScale(startTransform, 0.01, 0.01);
+            
+            view.transform = startTransform;
+            view.hidden = NO;
+            
+            [UIView animateWithDuration:interval
+                                  delay:delay
+                 usingSpringWithDamping:0.5
+                  initialSpringVelocity:20.0
+                                options:UIViewAnimationOptionCurveLinear
+                             animations:^{
+                                 view.transform = endTransform;
+                             } completion:^(BOOL finished) {
+                                 [self startOptionsTimer];
+                             }];
+        }
+    }
+}
+
+- (void)dismissOptions
+{
+    //  Show options button.
+    //
+    {
+        NSTimeInterval interval = 0.3;
+        NSTimeInterval delay = 0.0;
+
+        self.optionsButton.alpha = 0.0;
+        self.optionsButton.hidden = NO;
+        
+        [UIView animateWithDuration:interval
+                              delay:delay
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             self.optionsButton.alpha = 1.0;
+                         } completion:^(BOOL finished) {
+                         }];
+    }
+    
+    //  Hide options.
+    //
+    {
+        NSTimeInterval interval = 0.3;
+        
+        CGAffineTransform startTransform = CGAffineTransformIdentity;
+        CGAffineTransform endTransform = CGAffineTransformMakeScale(0.01, 0.01);
+        
+        for (UIView *view in @[self.fontButton,
+                               self.foregroundButton,
+                               self.backgroundButton,
+                               self.brightnessButton])
+        {
+            NSTimeInterval delay = FloatRandomInRange(0.0, 0.1);
+            
+            view.transform = startTransform;
+            
+            [UIView animateWithDuration:interval
+                                  delay:delay
+                                options:UIViewAnimationOptionCurveLinear
+                             animations:^{
+                                 view.transform = endTransform;
+                             } completion:^(BOOL finished) {
+                                 view.hidden = YES;
+                             }];
+        }
+    }
+}
+
 #pragma mark - actions
 
 - (IBAction)optionsAction:(id)sender
@@ -586,135 +683,6 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
 //
 //    sDimmed = !sDimmed;
 //}
-
-- (void)presentOptions
-{
-    NSTimeInterval interval = 0.7;
-
-    [UIView animateWithDuration:0.2
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         self.optionsButton.alpha = 0.0;
-                     } completion:^(BOOL finished) {
-                         self.optionsButton.hidden = YES;
-                         self.optionsButton.alpha = 1.0;
-                     }];
-
-    self.optionsButton.hidden = YES;
-    
-    CGAffineTransform startScale = CGAffineTransformMakeScale(0.01, 0.01);
-    CGAffineTransform endScale = CGAffineTransformIdentity;
-
-    CGPoint startPoint = self.optionsButton.center;
-
-    __block CGPoint endPoint = startPoint;//CGPointMake(100.0, 100.0);
-    endPoint.y -= 50.0;
-
-    NSLog(@"startPoint = %@", NSStringFromCGPoint(startPoint));
-    NSLog(@"endPoint = %@", NSStringFromCGPoint(startPoint));
-
-    for (UIView *view in @[self.fontButton,
-                           self.foregroundButton,
-                           self.backgroundButton,
-                           self.brightnessButton])
-    {
-        NSTimeInterval delay = FloatRandomInRange(0.0, 0.2);
-
-        //NSLog(@"present view.frame = %@", NSStringFromCGRect(view.frame));
-        //NSLog(@"present view.center = %@", NSStringFromCGPoint(view.center));
-
-        //view.center = startPoint;
-        view.transform = startScale;
-        view.hidden = NO;
-
-        [UIView animateWithDuration:interval
-                              delay:delay
-             usingSpringWithDamping:0.5
-              initialSpringVelocity:20.0
-                            options:UIViewAnimationOptionCurveLinear
-                         animations:^{
-                             view.transform = endScale;
-                             view.center = endPoint;
-                             //endPoint.x += 60.0;
-                         } completion:^(BOOL finished) {
-                             [self startOptionsTimer];
-                         }];
-    }
-
-    self.dummyButton.center = startPoint;
-    self.dummyButton.transform = startScale;
-
-    [UIView animateWithDuration:interval
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         self.dummyButton.center = endPoint;
-                         self.dummyButton.transform = endScale;
-                     } completion:^(BOOL finished) {
-                         //
-                     }];
-}
-
-- (void)dismissOptions
-{
-    NSTimeInterval interval = 0.3;
-    
-    self.optionsButton.alpha = 0.0;
-    self.optionsButton.hidden = NO;
-
-    [UIView animateWithDuration:interval
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         self.optionsButton.alpha = 1.0;
-                     } completion:^(BOOL finished) {
-                     }];
-
-    CGAffineTransform startScale = CGAffineTransformIdentity;
-    //CGAffineTransform endScale = CGAffineTransformMakeScale(0.5, 0.5);
-    CGAffineTransform endScale = CGAffineTransformMakeScale(0.01, 0.01);
-    //CGAffineTransform endScale = CGAffineTransformIdentity;
-
-    for (UIView *view in @[self.fontButton,
-                           self.foregroundButton,
-                           self.backgroundButton,
-                           self.brightnessButton])
-    {
-        NSTimeInterval delay = FloatRandomInRange(0.0, 0.1);
-
-        //NSLog(@"dismiss view.frame = %@", NSStringFromCGRect(view.frame));
-        //NSLog(@"dismiss view.center = %@", NSStringFromCGPoint(view.center));
-
-        view.transform = startScale;
-        //view.hidden = NO;
-        //view.alpha = 1.0;
-
-        [UIView animateWithDuration:interval
-                              delay:delay
-                            options:UIViewAnimationOptionCurveLinear
-                         animations:^{
-                             view.transform = endScale;
-                             //view.alpha = 0.0;
-                         } completion:^(BOOL finished) {
-                             view.hidden = YES;
-                         }];
-
-        /*
-        [UIView animateWithDuration:interval
-                              delay:delay
-             usingSpringWithDamping:1.0
-              initialSpringVelocity:20.0
-                            options:UIViewAnimationOptionCurveLinear
-                         animations:^{
-                             view.transform = endScale;
-                         } completion:^(BOOL finished) {
-                             view.hidden = YES;
-                         }];
-         */
-        //view.hidden = YES;
-    }
-}
 
 #pragma mark - command system
 
