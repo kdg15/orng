@@ -69,7 +69,6 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
     self.brightnessDimmed = NO;
     self.optionSlider.hidden = YES;
 
-    [self setUpGestures];
     [self setUpFont];
     [self setUpTextColor];
     [self setUpBackgroundColor];
@@ -157,15 +156,6 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
             NSLog(@"  %@", name);
         }
     }
-}
-
-- (void)setUpGestures
-{
-//    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
-//                                                                                action:@selector(doubleTapAction:)];
-//    doubleTap.numberOfTapsRequired = 2;
-//    doubleTap.numberOfTouchesRequired = 1;
-//    [self.view addGestureRecognizer:doubleTap];
 }
 
 - (void)setUpFont
@@ -712,25 +702,6 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
         }
     }
 }
-
-//- (IBAction)doubleTapAction:(id)sender
-//{
-//    static BOOL sDimmed = NO;
-//    static CGFloat sOriginalBrightness = 0.0;
-//
-//    UIScreen *screen = [UIScreen mainScreen];
-//    if (sDimmed)
-//    {
-//        screen.brightness = sOriginalBrightness;
-//    }
-//    else
-//    {
-//        sOriginalBrightness = screen.brightness;
-//        screen.brightness = 0;
-//    }
-//
-//    sDimmed = !sDimmed;
-//}
 
 #pragma mark - command system
 
