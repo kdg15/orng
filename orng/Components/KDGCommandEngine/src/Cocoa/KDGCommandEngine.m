@@ -116,6 +116,7 @@ static NSString * const UserInfoCommandKey = @"UserInfoCommandKey";
         
         NSDictionary *userInfo = @{ UserInfoCommandKey : command };
         
+        //NSLog(@"--- execute command: %@", command);
         [[NSNotificationCenter defaultCenter] postNotificationName:KDGCommandExecutedNotification
                                                             object:self
                                                           userInfo:userInfo];

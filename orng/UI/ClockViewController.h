@@ -10,12 +10,9 @@
 
 @interface ClockViewController : UIViewController
 
-@property (nonatomic, strong) IBOutlet UILabel *timeLabel;
-@property (nonatomic, strong) IBOutlet UILabel *helpLabel;
+@property (nonatomic, strong) IBOutlet UILabel  *timeLabel;
 @property (nonatomic, strong) IBOutlet UIButton *backButton;
-@property (nonatomic, strong) IBOutlet UIButton *dimButton;
-@property (nonatomic, strong) IBOutlet UIButton *settingsButton;
-@property (nonatomic, strong) IBOutlet UISlider *slider;
+@property (nonatomic, strong) IBOutlet UISlider *optionSlider;
 
 @property (nonatomic, strong) IBOutlet UIButton *optionsButton;
 @property (nonatomic, strong) IBOutlet UIButton *fontButton;
@@ -25,17 +22,18 @@
 @property (nonatomic, strong) IBOutlet UIButton *cancelButton;
 @property (nonatomic, strong) IBOutlet UIButton *okayButton;
 
+- (IBAction)backAction:(id)sender;
+
 - (IBAction)optionsAction:(id)sender;
 
 - (IBAction)fontAction:(id)sender;
 - (IBAction)foregroundAction:(id)sender;
 - (IBAction)backgroundAction:(id)sender;
 - (IBAction)brightnessAction:(id)sender;
+
 - (IBAction)cancelAction:(id)sender;
 - (IBAction)okayAction:(id)sender;
 
-- (IBAction)backAction:(id)sender;
-- (IBAction)dimAction:(id)sender;
-- (IBAction)sliderChangedAction:(id)sender;
+- (IBAction)optionSliderChangedAction:(id)sender;
 
 @end

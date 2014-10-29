@@ -14,8 +14,15 @@
 + (Command *)dismissClockViewCommand { return [[Command alloc] initWithName:@"dismissClockView"]; }
 + (Command *)presentClockOptionsCommand { return [[Command alloc] initWithName:@"presentClockOptions"]; }
 + (Command *)dismissClockOptionsCommand { return [[Command alloc] initWithName:@"dismissClockOptions"]; }
++ (Command *)presentClockFontOptionsCommand { return [[Command alloc] initWithName:@"presentClockFontOptions"]; }
++ (Command *)dismissClockFontOptionsCommand { return [[Command alloc] initWithName:@"dismissClockFontOptions"]; }
 + (Command *)presentClockForegroundOptionsCommand { return [[Command alloc] initWithName:@"presentClockForegroundOptions"]; }
 + (Command *)dismissClockForegroundOptionsCommand { return [[Command alloc] initWithName:@"dismissClockForegroundOptions"]; }
++ (Command *)presentClockBackgroundOptionsCommand { return [[Command alloc] initWithName:@"presentClockBackgroundOptions"]; }
++ (Command *)dismissClockBackgroundOptionsCommand { return [[Command alloc] initWithName:@"dismissClockBackgroundOptions"]; }
+
++ (Command *)dimScreenBrightnessCommand     { return [[Command alloc] initWithName:@"dimScreenBrightness"]; }
++ (Command *)restoreScreenBrightnessCommand { return [[Command alloc] initWithName:@"restoreScreenBrightness"]; }
 
 + (Command *)presentListViewCommand { return [[Command alloc] initWithName:@"presentListView"]; }
 + (Command *)dismissListViewCommand { return [[Command alloc] initWithName:@"dismissListView"]; }
@@ -51,14 +58,19 @@
 
 - (void)setUpCommands
 {
-    NSLog(@"CommandEngine setUpCommands");
-
     [self registerCommand:[Command presentClockViewCommand]];
     [self registerCommand:[Command dismissClockViewCommand]];
     [self registerCommand:[Command presentClockOptionsCommand]];
     [self registerCommand:[Command dismissClockOptionsCommand]];
+    [self registerCommand:[Command presentClockFontOptionsCommand]];
+    [self registerCommand:[Command dismissClockFontOptionsCommand]];
     [self registerCommand:[Command presentClockForegroundOptionsCommand]];
     [self registerCommand:[Command dismissClockForegroundOptionsCommand]];
+    [self registerCommand:[Command presentClockBackgroundOptionsCommand]];
+    [self registerCommand:[Command dismissClockBackgroundOptionsCommand]];
+
+    [self registerCommand:[Command dimScreenBrightnessCommand]];
+    [self registerCommand:[Command restoreScreenBrightnessCommand]];
     
     [self registerCommand:[Command presentListViewCommand]];
     [self registerCommand:[Command dismissListViewCommand]];

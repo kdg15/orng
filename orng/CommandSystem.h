@@ -14,8 +14,14 @@
 + (Command *)dismissClockViewCommand;
 + (Command *)presentClockOptionsCommand;
 + (Command *)dismissClockOptionsCommand;
++ (Command *)presentClockFontOptionsCommand;
++ (Command *)dismissClockFontOptionsCommand;
 + (Command *)presentClockForegroundOptionsCommand;
 + (Command *)dismissClockForegroundOptionsCommand;
++ (Command *)presentClockBackgroundOptionsCommand;
++ (Command *)dismissClockBackgroundOptionsCommand;
++ (Command *)dimScreenBrightnessCommand;
++ (Command *)restoreScreenBrightnessCommand;
 
 + (Command *)presentListViewCommand;
 + (Command *)dismissListViewCommand;
