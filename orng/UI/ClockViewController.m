@@ -791,14 +791,12 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
         UIScreen *screen = [UIScreen mainScreen];
         self.originalBrightness = screen.brightness;
         screen.brightness = 0.0;
-        NSLog(@"dim: set brightness to %.1f", screen.brightness);
     }
     else if ([command isEqualToCommand:[Command restoreScreenBrightnessCommand]])
     {
         self.brightnessDimmed = NO;
         UIScreen *screen = [UIScreen mainScreen];
         screen.brightness = self.originalBrightness;
-        NSLog(@"restore: set brightness to %.1f", screen.brightness);
     }
 }
 
