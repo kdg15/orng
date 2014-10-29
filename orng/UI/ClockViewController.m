@@ -497,9 +497,7 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
     }
 }
 
-//  todo: rename because same method used by font, foreground, and background options.
-//
-- (void)presentForegroundOptions
+- (void)presentOptionSlider
 {
     NSTimeInterval interval = 0.3;
     NSTimeInterval delay = 0.0;
@@ -529,12 +527,36 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
                          }];
     }
     
-    self.optionSlider.hidden = NO;
+    {
+        NSTimeInterval interval = 0.3;
+        NSTimeInterval delay = 0.0;
+
+        UIView *view = self.optionSlider;
+
+        CGPoint startPoint = self.optionSlider.center;
+        CGPoint endPoint = view.center;
+        
+        CGAffineTransform endTransform = CGAffineTransformIdentity;
+        CGAffineTransform startTransform = CGAffineTransformMakeTranslation(startPoint.x - endPoint.x,
+                                                                            startPoint.y - endPoint.y);
+        startTransform = CGAffineTransformScale(startTransform, 0.01, 0.01);
+        
+        view.transform = startTransform;
+        view.hidden = NO;
+        
+        [UIView animateWithDuration:interval
+                              delay:delay
+             usingSpringWithDamping:0.8
+              initialSpringVelocity:10.0
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             view.transform = endTransform;
+                         } completion:^(BOOL finished) {
+                         }];
+    }
 }
 
-//  todo: rename because same method used by font, foreground, and background options.
-//
-- (void)dismissForegroundOptions
+- (void)dismissOptionSlider
 {
     NSTimeInterval interval = 0.3;
     
@@ -730,11 +752,11 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
         [self dismissOptions];
         self.originalValue = self.fontValue;
         self.optionSlider.value = self.originalValue;
-        [self presentForegroundOptions];
+        [self presentOptionSlider];
     }
     else if ([command isEqualToCommand:[Command dismissClockFontOptionsCommand]])
     {
-        [self dismissForegroundOptions];
+        [self dismissOptionSlider];
         [self presentOptionsButton];
     }
     else if ([command isEqualToCommand:[Command presentClockForegroundOptionsCommand]])
@@ -743,11 +765,11 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
         [self dismissOptions];
         self.originalValue = self.textColorValue;
         self.optionSlider.value = self.originalValue;
-        [self presentForegroundOptions];
+        [self presentOptionSlider];
     }
     else if ([command isEqualToCommand:[Command dismissClockForegroundOptionsCommand]])
     {
-        [self dismissForegroundOptions];
+        [self dismissOptionSlider];
         [self presentOptionsButton];
     }
     else if ([command isEqualToCommand:[Command presentClockBackgroundOptionsCommand]])
@@ -756,11 +778,11 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
         [self dismissOptions];
         self.originalValue = self.backgroundColorValue;
         self.optionSlider.value = self.originalValue;
-        [self presentForegroundOptions];
+        [self presentOptionSlider];
     }
     else if ([command isEqualToCommand:[Command dismissClockBackgroundOptionsCommand]])
     {
-        [self dismissForegroundOptions];
+        [self dismissOptionSlider];
         [self presentOptionsButton];
     }
     else if ([command isEqualToCommand:[Command dimScreenBrightnessCommand]])
