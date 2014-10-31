@@ -11,6 +11,7 @@
 #import "CommandSystem.h"
 #import "UIColor+KDGUtilities.h"
 #import "KDGUtilities.h"
+#import "UIView+KDGAnimation.h"
 
 static const CGFloat kWhiteSliderThreshold = 0.05;
 static const CGFloat kBlackSliderThreshold = 0.05;
@@ -78,18 +79,55 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
     self.optionSlider.minimumValue = 0.0;
     self.optionSlider.maximumValue = 1.0;
 
-    for (UIView *view in @[self.fontButton,
-                           self.foregroundButton,
-                           self.backgroundButton,
-                           self.brightnessButton,
-                           self.cancelButton,
-                           self.okayButton])
+    for (UIButton *button in @[self.fontButton,
+                               self.foregroundButton,
+                               self.backgroundButton,
+                               self.brightnessButton,
+                               self.cancelButton,
+                               self.okayButton])
     {
-        view.hidden = YES;
-        view.layer.cornerRadius = 0.5 * view.bounds.size.width;
+        button.hidden = YES;
+        button.layer.cornerRadius = 0.5 * button.bounds.size.width;
+        
+//        [button addTarget:self action:@selector(buttonPress:)   forControlEvents:UIControlEventTouchDown];
+//        [button addTarget:self action:@selector(buttonRelease:) forControlEvents:UIControlEventTouchUpInside];
+//        [button addTarget:self action:@selector(buttonRelease:) forControlEvents:UIControlEventTouchUpOutside];
+//        [button addTarget:self action:@selector(buttonRelease:) forControlEvents:UIControlEventTouchCancel];
+//        [button addTarget:self action:@selector(buttonRelease:) forControlEvents:UIControlEventTouchDragExit];
     }
-    
+
     [[CommandEngine sharedInstance] addResponder:self];
+}
+
+- (void)buttonPress:(UIButton *)button
+{
+    //NSLog(@"--- buttonPress");
+    //button.transform = CGAffineTransformMakeScale(1.25, 1.25);
+    
+    CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform.scale.x"];
+    scale.toValue = @1.2;
+    //rotate.autoreverses = YES;
+    //rotate.repeatCount = INFINITY;
+    scale.duration = 0.2;
+    scale.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    
+    [button.layer addAnimation:scale forKey:@"myScaleUpAnimation"];
+}
+
+- (void)buttonRelease:(UIButton *)button
+{
+    //NSLog(@"--- buttonRelease");
+    //button.transform = CGAffineTransformMakeScale(1.0, 1.0);
+    //button.transform = CGAffineTransformIdentity;
+
+    CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform.scale.x"];
+    scale.toValue = @1.0;
+    //rotate.autoreverses = YES;
+    //rotate.repeatCount = INFINITY;
+    scale.duration = 0.2;
+    scale.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    
+    [button.layer addAnimation:scale forKey:@"myScaleDownAnimation"];
 }
 
 - (void)dealloc
@@ -411,94 +449,145 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
 
 - (void)presentOptions
 {
-    //  Hide options button.
-    //
+    /*
+    NSTimeInterval interval = 0.7;
+    
+    CGPoint startPoint = self.optionsButton.center;
+    
+    for (UIView *view in @[self.fontButton,
+                           self.foregroundButton,
+                           self.backgroundButton,
+                           self.brightnessButton])
     {
-        NSTimeInterval interval = 0.2;
-        NSTimeInterval delay = 0.0;
-
+        NSTimeInterval delay = FloatRandomInRange(0.0, 0.2);
+        
+        CGPoint endPoint = view.center;
+        
+        CGAffineTransform endTransform = CGAffineTransformIdentity;
+        CGAffineTransform startTransform = CGAffineTransformMakeTranslation(startPoint.x - endPoint.x,
+                                                                            startPoint.y - endPoint.y);
+        startTransform = CGAffineTransformScale(startTransform, 0.01, 0.01);
+        
+        view.transform = startTransform;
+        view.hidden = NO;
+        
         [UIView animateWithDuration:interval
                               delay:delay
+             usingSpringWithDamping:0.5
+              initialSpringVelocity:20.0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
-                             self.optionsButton.alpha = 0.0;
+                             view.transform = endTransform;
                          } completion:^(BOOL finished) {
-                             self.optionsButton.hidden = YES;
-                             self.optionsButton.alpha = 1.0;
+                             [self startOptionsTimer];
                          }];
     }
+    */
     
-    //  Show options.
-    //
+    CFTimeInterval duration = 0.3;
+
+    NSArray *views = @[self.fontButton,
+                       self.foregroundButton,
+                       self.backgroundButton,
+                       self.brightnessButton];
+    
+    for (UIView *view in views)
     {
-        NSTimeInterval interval = 0.7;
+        view.hidden = NO;
+    }
+    
+    [CATransaction begin];
+    {
+        [CATransaction setCompletionBlock:^{
+            [self startOptionsTimer];
+        }];
         
-        CGPoint startPoint = self.optionsButton.center;
-        
-        for (UIView *view in @[self.fontButton,
-                               self.foregroundButton,
-                               self.backgroundButton,
-                               self.brightnessButton])
+        for (UIView *view in views)
         {
-            NSTimeInterval delay = FloatRandomInRange(0.0, 0.2);
+            CFTimeInterval delay = FloatRandomInRange(0.0, 0.15);
             
-            CGPoint endPoint = view.center;
+            CGPoint fromPoint = self.optionsButton.center;
+            CGPoint toPoint = view.center;
             
-            CGAffineTransform endTransform = CGAffineTransformIdentity;
-            CGAffineTransform startTransform = CGAffineTransformMakeTranslation(startPoint.x - endPoint.x,
-                                                                                startPoint.y - endPoint.y);
-            startTransform = CGAffineTransformScale(startTransform, 0.01, 0.01);
+            [view kdgAddAnimateTransform:duration
+                                   delay:delay
+                               fromPoint:fromPoint
+                                 toPoint:toPoint
+                               fromScale:0.1
+                                 toScale:1.0];
             
-            view.transform = startTransform;
-            view.hidden = NO;
-            
-            [UIView animateWithDuration:interval
-                                  delay:delay
-                 usingSpringWithDamping:0.5
-                  initialSpringVelocity:20.0
-                                options:UIViewAnimationOptionCurveLinear
-                             animations:^{
-                                 view.transform = endTransform;
-                             } completion:^(BOOL finished) {
-                                 [self startOptionsTimer];
-                             }];
+            [view kdgAddAnimateFadeIn:duration delay:0.0];
         }
     }
+    [CATransaction commit];
 }
 
 - (void)dismissOptions
 {
-    //  Hide options.
-    //
+    /*
+    NSTimeInterval interval = 0.3;
+    
+    CGAffineTransform startTransform = CGAffineTransformIdentity;
+    CGAffineTransform endTransform = CGAffineTransformMakeScale(0.01, 0.01);
+    
+    for (UIView *view in @[self.fontButton,
+                           self.foregroundButton,
+                           self.backgroundButton,
+                           self.brightnessButton])
     {
-        NSTimeInterval interval = 0.3;
+        NSTimeInterval delay = FloatRandomInRange(0.0, 0.1);
         
-        CGAffineTransform startTransform = CGAffineTransformIdentity;
-        CGAffineTransform endTransform = CGAffineTransformMakeScale(0.01, 0.01);
+        view.transform = startTransform;
         
-        for (UIView *view in @[self.fontButton,
-                               self.foregroundButton,
-                               self.backgroundButton,
-                               self.brightnessButton])
+        [UIView animateWithDuration:interval
+                              delay:delay
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             view.transform = endTransform;
+                         } completion:^(BOOL finished) {
+                             view.hidden = YES;
+                         }];
+    }
+     */
+    CFTimeInterval duration = 0.3;
+
+    NSArray *views = @[self.fontButton,
+                       self.foregroundButton,
+                       self.backgroundButton,
+                       self.brightnessButton];
+    
+    [CATransaction begin];
+    {
+        [CATransaction setCompletionBlock:^{
+            for (UIView *view in views)
+            {
+                view.hidden = YES;
+            }
+        }];
+        
+        for (UIView *view in views)
         {
-            NSTimeInterval delay = FloatRandomInRange(0.0, 0.1);
+            CFTimeInterval delay = FloatRandomInRange(0.0, 0.15);
             
-            view.transform = startTransform;
+            CGPoint fromPoint = view.center;
+            CGPoint toPoint = self.optionsButton.center;
             
-            [UIView animateWithDuration:interval
-                                  delay:delay
-                                options:UIViewAnimationOptionCurveLinear
-                             animations:^{
-                                 view.transform = endTransform;
-                             } completion:^(BOOL finished) {
-                                 view.hidden = YES;
-                             }];
+            [view kdgAddAnimateTransform:duration
+                                   delay:delay
+                               fromPoint:fromPoint
+                                 toPoint:toPoint
+                               fromScale:1.0
+                                 toScale:0.1];
+            
+            [view kdgAddAnimateFadeOut:duration delay:0.0];
         }
     }
+    [CATransaction commit];
 }
 
 - (void)presentOptionSlider
 {
+    /*
     NSTimeInterval interval = 0.3;
     NSTimeInterval delay = 0.0;
     
@@ -526,7 +615,62 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
                          } completion:^(BOOL finished) {
                          }];
     }
+     */
     
+    CFTimeInterval duration = 0.3;
+    CFTimeInterval delay = 0.0;
+
+    NSArray *views = @[self.cancelButton,
+                       self.okayButton];
+
+    for (UIView *view in views)
+    {
+        view.hidden = NO;
+    }
+
+    [CATransaction begin];
+    {
+        [CATransaction setCompletionBlock:^{
+        }];
+        
+        for (UIView *view in views)
+        {
+            CGPoint fromPoint = self.foregroundButton.center;
+            CGPoint toPoint = view.center;
+            
+            [view kdgAddAnimateTransform:duration
+                                   delay:delay
+                               fromPoint:fromPoint
+                                 toPoint:toPoint
+                               fromScale:1.0
+                                 toScale:1.0];
+        }
+    }
+    [CATransaction commit];
+
+    self.optionSlider.hidden = NO;
+
+    [CATransaction begin];
+    {
+        [CATransaction setCompletionBlock:^{
+        }];
+        
+        for (UIView *view in @[self.optionSlider])
+        {
+            CGPoint fromPoint = view.center;
+            CGPoint toPoint = view.center;
+            
+            [view kdgAddAnimateTransform:duration
+                                   delay:delay
+                               fromPoint:fromPoint
+                                 toPoint:toPoint
+                               fromScale:0.1
+                                 toScale:1.0];
+        }
+    }
+    [CATransaction commit];
+
+    /*
     {
         NSTimeInterval interval = 0.3;
         NSTimeInterval delay = 0.0;
@@ -554,10 +698,12 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
                          } completion:^(BOOL finished) {
                          }];
     }
+     */
 }
 
 - (void)dismissOptionSlider
 {
+    /*
     NSTimeInterval interval = 0.3;
     
     CGAffineTransform startTransform = CGAffineTransformIdentity;
@@ -581,6 +727,62 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
     }
     
     self.optionSlider.hidden = YES;
+     */
+
+    CFTimeInterval duration = 0.3;
+    
+    NSArray *views = @[self.cancelButton,
+                       self.okayButton,
+                       self.optionSlider];
+    
+    [CATransaction begin];
+    {
+        [CATransaction setCompletionBlock:^{
+            for (UIView *view in views)
+            {
+                view.hidden = YES;
+            }
+        }];
+        
+        for (UIView *view in views)
+        {
+            CGPoint fromPoint = view.center;
+            CGPoint toPoint = self.optionsButton.center;//view.center;
+            
+            CFTimeInterval delay = FloatRandomInRange(0.0, 0.15);
+
+            [view kdgAddAnimateTransform:duration
+                                   delay:delay
+                               fromPoint:fromPoint
+                                 toPoint:toPoint
+                               fromScale:1.0
+                                 toScale:0.1];
+        }
+    }
+    [CATransaction commit];
+
+    //self.optionSlider.hidden = YES;
+}
+
+- (void)presentPressAnimation:(UIView *)view
+{
+    CGFloat scaleFactor = 1.2;
+    
+    [UIView animateWithDuration:0.2
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         view.transform = CGAffineTransformMakeScale(scaleFactor, scaleFactor);
+                     } completion:^(BOOL finished) {
+                         [UIView animateWithDuration:0.1
+                                               delay:0.0
+                                             options:UIViewAnimationOptionCurveLinear
+                                          animations:^{
+                                              view.transform = CGAffineTransformIdentity;
+                                          } completion:^(BOOL finished) {
+                                              //
+                                          }];
+                     }];
 }
 
 #pragma mark - actions
@@ -595,6 +797,11 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     [commandEngine executeCommand:[Command dismissClockViewCommand]];
+    
+    if (self.brightnessDimmed)
+    {
+        [commandEngine executeCommand:[Command restoreScreenBrightnessCommand]];
+    }
 }
 
 - (IBAction)fontAction:(id)sender

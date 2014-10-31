@@ -16,6 +16,7 @@
 		0CA5B94619C36740001322A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CA5B94519C36740001322A0 /* Images.xcassets */; };
 		0CA5B94919C36740001322A0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CA5B94719C36740001322A0 /* LaunchScreen.xib */; };
 		0CA5B95519C36740001322A0 /* orngTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA5B95419C36740001322A0 /* orngTests.m */; };
+		0CEE61891A04202500E6E561 /* UIView+KDGAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEE61881A04202500E6E561 /* UIView+KDGAnimation.m */; };
 		D3157F4819D50766008812CA /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3157F3E19D50766008812CA /* DataModel.m */; };
 		D3157F4919D50766008812CA /* ClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3157F4119D50766008812CA /* ClockViewController.m */; };
 		D3157F4A19D50766008812CA /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3157F4319D50766008812CA /* ListViewController.m */; };
@@ -65,6 +66,8 @@
 		0CA5B94E19C36740001322A0 /* orngTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = orngTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CA5B95319C36740001322A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CA5B95419C36740001322A0 /* orngTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = orngTests.m; sourceTree = "<group>"; };
+		0CEE61871A04202500E6E561 /* UIView+KDGAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+KDGAnimation.h"; sourceTree = "<group>"; };
+		0CEE61881A04202500E6E561 /* UIView+KDGAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+KDGAnimation.m"; sourceTree = "<group>"; };
 		D3157F3D19D50766008812CA /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
 		D3157F3E19D50766008812CA /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
 		D3157F4019D50766008812CA /* ClockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClockViewController.h; sourceTree = "<group>"; };
@@ -200,6 +203,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0CEE61861A04202500E6E561 /* UIView+ */ = {
+			isa = PBXGroup;
+			children = (
+				0CEE61871A04202500E6E561 /* UIView+KDGAnimation.h */,
+				0CEE61881A04202500E6E561 /* UIView+KDGAnimation.m */,
+			);
+			path = "UIView+";
+			sourceTree = "<group>";
+		};
 		D3157F3C19D50766008812CA /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +282,7 @@
 		D3157F5419D50DA9008812CA /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				0CEE61861A04202500E6E561 /* UIView+ */,
 				0C73F00419FEDB1000AABCD3 /* UIColor+ */,
 			);
 			path = iOS;
@@ -535,6 +548,7 @@
 			files = (
 				D3ACBCB519D625E600BE15CB /* KDGGridView.m in Sources */,
 				D3157F4C19D50766008812CA /* MainViewController.m in Sources */,
+				0CEE61891A04202500E6E561 /* UIView+KDGAnimation.m in Sources */,
 				D3ACBCB619D625E600BE15CB /* KDGGridViewCell.m in Sources */,
 				0CA5B93E19C36740001322A0 /* AppDelegate.m in Sources */,
 				D3E7037519FDABDA00E38E71 /* KDGCommandEngine.m in Sources */,
