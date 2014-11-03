@@ -8,13 +8,20 @@
 
 #import "UIView+KDGAnimation.h"
 
+static CGFloat KDGGlobalAnimationDurationFactor = 1.0;
+
 @implementation UIView (KDGAnimation)
+
++ (void)kdgSetGlobalAnimationDurationFactor:(CGFloat)factor
+{
+    KDGGlobalAnimationDurationFactor = factor;
+}
 
 - (void)kdgAddAnimateFadeIn:(CFTimeInterval)duration
                       delay:(CFTimeInterval)delay
 {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    animation.duration = duration;
+    animation.duration = duration * KDGGlobalAnimationDurationFactor;
     animation.removedOnCompletion = NO;
     animation.fillMode = kCAFillModeForwards;
     
@@ -28,7 +35,7 @@
                        delay:(CFTimeInterval)delay
 {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    animation.duration = duration;
+    animation.duration = duration * KDGGlobalAnimationDurationFactor;
     animation.removedOnCompletion = NO;
     animation.fillMode = kCAFillModeForwards;
     
@@ -42,8 +49,8 @@
                          delay:(CFTimeInterval)delay
                      fromPoint:(CGPoint)fromPoint
                        toPoint:(CGPoint)toPoint
-                     fromScale:(CGFloat)fromScale
-                       toScale:(CGFloat)toScale
+                     fromScale:(CGSize)fromScale
+                       toScale:(CGSize)toScale
 {
     CGFloat dx = fromPoint.x - self.center.x;
     CGFloat dy = fromPoint.y - self.center.y;
@@ -52,16 +59,16 @@
     CGFloat dyTo = toPoint.y - self.center.y;
     
     CATransform3D fromTransform = CATransform3DMakeTranslation(dx, dy, 0.0);
-    fromTransform = CATransform3DScale(fromTransform, fromScale, fromScale, 1.0);
+    fromTransform = CATransform3DScale(fromTransform, fromScale.width, fromScale.height, 1.0);
     
     CATransform3D toTransform = CATransform3DMakeTranslation(dxTo, dyTo, 0.0);
-    toTransform = CATransform3DScale(toTransform, toScale, toScale, 1.0);
+    toTransform = CATransform3DScale(toTransform, toScale.width, toScale.height, 1.0);
     
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform"];
     animation.fromValue = [NSValue valueWithCATransform3D:fromTransform];
     animation.toValue = [NSValue valueWithCATransform3D:toTransform];
     
-    animation.duration = duration;
+    animation.duration = duration * KDGGlobalAnimationDurationFactor;
     animation.beginTime = CACurrentMediaTime() + delay;
     animation.fillMode = kCAFillModeBoth;
     animation.removedOnCompletion = NO;

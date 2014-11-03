@@ -10,6 +10,8 @@
 
 @interface UIView (KDGAnimation)
 
++ (void)kdgSetGlobalAnimationDurationFactor:(CGFloat)factor;
+
 - (void)kdgAddAnimateFadeIn:(CFTimeInterval)duration
                       delay:(CFTimeInterval)delay;
 
@@ -20,7 +22,7 @@
                          delay:(CFTimeInterval)delay
                      fromPoint:(CGPoint)fromPoint
                        toPoint:(CGPoint)toPoint
-                     fromScale:(CGFloat)fromScale
-                       toScale:(CGFloat)toScale;
+                     fromScale:(CGSize)fromScale
+                       toScale:(CGSize)toScale;
 
 @end

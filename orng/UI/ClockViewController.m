@@ -13,6 +13,10 @@
 #import "KDGUtilities.h"
 #import "UIView+KDGAnimation.h"
 
+//  todo:
+//  - need indication when button pressed. change colour, draw ring or halo.
+//  - hook up back door debug controller.
+
 static const CGFloat kWhiteSliderThreshold = 0.05;
 static const CGFloat kBlackSliderThreshold = 0.05;
 
@@ -46,7 +50,6 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
 
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
-
 @end
 
 @implementation ClockViewController
@@ -70,6 +73,7 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
     self.brightnessDimmed = NO;
     self.optionSlider.hidden = YES;
 
+    [self setUpGestures];
     [self setUpFont];
     [self setUpTextColor];
     [self setUpBackgroundColor];
@@ -194,6 +198,15 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
             NSLog(@"  %@", name);
         }
     }
+}
+
+- (void)setUpGestures
+{
+    UITapGestureRecognizer *backDoorGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                action:@selector(backDoorAction:)];
+    backDoorGesture.numberOfTapsRequired = 3;
+    backDoorGesture.numberOfTouchesRequired = 2;
+    [self.view addGestureRecognizer:backDoorGesture];
 }
 
 - (void)setUpFont
@@ -513,8 +526,8 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
                                    delay:delay
                                fromPoint:fromPoint
                                  toPoint:toPoint
-                               fromScale:0.1
-                                 toScale:1.0];
+                               fromScale:CGSizeMake(0.1, 0.1)
+                                 toScale:CGSizeMake(1.0, 1.0)];
             
             [view kdgAddAnimateFadeIn:duration delay:0.0];
         }
@@ -576,8 +589,8 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
                                    delay:delay
                                fromPoint:fromPoint
                                  toPoint:toPoint
-                               fromScale:1.0
-                                 toScale:0.1];
+                               fromScale:CGSizeMake(1.0, 1.0)
+                                 toScale:CGSizeMake(0.1, 0.1)];
             
             [view kdgAddAnimateFadeOut:duration delay:0.0];
         }
@@ -635,20 +648,27 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
         
         for (UIView *view in views)
         {
-            CGPoint fromPoint = self.foregroundButton.center;
+            CGPoint fromPoint = self.optionSlider.center;
             CGPoint toPoint = view.center;
             
             [view kdgAddAnimateTransform:duration
                                    delay:delay
                                fromPoint:fromPoint
                                  toPoint:toPoint
-                               fromScale:1.0
-                                 toScale:1.0];
+                               fromScale:CGSizeMake(1.0, 1.0)
+                                 toScale:CGSizeMake(1.0, 1.0)];
+
+            [view kdgAddAnimateFadeIn:duration delay:0.0];
         }
     }
     [CATransaction commit];
 
-    self.optionSlider.hidden = NO;
+    views = @[self.optionSlider];
+
+    for (UIView *view in views)
+    {
+        view.hidden = NO;
+    }
 
     [CATransaction begin];
     {
@@ -664,8 +684,10 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
                                    delay:delay
                                fromPoint:fromPoint
                                  toPoint:toPoint
-                               fromScale:0.1
-                                 toScale:1.0];
+                               fromScale:CGSizeMake(0.1, 0.1)
+                                 toScale:CGSizeMake(1.0, 1.0)];
+
+            [view kdgAddAnimateFadeIn:duration delay:0.0];
         }
     }
     [CATransaction commit];
@@ -742,22 +764,63 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
             {
                 view.hidden = YES;
             }
+            /*
+            [CATransaction begin];
+            {
+                [CATransaction setCompletionBlock:^{
+                    for (UIView *view in views)
+                    {
+                        view.hidden = YES;
+                    }
+                }];
+                for (UIView *view in views)
+                {
+                    [view kdgAddAnimateFadeOut:0.1 delay:0.0];
+                }
+            }
+            [CATransaction commit];
+             */
         }];
         
+//        for (UIView *view in @[self.cancelButton,
+//                               self.okayButton])
+//        {
+//            CGPoint fromPoint = view.center;
+//            //CGPoint toPoint = self.optionsButton.center;//view.center;
+//            CGPoint toPoint = self.optionSlider.center;//view.center;
+//
+//            CFTimeInterval delay = FloatRandomInRange(0.0, 0.15);
+//
+//            [view kdgAddAnimateTransform:duration
+//                                   delay:delay
+//                               fromPoint:fromPoint
+//                                 toPoint:toPoint
+//                               fromScale:CGSizeMake(1.0, 1.0)
+//                                 toScale:CGSizeMake(1.0, 1.0)];
+//        }
         for (UIView *view in views)
         {
             CGPoint fromPoint = view.center;
-            CGPoint toPoint = self.optionsButton.center;//view.center;
-            
-            CFTimeInterval delay = FloatRandomInRange(0.0, 0.15);
+            //CGPoint toPoint = self.optionsButton.center;//view.center;
+            CGPoint toPoint = self.optionSlider.center;//view.center;
+
+            CFTimeInterval delay = FloatRandomInRange(0.0, 0.0);
 
             [view kdgAddAnimateTransform:duration
                                    delay:delay
                                fromPoint:fromPoint
                                  toPoint:toPoint
-                               fromScale:1.0
-                                 toScale:0.1];
+                               fromScale:CGSizeMake(1.0, 1.0)
+                                 toScale:CGSizeMake(0.1, 0.1)];
+
+            [view kdgAddAnimateFadeOut:duration delay:0.0];
         }
+        /*
+        for (UIView *view in views)
+        {
+            [view kdgAddAnimateFadeOut:duration delay:0.0];
+        }
+         */
     }
     [CATransaction commit];
 
@@ -1005,6 +1068,17 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
         UIScreen *screen = [UIScreen mainScreen];
         screen.brightness = self.originalBrightness;
     }
+}
+
+#pragma mark - back door
+
+- (void)backDoorAction:(id)sender
+{
+    NSLog(@"backDoorAction");
+    static BOOL on = NO;
+    on = !on;
+    CGFloat factor = on ? 4.0 : 1.0;
+    [UIView kdgSetGlobalAnimationDurationFactor:factor];
 }
 
 @end
