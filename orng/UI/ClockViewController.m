@@ -29,8 +29,9 @@ typedef NS_ENUM(NSInteger, OptionsMode)
 
 static CGFloat kFontSize = 256.0;
 
-static NSTimeInterval kTimerInterval        = 0.2;
-static NSTimeInterval kOptionsTimerInterval = 3.0;
+static NSTimeInterval kTimerInterval           = 0.2;
+static NSTimeInterval kOptionsTimerInterval    = 3.0;
+static NSTimeInterval kBrightnessTimerInterval = 3.0;
 
 @interface ClockViewController () <KDGCommandEngineResponder>
 
@@ -42,9 +43,11 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
 @property (nonatomic, assign) CGFloat     originalValue;
 @property (nonatomic, assign) CGFloat     originalBrightness;
 @property (nonatomic, assign) BOOL        brightnessDimmed;
+@property (nonatomic, assign) BOOL        brightnessTemporarilyRestored;
 
 @property (nonatomic, strong) NSTimer     *timer;
 @property (nonatomic, strong) NSTimer     *optionsTimer;
+@property (nonatomic, strong) NSTimer     *brightnessTimer;
 
 @property (nonatomic, strong) NSArray     *fontNames;
 
@@ -71,6 +74,7 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
                        @"Righteous-Regular"];
 
     self.brightnessDimmed = NO;
+    self.brightnessTemporarilyRestored = NO;
     self.optionSlider.hidden = YES;
 
     [self setUpGestures];
@@ -143,6 +147,7 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
 {
     [self stopTimer];
     [self stopOptionsTimer];
+    [self stopBrightnessTimer];
     [super viewDidUnload];
 }
 
@@ -202,6 +207,12 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
 
 - (void)setUpGestures
 {
+    UITapGestureRecognizer *singleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                       action:@selector(singleTapAction:)];
+    singleTapGesture.numberOfTapsRequired = 1;
+    singleTapGesture.numberOfTouchesRequired = 1;
+    [self.view addGestureRecognizer:singleTapGesture];
+
     UITapGestureRecognizer *backDoorGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                 action:@selector(backDoorAction:)];
     backDoorGesture.numberOfTapsRequired = 3;
@@ -379,6 +390,31 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     [commandEngine executeCommand:[Command dismissClockOptionsCommand]];
+}
+
+#pragma mark - brightness timer
+
+- (void)startBrightnessTimer
+{
+    [self stopBrightnessTimer];
+    self.brightnessTimer = [NSTimer scheduledTimerWithTimeInterval:kBrightnessTimerInterval
+                                                         target:self
+                                                       selector:@selector(brightnessTimerFired:)
+                                                       userInfo:nil
+                                                        repeats:NO];
+}
+
+- (void)stopBrightnessTimer
+{
+    [self.brightnessTimer invalidate];
+    self.brightnessTimer = nil;
+}
+
+- (void)brightnessTimerFired:(NSTimer *)timer
+{
+    //self.brightnessTemporarilyRestored = NO;
+    CommandEngine *commandEngine = [CommandEngine sharedInstance];
+    [commandEngine executeCommand:[Command dimScreenBrightnessCommand]];
 }
 
 #pragma mark - ui
@@ -850,6 +886,19 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
 
 #pragma mark - actions
 
+- (void)singleTapAction:(id)sender
+{
+    if (self.brightnessDimmed)
+    {
+//        self.brightnessTemporarilyRestored = YES;
+//
+        [self startBrightnessTimer];
+
+        CommandEngine *commandEngine = [CommandEngine sharedInstance];
+        [commandEngine executeCommand:[Command restoreScreenBrightnessCommand]];
+    }
+}
+
 - (IBAction)optionsAction:(id)sender
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
@@ -891,15 +940,25 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
 - (IBAction)brightnessAction:(id)sender
 {
     [self stopOptionsTimer];
+
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
 
-    if (self.brightnessDimmed)
+    if (self.brightnessTemporarilyRestored)
     {
+        [self stopBrightnessTimer];
+        self.brightnessTemporarilyRestored = NO;
         [commandEngine executeCommand:[Command restoreScreenBrightnessCommand]];
     }
     else
     {
-        [commandEngine executeCommand:[Command dimScreenBrightnessCommand]];
+        if (self.brightnessDimmed)
+        {
+            [commandEngine executeCommand:[Command restoreScreenBrightnessCommand]];
+        }
+        else
+        {
+            [commandEngine executeCommand:[Command dimScreenBrightnessCommand]];
+        }
     }
 
     [commandEngine executeCommand:[Command dismissClockOptionsCommand]];
@@ -1064,6 +1123,10 @@ static NSTimeInterval kOptionsTimerInterval = 3.0;
     }
     else if ([command isEqualToCommand:[Command restoreScreenBrightnessCommand]])
     {
+        if (self.brightnessTimer)
+        {
+            self.brightnessTemporarilyRestored = YES;
+        }
         self.brightnessDimmed = NO;
         UIScreen *screen = [UIScreen mainScreen];
         screen.brightness = self.originalBrightness;
