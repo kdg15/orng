@@ -10,6 +10,9 @@
 		0C73F00319FE92D400AABCD3 /* DummyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C73F00219FE92D400AABCD3 /* DummyViewController.m */; };
 		0C73F00719FEDB1000AABCD3 /* UIColor+KDGUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C73F00619FEDB1000AABCD3 /* UIColor+KDGUtilities.m */; };
 		0C73F00B19FEDB1C00AABCD3 /* KDGUtilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C73F00A19FEDB1C00AABCD3 /* KDGUtilities.mm */; };
+		0C7766451A0824E600D790D8 /* BackDoorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7766441A0824E600D790D8 /* BackDoorViewController.m */; };
+		0C7766471A0826AA00D790D8 /* BackDoorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C7766461A0826AA00D790D8 /* BackDoorView.xib */; };
+		0C77664A1A0829A700D790D8 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7766491A0829A700D790D8 /* BaseViewController.m */; };
 		0CA5B93B19C36740001322A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA5B93A19C36740001322A0 /* main.m */; };
 		0CA5B93E19C36740001322A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA5B93D19C36740001322A0 /* AppDelegate.m */; };
 		0CA5B94419C36740001322A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CA5B94219C36740001322A0 /* Main.storyboard */; };
@@ -55,6 +58,11 @@
 		0C73F00619FEDB1000AABCD3 /* UIColor+KDGUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+KDGUtilities.m"; sourceTree = "<group>"; };
 		0C73F00919FEDB1C00AABCD3 /* KDGUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGUtilities.h; sourceTree = "<group>"; };
 		0C73F00A19FEDB1C00AABCD3 /* KDGUtilities.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KDGUtilities.mm; sourceTree = "<group>"; };
+		0C7766431A0824E600D790D8 /* BackDoorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackDoorViewController.h; sourceTree = "<group>"; };
+		0C7766441A0824E600D790D8 /* BackDoorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackDoorViewController.m; sourceTree = "<group>"; };
+		0C7766461A0826AA00D790D8 /* BackDoorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackDoorView.xib; sourceTree = "<group>"; };
+		0C7766481A0829A700D790D8 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		0C7766491A0829A700D790D8 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		0CA5B93519C36740001322A0 /* orng.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = orng.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CA5B93919C36740001322A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CA5B93A19C36740001322A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -224,6 +232,11 @@
 		D3157F3F19D50766008812CA /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0C7766431A0824E600D790D8 /* BackDoorViewController.h */,
+				0C7766461A0826AA00D790D8 /* BackDoorView.xib */,
+				0C7766481A0829A700D790D8 /* BaseViewController.h */,
+				0C7766491A0829A700D790D8 /* BaseViewController.m */,
+				0C7766441A0824E600D790D8 /* BackDoorViewController.m */,
 				D3157F4019D50766008812CA /* ClockViewController.h */,
 				D3157F4119D50766008812CA /* ClockViewController.m */,
 				0C73F00119FE92D400AABCD3 /* DummyViewController.h */,
@@ -519,6 +532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D37F834619C7D408002D4C58 /* PoiretOne-Regular.ttf in Resources */,
+				0C7766471A0826AA00D790D8 /* BackDoorView.xib in Resources */,
 				0CA5B94419C36740001322A0 /* Main.storyboard in Resources */,
 				D37F833519C7D35C002D4C58 /* NixieOne-Regular.ttf in Resources */,
 				0CA5B94919C36740001322A0 /* LaunchScreen.xib in Resources */,
@@ -546,6 +560,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C77664A1A0829A700D790D8 /* BaseViewController.m in Sources */,
 				D3ACBCB519D625E600BE15CB /* KDGGridView.m in Sources */,
 				D3157F4C19D50766008812CA /* MainViewController.m in Sources */,
 				0CEE61891A04202500E6E561 /* UIView+KDGAnimation.m in Sources */,
@@ -559,6 +574,7 @@
 				0C73F00B19FEDB1C00AABCD3 /* KDGUtilities.mm in Sources */,
 				0C73F00319FE92D400AABCD3 /* DummyViewController.m in Sources */,
 				D3E7037B19FDB9DE00E38E71 /* CommandSystem.m in Sources */,
+				0C7766451A0824E600D790D8 /* BackDoorViewController.m in Sources */,
 				0C73F00719FEDB1000AABCD3 /* UIColor+KDGUtilities.m in Sources */,
 				0CA5B93B19C36740001322A0 /* main.m in Sources */,
 				D3157F4919D50766008812CA /* ClockViewController.m in Sources */,
