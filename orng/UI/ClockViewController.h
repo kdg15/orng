@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 mitchkram. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface ClockViewController : UIViewController
+@interface ClockViewController : BaseViewController
 
 @property (nonatomic, strong) IBOutlet UILabel  *timeLabel;
 @property (nonatomic, strong) IBOutlet UIButton *backButton;

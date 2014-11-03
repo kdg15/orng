@@ -12,6 +12,7 @@
 #import "UIColor+KDGUtilities.h"
 #import "KDGUtilities.h"
 #import "UIView+KDGAnimation.h"
+#import "BackDoorViewController.h"
 
 //  todo:
 //  - need indication when button pressed. change colour, draw ring or halo.
@@ -212,12 +213,6 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     singleTapGesture.numberOfTapsRequired = 1;
     singleTapGesture.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:singleTapGesture];
-
-    UITapGestureRecognizer *backDoorGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                action:@selector(backDoorAction:)];
-    backDoorGesture.numberOfTapsRequired = 3;
-    backDoorGesture.numberOfTouchesRequired = 2;
-    [self.view addGestureRecognizer:backDoorGesture];
 }
 
 - (void)setUpFont
@@ -262,9 +257,8 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 - (NSString *)calculateFontNameFromValue:(CGFloat)value
 {
     NSInteger fontCount = self.fontNames.count;
-    NSInteger fontIndex = (fontCount - 1) * value;
+    NSInteger fontIndex = ceilf((fontCount - 1) * value);
     NSString *fontName = self.fontNames[fontIndex];
-    
     return fontName;
 }
 
@@ -1022,12 +1016,8 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     {
         case OptionsModeFont:
         {
-            NSInteger fontCount = self.fontNames.count;
-            NSInteger fontIndex = (fontCount - 1) * slider.value;
-            NSString *fontName = self.fontNames[fontIndex];
-            
+            NSString *fontName = [self calculateFontNameFromValue:slider.value];
             [DataModel setClockFontName:fontName];
-            
             UIFont *font = [UIFont fontWithName:fontName size:kFontSize];
             [self updateDisplayFont:font];
 
@@ -1131,17 +1121,6 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
         UIScreen *screen = [UIScreen mainScreen];
         screen.brightness = self.originalBrightness;
     }
-}
-
-#pragma mark - back door
-
-- (void)backDoorAction:(id)sender
-{
-    NSLog(@"backDoorAction");
-    static BOOL on = NO;
-    on = !on;
-    CGFloat factor = on ? 4.0 : 1.0;
-    [UIView kdgSetGlobalAnimationDurationFactor:factor];
 }
 
 @end
