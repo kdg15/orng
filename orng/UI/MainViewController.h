@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 mitchkram. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface MainViewController : UIViewController
+@interface MainViewController : BaseViewController
 
 - (IBAction)clockAction:(id)sender;
 - (IBAction)listAction:(id)sender;

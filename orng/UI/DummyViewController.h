@@ -3,9 +3,9 @@
 //  Copyright (c) 2014 mitchkram. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface DummyViewController : UIViewController
+@interface DummyViewController : BaseViewController
 
 - (IBAction)backAction:(id)sender;
 

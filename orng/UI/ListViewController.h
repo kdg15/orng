@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 mitchkram. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface ListViewController : UIViewController
+@interface ListViewController : BaseViewController
 
 @property (nonatomic, strong) IBOutlet UILabel *summaryLabel;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;

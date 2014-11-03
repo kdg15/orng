@@ -3,11 +3,11 @@
 //  Copyright (c) 2014 mitchkram. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 #import "KDGGridView.h"
 #import "TestViewCell.h"
 
-@interface TestViewController : UIViewController
+@interface TestViewController : BaseViewController
 
 @property (nonatomic, strong) IBOutlet KDGGridView *gridView;
 @property (nonatomic, strong) IBOutlet TestViewCell *gridCell;

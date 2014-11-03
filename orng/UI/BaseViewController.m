@@ -7,6 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import "BackDoorViewController.h"
+#import "UIView+KDGAnimation.h"
 
 @interface BaseViewController ()
 
@@ -14,24 +16,44 @@
 
 @implementation BaseViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    [self setUpBackDoorGesture];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)setUpBackDoorGesture
+{
+    UITapGestureRecognizer *backDoorGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                      action:@selector(backDoorAction:)];
+    backDoorGesture.numberOfTapsRequired = 3;
+    backDoorGesture.numberOfTouchesRequired = 2;
+    [self.view addGestureRecognizer:backDoorGesture];
 }
-*/
+
+#pragma mark - back door
+
+- (void)backDoorAction:(id)sender
+{
+    static BOOL on = NO;
+    on = !on;
+    CGFloat factor = on ? 4.0 : 1.0;
+    [UIView kdgSetGlobalAnimationDurationFactor:factor];
+    
+    BackDoorViewController *viewController = [[BackDoorViewController alloc] initWithNibName:@"BackDoorView" bundle:nil];
+    
+    [self presentViewController:viewController
+                       animated:YES
+                     completion:^{
+                         //
+                     }];
+}
+
 
 @end
