@@ -20,4 +20,7 @@
 + (UIColor *)clockBackgroundColor;
 + (void)setClockBackgroundColor:(UIColor *)color;
 
++ (NSString *)backDoorPrompt;
++ (void)setBackDoorPrompt:(NSString *)prompt;
+
 @end

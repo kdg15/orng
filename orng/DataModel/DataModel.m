@@ -9,30 +9,21 @@
 #import "DataModel.h"
 #import "UIColor+KDGUtilities.h"
 
-static NSString * const kPrefClockFontName = @"clockFontName";
-static NSString * const kPrefClockTextColor = @"clockTextColor";
-static NSString * const kPrefClockBackgroundColor = @"clockBackgroundColor";
+static NSString * const kPrefClockFontName        = @"orngPrefClockFontName";
+static NSString * const kPrefClockTextColor       = @"orngPrefClockTextColor";
+static NSString * const kPrefClockBackgroundColor = @"orngPrefClockBackgroundColor";
+static NSString * const kPrefBackDoorPrompt       = @"orngPrefBackDoorPrompt";
 
 @implementation DataModel
 
 + (NSString *)clockFontName
 {
-    NSString *fontName = @"Avenir-Light";
-
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *string = [userDefaults stringForKey:kPrefClockFontName];
-    if (string)
-    {
-        fontName = string;
-    }
-
-    return fontName;
+    return [DataModel getStringPref:kPrefClockFontName defaultValue:@"Avenir-Light"];
 }
 
 + (void)setClockFontName:(NSString *)fontName
 {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:fontName forKey:kPrefClockFontName];
+    [DataModel setStringPref:kPrefClockFontName value:fontName];
 }
 
 + (UIColor *)clockTextColor
@@ -75,6 +66,36 @@ static NSString * const kPrefClockBackgroundColor = @"clockBackgroundColor";
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *colorString = [color kdgColorString];
     [userDefaults setObject:colorString forKey:kPrefClockBackgroundColor];
+}
+
++ (NSString *)backDoorPrompt
+{
+    return [DataModel getStringPref:kPrefBackDoorPrompt defaultValue:@"%ld)"];
+}
+
++ (void)setBackDoorPrompt:(NSString *)prompt
+{
+    [DataModel setStringPref:kPrefBackDoorPrompt value:prompt];
+}
+
++ (NSString *)getStringPref:(NSString *)prefKey defaultValue:(NSString *)defaultValue
+{
+    NSString *result = defaultValue;
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *string = [userDefaults stringForKey:prefKey];
+    if (string)
+    {
+        result = string;
+    }
+    
+    return result;
+}
+
++ (void)setStringPref:(NSString *)prefKey value:(NSString *)value
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:value forKey:prefKey];
 }
 
 @end
