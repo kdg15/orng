@@ -106,6 +106,8 @@ static NSString * const UserInfoCommandKey = @"UserInfoCommandKey";
 
 - (void)executeCommand:(KDGCommand *)command
 {
+    if (command == nil) return;
+
     id object = [self.commands objectForKey:command.name];
     if (object)
     {

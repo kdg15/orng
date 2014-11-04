@@ -16,6 +16,7 @@ extern NSString * const KDGCommandExecutedNotification;
 - (BOOL)isEqualToCommand:(KDGCommand *)command;
 
 @property (nonatomic, readonly) NSString *name;
+@property (nonatomic, strong) NSArray *arguments;
 @property (nonatomic, assign) BOOL log;
 
 @end
