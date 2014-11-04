@@ -55,7 +55,7 @@
 
 - (void)gridView:(KDGGridView *)gridView didSelectCellAtIndex:(NSUInteger)index
 {
-    NSLog(@"gridView didSelectCellAtIndex:%d", index);
+    NSLog(@"gridView didSelectCellAtIndex:%lu", (unsigned long)index);
 }
 
 - (NSInteger)numberOfItemsInGridView:(KDGGridView *)gridView
@@ -81,7 +81,7 @@
         self.gridCell = nil;
     }
 
-    cell.label.text = [NSString stringWithFormat:@"cell %d", index];
+    cell.label.text = [NSString stringWithFormat:@"cell %lu", (unsigned long)index];
 
     return cell;
 }
