@@ -1,7 +1,4 @@
 //
-//  UIView+KDGAnimation.h
-//  prpl
-//
 //  Created by Brian Kramer on 31.10.14.
 //  Copyright (c) 2014 kdg15. All rights reserved.
 //
