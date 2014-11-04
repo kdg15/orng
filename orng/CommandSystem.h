@@ -34,6 +34,8 @@
 
 + (Command *)printLogCommand;
 
++ (Command *)setBackDoorPrompt;
+
 @end
 
 @interface CommandEngine : KDGCommandEngine

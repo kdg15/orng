@@ -40,6 +40,8 @@
     return command;
 }
 
++ (Command *)setBackDoorPrompt { return [[Command alloc] initWithName:@"setBackDoorPrompt"]; }
+
 @end
 
 @implementation CommandEngine
@@ -82,6 +84,8 @@
     [self registerCommand:[Command dismissDummyViewCommand]];
 
     [self registerCommand:[Command printLogCommand]];
+
+    [self registerCommand:[Command setBackDoorPrompt]];
 }
 
 @end
