@@ -9,7 +9,7 @@
 #import "UIColor+KDGUtilities.h"
 #import "KDGUtilities.h"
 #import "UIView+KDGAnimation.h"
-#import "BackDoorViewController.h"
+#import "KDGBackDoorViewController.h"
 
 //  todo:
 //  - need indication when button pressed. change colour, draw ring or halo.

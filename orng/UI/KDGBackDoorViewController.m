@@ -3,17 +3,17 @@
 //  Copyright (c) 2014 mitchkram. All rights reserved.
 //
 
-#import "BackDoorViewController.h"
+#import "KDGBackDoorViewController.h"
 
 static NSString * const kDefaultPrompt = @"%ld:";
 
-@interface BackDoorViewController ()
+@interface KDGBackDoorViewController ()
 
 @property (nonatomic, assign) NSInteger counter;
 
 @end
 
-@implementation BackDoorViewController
+@implementation KDGBackDoorViewController
 
 - (id)init
 {

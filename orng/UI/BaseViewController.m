@@ -6,7 +6,7 @@
 #import "BaseViewController.h"
 #import "CommandSystem.h"
 #import "DataModel.h"
-#import "BackDoorViewController.h"
+#import "KDGBackDoorViewController.h"
 #import "KDGCoverVerticalOverCurrentContextAnimatedTransition.h"
 #import "UIView+KDGAnimation.h"
 
@@ -47,7 +47,7 @@
     CGFloat factor = on ? 4.0 : 1.0;
     [UIView kdgSetGlobalAnimationDurationFactor:factor];
     
-    BackDoorViewController *viewController = [[BackDoorViewController alloc] init];
+    KDGBackDoorViewController *viewController = [[KDGBackDoorViewController alloc] init];
     viewController.delegate = self;
     viewController.prompt = [NSString stringWithString:[DataModel backDoorPrompt]];
     
@@ -65,13 +65,13 @@
     }];
 }
 
-- (void)backDoorViewControllerDidClose:(BackDoorViewController *)backDoorViewController
+- (void)backDoorViewControllerDidClose:(KDGBackDoorViewController *)backDoorViewController
 {
     [self dismissViewControllerAnimated:YES completion:^{
     }];
 }
 
-- (NSString *)backDoorViewController:(BackDoorViewController *)backDoorViewController
+- (NSString *)backDoorViewController:(KDGBackDoorViewController *)backDoorViewController
              didExecuteCommand:(NSString *)commandName
                  withArguments:(NSArray *)arguments
                        dismiss:(BOOL)dismiss

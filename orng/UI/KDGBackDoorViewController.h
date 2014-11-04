@@ -5,20 +5,20 @@
 
 #import <UIKit/UIKit.h>
 
-@class BackDoorViewController;
+@class KDGBackDoorViewController;
 
 @protocol BackDoorViewControllerDelegate <NSObject>
 
-- (void)backDoorViewControllerDidClose:(BackDoorViewController *)backDoorViewController;
+- (void)backDoorViewControllerDidClose:(KDGBackDoorViewController *)backDoorViewController;
 
-- (NSString *)backDoorViewController:(BackDoorViewController *)backDoorViewController
+- (NSString *)backDoorViewController:(KDGBackDoorViewController *)backDoorViewController
                    didExecuteCommand:(NSString *)commandName
                        withArguments:(NSArray *)arguments
                              dismiss:(BOOL)dismiss;
 
 @end
 
-@interface BackDoorViewController : UIViewController
+@interface KDGBackDoorViewController : UIViewController
 
 @property (nonatomic, weak) id<BackDoorViewControllerDelegate> delegate;
 
@@ -35,3 +35,4 @@
 - (IBAction)executeAndCloseAction:(id)sender;
 
 @end
+

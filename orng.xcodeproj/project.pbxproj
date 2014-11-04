@@ -10,7 +10,7 @@
 		0C73F00319FE92D400AABCD3 /* DummyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C73F00219FE92D400AABCD3 /* DummyViewController.m */; };
 		0C73F00719FEDB1000AABCD3 /* UIColor+KDGUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C73F00619FEDB1000AABCD3 /* UIColor+KDGUtilities.m */; };
 		0C73F00B19FEDB1C00AABCD3 /* KDGUtilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C73F00A19FEDB1C00AABCD3 /* KDGUtilities.mm */; };
-		0C7766451A0824E600D790D8 /* BackDoorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7766441A0824E600D790D8 /* BackDoorViewController.m */; };
+		0C7766451A0824E600D790D8 /* KDGBackDoorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7766441A0824E600D790D8 /* KDGBackDoorViewController.m */; };
 		0C7766471A0826AA00D790D8 /* BackDoorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C7766461A0826AA00D790D8 /* BackDoorView.xib */; };
 		0C77664A1A0829A700D790D8 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7766491A0829A700D790D8 /* BaseViewController.m */; };
 		0C9EA83D1A0921B600DD4D97 /* UIDevice+KDGUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EA8391A0921B600DD4D97 /* UIDevice+KDGUtilities.m */; };
@@ -63,8 +63,8 @@
 		0C73F00619FEDB1000AABCD3 /* UIColor+KDGUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+KDGUtilities.m"; sourceTree = "<group>"; };
 		0C73F00919FEDB1C00AABCD3 /* KDGUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGUtilities.h; sourceTree = "<group>"; };
 		0C73F00A19FEDB1C00AABCD3 /* KDGUtilities.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KDGUtilities.mm; sourceTree = "<group>"; };
-		0C7766431A0824E600D790D8 /* BackDoorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackDoorViewController.h; sourceTree = "<group>"; };
-		0C7766441A0824E600D790D8 /* BackDoorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackDoorViewController.m; sourceTree = "<group>"; };
+		0C7766431A0824E600D790D8 /* KDGBackDoorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGBackDoorViewController.h; sourceTree = "<group>"; };
+		0C7766441A0824E600D790D8 /* KDGBackDoorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGBackDoorViewController.m; sourceTree = "<group>"; };
 		0C7766461A0826AA00D790D8 /* BackDoorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackDoorView.xib; sourceTree = "<group>"; };
 		0C7766481A0829A700D790D8 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		0C7766491A0829A700D790D8 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
@@ -299,11 +299,11 @@
 		D3157F3F19D50766008812CA /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				0C7766431A0824E600D790D8 /* BackDoorViewController.h */,
+				0C7766431A0824E600D790D8 /* KDGBackDoorViewController.h */,
 				0C7766461A0826AA00D790D8 /* BackDoorView.xib */,
 				0C7766481A0829A700D790D8 /* BaseViewController.h */,
 				0C7766491A0829A700D790D8 /* BaseViewController.m */,
-				0C7766441A0824E600D790D8 /* BackDoorViewController.m */,
+				0C7766441A0824E600D790D8 /* KDGBackDoorViewController.m */,
 				D3157F4019D50766008812CA /* ClockViewController.h */,
 				D3157F4119D50766008812CA /* ClockViewController.m */,
 				0C73F00119FE92D400AABCD3 /* DummyViewController.h */,
@@ -652,7 +652,7 @@
 				0C73F00B19FEDB1C00AABCD3 /* KDGUtilities.mm in Sources */,
 				0C73F00319FE92D400AABCD3 /* DummyViewController.m in Sources */,
 				D3E7037B19FDB9DE00E38E71 /* CommandSystem.m in Sources */,
-				0C7766451A0824E600D790D8 /* BackDoorViewController.m in Sources */,
+				0C7766451A0824E600D790D8 /* KDGBackDoorViewController.m in Sources */,
 				0C73F00719FEDB1000AABCD3 /* UIColor+KDGUtilities.m in Sources */,
 				0CA5B93B19C36740001322A0 /* main.m in Sources */,
 				D3157F4919D50766008812CA /* ClockViewController.m in Sources */,
