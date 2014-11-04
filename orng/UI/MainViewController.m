@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "CommandSystem.h"
+#import "DataModel.h"
 #import "DummyViewController.h"
 
 static NSString * const kClockViewSegue = @"ClockViewSegue";
@@ -24,26 +25,13 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    
-    /*
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(executedCommand:)
-                                                 name:KDGCommandExecutedNotification
-                                               object:nil];
-     */
+
     [[CommandEngine sharedInstance] addResponder:self];
 }
 
 - (void)dealloc
 {
     [[CommandEngine sharedInstance] removeResponder:self];
-    /*
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:KDGCommandExecutedNotification
-                                                  object:nil];
-     */
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -169,6 +157,19 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
     else if ([command isEqualToCommand:[Command presentDummyViewCommand]])
     {
         [self performSegueWithIdentifier:kDummyViewSegue sender: self];
+    }
+    else if ([command isEqualToCommand:[Command setBackDoorPrompt]])
+    {
+        NSArray *arguments = command.arguments;
+        if (arguments.count == 1)
+        {
+            NSString *prompt = arguments[0];
+            [DataModel setBackDoorPrompt:prompt];
+        }
+        else
+        {
+            NSLog(@"# error: '%@' has wrong number of arguments", command.name);
+        }
     }
 }
 

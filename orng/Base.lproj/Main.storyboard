@@ -466,7 +466,7 @@
         <!--Navigation Controller-->
         <scene sceneID="03i-ew-6bo">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="zo7-CC-fKL" customClass="NavigationController" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="zo7-CC-fKL" customClass="KDGNavigationController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vxa-Rf-JrQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

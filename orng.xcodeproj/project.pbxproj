@@ -13,6 +13,11 @@
 		0C7766451A0824E600D790D8 /* BackDoorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7766441A0824E600D790D8 /* BackDoorViewController.m */; };
 		0C7766471A0826AA00D790D8 /* BackDoorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C7766461A0826AA00D790D8 /* BackDoorView.xib */; };
 		0C77664A1A0829A700D790D8 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7766491A0829A700D790D8 /* BaseViewController.m */; };
+		0C9EA83D1A0921B600DD4D97 /* UIDevice+KDGUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EA8391A0921B600DD4D97 /* UIDevice+KDGUtilities.m */; };
+		0C9EA83E1A0921B600DD4D97 /* UIScreen+KDGUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EA83C1A0921B600DD4D97 /* UIScreen+KDGUtilities.m */; };
+		0C9EA8481A09229200DD4D97 /* KDGCoverVerticalOverCurrentContextAnimatedTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EA8471A09229200DD4D97 /* KDGCoverVerticalOverCurrentContextAnimatedTransition.m */; };
+		0C9EA84C1A09283800DD4D97 /* UIImage+KDGImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EA84B1A09283800DD4D97 /* UIImage+KDGImageEffects.m */; };
+		0C9EA84F1A0938AB00DD4D97 /* KDGNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EA84E1A0938AB00DD4D97 /* KDGNavigationController.m */; };
 		0CA5B93B19C36740001322A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA5B93A19C36740001322A0 /* main.m */; };
 		0CA5B93E19C36740001322A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA5B93D19C36740001322A0 /* AppDelegate.m */; };
 		0CA5B94419C36740001322A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CA5B94219C36740001322A0 /* Main.storyboard */; };
@@ -63,6 +68,16 @@
 		0C7766461A0826AA00D790D8 /* BackDoorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackDoorView.xib; sourceTree = "<group>"; };
 		0C7766481A0829A700D790D8 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		0C7766491A0829A700D790D8 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		0C9EA8381A0921B600DD4D97 /* UIDevice+KDGUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+KDGUtilities.h"; sourceTree = "<group>"; };
+		0C9EA8391A0921B600DD4D97 /* UIDevice+KDGUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+KDGUtilities.m"; sourceTree = "<group>"; };
+		0C9EA83B1A0921B600DD4D97 /* UIScreen+KDGUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScreen+KDGUtilities.h"; sourceTree = "<group>"; };
+		0C9EA83C1A0921B600DD4D97 /* UIScreen+KDGUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+KDGUtilities.m"; sourceTree = "<group>"; };
+		0C9EA8461A09229200DD4D97 /* KDGCoverVerticalOverCurrentContextAnimatedTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGCoverVerticalOverCurrentContextAnimatedTransition.h; sourceTree = "<group>"; };
+		0C9EA8471A09229200DD4D97 /* KDGCoverVerticalOverCurrentContextAnimatedTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGCoverVerticalOverCurrentContextAnimatedTransition.m; sourceTree = "<group>"; };
+		0C9EA84A1A09283800DD4D97 /* UIImage+KDGImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KDGImageEffects.h"; sourceTree = "<group>"; };
+		0C9EA84B1A09283800DD4D97 /* UIImage+KDGImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KDGImageEffects.m"; sourceTree = "<group>"; };
+		0C9EA84D1A0938AB00DD4D97 /* KDGNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGNavigationController.h; sourceTree = "<group>"; };
+		0C9EA84E1A0938AB00DD4D97 /* KDGNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGNavigationController.m; sourceTree = "<group>"; };
 		0CA5B93519C36740001322A0 /* orng.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = orng.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CA5B93919C36740001322A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CA5B93A19C36740001322A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -145,6 +160,58 @@
 				0C73F00A19FEDB1C00AABCD3 /* KDGUtilities.mm */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		0C9EA8371A0921B600DD4D97 /* UIDevice+ */ = {
+			isa = PBXGroup;
+			children = (
+				0C9EA8381A0921B600DD4D97 /* UIDevice+KDGUtilities.h */,
+				0C9EA8391A0921B600DD4D97 /* UIDevice+KDGUtilities.m */,
+			);
+			path = "UIDevice+";
+			sourceTree = "<group>";
+		};
+		0C9EA83A1A0921B600DD4D97 /* UIScreen+ */ = {
+			isa = PBXGroup;
+			children = (
+				0C9EA83B1A0921B600DD4D97 /* UIScreen+KDGUtilities.h */,
+				0C9EA83C1A0921B600DD4D97 /* UIScreen+KDGUtilities.m */,
+			);
+			path = "UIScreen+";
+			sourceTree = "<group>";
+		};
+		0C9EA8431A09229200DD4D97 /* KDGCoverVerticalOverCurrentContextAnimatedTransition */ = {
+			isa = PBXGroup;
+			children = (
+				0C9EA8441A09229200DD4D97 /* src */,
+			);
+			path = KDGCoverVerticalOverCurrentContextAnimatedTransition;
+			sourceTree = "<group>";
+		};
+		0C9EA8441A09229200DD4D97 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				0C9EA8451A09229200DD4D97 /* iOS */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		0C9EA8451A09229200DD4D97 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				0C9EA8461A09229200DD4D97 /* KDGCoverVerticalOverCurrentContextAnimatedTransition.h */,
+				0C9EA8471A09229200DD4D97 /* KDGCoverVerticalOverCurrentContextAnimatedTransition.m */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		0C9EA8491A09283800DD4D97 /* UIImage+ */ = {
+			isa = PBXGroup;
+			children = (
+				0C9EA84A1A09283800DD4D97 /* UIImage+KDGImageEffects.h */,
+				0C9EA84B1A09283800DD4D97 /* UIImage+KDGImageEffects.m */,
+			);
+			path = "UIImage+";
 			sourceTree = "<group>";
 		};
 		0CA5B92C19C36740001322A0 = {
@@ -251,6 +318,8 @@
 				D3F703A719D8B2F500B55D16 /* TestViewCell.m */,
 				D3157F4E19D5084E008812CA /* TestViewController.h */,
 				D3157F4D19D5084E008812CA /* TestViewController.m */,
+				0C9EA84D1A0938AB00DD4D97 /* KDGNavigationController.h */,
+				0C9EA84E1A0938AB00DD4D97 /* KDGNavigationController.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -259,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				D3E7036E19FDABDA00E38E71 /* KDGCommandEngine */,
+				0C9EA8431A09229200DD4D97 /* KDGCoverVerticalOverCurrentContextAnimatedTransition */,
 				D3ACBCAA19D625E600BE15CB /* KDGGridView */,
 				D3157F5119D50DA9008812CA /* KDGUtilities */,
 			);
@@ -295,8 +365,11 @@
 		D3157F5419D50DA9008812CA /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				0CEE61861A04202500E6E561 /* UIView+ */,
+				0C9EA8491A09283800DD4D97 /* UIImage+ */,
 				0C73F00419FEDB1000AABCD3 /* UIColor+ */,
+				0C9EA8371A0921B600DD4D97 /* UIDevice+ */,
+				0C9EA83A1A0921B600DD4D97 /* UIScreen+ */,
+				0CEE61861A04202500E6E561 /* UIView+ */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -565,11 +638,16 @@
 				D3157F4C19D50766008812CA /* MainViewController.m in Sources */,
 				0CEE61891A04202500E6E561 /* UIView+KDGAnimation.m in Sources */,
 				D3ACBCB619D625E600BE15CB /* KDGGridViewCell.m in Sources */,
+				0C9EA83E1A0921B600DD4D97 /* UIScreen+KDGUtilities.m in Sources */,
+				0C9EA8481A09229200DD4D97 /* KDGCoverVerticalOverCurrentContextAnimatedTransition.m in Sources */,
 				0CA5B93E19C36740001322A0 /* AppDelegate.m in Sources */,
 				D3E7037519FDABDA00E38E71 /* KDGCommandEngine.m in Sources */,
 				D3157F4819D50766008812CA /* DataModel.m in Sources */,
 				D3157F4A19D50766008812CA /* ListViewController.m in Sources */,
+				0C9EA83D1A0921B600DD4D97 /* UIDevice+KDGUtilities.m in Sources */,
 				D3157F4F19D5084E008812CA /* TestViewController.m in Sources */,
+				0C9EA84C1A09283800DD4D97 /* UIImage+KDGImageEffects.m in Sources */,
+				0C9EA84F1A0938AB00DD4D97 /* KDGNavigationController.m in Sources */,
 				D3F703A819D8B2F500B55D16 /* TestViewCell.m in Sources */,
 				0C73F00B19FEDB1C00AABCD3 /* KDGUtilities.mm in Sources */,
 				0C73F00319FE92D400AABCD3 /* DummyViewController.m in Sources */,
