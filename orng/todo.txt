@@ -3,6 +3,8 @@ todo
 - rename command responder method to handleCommmand.
 - derived class of BackDoorViewController.
 - command to clear prefs.
+- command to list all commands.
+- add undo/redo.
 - need indication when button pressed. change colour, draw ring or halo.
 - try UIView animation methods again, but do scaling/position on layer transform.
 
