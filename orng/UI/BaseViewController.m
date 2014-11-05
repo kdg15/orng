@@ -42,11 +42,11 @@
 
 - (void)backDoorAction:(id)sender
 {
-    static BOOL on = NO;
-    on = !on;
-    CGFloat factor = on ? 4.0 : 1.0;
-    [UIView kdgSetGlobalAnimationDurationFactor:factor];
-    
+//    static BOOL on = NO;
+//    on = !on;
+//    CGFloat factor = on ? 4.0 : 1.0;
+//    [UIView kdgSetGlobalAnimationDurationFactor:factor];
+
     KDGBackDoorViewController *viewController = [[KDGBackDoorViewController alloc] init];
     viewController.delegate = self;
     viewController.prompt = [NSString stringWithString:[DataModel backDoorPrompt]];
