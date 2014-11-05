@@ -23,9 +23,11 @@
 @property (nonatomic, weak) id<BackDoorViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) NSString *prompt;
+@property (nonatomic, strong) UIColor  *backgroundColor;
 
-@property (nonatomic, strong) IBOutlet UIButton *executeButton;
-@property (nonatomic, strong) IBOutlet UIButton *executeAndCloseButton;
+@property (nonatomic, strong) IBOutlet UIView      *backgroundView;
+@property (nonatomic, strong) IBOutlet UIButton    *executeButton;
+@property (nonatomic, strong) IBOutlet UIButton    *executeAndCloseButton;
 @property (nonatomic, strong) IBOutlet UITextField *inputField;
 @property (nonatomic, strong) IBOutlet UITextView  *outputField;
 

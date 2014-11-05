@@ -6,12 +6,54 @@
 #import "DataModel.h"
 #import "UIColor+KDGUtilities.h"
 
-static NSString * const kPrefClockFontName        = @"orngPrefClockFontName";
-static NSString * const kPrefClockTextColor       = @"orngPrefClockTextColor";
-static NSString * const kPrefClockBackgroundColor = @"orngPrefClockBackgroundColor";
-static NSString * const kPrefBackDoorPrompt       = @"orngPrefBackDoorPrompt";
+static NSString * const kPrefClockFontName           = @"orngPrefClockFontName";
+static NSString * const kPrefClockTextColor          = @"orngPrefClockTextColor";
+static NSString * const kPrefClockBackgroundColor    = @"orngPrefClockBackgroundColor";
+static NSString * const kPrefBackDoorPrompt          = @"orngPrefBackDoorPrompt";
+static NSString * const kPrefBackDoorBackgroundColor = @"orngPrefBackDoorBackgroundColor";
 
 @implementation DataModel
+
++ (NSString *)getStringPref:(NSString *)prefKey defaultValue:(NSString *)defaultValue
+{
+    NSString *result = defaultValue;
+
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *string = [userDefaults stringForKey:prefKey];
+    if (string)
+    {
+        result = string;
+    }
+
+    return result;
+}
+
++ (void)setStringPref:(NSString *)prefKey value:(NSString *)value
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:value forKey:prefKey];
+}
+
++ (UIColor *)getColorPref:(NSString *)prefKey defaultValue:(UIColor *)defaultValue
+{
+    UIColor *color = defaultValue;
+
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *string = [userDefaults stringForKey:prefKey];
+    if (string)
+    {
+        color = [UIColor kdgColorWithString:string];
+    }
+
+    return color;
+}
+
++ (void)setColorPref:(NSString *)prefKey value:(UIColor *)value
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *colorString = [value kdgColorString];
+    [userDefaults setObject:colorString forKey:prefKey];
+}
 
 + (NSString *)clockFontName
 {
@@ -25,44 +67,22 @@ static NSString * const kPrefBackDoorPrompt       = @"orngPrefBackDoorPrompt";
 
 + (UIColor *)clockTextColor
 {
-    UIColor *color = [UIColor whiteColor];
-
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *string = [userDefaults stringForKey:kPrefClockTextColor];
-    if (string)
-    {
-        color = [UIColor kdgColorWithString:string];
-    }
-
-    return color;
+    return [DataModel getColorPref:kPrefClockTextColor defaultValue:[UIColor whiteColor]];
 }
 
 + (void)setClockTextColor:(UIColor *)color
 {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *colorString = [color kdgColorString];
-    [userDefaults setObject:colorString forKey:kPrefClockTextColor];
+    [DataModel setColorPref:kPrefClockTextColor value:color];
 }
 
 + (UIColor *)clockBackgroundColor
 {
-    UIColor *color = [UIColor blackColor];
-
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *string = [userDefaults stringForKey:kPrefClockBackgroundColor];
-    if (string)
-    {
-        color = [UIColor kdgColorWithString:string];
-    }
-
-    return color;
+    return [DataModel getColorPref:kPrefClockBackgroundColor defaultValue:[UIColor blackColor]];
 }
 
 + (void)setClockBackgroundColor:(UIColor *)color
 {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *colorString = [color kdgColorString];
-    [userDefaults setObject:colorString forKey:kPrefClockBackgroundColor];
+    [DataModel setColorPref:kPrefClockBackgroundColor value:color];
 }
 
 + (NSString *)backDoorPrompt
@@ -75,24 +95,14 @@ static NSString * const kPrefBackDoorPrompt       = @"orngPrefBackDoorPrompt";
     [DataModel setStringPref:kPrefBackDoorPrompt value:prompt];
 }
 
-+ (NSString *)getStringPref:(NSString *)prefKey defaultValue:(NSString *)defaultValue
++ (UIColor *)backDoorBackgroundColor
 {
-    NSString *result = defaultValue;
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *string = [userDefaults stringForKey:prefKey];
-    if (string)
-    {
-        result = string;
-    }
-    
-    return result;
+    return [DataModel getColorPref:kPrefBackDoorBackgroundColor defaultValue:[UIColor colorWithRed:0.0 green:0.25 blue:0.5 alpha:0.9]];
 }
 
-+ (void)setStringPref:(NSString *)prefKey value:(NSString *)value
++ (void)setBackDoorBackgroundColor:(UIColor *)color
 {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:value forKey:prefKey];
+    [DataModel setColorPref:kPrefBackDoorBackgroundColor value:color];
 }
 
 @end

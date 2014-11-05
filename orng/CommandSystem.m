@@ -38,6 +38,7 @@
 }
 
 + (Command *)setBackDoorPrompt { return [[Command alloc] initWithName:@"setBackDoorPrompt"]; }
++ (Command *)setBackDoorBackgroundColor { return [[Command alloc] initWithName:@"setBackDoorBackgroundColor"]; }
 
 @end
 
@@ -83,6 +84,7 @@
     [self registerCommand:[Command printLogCommand]];
 
     [self registerCommand:[Command setBackDoorPrompt]];
+    [self registerCommand:[Command setBackDoorBackgroundColor]];
 }
 
 @end

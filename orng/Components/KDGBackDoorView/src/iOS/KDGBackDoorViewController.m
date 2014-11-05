@@ -17,7 +17,7 @@ static NSString * const kDefaultPrompt = @"%ld:";
 
 - (id)init
 {
-    return [self initWithNibName:@"BackDoorView" bundle:nil];
+    return [self initWithNibName:@"KDGBackDoorView" bundle:nil];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -28,6 +28,7 @@ static NSString * const kDefaultPrompt = @"%ld:";
     {
         self.counter = 0;
         self.prompt = kDefaultPrompt;
+        self.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.9];
     }
     
     return self;
@@ -36,6 +37,9 @@ static NSString * const kDefaultPrompt = @"%ld:";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.backgroundView.layer.cornerRadius = 8.0;
+    self.backgroundView.backgroundColor = self.backgroundColor;
 }
 
 - (void)dealloc
@@ -50,6 +54,12 @@ static NSString * const kDefaultPrompt = @"%ld:";
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor
+{
+    _backgroundColor = backgroundColor;
+    self.backgroundView.backgroundColor = backgroundColor;
 }
 
 #pragma mark - actions

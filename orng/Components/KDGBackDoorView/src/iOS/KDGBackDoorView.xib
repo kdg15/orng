@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6249" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KDGBackDoorViewController">
             <connections>
+                <outlet property="backgroundView" destination="p3q-1Y-BNd" id="YE6-3d-zu8"/>
                 <outlet property="executeAndCloseButton" destination="USd-Qa-kXf" id="HxQ-KE-F27"/>
                 <outlet property="executeButton" destination="USd-Qa-kXf" id="hUr-hR-HHW"/>
                 <outlet property="inputField" destination="QBv-bY-t4V" id="tLm-TR-4xa"/>
@@ -19,77 +19,91 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24n-ym-3ay">
-                    <rect key="frame" x="8" y="8" width="30" height="30"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p3q-1Y-BNd" userLabel="background view">
+                    <rect key="frame" x="8" y="8" width="304" height="552"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24n-ym-3ay" userLabel="close button">
+                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="KMV-HE-JWB"/>
+                                <constraint firstAttribute="height" constant="40" id="QJh-U5-IWY"/>
+                            </constraints>
+                            <state key="normal" title="x">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="closeAction:" destination="-1" eventType="touchUpInside" id="zWL-xt-N7X"/>
+                            </connections>
+                        </button>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="command" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBv-bY-t4V" userLabel="input field">
+                            <rect key="frame" x="8" y="48" width="288" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="mLA-xO-IQs"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USd-Qa-kXf" userLabel="execute and close button">
+                            <rect key="frame" x="156" y="86" width="125" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="MxD-PG-l41"/>
+                                <constraint firstAttribute="width" constant="125" id="xEL-1n-UWM"/>
+                            </constraints>
+                            <state key="normal" title="execute and close">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="executeAndCloseAction:" destination="-1" eventType="touchUpInside" id="d5N-6q-GAX"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7r8-Ct-jXx" userLabel="execute button">
+                            <rect key="frame" x="23" y="86" width="125" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="125" id="yYt-3L-I0A"/>
+                                <constraint firstAttribute="height" constant="30" id="ylZ-fx-yQW"/>
+                            </constraints>
+                            <state key="normal" title="execute">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="executeAction:" destination="-1" eventType="touchUpInside" id="0ao-Yc-gdf"/>
+                            </connections>
+                        </button>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GNy-76-HwD" userLabel="output field">
+                            <rect key="frame" x="8" y="444" width="288" height="100"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="OvH-7M-2NB"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.25142251269999999" blue="0.49860491070000001" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="30" id="7ej-uU-Fad"/>
-                        <constraint firstAttribute="height" constant="30" id="Io8-C3-KDr"/>
+                        <constraint firstItem="24n-ym-3ay" firstAttribute="top" secondItem="p3q-1Y-BNd" secondAttribute="top" id="0WV-rO-384"/>
+                        <constraint firstAttribute="trailing" secondItem="QBv-bY-t4V" secondAttribute="trailing" constant="8" id="8Ca-mV-k3I"/>
+                        <constraint firstAttribute="bottom" secondItem="GNy-76-HwD" secondAttribute="bottom" constant="8" id="EM8-o2-QkP"/>
+                        <constraint firstItem="GNy-76-HwD" firstAttribute="leading" secondItem="p3q-1Y-BNd" secondAttribute="leading" constant="8" id="Ieo-dk-g6c"/>
+                        <constraint firstAttribute="trailing" secondItem="GNy-76-HwD" secondAttribute="trailing" constant="8" id="KNS-mj-VgX"/>
+                        <constraint firstItem="USd-Qa-kXf" firstAttribute="top" secondItem="QBv-bY-t4V" secondAttribute="bottom" constant="8" id="OSW-Yz-Mzm"/>
+                        <constraint firstItem="QBv-bY-t4V" firstAttribute="leading" secondItem="p3q-1Y-BNd" secondAttribute="leading" constant="8" id="Rho-b9-mYx"/>
+                        <constraint firstAttribute="centerX" secondItem="USd-Qa-kXf" secondAttribute="centerX" constant="-66.5" id="TRx-mi-MoK"/>
+                        <constraint firstItem="7r8-Ct-jXx" firstAttribute="top" secondItem="QBv-bY-t4V" secondAttribute="bottom" constant="8" id="bJe-Hz-8bm"/>
+                        <constraint firstItem="QBv-bY-t4V" firstAttribute="top" secondItem="24n-ym-3ay" secondAttribute="bottom" constant="8" id="cYE-RB-5p5"/>
+                        <constraint firstAttribute="centerX" secondItem="7r8-Ct-jXx" secondAttribute="centerX" constant="66.5" id="dx0-zc-4hx"/>
+                        <constraint firstItem="24n-ym-3ay" firstAttribute="leading" secondItem="p3q-1Y-BNd" secondAttribute="leading" id="jm6-lb-gaZ"/>
                     </constraints>
-                    <state key="normal" title="x">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="closeAction:" destination="-1" eventType="touchUpInside" id="zWL-xt-N7X"/>
-                    </connections>
-                </button>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GNy-76-HwD">
-                    <rect key="frame" x="8" y="450" width="304" height="110"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="110" id="yOy-Y5-hNb"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="command" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBv-bY-t4V">
-                    <rect key="frame" x="8" y="46" width="304" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="Y89-dM-ave"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USd-Qa-kXf">
-                    <rect key="frame" x="164" y="84" width="125" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="125" id="d9E-OW-bmO"/>
-                        <constraint firstAttribute="height" constant="30" id="giS-8g-0Cw"/>
-                    </constraints>
-                    <state key="normal" title="execute and close">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="executeAndCloseAction:" destination="-1" eventType="touchUpInside" id="d5N-6q-GAX"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7r8-Ct-jXx">
-                    <rect key="frame" x="31" y="84" width="125" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="125" id="nJH-UK-2zz"/>
-                        <constraint firstAttribute="height" constant="30" id="p0v-fC-ToF"/>
-                    </constraints>
-                    <state key="normal" title="execute">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="executeAction:" destination="-1" eventType="touchUpInside" id="0ao-Yc-gdf"/>
-                    </connections>
-                </button>
+                </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="0.50196081399917603" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="USd-Qa-kXf" secondAttribute="centerX" constant="-66.5" id="FUZ-Ui-C61"/>
-                <constraint firstItem="USd-Qa-kXf" firstAttribute="top" secondItem="QBv-bY-t4V" secondAttribute="bottom" constant="8" id="NN5-pd-EbL"/>
-                <constraint firstItem="24n-ym-3ay" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Nxn-Uw-U4j"/>
-                <constraint firstAttribute="bottom" secondItem="GNy-76-HwD" secondAttribute="bottom" constant="8" id="OhR-VZ-FlW"/>
-                <constraint firstItem="7r8-Ct-jXx" firstAttribute="top" secondItem="QBv-bY-t4V" secondAttribute="bottom" constant="8" id="RPn-YU-u00"/>
-                <constraint firstItem="GNy-76-HwD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="U49-wa-7Xl"/>
-                <constraint firstAttribute="trailing" secondItem="GNy-76-HwD" secondAttribute="trailing" constant="8" id="W6V-ho-7bD"/>
-                <constraint firstAttribute="trailing" secondItem="QBv-bY-t4V" secondAttribute="trailing" constant="8" id="XVg-qJ-B0w"/>
-                <constraint firstAttribute="centerX" secondItem="7r8-Ct-jXx" secondAttribute="centerX" constant="66.5" id="jTX-vy-dmC"/>
-                <constraint firstItem="24n-ym-3ay" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="o1q-5q-XYq"/>
-                <constraint firstItem="QBv-bY-t4V" firstAttribute="top" secondItem="24n-ym-3ay" secondAttribute="bottom" constant="8" id="qZi-vB-TPd"/>
-                <constraint firstItem="QBv-bY-t4V" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="yx3-hT-xZy"/>
+                <constraint firstAttribute="bottom" secondItem="p3q-1Y-BNd" secondAttribute="bottom" constant="8" id="IaA-AD-mB4"/>
+                <constraint firstItem="p3q-1Y-BNd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="QDM-gd-f9I"/>
+                <constraint firstAttribute="trailing" secondItem="p3q-1Y-BNd" secondAttribute="trailing" constant="8" id="bRH-kA-7jQ"/>
+                <constraint firstItem="p3q-1Y-BNd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="dK0-gL-YlT"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="291" y="442"/>

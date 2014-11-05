@@ -7,6 +7,7 @@
 #import "CommandSystem.h"
 #import "DataModel.h"
 #import "DummyViewController.h"
+#import "KDGBackDoorViewController.h"
 
 static NSString * const kClockViewSegue = @"ClockViewSegue";
 static NSString * const kListViewSegue  = @"ListViewSegue";
@@ -157,11 +158,33 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
     }
     else if ([command isEqualToCommand:[Command setBackDoorPrompt]])
     {
+        //  todo: should be handled in derived class of KDGBackDoorViewController
+
         NSArray *arguments = command.arguments;
         if (arguments.count == 1)
         {
             NSString *prompt = arguments[0];
             [DataModel setBackDoorPrompt:prompt];
+        }
+        else
+        {
+            NSLog(@"# error: '%@' has wrong number of arguments", command.name);
+        }
+    }
+    else if ([command isEqualToCommand:[Command setBackDoorBackgroundColor]])
+    {
+        //  todo: should be handled in derived class of KDGBackDoorViewController
+
+        NSArray *arguments = command.arguments;
+        if (arguments.count == 4)
+        {
+            CGFloat red = [arguments[0] floatValue];
+            CGFloat green = [arguments[1] floatValue];
+            CGFloat blue = [arguments[2] floatValue];
+            CGFloat alpha = [arguments[3] floatValue];
+
+            UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+            [DataModel setBackDoorBackgroundColor:color];
         }
         else
         {

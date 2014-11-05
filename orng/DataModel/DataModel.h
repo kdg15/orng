@@ -20,4 +20,7 @@
 + (NSString *)backDoorPrompt;
 + (void)setBackDoorPrompt:(NSString *)prompt;
 
++ (UIColor *)backDoorBackgroundColor;
++ (void)setBackDoorBackgroundColor:(UIColor *)color;
+
 @end

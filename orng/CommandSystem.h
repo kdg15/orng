@@ -32,6 +32,11 @@
 + (Command *)printLogCommand;
 
 + (Command *)setBackDoorPrompt;
++ (Command *)setBackDoorBackgroundColor;
+
+//  todo:
+//  - commands to reset prefs
+//
 
 @end
 

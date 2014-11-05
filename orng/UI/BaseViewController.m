@@ -50,7 +50,8 @@
     KDGBackDoorViewController *viewController = [[KDGBackDoorViewController alloc] init];
     viewController.delegate = self;
     viewController.prompt = [NSString stringWithString:[DataModel backDoorPrompt]];
-    
+    viewController.backgroundColor = [DataModel backDoorBackgroundColor];
+
     //  Get a blurred version of current view and use as background image.
     //UIImage *image = [UIScreen kdgCaptureScreen];
     //UIImage *blurredImage = [image applyDarkEffect];
