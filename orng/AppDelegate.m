@@ -22,9 +22,7 @@
                                                object:nil];
      */
 
-    NSLog(@"setUpCommandSystem");
     [self setUpCommandSystem];
-    NSLog(@"done");
 
     return YES;
 }
@@ -74,12 +72,12 @@
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     [commandEngine setUpCommands];
 
-    NSArray *commands = [commandEngine getCommands];
-    for (Command *command in commands)
-    {
-        NSLog(@"command = %@", command);
-    }
-    
+//    NSArray *commands = [commandEngine getCommands];
+//    for (Command *command in commands)
+//    {
+//        NSLog(@"command = %@", command);
+//    }
+
     [commandEngine addResponder:self];
 }
 
