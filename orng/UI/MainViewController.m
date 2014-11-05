@@ -158,8 +158,6 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
     }
     else if ([command isEqualToCommand:[Command setBackDoorPrompt]])
     {
-        //  todo: should be handled in derived class of KDGBackDoorViewController
-
         NSArray *arguments = command.arguments;
         if (arguments.count == 1)
         {
@@ -173,8 +171,6 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
     }
     else if ([command isEqualToCommand:[Command setBackDoorBackgroundColor]])
     {
-        //  todo: should be handled in derived class of KDGBackDoorViewController
-
         NSArray *arguments = command.arguments;
         if (arguments.count == 4)
         {

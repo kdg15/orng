@@ -11,10 +11,6 @@
 #import "UIView+KDGAnimation.h"
 #import "KDGBackDoorViewController.h"
 
-//  todo:
-//  - need indication when button pressed. change colour, draw ring or halo.
-//  - hook up back door debug controller.
-
 static const CGFloat kWhiteSliderThreshold = 0.05;
 static const CGFloat kBlackSliderThreshold = 0.05;
 

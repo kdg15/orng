@@ -34,10 +34,6 @@
 + (Command *)setBackDoorPrompt;
 + (Command *)setBackDoorBackgroundColor;
 
-//  todo:
-//  - commands to reset prefs
-//
-
 @end
 
 @interface CommandEngine : KDGCommandEngine
