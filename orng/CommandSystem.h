@@ -7,6 +7,9 @@
 
 @interface Command : KDGCommand
 
++ (Command *)listAllCommands;
++ (Command *)help;
+
 + (Command *)presentClockViewCommand;
 + (Command *)dismissClockViewCommand;
 + (Command *)presentClockOptionsCommand;

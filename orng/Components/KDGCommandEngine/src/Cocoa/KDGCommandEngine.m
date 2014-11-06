@@ -146,9 +146,11 @@ static NSString * const UserInfoCommandKey = @"UserInfoCommandKey";
     [self.commandLog removeAllObjects];
 }
 
-- (void)executeCommand:(KDGCommand *)command
+- (NSString *)executeCommand:(KDGCommand *)command
 {
-    if (command == nil) return;
+    if (command == nil) return nil;
+
+    NSString *response = nil;
 
     id object = [self.commands objectForKey:command.name];
     if (object)
@@ -159,16 +161,21 @@ static NSString * const UserInfoCommandKey = @"UserInfoCommandKey";
         }
         
         NSDictionary *userInfo = @{ UserInfoCommandKey : command };
-        
-        //NSLog(@"--- execute command: %@", command);
+
+        self.commandResponse = nil;
+
         [[NSNotificationCenter defaultCenter] postNotificationName:KDGCommandExecutedNotification
                                                             object:self
                                                           userInfo:userInfo];
+
+        response = self.commandResponse;
     }
     else
     {
         NSLog(@"# error: can't execute command '%@' because it is not registered", command);
     }
+
+    return response;
 }
 
 - (void)executeCommands:(NSArray *)commands withInterval:(NSTimeInterval)interval

@@ -7,6 +7,9 @@
 
 @implementation Command
 
++ (Command *)listAllCommands { return [[Command alloc] initWithName:@"ls"]; }
++ (Command *)help { return [[Command alloc] initWithName:@"help" numberOfArguments:1]; }
+
 + (Command *)presentClockViewCommand { return [[Command alloc] initWithName:@"presentClockView"]; }
 + (Command *)dismissClockViewCommand { return [[Command alloc] initWithName:@"dismissClockView"]; }
 + (Command *)presentClockOptionsCommand { return [[Command alloc] initWithName:@"presentClockOptions"]; }
@@ -58,6 +61,9 @@
 
 - (void)setUpCommands
 {
+    [self registerCommand:[Command listAllCommands]];
+    [self registerCommand:[Command help]];
+
     [self registerCommand:[Command presentClockViewCommand]];
     [self registerCommand:[Command dismissClockViewCommand]];
     [self registerCommand:[Command presentClockOptionsCommand]];

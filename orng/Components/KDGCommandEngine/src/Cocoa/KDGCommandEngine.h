@@ -39,6 +39,8 @@ extern NSString * const KDGCommandExecutedNotification;
 
 @interface KDGCommandEngine : NSObject
 
+@property (nonatomic, strong) NSString *commandResponse;
+
 - (void)registerCommand:(KDGCommand *)command;
 
 - (id)getCommandWithName:(NSString *)name
@@ -49,7 +51,7 @@ extern NSString * const KDGCommandExecutedNotification;
 - (NSArray *)getCommandLog;
 - (void)clearCommandLog;
 
-- (void)executeCommand:(KDGCommand *)command;
+- (NSString *)executeCommand:(KDGCommand *)command;
 - (void)executeCommands:(NSArray *)commands withInterval:(NSTimeInterval)interval;
 
 - (id)getCommandFromNotification:(NSNotification *)notification;

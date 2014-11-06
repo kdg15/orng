@@ -77,7 +77,7 @@
                  withArguments:(NSArray *)arguments
                        dismiss:(BOOL)dismiss
 {
-    NSString *result = nil;
+    __block NSString *result = nil;
     NSError *error = nil;
 
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
@@ -87,12 +87,19 @@
 
     if (command)
     {
-        result = commandName;
+        command.arguments = [NSArray arrayWithArray:arguments];
 
-        if (arguments)
+        if (dismiss)
         {
-            command.arguments = [NSArray arrayWithArray:arguments];
-            result = [NSString stringWithFormat:@"'%@ %@'", commandName, [arguments componentsJoinedByString:@" "]];
+            [self dismissViewControllerAnimated:YES completion:^{
+                NSString *response = [commandEngine executeCommand:command];
+                result = [self getCommandResult:response name:commandName arguments:arguments];
+            }];
+        }
+        else
+        {
+            NSString *response = [commandEngine executeCommand:command];
+            result = [self getCommandResult:response name:commandName arguments:arguments];
         }
     }
     else
@@ -100,17 +107,27 @@
         result = [NSString stringWithFormat:@"# error: %@", error.localizedDescription];
     }
 
-    if (dismiss)
+    return result;
+}
+
+- (NSString *)getCommandResult:(NSString *)response name:(NSString *)name arguments:(NSArray *)arguments
+{
+    NSString *result = nil;
+
+    if (response)
     {
-        [self dismissViewControllerAnimated:YES completion:^{
-            [commandEngine executeCommand:command];
-        }];
+        result = response;
     }
     else
     {
-        [commandEngine executeCommand:command];
+        result = [NSString stringWithFormat:@"executed %@", name];
+
+        if (arguments)
+        {
+            result = [NSString stringWithFormat:@"executed %@ with args: %@", name, [arguments componentsJoinedByString:@" "]];
+        }
     }
-    
+
     return result;
 }
 

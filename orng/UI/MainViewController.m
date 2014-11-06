@@ -141,7 +141,11 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
     Command *command = [commandEngine getCommandFromNotification:notification];
     NSArray *arguments = command.arguments;
 
-    if ([command isEqualToCommand:[Command presentClockViewCommand]])
+    if ([command isEqualToCommand:[Command listAllCommands]])
+    {
+        [commandEngine setCommandResponse:@"all the commands are: a, b, c..."];
+    }
+    else if ([command isEqualToCommand:[Command presentClockViewCommand]])
     {
         [self performSegueWithIdentifier:kClockViewSegue sender: self];
     }
