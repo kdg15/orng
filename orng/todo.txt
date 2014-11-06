@@ -1,6 +1,7 @@
 todo
 ====
 - rename command responder method to handleCommmand.
+- need system for quickly accessing commands.
 - derived class of BackDoorViewController.
 - command to clear prefs.
 - command to list all commands.
