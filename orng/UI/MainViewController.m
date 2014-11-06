@@ -163,6 +163,13 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
         {
             NSString *prompt = arguments[0];
             [DataModel setBackDoorPrompt:prompt];
+
+            if (self.presentedViewController &&
+                [self.presentedViewController isKindOfClass:[KDGBackDoorViewController class]])
+            {
+                KDGBackDoorViewController *backDoorViewController = (KDGBackDoorViewController *)self.presentedViewController;
+                backDoorViewController.prompt = [NSString stringWithString:[DataModel backDoorPrompt]];
+            }
         }
         else
         {
@@ -181,6 +188,13 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
 
             UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
             [DataModel setBackDoorBackgroundColor:color];
+
+            if (self.presentedViewController &&
+                [self.presentedViewController isKindOfClass:[KDGBackDoorViewController class]])
+            {
+                KDGBackDoorViewController *backDoorViewController = (KDGBackDoorViewController *)self.presentedViewController;
+                backDoorViewController.backgroundColor = [DataModel backDoorBackgroundColor];
+            }
         }
         else
         {
