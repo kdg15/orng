@@ -139,6 +139,7 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     Command *command = [commandEngine getCommandFromNotification:notification];
+    NSArray *arguments = command.arguments;
 
     if ([command isEqualToCommand:[Command presentClockViewCommand]])
     {
@@ -158,7 +159,6 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
     }
     else if ([command isEqualToCommand:[Command setBackDoorPrompt]])
     {
-        NSArray *arguments = command.arguments;
         if (arguments.count == 1)
         {
             NSString *prompt = arguments[0];
@@ -171,19 +171,14 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
                 backDoorViewController.prompt = [NSString stringWithString:[DataModel backDoorPrompt]];
             }
         }
-        else
-        {
-            NSLog(@"# error: '%@' has wrong number of arguments", command.name);
-        }
     }
     else if ([command isEqualToCommand:[Command setBackDoorBackgroundColor]])
     {
-        NSArray *arguments = command.arguments;
         if (arguments.count == 4)
         {
-            CGFloat red = [arguments[0] floatValue];
+            CGFloat red   = [arguments[0] floatValue];
             CGFloat green = [arguments[1] floatValue];
-            CGFloat blue = [arguments[2] floatValue];
+            CGFloat blue  = [arguments[2] floatValue];
             CGFloat alpha = [arguments[3] floatValue];
 
             UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
@@ -195,10 +190,6 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
                 KDGBackDoorViewController *backDoorViewController = (KDGBackDoorViewController *)self.presentedViewController;
                 backDoorViewController.backgroundColor = [DataModel backDoorBackgroundColor];
             }
-        }
-        else
-        {
-            NSLog(@"# error: '%@' has wrong number of arguments", command.name);
         }
     }
 }

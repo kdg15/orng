@@ -5,16 +5,27 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const KDGCommandErrorDomain;
+
+NS_ENUM(NSInteger, KDGCommandError)
+{
+    KDGCommandDoesNotExistError,
+    KDGCommandWrongNumberOfArgumentsError
+};
+
 extern NSString * const KDGCommandExecutedNotification;
 
 @interface KDGCommand : NSObject
 
 - (id)initWithName:(NSString *)name;
+- (id)initWithName:(NSString *)name numberOfArguments:(NSInteger)numberOfArguments;
+
 - (BOOL)isEqualToCommand:(KDGCommand *)command;
 
-@property (nonatomic, readonly) NSString *name;
-@property (nonatomic, strong) NSArray *arguments;
-@property (nonatomic, assign) BOOL log;
+@property (nonatomic, readonly) NSString  *name;
+@property (nonatomic, readonly) NSInteger numberOfArguments;
+@property (nonatomic, strong)   NSArray   *arguments;
+@property (nonatomic, assign)   BOOL      log;
 
 @end
 
@@ -29,7 +40,10 @@ extern NSString * const KDGCommandExecutedNotification;
 @interface KDGCommandEngine : NSObject
 
 - (void)registerCommand:(KDGCommand *)command;
-- (id)getCommandWithName:(NSString *)name;
+
+- (id)getCommandWithName:(NSString *)name
+               arguments:(NSArray *)arguments
+                   error:(NSError **)error;
 
 - (NSArray *)getCommands;
 - (NSArray *)getCommandLog;

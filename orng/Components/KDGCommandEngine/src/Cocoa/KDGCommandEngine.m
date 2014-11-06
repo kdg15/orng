@@ -5,6 +5,7 @@
 
 #import "KDGCommandEngine.h"
 
+NSString * const KDGCommandErrorDomain = @"KDGCommandErrorDomain";
 NSString * const KDGCommandExecutedNotification = @"KDGCommandExecutedNotification";
 
 static NSString * const UserInfoCommandKey = @"UserInfoCommandKey";
@@ -13,11 +14,18 @@ static NSString * const UserInfoCommandKey = @"UserInfoCommandKey";
 
 - (id)initWithName:(NSString *)name
 {
+    return [self initWithName:name numberOfArguments:0];
+}
+
+- (id)initWithName:(NSString *)name numberOfArguments:(NSInteger)numberOfArguments
+{
     self = [super init];
 
     if (self)
     {
         _name = [NSString stringWithString:name];
+        _numberOfArguments = numberOfArguments;
+        _arguments = nil;
         _log = YES;
     }
 
@@ -39,10 +47,10 @@ static NSString * const UserInfoCommandKey = @"UserInfoCommandKey";
 @interface KDGCommandEngine ()
 
 @property (nonatomic, strong) NSMutableDictionary *commands;
-@property (nonatomic, strong) NSMutableArray *commandLog;
-@property (nonatomic, assign) NSTimeInterval  commandTimerInterval;
-@property (nonatomic, strong) NSTimer        *commandTimer;
-@property (nonatomic, strong) NSMutableArray *playbackCommands;
+@property (nonatomic, strong) NSMutableArray      *commandLog;
+@property (nonatomic, assign) NSTimeInterval       commandTimerInterval;
+@property (nonatomic, strong) NSTimer             *commandTimer;
+@property (nonatomic, strong) NSMutableArray      *playbackCommands;
 
 @end
 
@@ -82,8 +90,45 @@ static NSString * const UserInfoCommandKey = @"UserInfoCommandKey";
 }
 
 - (id)getCommandWithName:(NSString *)name
+               arguments:(NSArray *)arguments
+                   error:(NSError **)error; //NSError * __autoreleasing *
 {
-    return self.commands[name];
+    id command = self.commands[name];
+
+    if (command)
+    {
+        KDGCommand *kdgCommand = (KDGCommand *)command;
+        NSInteger numberOfArguments = kdgCommand.numberOfArguments;
+
+        if (arguments.count != numberOfArguments)
+        {
+            command = nil;
+
+            if (error != NULL)
+            {
+                NSString *errorMessage = [NSString stringWithFormat:@"command '%@' has wrong number of arguments", name];
+
+                *error = [NSError errorWithDomain:KDGCommandErrorDomain
+                                             code:KDGCommandWrongNumberOfArgumentsError
+                                         userInfo:@{ NSLocalizedDescriptionKey : errorMessage }];
+            }
+        }
+    }
+    else
+    {
+        command = nil;
+
+        if (error != NULL)
+        {
+            NSString *errorMessage = [NSString stringWithFormat:@"command '%@' does not exist", name];
+
+            *error = [NSError errorWithDomain:KDGCommandErrorDomain
+                                         code:KDGCommandDoesNotExistError
+                                     userInfo:@{ NSLocalizedDescriptionKey : errorMessage }];
+        }
+    }
+
+    return command;
 }
 
 - (NSArray *)getCommands

@@ -37,8 +37,8 @@
     return command;
 }
 
-+ (Command *)setBackDoorPrompt { return [[Command alloc] initWithName:@"setBackDoorPrompt"]; }
-+ (Command *)setBackDoorBackgroundColor { return [[Command alloc] initWithName:@"setBackDoorBackgroundColor"]; }
++ (Command *)setBackDoorPrompt { return [[Command alloc] initWithName:@"setBackDoorPrompt" numberOfArguments:1]; }
++ (Command *)setBackDoorBackgroundColor { return [[Command alloc] initWithName:@"setBackDoorBackgroundColor" numberOfArguments:4]; }
 
 @end
 

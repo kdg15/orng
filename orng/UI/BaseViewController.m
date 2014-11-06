@@ -78,23 +78,26 @@
                        dismiss:(BOOL)dismiss
 {
     NSString *result = nil;
-    
+    NSError *error = nil;
+
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    Command *command = [commandEngine getCommandWithName:commandName];
-    
+    Command *command = [commandEngine getCommandWithName:commandName
+                                               arguments:arguments
+                                                   error:&error];
+
     if (command)
     {
         result = commandName;
 
         if (arguments)
         {
-            result = [NSString stringWithFormat:@"'%@ %@'", commandName, [arguments componentsJoinedByString:@" "]];
             command.arguments = [NSArray arrayWithArray:arguments];
+            result = [NSString stringWithFormat:@"'%@ %@'", commandName, [arguments componentsJoinedByString:@" "]];
         }
     }
     else
     {
-        result = [NSString stringWithFormat:@"# error: unknown command '%@'", commandName];
+        result = [NSString stringWithFormat:@"# error: %@", error.localizedDescription];
     }
 
     if (dismiss)
