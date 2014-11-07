@@ -20,7 +20,7 @@ static NSString * const UserInfoCommandKey = @"UserInfoCommandKey";
 - (id)initWithName:(NSString *)name
  numberOfArguments:(NSInteger)numberOfArguments
 {
-    return [self initWithName:name numberOfArguments:0 log:YES];
+    return [self initWithName:name numberOfArguments:numberOfArguments log:YES];
 }
 
 - (id)initWithName:(NSString *)name
