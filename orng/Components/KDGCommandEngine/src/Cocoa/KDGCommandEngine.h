@@ -19,6 +19,7 @@ extern NSString * const KDGCommandExecutedNotification;
 
 - (id)initWithName:(NSString *)name;
 - (id)initWithName:(NSString *)name numberOfArguments:(NSInteger)numberOfArguments;
+- (id)initWithName:(NSString *)name numberOfArguments:(NSInteger)numberOfArguments log:(BOOL)log;
 
 - (BOOL)isEqualToCommand:(KDGCommand *)command;
 

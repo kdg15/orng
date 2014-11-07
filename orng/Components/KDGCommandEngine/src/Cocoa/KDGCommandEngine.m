@@ -17,18 +17,26 @@ static NSString * const UserInfoCommandKey = @"UserInfoCommandKey";
     return [self initWithName:name numberOfArguments:0];
 }
 
-- (id)initWithName:(NSString *)name numberOfArguments:(NSInteger)numberOfArguments
+- (id)initWithName:(NSString *)name
+ numberOfArguments:(NSInteger)numberOfArguments
+{
+    return [self initWithName:name numberOfArguments:0 log:YES];
+}
+
+- (id)initWithName:(NSString *)name
+ numberOfArguments:(NSInteger)numberOfArguments
+               log:(BOOL)log
 {
     self = [super init];
-
+    
     if (self)
     {
         _name = [NSString stringWithString:name];
         _numberOfArguments = numberOfArguments;
         _arguments = nil;
-        _log = YES;
+        _log = log;
     }
-
+    
     return self;
 }
 

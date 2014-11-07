@@ -10,12 +10,7 @@
 + (Command *)listAllCommands { return [[Command alloc] initWithName:@"ls"]; }
 + (Command *)help { return [[Command alloc] initWithName:@"help" numberOfArguments:1]; }
 
-+ (Command *)log
-{
-    Command *command = [[Command alloc] initWithName:@"log" numberOfArguments:1];
-    command.log = NO;
-    return command;
-}
++ (Command *)log { return [[Command alloc] initWithName:@"log" numberOfArguments:1 log:NO]; }
 
 + (Command *)setAnimationFactor { return [[Command alloc] initWithName:@"setAnimationFactor" numberOfArguments:1]; }
 
@@ -41,13 +36,6 @@
 
 + (Command *)presentDummyView { return [[Command alloc] initWithName:@"presentDummyView"]; }
 + (Command *)dismissDummyView { return [[Command alloc] initWithName:@"dismissDummyView"]; }
-
-+ (Command *)printLog
-{
-    Command *command = [[Command alloc] initWithName:@"printLog"];
-    command.log = NO;
-    return command;
-}
 
 + (Command *)setBackDoorPrompt { return [[Command alloc] initWithName:@"setBackDoorPrompt" numberOfArguments:1]; }
 + (Command *)setBackDoorBackgroundColor { return [[Command alloc] initWithName:@"setBackDoorBackgroundColor" numberOfArguments:4]; }
@@ -99,8 +87,6 @@
     
     [self registerCommand:[Command presentDummyView]];
     [self registerCommand:[Command dismissDummyView]];
-
-    [self registerCommand:[Command printLog]];
 
     [self registerCommand:[Command setBackDoorPrompt]];
     [self registerCommand:[Command setBackDoorBackgroundColor]];

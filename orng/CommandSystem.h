@@ -36,8 +36,6 @@
 + (Command *)presentDummyView;
 + (Command *)dismissDummyView;
 
-+ (Command *)printLog;
-
 + (Command *)setBackDoorPrompt;
 + (Command *)setBackDoorBackgroundColor;
 
