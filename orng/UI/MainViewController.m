@@ -184,7 +184,7 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
         if (arguments.count == 1)
         {
             CGFloat factor = [arguments[0] floatValue];
-            [UIView kdgSetGlobalAnimationDurationFactor:factor];
+            [UIView kdgSetAnimationDurationFactor:factor];
             response = [NSString stringWithFormat:@"animation scale factor is %.1f", factor];
         }
     }

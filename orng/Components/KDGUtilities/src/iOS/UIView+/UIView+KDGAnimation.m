@@ -5,20 +5,25 @@
 
 #import "UIView+KDGAnimation.h"
 
-static CGFloat KDGGlobalAnimationDurationFactor = 1.0;
+static CGFloat KDGAnimationDurationFactor = 1.0;
 
 @implementation UIView (KDGAnimation)
 
-+ (void)kdgSetGlobalAnimationDurationFactor:(CGFloat)factor
++ (void)kdgSetAnimationDurationFactor:(CGFloat)factor
 {
-    KDGGlobalAnimationDurationFactor = factor;
+    KDGAnimationDurationFactor = factor;
+}
+
++ (NSTimeInterval)kdgAdjustAnimationDuration:(NSTimeInterval)duration
+{
+    return duration * KDGAnimationDurationFactor;
 }
 
 - (void)kdgAddAnimateFadeIn:(CFTimeInterval)duration
                       delay:(CFTimeInterval)delay
 {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    animation.duration = duration * KDGGlobalAnimationDurationFactor;
+    animation.duration = duration * KDGAnimationDurationFactor;
     animation.removedOnCompletion = NO;
     animation.fillMode = kCAFillModeForwards;
     
@@ -32,7 +37,7 @@ static CGFloat KDGGlobalAnimationDurationFactor = 1.0;
                        delay:(CFTimeInterval)delay
 {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    animation.duration = duration * KDGGlobalAnimationDurationFactor;
+    animation.duration = duration * KDGAnimationDurationFactor;
     animation.removedOnCompletion = NO;
     animation.fillMode = kCAFillModeForwards;
     
@@ -65,7 +70,7 @@ static CGFloat KDGGlobalAnimationDurationFactor = 1.0;
     animation.fromValue = [NSValue valueWithCATransform3D:fromTransform];
     animation.toValue = [NSValue valueWithCATransform3D:toTransform];
     
-    animation.duration = duration * KDGGlobalAnimationDurationFactor;
+    animation.duration = duration * KDGAnimationDurationFactor;
     animation.beginTime = CACurrentMediaTime() + delay;
     animation.fillMode = kCAFillModeBoth;
     animation.removedOnCompletion = NO;

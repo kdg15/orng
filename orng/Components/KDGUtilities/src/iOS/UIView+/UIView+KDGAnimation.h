@@ -7,7 +7,8 @@
 
 @interface UIView (KDGAnimation)
 
-+ (void)kdgSetGlobalAnimationDurationFactor:(CGFloat)factor;
++ (void)kdgSetAnimationDurationFactor:(CGFloat)factor;
++ (NSTimeInterval)kdgAdjustAnimationDuration:(NSTimeInterval)duration;
 
 - (void)kdgAddAnimateFadeIn:(CFTimeInterval)duration
                       delay:(CFTimeInterval)delay;
