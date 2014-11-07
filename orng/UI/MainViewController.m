@@ -8,6 +8,7 @@
 #import "DataModel.h"
 #import "DummyViewController.h"
 #import "KDGBackDoorViewController.h"
+#import "UIView+KDGAnimation.h"
 
 static NSString * const kClockViewSegue = @"ClockViewSegue";
 static NSString * const kListViewSegue  = @"ListViewSegue";
@@ -140,10 +141,11 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     Command *command = [commandEngine getCommandFromNotification:notification];
     NSArray *arguments = command.arguments;
+    NSString *response = nil;
 
     if ([command isEqualToCommand:[Command listAllCommands]])
     {
-        [commandEngine setCommandResponse:@"all the commands are: a, b, c..."];
+        response = @"all the commands are: a, b, c...";
     }
     else if ([command isEqualToCommand:[Command presentClockViewCommand]])
     {
@@ -195,6 +197,20 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
                 backDoorViewController.backgroundColor = [DataModel backDoorBackgroundColor];
             }
         }
+    }
+    else if ([command isEqualToCommand:[Command setAnimationFactor]])
+    {
+        if (arguments.count == 1)
+        {
+            CGFloat factor = [arguments[0] floatValue];
+            [UIView kdgSetGlobalAnimationDurationFactor:factor];
+            response = [NSString stringWithFormat:@"animation scale factor is %.1f", factor];
+        }
+    }
+    
+    if (response)
+    {
+        [commandEngine setCommandResponse:response];
     }
 }
 

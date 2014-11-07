@@ -10,6 +10,8 @@
 + (Command *)listAllCommands { return [[Command alloc] initWithName:@"ls"]; }
 + (Command *)help { return [[Command alloc] initWithName:@"help" numberOfArguments:1]; }
 
++ (Command *)setAnimationFactor { return [[Command alloc] initWithName:@"setAnimationFactor" numberOfArguments:1]; }
+
 + (Command *)presentClockViewCommand { return [[Command alloc] initWithName:@"presentClockView"]; }
 + (Command *)dismissClockViewCommand { return [[Command alloc] initWithName:@"dismissClockView"]; }
 + (Command *)presentClockOptionsCommand { return [[Command alloc] initWithName:@"presentClockOptions"]; }
@@ -63,6 +65,8 @@
 {
     [self registerCommand:[Command listAllCommands]];
     [self registerCommand:[Command help]];
+
+    [self registerCommand:[Command setAnimationFactor]];
 
     [self registerCommand:[Command presentClockViewCommand]];
     [self registerCommand:[Command dismissClockViewCommand]];

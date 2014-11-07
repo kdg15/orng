@@ -8,7 +8,6 @@
 #import "DataModel.h"
 #import "KDGBackDoorViewController.h"
 #import "KDGCoverVerticalOverCurrentContextAnimatedTransition.h"
-#import "UIView+KDGAnimation.h"
 
 @interface BaseViewController () <UIViewControllerTransitioningDelegate,
                                   BackDoorViewControllerDelegate>
@@ -42,11 +41,6 @@
 
 - (void)backDoorAction:(id)sender
 {
-//    static BOOL on = NO;
-//    on = !on;
-//    CGFloat factor = on ? 4.0 : 1.0;
-//    [UIView kdgSetGlobalAnimationDurationFactor:factor];
-
     KDGBackDoorViewController *viewController = [[KDGBackDoorViewController alloc] init];
     viewController.delegate = self;
     viewController.prompt = [NSString stringWithString:[DataModel backDoorPrompt]];
