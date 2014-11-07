@@ -10,6 +10,7 @@
 #import "KDGUtilities.h"
 #import "UIView+KDGAnimation.h"
 #import "KDGBackDoorViewController.h"
+#import "MyButton.h"
 
 static const CGFloat kWhiteSliderThreshold = 0.05;
 static const CGFloat kBlackSliderThreshold = 0.05;
@@ -102,6 +103,11 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 //        [button addTarget:self action:@selector(buttonRelease:) forControlEvents:UIControlEventTouchDragExit];
     }
 
+    MyButton *myButton = [[MyButton alloc] initWithFrame:CGRectMake(100, 200, 40, 40)];
+//    myButton.layer.backgroundColor = [UIColor orangeColor].CGColor;
+//    myButton.layer.cornerRadius = 12.0;
+    [self.view addSubview:myButton];
+    
     [[CommandEngine sharedInstance] addResponder:self];
 }
 

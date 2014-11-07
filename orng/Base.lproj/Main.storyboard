@@ -274,11 +274,20 @@
                                     <action selector="optionSliderChangedAction:" destination="7V9-tp-wcj" eventType="valueChanged" id="pld-Wp-vi0"/>
                                 </connections>
                             </slider>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYl-OU-znm" customClass="MyButton">
+                                <rect key="frame" x="280" y="20" width="40" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Gmi-nK-JFX"/>
+                                    <constraint firstAttribute="width" constant="40" id="ZSn-Nt-hTF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="IiP-HF-UMW" secondAttribute="bottom" constant="20" id="36Q-9X-Ujn"/>
+                            <constraint firstItem="hYl-OU-znm" firstAttribute="top" secondItem="A3H-oD-duB" secondAttribute="top" constant="20" id="4TJ-6J-3YL"/>
                             <constraint firstAttribute="bottom" secondItem="VlO-sc-M7s" secondAttribute="bottom" constant="20" id="7LW-gW-tkt"/>
                             <constraint firstItem="lBJ-9Y-WWT" firstAttribute="leading" secondItem="A3H-oD-duB" secondAttribute="leading" id="9yx-o3-VZx"/>
                             <constraint firstAttribute="bottom" secondItem="OJx-6m-eFm" secondAttribute="bottom" constant="20" id="BuU-PY-ZCe"/>
@@ -292,6 +301,7 @@
                             <constraint firstAttribute="bottom" secondItem="uTY-ne-d0f" secondAttribute="bottom" constant="25" id="dgc-po-Kv0"/>
                             <constraint firstAttribute="centerX" secondItem="uTY-ne-d0f" secondAttribute="centerX" id="dkS-NO-mkS"/>
                             <constraint firstAttribute="bottom" secondItem="KYo-Nb-xej" secondAttribute="bottom" constant="20" id="dkt-G0-7gr"/>
+                            <constraint firstAttribute="centerX" secondItem="hYl-OU-znm" secondAttribute="centerX" id="dpq-QH-1ak"/>
                             <constraint firstItem="lBJ-9Y-WWT" firstAttribute="top" secondItem="A3H-oD-duB" secondAttribute="top" id="iGg-JK-NDY"/>
                             <constraint firstAttribute="centerX" secondItem="xj3-QF-NRF" secondAttribute="centerX" constant="24" id="iSh-Ib-jRJ"/>
                             <constraint firstAttribute="centerX" secondItem="OJx-6m-eFm" secondAttribute="centerX" constant="120" id="j3W-mr-fr6"/>
