@@ -102,7 +102,8 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
 
     if ([command isEqualToCommand:[Command listAllCommands]])
     {
-        response = @"all the commands are: a, b, c...";
+        NSArray *allCommands = [commandEngine getCommands];
+        response = [NSString stringWithFormat:@"available commands: %@", [allCommands  componentsJoinedByString:@", "]];
     }
     else if ([command isEqualToCommand:[Command log]])
     {
@@ -112,7 +113,7 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
             if ([arg isEqualToString:@"print"])
             {
                 NSArray *log = [commandEngine getCommandLog];
-                response = [NSString stringWithFormat:@"log is %@", [log componentsJoinedByString:@", "]];
+                response = [NSString stringWithFormat:@"command log: %@", [log componentsJoinedByString:@", "]];
             }
             else if ([arg isEqualToString:@"clear"])
             {

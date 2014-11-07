@@ -2,10 +2,8 @@ todo
 ====
 - rename command responder method to handleCommmand or something else.
 - need system for quickly accessing commands.
-- derived class of BackDoorViewController.
+- derived class of BackDoorViewController?
 - command to clear prefs.
-- command to list all commands.
-- make commands for print, clear, and play log. then remove buttons from main view.
 - add undo/redo.
 - need indication when button pressed. change colour, draw ring or halo.
 - try UIView animation methods again, but do scaling/position on layer transform.
@@ -14,5 +12,7 @@ todo
 
 done
 ====
+- command to list all commands.
+- make commands for print, clear, and play log. then remove buttons from main view.
 - drop Command suffix from command names.
 - hook up back door debug controller.
