@@ -1,7 +1,7 @@
 todo
 ====
 - drop Command suffix from command names.
-- rename command responder method to handleCommmand.
+- rename command responder method to handleCommmand or something else.
 - need system for quickly accessing commands.
 - derived class of BackDoorViewController.
 - command to clear prefs.
@@ -11,8 +11,8 @@ todo
 - need indication when button pressed. change colour, draw ring or halo.
 - try UIView animation methods again, but do scaling/position on layer transform.
 - fix scrolling of back door output field.
+- create function to adjust all animation durations with global factor.
 
 done
 ====
 - hook up back door debug controller.
-
