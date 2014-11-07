@@ -376,7 +376,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 - (void)optionsTimerFired:(NSTimer *)timer
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command dismissClockOptionsCommand]];
+    [commandEngine executeCommand:[Command dismissClockOptions]];
 }
 
 #pragma mark - brightness timer
@@ -399,9 +399,8 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 
 - (void)brightnessTimerFired:(NSTimer *)timer
 {
-    //self.brightnessTemporarilyRestored = NO;
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command dimScreenBrightnessCommand]];
+    [commandEngine executeCommand:[Command dimScreenBrightness]];
 }
 
 #pragma mark - ui
@@ -877,29 +876,26 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 {
     if (self.brightnessDimmed)
     {
-//        self.brightnessTemporarilyRestored = YES;
-//
         [self startBrightnessTimer];
-
         CommandEngine *commandEngine = [CommandEngine sharedInstance];
-        [commandEngine executeCommand:[Command restoreScreenBrightnessCommand]];
+        [commandEngine executeCommand:[Command restoreScreenBrightness]];
     }
 }
 
 - (IBAction)optionsAction:(id)sender
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command presentClockOptionsCommand]];
+    [commandEngine executeCommand:[Command presentClockOptions]];
 }
 
 - (IBAction)backAction:(id)sender
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command dismissClockViewCommand]];
+    [commandEngine executeCommand:[Command dismissClockView]];
     
     if (self.brightnessDimmed)
     {
-        [commandEngine executeCommand:[Command restoreScreenBrightnessCommand]];
+        [commandEngine executeCommand:[Command restoreScreenBrightness]];
     }
 }
 
@@ -907,21 +903,21 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 {
     [self stopOptionsTimer];
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command presentClockFontOptionsCommand]];
+    [commandEngine executeCommand:[Command presentClockFontOptions]];
 }
 
 - (IBAction)foregroundAction:(id)sender
 {
     [self stopOptionsTimer];
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command presentClockForegroundOptionsCommand]];
+    [commandEngine executeCommand:[Command presentClockForegroundOptions]];
 }
 
 - (IBAction)backgroundAction:(id)sender
 {
     [self stopOptionsTimer];
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command presentClockBackgroundOptionsCommand]];
+    [commandEngine executeCommand:[Command presentClockBackgroundOptions]];
 }
 
 - (IBAction)brightnessAction:(id)sender
@@ -934,27 +930,27 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     {
         [self stopBrightnessTimer];
         self.brightnessTemporarilyRestored = NO;
-        [commandEngine executeCommand:[Command restoreScreenBrightnessCommand]];
+        [commandEngine executeCommand:[Command restoreScreenBrightness]];
     }
     else
     {
         if (self.brightnessDimmed)
         {
-            [commandEngine executeCommand:[Command restoreScreenBrightnessCommand]];
+            [commandEngine executeCommand:[Command restoreScreenBrightness]];
         }
         else
         {
-            [commandEngine executeCommand:[Command dimScreenBrightnessCommand]];
+            [commandEngine executeCommand:[Command dimScreenBrightness]];
         }
     }
 
-    [commandEngine executeCommand:[Command dismissClockOptionsCommand]];
+    [commandEngine executeCommand:[Command dismissClockOptions]];
 }
 
 - (IBAction)cancelAction:(id)sender
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command dismissClockForegroundOptionsCommand]];
+    [commandEngine executeCommand:[Command dismissClockForegroundOptions]];
     
     if (OptionsModeFont == self.optionsMode)
     {
@@ -983,7 +979,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 - (IBAction)okayAction:(id)sender
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command dismissClockForegroundOptionsCommand]];
+    [commandEngine executeCommand:[Command dismissClockForegroundOptions]];
     
     CGFloat value = self.optionSlider.value;
 
@@ -1044,21 +1040,21 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     Command *command = [commandEngine getCommandFromNotification:notification];
     
-    if ([command isEqualToCommand:[Command dismissClockViewCommand]])
+    if ([command isEqualToCommand:[Command dismissClockView]])
     {
         [self.navigationController popViewControllerAnimated:YES];
     }
-    else if ([command isEqualToCommand:[Command presentClockOptionsCommand]])
+    else if ([command isEqualToCommand:[Command presentClockOptions]])
     {
         [self presentOptions];
         [self dismissOptionsButton];
     }
-    else if ([command isEqualToCommand:[Command dismissClockOptionsCommand]])
+    else if ([command isEqualToCommand:[Command dismissClockOptions]])
     {
         [self dismissOptions];
         [self presentOptionsButton];
     }
-    else if ([command isEqualToCommand:[Command presentClockFontOptionsCommand]])
+    else if ([command isEqualToCommand:[Command presentClockFontOptions]])
     {
         self.optionsMode = OptionsModeFont;
         [self dismissOptions];
@@ -1066,12 +1062,12 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
         self.optionSlider.value = self.originalValue;
         [self presentOptionSlider];
     }
-    else if ([command isEqualToCommand:[Command dismissClockFontOptionsCommand]])
+    else if ([command isEqualToCommand:[Command dismissClockFontOptions]])
     {
         [self dismissOptionSlider];
         [self presentOptionsButton];
     }
-    else if ([command isEqualToCommand:[Command presentClockForegroundOptionsCommand]])
+    else if ([command isEqualToCommand:[Command presentClockForegroundOptions]])
     {
         self.optionsMode = OptionsModeTextColor;
         [self dismissOptions];
@@ -1079,12 +1075,12 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
         self.optionSlider.value = self.originalValue;
         [self presentOptionSlider];
     }
-    else if ([command isEqualToCommand:[Command dismissClockForegroundOptionsCommand]])
+    else if ([command isEqualToCommand:[Command dismissClockForegroundOptions]])
     {
         [self dismissOptionSlider];
         [self presentOptionsButton];
     }
-    else if ([command isEqualToCommand:[Command presentClockBackgroundOptionsCommand]])
+    else if ([command isEqualToCommand:[Command presentClockBackgroundOptions]])
     {
         self.optionsMode = OptionsModeBackgroundColor;
         [self dismissOptions];
@@ -1092,19 +1088,19 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
         self.optionSlider.value = self.originalValue;
         [self presentOptionSlider];
     }
-    else if ([command isEqualToCommand:[Command dismissClockBackgroundOptionsCommand]])
+    else if ([command isEqualToCommand:[Command dismissClockBackgroundOptions]])
     {
         [self dismissOptionSlider];
         [self presentOptionsButton];
     }
-    else if ([command isEqualToCommand:[Command dimScreenBrightnessCommand]])
+    else if ([command isEqualToCommand:[Command dimScreenBrightness]])
     {
         self.brightnessDimmed = YES;
         UIScreen *screen = [UIScreen mainScreen];
         self.originalBrightness = screen.brightness;
         screen.brightness = 0.0;
     }
-    else if ([command isEqualToCommand:[Command restoreScreenBrightnessCommand]])
+    else if ([command isEqualToCommand:[Command restoreScreenBrightness]])
     {
         if (self.brightnessTimer)
         {

@@ -12,29 +12,29 @@
 
 + (Command *)setAnimationFactor;
 
-+ (Command *)presentClockViewCommand;
-+ (Command *)dismissClockViewCommand;
-+ (Command *)presentClockOptionsCommand;
-+ (Command *)dismissClockOptionsCommand;
-+ (Command *)presentClockFontOptionsCommand;
-+ (Command *)dismissClockFontOptionsCommand;
-+ (Command *)presentClockForegroundOptionsCommand;
-+ (Command *)dismissClockForegroundOptionsCommand;
-+ (Command *)presentClockBackgroundOptionsCommand;
-+ (Command *)dismissClockBackgroundOptionsCommand;
-+ (Command *)dimScreenBrightnessCommand;
-+ (Command *)restoreScreenBrightnessCommand;
++ (Command *)presentClockView;
++ (Command *)dismissClockView;
++ (Command *)presentClockOptions;
++ (Command *)dismissClockOptions;
++ (Command *)presentClockFontOptions;
++ (Command *)dismissClockFontOptions;
++ (Command *)presentClockForegroundOptions;
++ (Command *)dismissClockForegroundOptions;
++ (Command *)presentClockBackgroundOptions;
++ (Command *)dismissClockBackgroundOptions;
++ (Command *)dimScreenBrightness;
++ (Command *)restoreScreenBrightness;
 
-+ (Command *)presentListViewCommand;
-+ (Command *)dismissListViewCommand;
++ (Command *)presentListView;
++ (Command *)dismissListView;
 
-+ (Command *)presentTestViewCommand;
-+ (Command *)dismissTestViewCommand;
++ (Command *)presentTestView;
++ (Command *)dismissTestView;
 
-+ (Command *)presentDummyViewCommand;
-+ (Command *)dismissDummyViewCommand;
++ (Command *)presentDummyView;
++ (Command *)dismissDummyView;
 
-+ (Command *)printLogCommand;
++ (Command *)printLog;
 
 + (Command *)setBackDoorPrompt;
 + (Command *)setBackDoorBackgroundColor;

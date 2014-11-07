@@ -47,7 +47,7 @@
 - (IBAction)backAction:(id)sender
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command dismissDummyViewCommand]];
+    [commandEngine executeCommand:[Command dismissDummyView]];
 }
 
 #pragma mark - command system
@@ -57,7 +57,7 @@
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     Command *command = [commandEngine getCommandFromNotification:notification];
     
-    if ([command isEqualToCommand:[Command dismissDummyViewCommand]])
+    if ([command isEqualToCommand:[Command dismissDummyView]])
     {
         [self.navigationController popViewControllerAnimated:YES];
     }

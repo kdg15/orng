@@ -1,6 +1,5 @@
 todo
 ====
-- drop Command suffix from command names.
 - rename command responder method to handleCommmand or something else.
 - need system for quickly accessing commands.
 - derived class of BackDoorViewController.
@@ -15,4 +14,5 @@ todo
 
 done
 ====
+- drop Command suffix from command names.
 - hook up back door debug controller.

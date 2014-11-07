@@ -12,30 +12,30 @@
 
 + (Command *)setAnimationFactor { return [[Command alloc] initWithName:@"setAnimationFactor" numberOfArguments:1]; }
 
-+ (Command *)presentClockViewCommand { return [[Command alloc] initWithName:@"presentClockView"]; }
-+ (Command *)dismissClockViewCommand { return [[Command alloc] initWithName:@"dismissClockView"]; }
-+ (Command *)presentClockOptionsCommand { return [[Command alloc] initWithName:@"presentClockOptions"]; }
-+ (Command *)dismissClockOptionsCommand { return [[Command alloc] initWithName:@"dismissClockOptions"]; }
-+ (Command *)presentClockFontOptionsCommand { return [[Command alloc] initWithName:@"presentClockFontOptions"]; }
-+ (Command *)dismissClockFontOptionsCommand { return [[Command alloc] initWithName:@"dismissClockFontOptions"]; }
-+ (Command *)presentClockForegroundOptionsCommand { return [[Command alloc] initWithName:@"presentClockForegroundOptions"]; }
-+ (Command *)dismissClockForegroundOptionsCommand { return [[Command alloc] initWithName:@"dismissClockForegroundOptions"]; }
-+ (Command *)presentClockBackgroundOptionsCommand { return [[Command alloc] initWithName:@"presentClockBackgroundOptions"]; }
-+ (Command *)dismissClockBackgroundOptionsCommand { return [[Command alloc] initWithName:@"dismissClockBackgroundOptions"]; }
++ (Command *)presentClockView { return [[Command alloc] initWithName:@"presentClockView"]; }
++ (Command *)dismissClockView { return [[Command alloc] initWithName:@"dismissClockView"]; }
++ (Command *)presentClockOptions { return [[Command alloc] initWithName:@"presentClockOptions"]; }
++ (Command *)dismissClockOptions { return [[Command alloc] initWithName:@"dismissClockOptions"]; }
++ (Command *)presentClockFontOptions { return [[Command alloc] initWithName:@"presentClockFontOptions"]; }
++ (Command *)dismissClockFontOptions { return [[Command alloc] initWithName:@"dismissClockFontOptions"]; }
++ (Command *)presentClockForegroundOptions { return [[Command alloc] initWithName:@"presentClockForegroundOptions"]; }
++ (Command *)dismissClockForegroundOptions { return [[Command alloc] initWithName:@"dismissClockForegroundOptions"]; }
++ (Command *)presentClockBackgroundOptions { return [[Command alloc] initWithName:@"presentClockBackgroundOptions"]; }
++ (Command *)dismissClockBackgroundOptions { return [[Command alloc] initWithName:@"dismissClockBackgroundOptions"]; }
 
-+ (Command *)dimScreenBrightnessCommand     { return [[Command alloc] initWithName:@"dimScreenBrightness"]; }
-+ (Command *)restoreScreenBrightnessCommand { return [[Command alloc] initWithName:@"restoreScreenBrightness"]; }
++ (Command *)dimScreenBrightness     { return [[Command alloc] initWithName:@"dimScreenBrightness"]; }
++ (Command *)restoreScreenBrightness { return [[Command alloc] initWithName:@"restoreScreenBrightness"]; }
 
-+ (Command *)presentListViewCommand { return [[Command alloc] initWithName:@"presentListView"]; }
-+ (Command *)dismissListViewCommand { return [[Command alloc] initWithName:@"dismissListView"]; }
++ (Command *)presentListView { return [[Command alloc] initWithName:@"presentListView"]; }
++ (Command *)dismissListView { return [[Command alloc] initWithName:@"dismissListView"]; }
 
-+ (Command *)presentTestViewCommand { return [[Command alloc] initWithName:@"presentTestView"]; }
-+ (Command *)dismissTestViewCommand { return [[Command alloc] initWithName:@"dismissTestView"]; }
++ (Command *)presentTestView { return [[Command alloc] initWithName:@"presentTestView"]; }
++ (Command *)dismissTestView { return [[Command alloc] initWithName:@"dismissTestView"]; }
 
-+ (Command *)presentDummyViewCommand { return [[Command alloc] initWithName:@"presentDummyView"]; }
-+ (Command *)dismissDummyViewCommand { return [[Command alloc] initWithName:@"dismissDummyView"]; }
++ (Command *)presentDummyView { return [[Command alloc] initWithName:@"presentDummyView"]; }
++ (Command *)dismissDummyView { return [[Command alloc] initWithName:@"dismissDummyView"]; }
 
-+ (Command *)printLogCommand
++ (Command *)printLog
 {
     Command *command = [[Command alloc] initWithName:@"printLog"];
     command.log = NO;
@@ -68,30 +68,30 @@
 
     [self registerCommand:[Command setAnimationFactor]];
 
-    [self registerCommand:[Command presentClockViewCommand]];
-    [self registerCommand:[Command dismissClockViewCommand]];
-    [self registerCommand:[Command presentClockOptionsCommand]];
-    [self registerCommand:[Command dismissClockOptionsCommand]];
-    [self registerCommand:[Command presentClockFontOptionsCommand]];
-    [self registerCommand:[Command dismissClockFontOptionsCommand]];
-    [self registerCommand:[Command presentClockForegroundOptionsCommand]];
-    [self registerCommand:[Command dismissClockForegroundOptionsCommand]];
-    [self registerCommand:[Command presentClockBackgroundOptionsCommand]];
-    [self registerCommand:[Command dismissClockBackgroundOptionsCommand]];
+    [self registerCommand:[Command presentClockView]];
+    [self registerCommand:[Command dismissClockView]];
+    [self registerCommand:[Command presentClockOptions]];
+    [self registerCommand:[Command dismissClockOptions]];
+    [self registerCommand:[Command presentClockFontOptions]];
+    [self registerCommand:[Command dismissClockFontOptions]];
+    [self registerCommand:[Command presentClockForegroundOptions]];
+    [self registerCommand:[Command dismissClockForegroundOptions]];
+    [self registerCommand:[Command presentClockBackgroundOptions]];
+    [self registerCommand:[Command dismissClockBackgroundOptions]];
 
-    [self registerCommand:[Command dimScreenBrightnessCommand]];
-    [self registerCommand:[Command restoreScreenBrightnessCommand]];
+    [self registerCommand:[Command dimScreenBrightness]];
+    [self registerCommand:[Command restoreScreenBrightness]];
     
-    [self registerCommand:[Command presentListViewCommand]];
-    [self registerCommand:[Command dismissListViewCommand]];
+    [self registerCommand:[Command presentListView]];
+    [self registerCommand:[Command dismissListView]];
     
-    [self registerCommand:[Command presentTestViewCommand]];
-    [self registerCommand:[Command dismissTestViewCommand]];
+    [self registerCommand:[Command presentTestView]];
+    [self registerCommand:[Command dismissTestView]];
     
-    [self registerCommand:[Command presentDummyViewCommand]];
-    [self registerCommand:[Command dismissDummyViewCommand]];
+    [self registerCommand:[Command presentDummyView]];
+    [self registerCommand:[Command dismissDummyView]];
 
-    [self registerCommand:[Command printLogCommand]];
+    [self registerCommand:[Command printLog]];
 
     [self registerCommand:[Command setBackDoorPrompt]];
     [self registerCommand:[Command setBackDoorBackgroundColor]];

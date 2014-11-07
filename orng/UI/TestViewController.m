@@ -91,7 +91,7 @@
 - (IBAction)backAction:(id)sender
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command dismissTestViewCommand]];
+    [commandEngine executeCommand:[Command dismissTestView]];
 }
 
 #pragma mark - command system
@@ -101,7 +101,7 @@
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     Command *command = [commandEngine getCommandFromNotification:notification];
     
-    if ([command isEqualToCommand:[Command dismissTestViewCommand]])
+    if ([command isEqualToCommand:[Command dismissTestView]])
     {
         [self.navigationController popViewControllerAnimated:YES];
     }

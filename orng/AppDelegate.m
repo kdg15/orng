@@ -86,7 +86,7 @@
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     Command *command = [commandEngine getCommandFromNotification:notification];
 
-    if ([command isEqualToCommand:[Command printLogCommand]])
+    if ([command isEqualToCommand:[Command printLog]])
     {
         NSLog(@"logged commands:\n%@", [commandEngine getCommandLog]);
     }

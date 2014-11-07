@@ -75,7 +75,7 @@
 {
 //    [self.navigationController popViewControllerAnimated:YES];
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command dismissListViewCommand]];
+    [commandEngine executeCommand:[Command dismissListView]];
 }
 
 #pragma mark - command system
@@ -85,7 +85,7 @@
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     Command *command = [commandEngine getCommandFromNotification:notification];
     
-    if ([command isEqualToCommand:[Command dismissListViewCommand]])
+    if ([command isEqualToCommand:[Command dismissListView]])
     {
         [self.navigationController popViewControllerAnimated:YES];
     }

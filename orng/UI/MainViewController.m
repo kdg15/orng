@@ -70,31 +70,31 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
 - (IBAction)clockAction:(id)sender
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command presentClockViewCommand]];
+    [commandEngine executeCommand:[Command presentClockView]];
 }
 
 - (IBAction)listAction:(id)sender
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command presentListViewCommand]];
+    [commandEngine executeCommand:[Command presentListView]];
 }
 
 - (IBAction)testAction:(id)sender
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command presentTestViewCommand]];
+    [commandEngine executeCommand:[Command presentTestView]];
 }
 
 - (IBAction)dummyAction:(id)sender
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command presentDummyViewCommand]];
+    [commandEngine executeCommand:[Command presentDummyView]];
 }
 
 - (IBAction)logAction:(id)sender
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command printLogCommand]];
+    [commandEngine executeCommand:[Command printLog]];
 }
 
 - (IBAction)clearLogAction:(id)sender
@@ -147,19 +147,19 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
     {
         response = @"all the commands are: a, b, c...";
     }
-    else if ([command isEqualToCommand:[Command presentClockViewCommand]])
+    else if ([command isEqualToCommand:[Command presentClockView]])
     {
         [self performSegueWithIdentifier:kClockViewSegue sender: self];
     }
-    else if ([command isEqualToCommand:[Command presentListViewCommand]])
+    else if ([command isEqualToCommand:[Command presentListView]])
     {
         [self performSegueWithIdentifier:kListViewSegue sender: self];
     }
-    else if ([command isEqualToCommand:[Command presentTestViewCommand]])
+    else if ([command isEqualToCommand:[Command presentTestView]])
     {
         [self performSegueWithIdentifier:kTestViewSegue sender: self];
     }
-    else if ([command isEqualToCommand:[Command presentDummyViewCommand]])
+    else if ([command isEqualToCommand:[Command presentDummyView]])
     {
         [self performSegueWithIdentifier:kDummyViewSegue sender: self];
     }
