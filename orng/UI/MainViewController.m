@@ -91,49 +91,6 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
     [commandEngine executeCommand:[Command presentDummyView]];
 }
 
-- (IBAction)logAction:(id)sender
-{
-    CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command printLog]];
-}
-
-- (IBAction)clearLogAction:(id)sender
-{
-    CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine clearCommandLog];
-}
-
-- (IBAction)playAction:(id)sender
-{
-    CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    
-    NSArray *commands = [commandEngine getCommandLog];
-    
-    /*
-    Command *presentClockViewCommand = [commandEngine getCommandWithName:@"presentClockView"];
-    Command *dismissClockViewCommand = [commandEngine getCommandWithName:@"dismissClockView"];
-    Command *presentListViewCommand = [commandEngine getCommandWithName:@"presentListView"];
-    Command *dismissListViewCommand = [commandEngine getCommandWithName:@"dismissListView"];
-    Command *presentTestViewCommand = [commandEngine getCommandWithName:@"presentTestView"];
-    Command *dismissTestViewCommand = [commandEngine getCommandWithName:@"dismissTestView"];
-    Command *presentDummyViewCommand = [commandEngine getCommandWithName:@"presentDummyView"];
-    Command *dismissDummyViewCommand = [commandEngine getCommandWithName:@"dismissDummyView"];
-    
-    NSArray *commands = @[presentClockViewCommand,
-                          dismissClockViewCommand,
-                          presentListViewCommand,
-                          dismissListViewCommand,
-                          presentTestViewCommand,
-                          dismissTestViewCommand,
-                          presentDummyViewCommand,
-                          dismissDummyViewCommand];
-     */
-    
-    //[commandEngine executeCommands:commands withInterval:0.8];
-    [commandEngine clearCommandLog];
-    [commandEngine executeCommands:commands withInterval:0.8];
-}
-
 #pragma mark - command system
 
 - (void)executedCommand:(NSNotification *)notification
@@ -146,6 +103,29 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
     if ([command isEqualToCommand:[Command listAllCommands]])
     {
         response = @"all the commands are: a, b, c...";
+    }
+    else if ([command isEqualToCommand:[Command log]])
+    {
+        if (arguments.count == 1)
+        {
+            NSString *arg = arguments[0];
+            if ([arg isEqualToString:@"print"])
+            {
+                NSArray *log = [commandEngine getCommandLog];
+                response = [NSString stringWithFormat:@"log is %@", [log componentsJoinedByString:@", "]];
+            }
+            else if ([arg isEqualToString:@"clear"])
+            {
+                [commandEngine clearCommandLog];
+                response = @"log cleared";
+            }
+            else if ([arg isEqualToString:@"play"])
+            {
+                NSArray *log = [commandEngine getCommandLog];
+                [commandEngine clearCommandLog];
+                [commandEngine executeCommands:log withInterval:0.8];
+            }
+        }
     }
     else if ([command isEqualToCommand:[Command presentClockView]])
     {

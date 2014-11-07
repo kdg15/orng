@@ -10,6 +10,13 @@
 + (Command *)listAllCommands { return [[Command alloc] initWithName:@"ls"]; }
 + (Command *)help { return [[Command alloc] initWithName:@"help" numberOfArguments:1]; }
 
++ (Command *)log
+{
+    Command *command = [[Command alloc] initWithName:@"log" numberOfArguments:1];
+    command.log = NO;
+    return command;
+}
+
 + (Command *)setAnimationFactor { return [[Command alloc] initWithName:@"setAnimationFactor" numberOfArguments:1]; }
 
 + (Command *)presentClockView { return [[Command alloc] initWithName:@"presentClockView"]; }
@@ -65,6 +72,8 @@
 {
     [self registerCommand:[Command listAllCommands]];
     [self registerCommand:[Command help]];
+
+    [self registerCommand:[Command log]];
 
     [self registerCommand:[Command setAnimationFactor]];
 

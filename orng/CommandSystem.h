@@ -10,6 +10,8 @@
 + (Command *)listAllCommands;
 + (Command *)help;
 
++ (Command *)log;
+
 + (Command *)setAnimationFactor;
 
 + (Command *)presentClockView;

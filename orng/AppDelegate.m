@@ -67,7 +67,7 @@
 
 #pragma mark - command system
 
-- (void)setUpCommandSystem
+- (void)setUpCommandSy
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     [commandEngine setUpCommands];
@@ -83,13 +83,13 @@
 
 - (void)executedCommand:(NSNotification *)notification
 {
-    CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    Command *command = [commandEngine getCommandFromNotification:notification];
-
-    if ([command isEqualToCommand:[Command printLog]])
-    {
-        NSLog(@"logged commands:\n%@", [commandEngine getCommandLog]);
-    }
+//    CommandEngine *commandEngine = [CommandEngine sharedInstance];
+//    Command *command = [commandEngine getCommandFromNotification:notification];
+//
+//    if ([command isEqualToCommand:[Command printLog]])
+//    {
+//        NSLog(@"logged commands:\n%@", [commandEngine getCommandLog]);
+//    }
 }
 
 @end

@@ -11,9 +11,6 @@
 - (IBAction)listAction:(id)sender;
 - (IBAction)testAction:(id)sender;
 - (IBAction)dummyAction:(id)sender;
-- (IBAction)logAction:(id)sender;
-- (IBAction)clearLogAction:(id)sender;
-- (IBAction)playAction:(id)sender;
 
 @end
 
