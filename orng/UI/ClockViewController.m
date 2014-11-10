@@ -107,7 +107,8 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 //    myButton.layer.backgroundColor = [UIColor orangeColor].CGColor;
 //    myButton.layer.cornerRadius = 12.0;
     [self.view addSubview:myButton];
-    
+    myButton.hidden = YES;
+
     [[CommandEngine sharedInstance] addResponder:self];
 }
 
