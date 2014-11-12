@@ -10,7 +10,7 @@
 #import "KDGUtilities.h"
 #import "UIView+KDGAnimation.h"
 #import "KDGBackDoorViewController.h"
-#import "MyButton.h"
+#import "KDGBaseButton.h"
 
 static const CGFloat kWhiteSliderThreshold = 0.05;
 static const CGFloat kBlackSliderThreshold = 0.05;
@@ -103,11 +103,12 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 //        [button addTarget:self action:@selector(buttonRelease:) forControlEvents:UIControlEventTouchDragExit];
     }
 
-    MyButton *myButton = [[MyButton alloc] initWithFrame:CGRectMake(100, 200, 40, 40)];
+//    MyButton *myButton = [[MyButton alloc] initWithFrame:CGRectMake(100, 100, 40, 40)];
 //    myButton.layer.backgroundColor = [UIColor orangeColor].CGColor;
 //    myButton.layer.cornerRadius = 12.0;
-    [self.view addSubview:myButton];
-    myButton.hidden = YES;
+//    [self.view addSubview:myButton];
+//    myButton.hidden = NO;
+    //[myButton addTarget:self action:@selector(myButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 
     [[CommandEngine sharedInstance] addResponder:self];
 }
@@ -141,6 +142,11 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     scale.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     
     [button.layer addAnimation:scale forKey:@"myScaleDownAnimation"];
+}
+
+- (void)myButtonAction:(UIButton *)button
+{
+    NSLog(@"pressed my button");
 }
 
 - (void)dealloc
@@ -187,17 +193,6 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 {
     return UIInterfaceOrientationMaskAll;
 }
-
-/*
- #pragma mark - Navigation
-
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 #pragma mark - set up
 
@@ -1088,6 +1083,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 
 - (void)singleTapAction:(id)sender
 {
+    NSLog(@"singleTapAction...");
     if (self.brightnessDimmed)
     {
         [self startBrightnessTimer];

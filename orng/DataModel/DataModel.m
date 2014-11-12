@@ -51,7 +51,7 @@ static NSString * const kPrefBackDoorBackgroundColor = @"orngPrefBackDoorBackgro
 + (void)setColorPref:(NSString *)prefKey value:(UIColor *)value
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *colorString = [value kdgColorString];
+    NSString *colorString = [value kdgAsString];
     [userDefaults setObject:colorString forKey:prefKey];
 }
 

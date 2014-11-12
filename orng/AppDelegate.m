@@ -5,6 +5,7 @@
 
 #import "AppDelegate.h"
 #import "CommandSystem.h"
+#import "UIColor+KDGUtilities.h"
 
 @interface AppDelegate () <KDGCommandEngineResponder>
 
@@ -24,6 +25,8 @@
 
     [self setUpCommandSystem];
 
+    [self runTests];
+    
     return YES;
 }
 
@@ -90,6 +93,13 @@
 //    {
 //        NSLog(@"logged commands:\n%@", [commandEngine getCommandLog]);
 //    }
+}
+
+#pragma mark - tests
+
+- (void)runTests
+{
+    [UIColor runTests];
 }
 
 @end
