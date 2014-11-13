@@ -25,6 +25,18 @@
 - (NSString *)kdgAsString;
 
 /**
+ Return red, green, and blue color components.
+ Works on all colors regardless of color space.
+ */
+- (void)kdgGetRed:(CGFloat *)red green:(CGFloat *)green blue:(CGFloat *)blue alpha:(CGFloat *)alpha;
+
+/**
+ Return hue, saturation, and brightness color components.
+ Works on all colors regardless of color space.
+ */
+- (void)kdgGetHue:(CGFloat *)hue saturation:(CGFloat *)saturation brightness:(CGFloat *)brightness alpha:(CGFloat *)alpha;
+
+/**
  Test equality of colors.
  */
 - (BOOL)kdgIsEqualToColor:(UIColor *)color;
@@ -38,6 +50,21 @@
  Return a darker color.
  */
 - (UIColor *)kdgDarkerColor;
+
+/**
+ Return current color with hue.
+ */
+- (UIColor *)kdgColorWithHue:(CGFloat)hue;
+
+/**
+ Return current color with saturation.
+ */
+- (UIColor *)kdgColorWithSaturation:(CGFloat)saturation;
+
+/**
+ Return current color with brightness.
+ */
+- (UIColor *)kdgColorWithBrightness:(CGFloat)brightness;
 
 #pragma mark - tests;
 

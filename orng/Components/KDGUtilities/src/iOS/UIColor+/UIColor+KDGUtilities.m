@@ -34,31 +34,72 @@
 
 - (NSString *)kdgAsString;
 {
-    NSString *colorString = @"0 0 0 255";
+    CGFloat red, green, blue, alpha;
     
-    CGFloat white, red, green, blue, alpha;
+    [self kdgGetRed:&red green:&green blue:&blue alpha:&alpha];
+
+    NSInteger r = red   * 255;
+    NSInteger g = green * 255;
+    NSInteger b = blue  * 255;
+    NSInteger a = alpha * 255;
     
-    if ([self getRed:&red green:&green blue:&blue alpha:&alpha])
+    return [NSString stringWithFormat:@"%d %d %d %d", r, g, b, a];
+}
+
+- (void)kdgGetRed:(CGFloat *)red green:(CGFloat *)green blue:(CGFloat *)blue alpha:(CGFloat *)alpha
+{
+    CGFloat white, r, g, b, a;
+
+    if ([self getRed:&r green:&g blue:&b alpha:&a])
     {
-        NSInteger r = red   * 255;
-        NSInteger g = green * 255;
-        NSInteger b = blue  * 255;
-        NSInteger a = alpha * 255;
-        
-        colorString = [NSString stringWithFormat:@"%d %d %d %d", r, g, b, a];
+        *red   = r;
+        *green = g;
+        *blue  = b;
+        *alpha = a;
     }
-    else if ([self getWhite:&white alpha:&alpha])
+    else if ([self getWhite:&white alpha:&a])
     {
-        NSInteger w = white * 255;
-        NSInteger a = alpha * 255;
-        colorString = [NSString stringWithFormat:@"%d %d %d %d", w, w, w, a];
+        *red   = white;
+        *green = white;
+        *blue  = white;
+        *alpha = a;
     }
     else
     {
-        NSLog(@"# error: couldn't convert color to string.");
+        *red   = 0.0;
+        *green = 0.0;
+        *blue  = 0.0;
+        *alpha = 1.0;
+        NSLog(@"# error: couldn't get red, green, and blue components.");
     }
+}
+
+- (void)kdgGetHue:(CGFloat *)hue saturation:(CGFloat *)saturation brightness:(CGFloat *)brightness alpha:(CGFloat *)alpha
+{
+    CGFloat white, h, s, b, a;
     
-    return colorString;
+    if ([self getHue:&h saturation:&s brightness:&b alpha:&a])
+    {
+        *hue        = h;
+        *saturation = s;
+        *brightness = b;
+        *alpha      = a;
+    }
+    else if ([self getWhite:&white alpha:&a])
+    {
+        *hue        = 0.0;
+        *saturation = 0.0;
+        *brightness = white;
+        *alpha      = a;
+    }
+    else
+    {
+        *hue        = 0.0;
+        *saturation = 0.0;
+        *brightness = 0.0;
+        *alpha      = 1.0;
+        NSLog(@"# error: couldn't get hue, saturation, and brightness components.");
+    }
 }
 
 - (BOOL)kdgIsEqualToColor:(UIColor *)color
@@ -100,6 +141,27 @@
     }
 
     return color;
+}
+
+- (UIColor *)kdgColorWithHue:(CGFloat)hue
+{
+    CGFloat h, s, b, alpha;
+    [self kdgGetHue:&h saturation:&s brightness:&b alpha:&alpha];
+    return [UIColor colorWithHue:hue saturation:s brightness:b alpha:alpha];
+}
+
+- (UIColor *)kdgColorWithSaturation:(CGFloat)saturation
+{
+    CGFloat h, s, b, alpha;
+    [self kdgGetHue:&h saturation:&s brightness:&b alpha:&alpha];
+    return [UIColor colorWithHue:h saturation:saturation brightness:b alpha:alpha];
+}
+
+- (UIColor *)kdgColorWithBrightness:(CGFloat)brightness
+{
+    CGFloat h, s, b, alpha;
+    [self kdgGetHue:&h saturation:&s brightness:&b alpha:&alpha];
+    return [UIColor colorWithHue:h saturation:s brightness:brightness alpha:alpha];
 }
 
 #pragma mark - tests;
