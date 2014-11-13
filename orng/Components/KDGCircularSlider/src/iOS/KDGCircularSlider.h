@@ -22,7 +22,16 @@
 @property (nonatomic, assign) CGFloat trackSize;
 
 /**
- Orientation of the control. Indicate where minimum value is positioned on the slider.
+ Set the format for displaying the value in the label.
+ The format must include a single %f token. Feel free to add whatever else you like,
+ for example the number of decimal places or units.
+ 
+ The default format is "%.0f".
+ */
+@property (nonatomic, copy) NSString *formatString;
+
+/**
+ Orientation of the control. Indicate where the minimum value is positioned on the slider.
    0.0 for 3 o'clock,
   90.0 for 12 o'clock,
  180.0 for 9 o'clock, and
@@ -35,6 +44,8 @@
  be inside the control. Note this does not pertain to the intial touch down event.
  */
 @property (nonatomic, assign) CGFloat slopDistance;
+
+- (void)setFont:(UIFont *)font;
 
 #pragma mark - tests;
 

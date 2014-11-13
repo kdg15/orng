@@ -86,10 +86,13 @@ static CGFloat const kDefaultSlopDistance  = 60.0;
 
     [self updateLayers];
 
+    _formatString = @"%.0f";
+
     self.label = [[UILabel alloc] initWithFrame:[self actualBounds]];
     self.label.text = @"0";
     self.label.textAlignment = NSTextAlignmentCenter;
     self.label.textColor = self.textColor;
+    self.label.font = [UIFont systemFontOfSize:[UIFont smallSystemFontSize]];
 
     [self addSubview:self.label];
 }
@@ -142,6 +145,13 @@ static CGFloat const kDefaultSlopDistance  = 60.0;
 - (void)setBackgroundColor:(UIColor *)color
 {
     _color = color;
+}
+
+#pragma mark - font
+
+- (void)setFont:(UIFont *)font
+{
+    self.label.font = font;
 }
 
 #pragma mark - highlight
@@ -224,7 +234,7 @@ static CGFloat const kDefaultSlopDistance  = 60.0;
 
 - (void)updateLabel
 {
-    self.label.text = [NSString stringWithFormat:@"%.1f", self.value];
+    self.label.text = [NSString stringWithFormat:self.formatString, self.value];
 }
 
 #pragma mark - knob
