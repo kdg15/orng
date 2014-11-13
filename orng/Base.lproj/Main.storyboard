@@ -359,7 +359,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i46-Lg-YbB" userLabel="cancel button" customClass="KDGTextButton">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i46-Lg-YbB" userLabel="cancel button" customClass="KDGButton">
                                         <rect key="frame" x="0.0" y="20" width="40" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -370,7 +370,7 @@
                                             <action selector="cancelAction:" destination="gsr-Fn-1sV" eventType="touchUpInside" id="Hpu-g1-zQX"/>
                                         </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e4j-Np-iG8" userLabel="okay button" customClass="KDGTextButton">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e4j-Np-iG8" userLabel="okay button" customClass="KDGButton">
                                         <rect key="frame" x="248" y="20" width="40" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -390,6 +390,14 @@
                                             <action selector="sliderChangedAction:" destination="gsr-Fn-1sV" eventType="valueChanged" id="6kJ-nq-lEl"/>
                                         </connections>
                                     </slider>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QU4-bB-4V0" userLabel="hudSlider" customClass="KDGCircularSlider">
+                                        <rect key="frame" x="124" y="20" width="40" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="CCV-aH-xaZ"/>
+                                            <constraint firstAttribute="width" constant="40" id="D6i-Q6-NV2"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="e4j-Np-iG8" firstAttribute="leading" secondItem="dD1-Hc-sB4" secondAttribute="trailing" constant="8" id="3LB-fB-qLw"/>
@@ -398,10 +406,12 @@
                                     <constraint firstAttribute="trailing" secondItem="fRu-Da-46D" secondAttribute="trailing" id="HdR-wK-bTn"/>
                                     <constraint firstAttribute="bottom" secondItem="i46-Lg-YbB" secondAttribute="bottom" id="QiO-rT-kST"/>
                                     <constraint firstAttribute="width" constant="288" id="RRl-e7-XkO"/>
+                                    <constraint firstAttribute="centerX" secondItem="QU4-bB-4V0" secondAttribute="centerX" id="WCf-Yj-FBq"/>
                                     <constraint firstItem="i46-Lg-YbB" firstAttribute="leading" secondItem="EzF-eA-ZjN" secondAttribute="leading" id="fhv-dA-1KY"/>
                                     <constraint firstItem="fRu-Da-46D" firstAttribute="leading" secondItem="EzF-eA-ZjN" secondAttribute="leading" id="lEQ-s5-2dO"/>
                                     <constraint firstAttribute="height" constant="60" id="nrX-nx-Fvv"/>
                                     <constraint firstAttribute="bottom" secondItem="e4j-Np-iG8" secondAttribute="bottom" id="oSw-RT-E6n"/>
+                                    <constraint firstAttribute="bottom" secondItem="QU4-bB-4V0" secondAttribute="bottom" id="ofW-8C-9aS"/>
                                     <constraint firstAttribute="trailing" secondItem="e4j-Np-iG8" secondAttribute="trailing" id="qNd-eF-V4V"/>
                                     <constraint firstItem="fRu-Da-46D" firstAttribute="top" secondItem="EzF-eA-ZjN" secondAttribute="top" id="r1J-N6-aW1"/>
                                 </constraints>

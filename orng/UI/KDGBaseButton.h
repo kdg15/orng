@@ -31,7 +31,7 @@
 
 @end
 
-@interface KDGTextButton : KDGBaseButton
+@interface KDGButton : KDGBaseButton
 
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) UIColor *textColor;

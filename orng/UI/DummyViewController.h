@@ -8,12 +8,12 @@
 
 @interface DummyViewController : BaseViewController
 
-@property (nonatomic, strong) IBOutlet UIView        *sampleView;
-@property (nonatomic, strong) IBOutlet UIView        *settingsView;
-@property (nonatomic, strong) IBOutlet UISlider      *slider;
-@property (nonatomic, strong) IBOutlet UILabel       *label;
-@property (nonatomic, strong) IBOutlet KDGTextButton *okayButton;
-@property (nonatomic, strong) IBOutlet KDGTextButton *cancelButton;
+@property (nonatomic, strong) IBOutlet UIView    *sampleView;
+@property (nonatomic, strong) IBOutlet UIView    *settingsView;
+@property (nonatomic, strong) IBOutlet UISlider  *slider;
+@property (nonatomic, strong) IBOutlet UILabel   *label;
+@property (nonatomic, strong) IBOutlet KDGButton *okayButton;
+@property (nonatomic, strong) IBOutlet KDGButton *cancelButton;
 
 - (IBAction)backAction:(id)sender;
 - (IBAction)okayAction:(id)sender;

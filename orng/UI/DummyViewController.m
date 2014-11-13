@@ -75,19 +75,19 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
     CGRect buttonFrame;
     
     buttonFrame = CGRectMake(position.x, position.y, buttonSize.width, buttonSize.height);
-    KDGTextButton *button0 = [[KDGTextButton alloc] initWithFrame:buttonFrame];
+    KDGButton *button0 = [[KDGButton alloc] initWithFrame:buttonFrame];
     position.y += buttonSize.height + space.height;
     
     buttonFrame = CGRectMake(position.x, position.y, buttonSize.width, buttonSize.height);
-    KDGTextButton *button1 = [[KDGTextButton alloc] initWithFrame:buttonFrame];
+    KDGButton *button1 = [[KDGButton alloc] initWithFrame:buttonFrame];
     position.y += buttonSize.height + space.height;
 
     buttonFrame = CGRectMake(position.x, position.y, 2 * buttonSize.width, buttonSize.height);
-    KDGTextButton *button2 = [[KDGTextButton alloc] initWithFrame:buttonFrame];
+    KDGButton *button2 = [[KDGButton alloc] initWithFrame:buttonFrame];
     position.y += buttonSize.height + space.height;
 
     buttonFrame = CGRectMake(position.x, position.y, 2 * buttonSize.width, buttonSize.height);
-    KDGTextButton *button3 = [[KDGTextButton alloc] initWithFrame:buttonFrame];
+    KDGButton *button3 = [[KDGButton alloc] initWithFrame:buttonFrame];
     position.y += buttonSize.height + space.height;
     
     [button0 addTarget:self action:@selector(buttonTouchDownAction:)        forControlEvents:UIControlEventTouchDown];
@@ -119,17 +119,17 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
         position = CGPointMake(0, self.settingsView.bounds.size.height - buttonSize.height);
         
         buttonFrame = CGRectMake(position.x, position.y, buttonSize.width, buttonSize.height);
-        KDGTextButton *borderWidthButton = [[KDGTextButton alloc] initWithFrame:buttonFrame];
+        KDGButton *borderWidthButton = [[KDGButton alloc] initWithFrame:buttonFrame];
         borderWidthButton.text = @"bw";
         position.x += buttonSize.width + space.width;
 
         buttonFrame = CGRectMake(position.x, position.y, buttonSize.width, buttonSize.height);
-        KDGTextButton *cornerRadiusButton = [[KDGTextButton alloc] initWithFrame:buttonFrame];
+        KDGButton *cornerRadiusButton = [[KDGButton alloc] initWithFrame:buttonFrame];
         cornerRadiusButton.text = @"cr";
         position.x += buttonSize.width + space.width;
 
         buttonFrame = CGRectMake(position.x, position.y, buttonSize.width, buttonSize.height);
-        KDGTextButton *shadowOpacityButton = [[KDGTextButton alloc] initWithFrame:buttonFrame];
+        KDGButton *shadowOpacityButton = [[KDGButton alloc] initWithFrame:buttonFrame];
         shadowOpacityButton.text = @"so";
         position.x += buttonSize.width + space.width;
         
@@ -237,7 +237,7 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
 {
     self.activeSetting = ActiveSettingBorderWidth;
     
-    KDGTextButton *button = self.samples[0];
+    KDGButton *button = self.samples[0];
 
     self.label.text = @"border width";
     self.slider.minimumValue = 0;
@@ -252,7 +252,7 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
 {
     self.activeSetting = ActiveSettingCornerRadius;
 
-    KDGTextButton *button = self.samples[0];
+    KDGButton *button = self.samples[0];
 
     self.label.text = @"corner radius";
     self.slider.minimumValue = 0;
@@ -267,7 +267,7 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
 {
     self.activeSetting = ActiveSettingShadowOpacity;
     
-    KDGTextButton *button = self.samples[0];
+    KDGButton *button = self.samples[0];
     
     self.label.text = @"shadow opacity";
     self.slider.minimumValue = 0;
@@ -282,7 +282,7 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
 {
     self.activeSetting = ActiveSettingBackgroundColor;
     
-    KDGTextButton *button = self.samples[0];
+    KDGButton *button = self.samples[0];
     
     self.label.text = @"background color";
     self.slider.minimumValue = 0;
@@ -297,7 +297,7 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
 {
     self.activeSetting = ActiveSettingBackgroundColor;
     
-    KDGTextButton *button = self.samples[0];
+    KDGButton *button = self.samples[0];
     
     self.label.text = @"highlight color";
     self.slider.minimumValue = 0;
@@ -312,7 +312,7 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
 {
     self.activeSetting = ActiveSettingBackgroundColor;
     
-    KDGTextButton *button = self.samples[0];
+    KDGButton *button = self.samples[0];
     
     self.label.text = @"border color";
     self.slider.minimumValue = 0;
@@ -331,7 +331,7 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
     {
         case ActiveSettingBorderWidth:
         {
-            for (KDGTextButton *button in self.samples)
+            for (KDGButton *button in self.samples)
             {
                 button.borderWidth = slider.value;
             }
@@ -339,7 +339,7 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
         }
         case ActiveSettingCornerRadius:
         {
-            for (KDGTextButton *button in self.samples)
+            for (KDGButton *button in self.samples)
             {
                 button.cornerRadius = slider.value;
             }
@@ -347,7 +347,7 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
         }
         case ActiveSettingShadowOpacity:
         {
-            for (KDGTextButton *button in self.samples)
+            for (KDGButton *button in self.samples)
             {
                 button.shadowOpacity = slider.value;
             }
@@ -356,7 +356,7 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
         case ActiveSettingBackgroundColor:
         {
             /*
-            for (KDGTextButton *button in self.samples)
+            for (KDGButton *button in self.samples)
             {
                 button.shadowOpacity = slider.value;
             }

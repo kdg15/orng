@@ -332,13 +332,13 @@ static CGFloat const kDefaultSlopDistance  = 30.0;
 
 @end
 
-@interface KDGTextButton ()
+@interface KDGButton ()
 
 @property (nonatomic, strong) UILabel *label;
 
 @end
 
-@implementation KDGTextButton
+@implementation KDGButton
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -346,7 +346,7 @@ static CGFloat const kDefaultSlopDistance  = 30.0;
     
     if (self)
     {
-        [self kdgTextLabelButtonInitialize];
+        [self kdgButtonInitialize];
     }
     
     return self;
@@ -358,13 +358,13 @@ static CGFloat const kDefaultSlopDistance  = 30.0;
     
     if (self)
     {
-        [self kdgTextLabelButtonInitialize];
+        [self kdgButtonInitialize];
     }
     
     return self;
 }
 
-- (void)kdgTextLabelButtonInitialize
+- (void)kdgButtonInitialize
 {
     _textColor          = [UIColor whiteColor];
     _textHighlightColor = [UIColor lightGrayColor];
