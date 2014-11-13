@@ -5,19 +5,25 @@
 
 #import "BaseViewController.h"
 #import "KDGBaseButton.h"
+#import "KDGCircularSlider.h"
 
+//  todo: rename to SampleViewController
 @interface DummyViewController : BaseViewController
 
-@property (nonatomic, strong) IBOutlet UIView    *sampleView;
-@property (nonatomic, strong) IBOutlet UIView    *settingsView;
-@property (nonatomic, strong) IBOutlet UISlider  *slider;
-@property (nonatomic, strong) IBOutlet UILabel   *label;
-@property (nonatomic, strong) IBOutlet KDGButton *okayButton;
-@property (nonatomic, strong) IBOutlet KDGButton *cancelButton;
+@property (nonatomic, strong) IBOutlet UIView            *sampleView;
+@property (nonatomic, strong) IBOutlet UIView            *settingsView;
+@property (nonatomic, strong) IBOutlet UISlider          *slider;
+@property (nonatomic, strong) IBOutlet KDGCircularSlider *hueSlider;
+@property (nonatomic, strong) IBOutlet KDGCircularSlider *saturationSlider;
+@property (nonatomic, strong) IBOutlet KDGCircularSlider *brightnessSlider;
+@property (nonatomic, strong) IBOutlet UILabel           *label;
+@property (nonatomic, strong) IBOutlet KDGButton         *okayButton;
+@property (nonatomic, strong) IBOutlet KDGButton         *cancelButton;
 
 - (IBAction)backAction:(id)sender;
 - (IBAction)okayAction:(id)sender;
 - (IBAction)cancelAction:(id)sender;
 - (IBAction)sliderChangedAction:(id)sender;
+- (IBAction)colorSliderChangedAction:(id)sender;
 
 @end

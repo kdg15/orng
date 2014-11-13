@@ -14,7 +14,16 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
     ActiveSettingBorderWidth,
     ActiveSettingCornerRadius,
     ActiveSettingShadowOpacity,
-    ActiveSettingBackgroundColor
+    ActiveSettingBackgroundColor,
+    ActiveSettingHighlightColor,
+    ActiveSettingBorderColor
+};
+
+typedef NS_ENUM(NSInteger, ColorSliderComponent)
+{
+    ColorSliderComponentHue,
+    ColorSliderComponentSaturation,
+    ColorSliderComponentBrightness
 };
 
 @interface DummyViewController ()
@@ -22,6 +31,10 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
 @property (nonatomic, strong) NSArray *samples;
 @property (nonatomic, strong) NSArray *settings;
 @property (nonatomic, assign) ActiveSetting activeSetting;
+
+@property (nonatomic, strong) KDGColorSwatchButton *backgroundColorButton;
+@property (nonatomic, strong) KDGColorSwatchButton *highlightColorButton;
+@property (nonatomic, strong) KDGColorSwatchButton *borderColorButton;
 
 @end
 
@@ -56,6 +69,30 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
     self.label.text = @"";
 
     self.slider.hidden = YES;
+    self.hueSlider.hidden = YES;
+    self.saturationSlider.hidden = YES;
+    self.brightnessSlider.hidden = YES;
+
+    self.hueSlider.minimum = 0;
+    self.hueSlider.maximum = 360;
+    self.hueSlider.value   = 0;
+    self.hueSlider.formatString = @"%.0f°";
+    [self.hueSlider setFont:[UIFont systemFontOfSize:8]];
+    self.hueSlider.tag = ColorSliderComponentHue;
+
+    self.saturationSlider.minimum = 0;
+    self.saturationSlider.maximum = 100;
+    self.saturationSlider.value   = 0;
+    self.saturationSlider.formatString = @"%.0f%%";
+    [self.saturationSlider setFont:[UIFont systemFontOfSize:8]];
+    self.saturationSlider.tag = ColorSliderComponentSaturation;
+    
+    self.brightnessSlider.minimum = 0;
+    self.brightnessSlider.maximum = 100;
+    self.brightnessSlider.value   = 0;
+    self.brightnessSlider.formatString = @"%.0f%%";
+    [self.brightnessSlider setFont:[UIFont systemFontOfSize:8]];
+    self.brightnessSlider.tag = ColorSliderComponentBrightness;
 
     self.okayButton.hidden = YES;
     self.cancelButton.hidden = YES;
@@ -135,19 +172,22 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
         
         buttonFrame = CGRectMake(position.x, position.y, buttonSize.width, buttonSize.height);
         KDGColorSwatchButton *backgroundColorButton = [[KDGColorSwatchButton alloc] initWithFrame:buttonFrame];
-        backgroundColorButton.swatchColor = button0.backgroundColor;
         position.x += buttonSize.width + space.width;
         
         buttonFrame = CGRectMake(position.x, position.y, buttonSize.width, buttonSize.height);
         KDGColorSwatchButton *highlightColorButton = [[KDGColorSwatchButton alloc] initWithFrame:buttonFrame];
-        highlightColorButton.swatchColor = button0.highlightColor;
         position.x += buttonSize.width + space.width;
         
         buttonFrame = CGRectMake(position.x, position.y, buttonSize.width, buttonSize.height);
         KDGColorSwatchButton *borderColorButton = [[KDGColorSwatchButton alloc] initWithFrame:buttonFrame];
-        borderColorButton.swatchColor = button0.borderColor;
         position.x += buttonSize.width + space.width;
         
+        _backgroundColorButton = backgroundColorButton;
+        _highlightColorButton = highlightColorButton;
+        _borderColorButton = borderColorButton;
+        
+        [self updateColorButtons:button0];
+
         [borderWidthButton addTarget:self action:@selector(borderWidthAction:) forControlEvents:UIControlEventTouchUpInside];
         [cornerRadiusButton addTarget:self action:@selector(cornerRadiusAction:) forControlEvents:UIControlEventTouchUpInside];
         [shadowOpacityButton addTarget:self action:@selector(shadowOpacityAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -166,13 +206,6 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
         {
             [self.settingsView addSubview:view];
         }
-
-//        [self.settingsView addSubview:borderWidthButton];
-//        [self.settingsView addSubview:cornerRadiusButton];
-//        [self.settingsView addSubview:shadowOpacityButton];
-//        [self.settingsView addSubview:backgroundColorButton];
-//        [self.settingsView addSubview:backgroundColorButton];
-//        [self.settingsView addSubview:backgroundColorButton];
     }
 }
 
@@ -196,16 +229,76 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
 
 - (void)presentSlider
 {
-    self.slider.hidden = NO;
     self.okayButton.hidden = NO;
     self.cancelButton.hidden = NO;
+
+    switch (self.activeSetting)
+    {
+        case ActiveSettingBorderWidth:
+        case ActiveSettingCornerRadius:
+        case ActiveSettingShadowOpacity:
+        {
+            self.slider.hidden = NO;
+            break;
+        }
+        case ActiveSettingBackgroundColor:
+        case ActiveSettingHighlightColor:
+        case ActiveSettingBorderColor:
+        {
+            self.hueSlider.hidden = NO;
+            self.saturationSlider.hidden = NO;
+            self.brightnessSlider.hidden = NO;
+            break;
+        }
+    }
 }
 
 - (void)dismissSlider
 {
-    self.slider.hidden = YES;
     self.okayButton.hidden = YES;
     self.cancelButton.hidden = YES;
+
+    switch (self.activeSetting)
+    {
+        case ActiveSettingBorderWidth:
+        case ActiveSettingCornerRadius:
+        case ActiveSettingShadowOpacity:
+        {
+            self.slider.hidden = YES;
+            break;
+        }
+        case ActiveSettingBackgroundColor:
+        case ActiveSettingHighlightColor:
+        case ActiveSettingBorderColor:
+        {
+            self.hueSlider.hidden = YES;
+            self.saturationSlider.hidden = YES;
+            self.brightnessSlider.hidden = YES;
+            
+            [self updateColorButtons:self.samples[0]];
+            break;
+        }
+    }
+}
+
+- (void)presentColorSlider:(UIColor *)color
+{
+    CGFloat hue, saturation, brightness, alpha;
+    [color kdgGetHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
+    
+    self.hueSlider.value        = hue        * 360.0;
+    self.saturationSlider.value = saturation * 100.0;
+    self.brightnessSlider.value = brightness * 100.0;
+    
+    [self dismissSettings];
+    [self presentSlider];
+}
+
+- (void)updateColorButtons:(KDGButton *)button
+{
+    self.backgroundColorButton.swatchColor = button.backgroundColor;
+    self.highlightColorButton.swatchColor = button.highlightColor;
+    self.borderColorButton.swatchColor = button.borderColor;
 }
 
 - (void)output:(NSString *)string
@@ -280,50 +373,38 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
 
 - (void)backgroundColorAction:(id)sender
 {
-    self.activeSetting = ActiveSettingBackgroundColor;
-    
-    KDGButton *button = self.samples[0];
-    
     self.label.text = @"background color";
-    self.slider.minimumValue = 0;
-    self.slider.maximumValue = 1.0;
-    self.slider.value = 0.0;
+    KDGButton *button = self.samples[0];
+
+    self.activeSetting = ActiveSettingBackgroundColor;
+    UIColor *color = button.backgroundColor;
     
-    [self dismissSettings];
-    [self presentSlider];
+    [self presentColorSlider:color];
 }
 
 - (void)highlightColorAction:(id)sender
 {
-    self.activeSetting = ActiveSettingBackgroundColor;
-    
-    KDGButton *button = self.samples[0];
-    
     self.label.text = @"highlight color";
-    self.slider.minimumValue = 0;
-    self.slider.maximumValue = 1.0;
-    self.slider.value = 0.0;
+    KDGButton *button = self.samples[0];
+
+    self.activeSetting = ActiveSettingHighlightColor;
+    UIColor *color = button.highlightColor;
     
-    [self dismissSettings];
-    [self presentSlider];
+    [self presentColorSlider:color];
 }
 
 - (void)borderColorAction:(id)sender
 {
-    self.activeSetting = ActiveSettingBackgroundColor;
-    
-    KDGButton *button = self.samples[0];
-    
     self.label.text = @"border color";
-    self.slider.minimumValue = 0;
-    self.slider.maximumValue = 1.0;
-    self.slider.value = 0.0;
-    
-    [self dismissSettings];
-    [self presentSlider];
+    KDGButton *button = self.samples[0];
+
+    self.activeSetting = ActiveSettingBorderColor;
+    UIColor *color = button.borderColor;
+
+    [self presentColorSlider:color];
 }
 
-- (void)sliderChangedAction:(id)sender
+- (IBAction)sliderChangedAction:(id)sender
 {
     UISlider *slider = (UISlider *)sender;
     
@@ -354,15 +435,74 @@ typedef NS_ENUM(NSInteger, ActiveSetting)
             break;
         }
         case ActiveSettingBackgroundColor:
+        case ActiveSettingHighlightColor:
+        case ActiveSettingBorderColor:
+            break;
+    }
+}
+
+- (IBAction)colorSliderChangedAction:(id)sender
+{
+    UISlider *slider = (UISlider *)sender;
+    KDGButton *button = self.samples[0];
+    
+    CGFloat value = slider.value;
+
+    if      (ColorSliderComponentHue        == slider.tag) value /= 360.0;
+    else if (ColorSliderComponentSaturation == slider.tag) value /= 100.0;
+    else if (ColorSliderComponentBrightness == slider.tag) value /= 100.0;
+
+    UIColor *color;
+
+    switch (self.activeSetting)
+    {
+        case ActiveSettingBackgroundColor:
         {
-            /*
+            color = button.backgroundColor;
+            
+            if      (ColorSliderComponentHue        == slider.tag) color = [color kdgColorWithHue:value];
+            else if (ColorSliderComponentSaturation == slider.tag) color = [color kdgColorWithSaturation:value];
+            else if (ColorSliderComponentBrightness == slider.tag) color = [color kdgColorWithBrightness:value];
+
             for (KDGButton *button in self.samples)
             {
-                button.shadowOpacity = slider.value;
+                button.backgroundColor = color;
             }
-             */
             break;
         }
+        case ActiveSettingHighlightColor:
+        {
+            color = button.highlightColor;
+
+            if      (ColorSliderComponentHue        == slider.tag) color = [color kdgColorWithHue:value];
+            else if (ColorSliderComponentSaturation == slider.tag) color = [color kdgColorWithSaturation:value];
+            else if (ColorSliderComponentBrightness == slider.tag) color = [color kdgColorWithBrightness:value];
+
+            for (KDGButton *button in self.samples)
+            {
+                button.highlightColor = color;
+            }
+            break;
+        }
+        case ActiveSettingBorderColor:
+        {
+            color = button.borderColor;
+
+            if      (ColorSliderComponentHue        == slider.tag) color = [color kdgColorWithHue:value];
+            else if (ColorSliderComponentSaturation == slider.tag) color = [color kdgColorWithSaturation:value];
+            else if (ColorSliderComponentBrightness == slider.tag) color = [color kdgColorWithBrightness:value];
+            
+            for (KDGButton *button in self.samples)
+            {
+                button.borderColor = color;
+            }
+            break;
+        }
+
+        case ActiveSettingBorderWidth:
+        case ActiveSettingCornerRadius:
+        case ActiveSettingShadowOpacity:
+            break;
     }
 }
 
