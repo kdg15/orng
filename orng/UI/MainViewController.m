@@ -9,6 +9,7 @@
 #import "DummyViewController.h"
 #import "KDGBackDoorViewController.h"
 #import "UIView+KDGAnimation.h"
+#import "KDGCircularSlider.h"
 
 static NSString * const kClockViewSegue = @"ClockViewSegue";
 static NSString * const kListViewSegue  = @"ListViewSegue";
@@ -26,6 +27,25 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
     [super viewDidLoad];
 
     [[CommandEngine sharedInstance] addResponder:self];
+
+    CGRect sliderFrame = CGRectMake(120, 280, 80, 80);
+    KDGCircularSlider *slider = [[KDGCircularSlider alloc] initWithFrame:sliderFrame];
+    slider.minimum = 10.0;
+    slider.maximum = 20.0;
+    slider.backgroundColor = [UIColor redColor];
+    [self.view addSubview:slider];
+
+    /*
+    [slider addTarget:self action:@selector(sliderTouchDownAction:)        forControlEvents:UIControlEventTouchDown];
+    [slider addTarget:self action:@selector(sliderTouchUpInsideAction:)    forControlEvents:UIControlEventTouchUpInside];
+    [slider addTarget:self action:@selector(sliderTouchUpOutsideAction:)   forControlEvents:UIControlEventTouchUpOutside];
+    [slider addTarget:self action:@selector(sliderTouchCancelAction:)      forControlEvents:UIControlEventTouchCancel];
+    [slider addTarget:self action:@selector(sliderTouchDragInsideAction:)  forControlEvents:UIControlEventTouchDragInside];
+    [slider addTarget:self action:@selector(sliderTouchDragOutsideAction:) forControlEvents:UIControlEventTouchDragOutside];
+    [slider addTarget:self action:@selector(sliderTouchDragEnterAction:)   forControlEvents:UIControlEventTouchDragEnter];
+    [slider addTarget:self action:@selector(sliderTouchDragExitAction:)    forControlEvents:UIControlEventTouchDragExit];
+     */
+    [slider addTarget:self action:@selector(sliderChangedAction:)    forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)dealloc
@@ -89,6 +109,21 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     [commandEngine executeCommand:[Command presentDummyView]];
+}
+
+- (void)sliderTouchDownAction:(id)sender { NSLog(@"sliderTouchDown"); }
+- (void)sliderTouchUpInsideAction:(id)sender { NSLog(@"sliderTouchUpInside"); }
+- (void)sliderTouchUpOutsideAction:(id)sender { NSLog(@"sliderTouchUpOutside"); }
+- (void)sliderTouchCancelAction:(id)sender { NSLog(@"sliderTouchCancelAction"); }
+- (void)sliderTouchDragInsideAction:(id)sender { NSLog(@"sliderTouchDragInside"); }
+- (void)sliderTouchDragOutsideAction:(id)sender { NSLog(@"sliderTouchDragOutside"); }
+- (void)sliderTouchDragEnterAction:(id)sender { NSLog(@"sliderTouchDragEnter"); }
+- (void)sliderTouchDragExitAction:(id)sender { NSLog(@"sliderTouchDragExit"); }
+
+- (void)sliderChangedAction:(id)sender
+{
+    //KDGCircularSlider *slider = (KDGCircularSlider *)sender;
+    //NSLog(@"sliderChanged %.3f", slider.value);
 }
 
 #pragma mark - command system

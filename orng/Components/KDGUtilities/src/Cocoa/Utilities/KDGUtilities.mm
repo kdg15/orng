@@ -5,11 +5,27 @@
 
 #import "KDGUtilities.h"
 
+#pragma mark - angle
+
+KDG_UTILITIES_EXTERN const float KDGAngleBetweenPoints(CGPoint a, CGPoint b)
+{
+    CGPoint v = CGPointMake(b.x - a.x, -(b.y - a.y));
+    float vmag = sqrt(v.x * v.x + v.y * v.y);
+
+    v.x /= vmag;
+    v.y /= vmag;
+
+    double radians = atan2(v.y, v.x);
+
+    float result = RADIANS_TO_DEGREES(radians);
+    return (result >= 0.0 ? result : result + 360.0);
+}
+
 #pragma mark - random
 
 #define ARC4RANDOM_MAX 0x100000000
 
-KDG_UTILITIES_EXTERN const int IntRandom(int n)
+KDG_UTILITIES_EXTERN const int KDGRandomInt(int n)
 {
     if (n == 0) return 0;
     int value = arc4random() % n;
@@ -17,12 +33,12 @@ KDG_UTILITIES_EXTERN const int IntRandom(int n)
     return value;
 }
 
-KDG_UTILITIES_EXTERN const float FloatRandom()
+KDG_UTILITIES_EXTERN const float KDGRandomFloat()
 {
-    return FloatRandomInRange(0.0, 1.0);
+    return KDGRandomFloatInRange(0.0, 1.0);
 }
 
-KDG_UTILITIES_EXTERN const float FloatRandomInRange(float min, float max)
+KDG_UTILITIES_EXTERN const float KDGRandomFloatInRange(float min, float max)
 {
     assert(max >= min);
     

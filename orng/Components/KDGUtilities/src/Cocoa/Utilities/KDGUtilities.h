@@ -4,6 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#include <CoreGraphics/CGGeometry.h>
 
 /* Definition of KDG_UTILITIES_EXTERN */
 #if !defined(KDG_UTILITIES_EXTERN)
@@ -28,33 +29,34 @@
 
  @return Angle in degrees.
  */
-#define DEGREES_TO_RADIANS(angle) ((angle  ) * M_PI / 180.0)
+#define DEGREES_TO_RADIANS(degrees) ((degrees) * M_PI / 180.0)
+
+#pragma mark - angle
+
+/**
+ Return angle (in degrees) of vector formed by points a and b.
+ */
+KDG_UTILITIES_EXTERN const float KDGAngleBetweenPoints(CGPoint a, CGPoint b);
 
 #pragma mark - random
 
 /**
  Return random integer ranging from 0 to n - 1.
-
- @return Random integer.
  */
-KDG_UTILITIES_EXTERN const int IntRandom(int n);
+KDG_UTILITIES_EXTERN const int KDGRandomInt(int n);
 
 /**
  Return random float ranging from 0.0 to 1.0.
-
- @return Random float.
  */
-KDG_UTILITIES_EXTERN const float FloatRandom();
+KDG_UTILITIES_EXTERN const float KDGRandomFloat();
 
 /**
  Return random float ranging from min to max.
 
  @param minimum float value.
  @param maximum float value.
-
- @return Random float.
  */
-KDG_UTILITIES_EXTERN const float FloatRandomInRange(float minimum, float maximum);
+KDG_UTILITIES_EXTERN const float KDGRandomFloatInRange(float minimum, float maximum);
 
 #pragma mark - string
 

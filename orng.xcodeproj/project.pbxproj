@@ -39,6 +39,8 @@
 		D37F833519C7D35C002D4C58 /* NixieOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F832B19C7D35C002D4C58 /* NixieOne-Regular.ttf */; };
 		D37F834619C7D408002D4C58 /* PoiretOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F834119C7D408002D4C58 /* PoiretOne-Regular.ttf */; };
 		D37F834819C7D408002D4C58 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F834419C7D408002D4C58 /* Righteous-Regular.ttf */; };
+		D3A082521A142A5700F2DA1A /* KDGCircularSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A082501A142A5700F2DA1A /* KDGCircularSlider.m */; };
+		D3A082551A14399000F2DA1A /* KDGCircularSliderKnobLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A082541A14399000F2DA1A /* KDGCircularSliderKnobLayer.m */; };
 		D3ACBCB519D625E600BE15CB /* KDGGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3ACBCB019D625E600BE15CB /* KDGGridView.m */; };
 		D3ACBCB619D625E600BE15CB /* KDGGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3ACBCB219D625E600BE15CB /* KDGGridViewCell.m */; };
 		D3E7037519FDABDA00E38E71 /* KDGCommandEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E7037319FDABDA00E38E71 /* KDGCommandEngine.m */; };
@@ -114,6 +116,11 @@
 		D37F832B19C7D35C002D4C58 /* NixieOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NixieOne-Regular.ttf"; path = "Fonts/Nixie_One/NixieOne-Regular.ttf"; sourceTree = "<group>"; };
 		D37F834119C7D408002D4C58 /* PoiretOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoiretOne-Regular.ttf"; sourceTree = "<group>"; };
 		D37F834419C7D408002D4C58 /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Righteous-Regular.ttf"; sourceTree = "<group>"; };
+		D3A0824C1A142A5700F2DA1A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D3A0824F1A142A5700F2DA1A /* KDGCircularSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGCircularSlider.h; sourceTree = "<group>"; };
+		D3A082501A142A5700F2DA1A /* KDGCircularSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGCircularSlider.m; sourceTree = "<group>"; };
+		D3A082531A14399000F2DA1A /* KDGCircularSliderKnobLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGCircularSliderKnobLayer.h; sourceTree = "<group>"; };
+		D3A082541A14399000F2DA1A /* KDGCircularSliderKnobLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGCircularSliderKnobLayer.m; sourceTree = "<group>"; };
 		D3ACBCAB19D625E600BE15CB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D3ACBCAF19D625E600BE15CB /* KDGGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGGridView.h; sourceTree = "<group>"; };
 		D3ACBCB019D625E600BE15CB /* KDGGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGGridView.m; sourceTree = "<group>"; };
@@ -372,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				0C9EA8501A0987ED00DD4D97 /* KDGBackDoorView */,
+				D3A0824B1A142A5700F2DA1A /* KDGCircularSlider */,
 				D3E7036E19FDABDA00E38E71 /* KDGCommandEngine */,
 				0C9EA8431A09229200DD4D97 /* KDGCoverVerticalOverCurrentContextAnimatedTransition */,
 				D3ACBCAA19D625E600BE15CB /* KDGGridView */,
@@ -496,6 +504,34 @@
 			);
 			name = Righteous;
 			path = Fonts/Righteous;
+			sourceTree = "<group>";
+		};
+		D3A0824B1A142A5700F2DA1A /* KDGCircularSlider */ = {
+			isa = PBXGroup;
+			children = (
+				D3A0824C1A142A5700F2DA1A /* README.md */,
+				D3A0824D1A142A5700F2DA1A /* src */,
+			);
+			path = KDGCircularSlider;
+			sourceTree = "<group>";
+		};
+		D3A0824D1A142A5700F2DA1A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D3A0824E1A142A5700F2DA1A /* iOS */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D3A0824E1A142A5700F2DA1A /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				D3A0824F1A142A5700F2DA1A /* KDGCircularSlider.h */,
+				D3A082501A142A5700F2DA1A /* KDGCircularSlider.m */,
+				D3A082531A14399000F2DA1A /* KDGCircularSliderKnobLayer.h */,
+				D3A082541A14399000F2DA1A /* KDGCircularSliderKnobLayer.m */,
+			);
+			path = iOS;
 			sourceTree = "<group>";
 		};
 		D3ACBCAA19D625E600BE15CB /* KDGGridView */ = {
@@ -681,6 +717,7 @@
 			files = (
 				0C9EA8591A0987ED00DD4D97 /* KDGBackDoorViewController.m in Sources */,
 				0C6196B11A141095006A9D45 /* UIColor+AppColors.m in Sources */,
+				D3A082551A14399000F2DA1A /* KDGCircularSliderKnobLayer.m in Sources */,
 				0C77664A1A0829A700D790D8 /* BaseViewController.m in Sources */,
 				D3ACBCB519D625E600BE15CB /* KDGGridView.m in Sources */,
 				D3157F4C19D50766008812CA /* MainViewController.m in Sources */,
@@ -692,6 +729,7 @@
 				0CA5B93E19C36740001322A0 /* AppDelegate.m in Sources */,
 				D3E7037519FDABDA00E38E71 /* KDGCommandEngine.m in Sources */,
 				D3157F4819D50766008812CA /* DataModel.m in Sources */,
+				D3A082521A142A5700F2DA1A /* KDGCircularSlider.m in Sources */,
 				D3157F4A19D50766008812CA /* ListViewController.m in Sources */,
 				0C9EA83D1A0921B600DD4D97 /* UIDevice+KDGUtilities.m in Sources */,
 				D3157F4F19D5084E008812CA /* TestViewController.m in Sources */,

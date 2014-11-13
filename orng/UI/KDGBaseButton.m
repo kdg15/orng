@@ -148,6 +148,40 @@ static CGFloat const kDefaultSlopDistance  = 30.0;
     self.layer.cornerRadius = radius;
 }
 
+#pragma mark - highlight
+
+- (void)highlight
+{
+    self.layer.backgroundColor = self.highlightColor.CGColor;
+
+    /*
+     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"borderWidth"];
+     animation.duration = 0.1;
+     animation.removedOnCompletion = NO;
+     animation.fillMode = kCAFillModeBoth;
+     animation.fromValue = @0.0;
+     animation.toValue = [NSNumber numberWithFloat:kBorderWidth];
+
+     [self.layer addAnimation:animation forKey:nil];
+     */
+}
+
+- (void)unhighlight
+{
+    self.layer.backgroundColor = self.color.CGColor;
+
+    /*
+     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"borderWidth"];
+     animation.duration = 0.1;
+     animation.removedOnCompletion = NO;
+     animation.fillMode = kCAFillModeBoth;
+     animation.fromValue = [NSNumber numberWithFloat:kBorderWidth];
+     animation.toValue = @0.0;
+
+     [self.layer addAnimation:animation forKey:nil];
+     */
+}
+
 #pragma mark - point inside
 
 - (BOOL)isCircleButton
@@ -198,40 +232,6 @@ static CGFloat const kDefaultSlopDistance  = 30.0;
     }
 
     return result;
-}
-
-#pragma mark - highlight
-
-- (void)highlight
-{
-    self.layer.backgroundColor = self.highlightColor.CGColor;
-
-    /*
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"borderWidth"];
-    animation.duration = 0.1;
-    animation.removedOnCompletion = NO;
-    animation.fillMode = kCAFillModeBoth;
-    animation.fromValue = @0.0;
-    animation.toValue = [NSNumber numberWithFloat:kBorderWidth];
-    
-    [self.layer addAnimation:animation forKey:nil];
-     */
-}
-
-- (void)unhighlight
-{
-    self.layer.backgroundColor = self.color.CGColor;
-    
-    /*
-     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"borderWidth"];
-     animation.duration = 0.1;
-     animation.removedOnCompletion = NO;
-     animation.fillMode = kCAFillModeBoth;
-     animation.fromValue = [NSNumber numberWithFloat:kBorderWidth];
-     animation.toValue = @0.0;
-     
-     [self.layer addAnimation:animation forKey:nil];
-     */
 }
 
 #pragma mark - event tracking

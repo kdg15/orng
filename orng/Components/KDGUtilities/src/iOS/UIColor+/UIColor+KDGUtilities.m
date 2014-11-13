@@ -102,6 +102,8 @@
     return color;
 }
 
+#pragma mark - tests;
+
 + (void)runTests
 {
     [self testColorStrings];

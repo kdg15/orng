@@ -39,6 +39,8 @@
  */
 - (UIColor *)kdgDarkerColor;
 
+#pragma mark - tests;
+
 + (void)runTests;
 
 @end

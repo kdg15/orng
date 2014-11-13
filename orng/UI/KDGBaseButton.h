@@ -21,8 +21,8 @@
 @property (nonatomic, assign) CGFloat cornerRadius;
 
 /**
- Distance beyond the button border where touch events are still considered to
- be inside the button. Note this does not pertain to the intial touch down event.
+ Distance beyond the control border where touch events are still considered to
+ be inside the control. Note this does not pertain to the intial touch down event.
  */
 @property (nonatomic, assign) CGFloat slopDistance;
 

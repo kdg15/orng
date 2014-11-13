@@ -522,7 +522,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
             view.layer.transform = fromTransform;
             view.hidden = NO;
             
-            NSTimeInterval delay = [UIView kdgAdjustAnimationDuration:FloatRandomInRange(0.0, 0.15)];
+            NSTimeInterval delay = [UIView kdgAdjustAnimationDuration:KDGRandomFloatInRange(0.0, 0.15)];
 
             [UIView animateWithDuration:duration
                                   delay:delay
@@ -548,7 +548,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
                                self.backgroundButton,
                                self.brightnessButton])
         {
-            NSTimeInterval delay = FloatRandomInRange(0.0, 0.2);
+            NSTimeInterval delay = KDGRandomFloatInRange(0.0, 0.2);
             
             CGPoint endPoint = view.center;
             
@@ -595,7 +595,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
             
             for (UIView *view in views)
             {
-                CFTimeInterval delay = FloatRandomInRange(0.0, 0.15);
+                CFTimeInterval delay = KDGRandomFloatInRange(0.0, 0.15);
                 
                 CGPoint fromPoint = self.optionsButton.center;
                 CGPoint toPoint = view.center;
@@ -640,7 +640,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
             view.center = fromPoint;
             view.layer.transform = fromTransform;
             
-            NSTimeInterval delay = [UIView kdgAdjustAnimationDuration:FloatRandomInRange(0.0, 0.05)];
+            NSTimeInterval delay = [UIView kdgAdjustAnimationDuration:KDGRandomFloatInRange(0.0, 0.05)];
             
             [UIView animateWithDuration:midDuration
                                   delay:delay
@@ -674,7 +674,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
          self.backgroundButton,
          self.brightnessButton])
          {
-         NSTimeInterval delay = FloatRandomInRange(0.0, 0.1);
+         NSTimeInterval delay = KDGRandomFloatInRange(0.0, 0.1);
          
          view.transform = startTransform;
          
@@ -709,7 +709,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
             
             for (UIView *view in views)
             {
-                CFTimeInterval delay = FloatRandomInRange(0.0, 0.15);
+                CFTimeInterval delay = KDGRandomFloatInRange(0.0, 0.15);
                 
                 CGPoint fromPoint = view.center;
                 CGPoint toPoint = self.optionsButton.center;
@@ -763,7 +763,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
                 view.layer.transform = fromTransform;
                 view.hidden = NO;
                 
-                NSTimeInterval delay = [UIView kdgAdjustAnimationDuration:FloatRandomInRange(0.0, 0.15)];
+                NSTimeInterval delay = [UIView kdgAdjustAnimationDuration:KDGRandomFloatInRange(0.0, 0.15)];
                 
                 [UIView animateWithDuration:duration
                                       delay:delay
@@ -930,7 +930,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
             view.center = fromPoint;
             view.layer.transform = fromTransform;
             
-            NSTimeInterval delay = [UIView kdgAdjustAnimationDuration:FloatRandomInRange(0.0, 0.05)];
+            NSTimeInterval delay = [UIView kdgAdjustAnimationDuration:KDGRandomFloatInRange(0.0, 0.05)];
             
             [UIView animateWithDuration:midDuration
                                   delay:delay
@@ -962,7 +962,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
          for (UIView *view in @[self.cancelButton,
          self.okayButton])
          {
-         NSTimeInterval delay = FloatRandomInRange(0.0, 0.1);
+         NSTimeInterval delay = KDGRandomFloatInRange(0.0, 0.1);
          
          view.transform = startTransform;
          
@@ -1019,7 +1019,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
             //            //CGPoint toPoint = self.optionsButton.center;//view.center;
             //            CGPoint toPoint = self.optionSlider.center;//view.center;
             //
-            //            CFTimeInterval delay = FloatRandomInRange(0.0, 0.15);
+            //            CFTimeInterval delay = KDGRandomFloatInRange(0.0, 0.15);
             //
             //            [view kdgAddAnimateTransform:duration
             //                                   delay:delay
@@ -1034,7 +1034,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
                 //CGPoint toPoint = self.optionsButton.center;//view.center;
                 CGPoint toPoint = self.optionSlider.center;//view.center;
                 
-                CFTimeInterval delay = FloatRandomInRange(0.0, 0.0);
+                CFTimeInterval delay = KDGRandomFloatInRange(0.0, 0.0);
                 
                 [view kdgAddAnimateTransform:duration
                                        delay:delay

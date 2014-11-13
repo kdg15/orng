@@ -6,6 +6,7 @@
 #import "AppDelegate.h"
 #import "CommandSystem.h"
 #import "UIColor+KDGUtilities.h"
+#import "KDGCircularSlider.h"
 
 @interface AppDelegate () <KDGCommandEngineResponder>
 
@@ -100,6 +101,7 @@
 - (void)runTests
 {
     [UIColor runTests];
+    [KDGCircularSlider runTests];
 }
 
 @end
