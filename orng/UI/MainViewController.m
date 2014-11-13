@@ -10,6 +10,7 @@
 #import "KDGBackDoorViewController.h"
 #import "UIView+KDGAnimation.h"
 #import "KDGCircularSlider.h"
+#import "UIColor+AppColors.h"
 
 static NSString * const kClockViewSegue = @"ClockViewSegue";
 static NSString * const kListViewSegue  = @"ListViewSegue";
@@ -28,11 +29,20 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
 
     [[CommandEngine sharedInstance] addResponder:self];
 
-    CGRect sliderFrame = CGRectMake(120, 280, 80, 80);
+    CGRect sliderFrame = CGRectMake(120, 280, 60, 60);
     KDGCircularSlider *slider = [[KDGCircularSlider alloc] initWithFrame:sliderFrame];
-    slider.minimum = 10.0;
-    slider.maximum = 20.0;
-    slider.backgroundColor = [UIColor redColor];
+    slider.minimum = 0.0;
+    slider.maximum = 360.0;
+    slider.value = slider.minimum;
+    /*
+    slider.backgroundColor = [UIColor appLightBlueColor];
+    slider.highlightColor = [UIColor appBlueColor];
+    slider.trackColor = [UIColor whiteColor];
+    slider.trackHighlightColor = [UIColor lightGrayColor];
+    slider.knobColor = [UIColor whiteColor];
+    slider.knobHighlightColor = [UIColor appOrangeColor];
+    */
+    
     [self.view addSubview:slider];
 
     /*

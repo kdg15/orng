@@ -4,25 +4,31 @@
 //
 
 #import "KDGCircularSlider.h"
+#import "KDGCircularSliderTrackLayer.h"
 #import "KDGCircularSliderKnobLayer.h"
 #import "KDGUtilities.h"
 
-static CGSize const kKnobSize = { 16, 16 };
-static CGFloat const kDefaultSlopDistance  = 30.0;
+static CGFloat const kDefaultKnobSize      = 12.0;
+static CGFloat const kDefaultTrackSize     =  2.0;
+static CGFloat const kDefaultSlopDistance  = 60.0;
 
 @interface KDGCircularSlider ()
-{
-    CALayer *_trackLayer;
-    KDGCircularSliderKnobLayer *_knobLayer;
-}
 
-//@property (nonatomic, strong) UIColor *color;
-@property (nonatomic, assign) CGPoint lastTouchPoint;
+@property (nonatomic, strong) KDGCircularSliderTrackLayer *trackLayer;
+@property (nonatomic, strong) KDGCircularSliderKnobLayer *knobLayer;
+
+@property (nonatomic, strong) UIColor *color;
+
 @property (nonatomic, strong) UILabel *label;
+@property (nonatomic, assign) CGFloat angle;
+@property (nonatomic, assign) CGFloat originalAngle;
+@property (nonatomic, assign) CGPoint lastTouchPoint;
 
 @end
 
 @implementation KDGCircularSlider
+
+@synthesize value = _value;
 
 #pragma mark - initialization
 
@@ -52,62 +58,60 @@ static CGFloat const kDefaultSlopDistance  = 30.0;
 
 - (void)kdgCircularSliderInitialize
 {
-    _angle = 0;
+    _angle = 0.0;
     _minimum = 0.0;
     _maximum = 1.0;
     _value = _minimum;
+    _orientation = 270.0;
 
+    _knobSize = kDefaultKnobSize;
+    _trackSize = kDefaultTrackSize;
     _slopDistance = kDefaultSlopDistance;
 
-    _trackLayer = [CALayer layer];
-    _trackLayer.backgroundColor = [UIColor blueColor].CGColor;
+    _color               = [UIColor lightGrayColor];
+    _highlightColor      = [UIColor grayColor];
+    _trackColor          = [UIColor whiteColor];
+    _trackHighlightColor = [UIColor whiteColor];
+    _knobColor           = [UIColor whiteColor];
+    _knobHighlightColor  = [UIColor darkGrayColor];
+    _textColor           = [UIColor whiteColor];
+
+    _trackLayer = [KDGCircularSliderTrackLayer layer];
+    _trackLayer.slider = self;
     [self.layer addSublayer:_trackLayer];
 
     _knobLayer = [KDGCircularSliderKnobLayer layer];
     _knobLayer.slider = self;
-    _knobLayer.backgroundColor = [UIColor greenColor].CGColor;
     [self.layer addSublayer:_knobLayer];
 
-    [self setLayerFrames];
-    _trackLayer.frame = self.bounds;
+    [self updateLayers];
 
-    self.label = [[UILabel alloc] initWithFrame:self.bounds];
+    self.label = [[UILabel alloc] initWithFrame:[self actualBounds]];
     self.label.text = @"0";
     self.label.textAlignment = NSTextAlignmentCenter;
-    self.label.textColor = [UIColor whiteColor];
+    self.label.textColor = self.textColor;
 
     [self addSubview:self.label];
-
-    /*
-    _color          = [UIColor lightGrayColor];
-    _highlightColor = [UIColor grayColor];
-    _borderColor    = [UIColor darkGrayColor];
-
-    _borderWidth   = kDefaultBorderWidth;
-    _shadowOpacity = kDefaultShadowOpacity;
-    _cornerRadius  = 0.5 * self.bounds.size.height;
-    _slopDistance  = kDefaultSlopDistance;
-
-    self.layer.backgroundColor = _color.CGColor;
-    self.layer.cornerRadius = _cornerRadius;
-    self.layer.borderColor = _borderColor.CGColor;
-    self.layer.borderWidth = _borderWidth;
-    self.layer.shadowOpacity = _shadowOpacity;
-    self.layer.shadowOffset = CGSizeMake(2.0, 2.0);
-     */
 }
 
-- (void)setLayerFrames
-{
-    CGPoint position = [self pointFromAngle:self.angle];
-    //NSLog(@"self.angle = %d, point = %.1f, %.1f", self.angle, position.x, position.y);
-    _knobLayer.frame = CGRectMake(position.x - 0.5 * kKnobSize.width,
-                                  position.y - 0.5 * kKnobSize.height,
-                                  kKnobSize.width,
-                                  kKnobSize.height);
+#pragma mark - actual bounds
 
-    //[_trackLayer setNeedsDisplay];
-    [_knobLayer setNeedsDisplay];
+- (CGRect)actualBounds
+{
+    CGRect bounds = self.bounds;
+
+    if (bounds.size.width < bounds.size.height)
+    {
+        bounds.origin.y = 0.5 * (bounds.size.height - bounds.size.width);
+        bounds.size.height = bounds.size.width;
+    }
+    else if (bounds.size.height < bounds.size.width)
+    {
+        bounds.origin.x = 0.5 * (bounds.size.width - bounds.size.height);
+        bounds.size.width = bounds.size.height;
+    }
+
+    return bounds;
 }
 
 #pragma mark - properties
@@ -117,57 +121,51 @@ static CGFloat const kDefaultSlopDistance  = 30.0;
     return [self valueFromAngle:self.angle];
 }
 
-- (CGFloat)valueFromAngle:(NSInteger)angle
+- (void)setValue:(CGFloat)value
 {
-    //  0 at east - adjust by 0
-    //  0 at north - adjust by 90
-    //  0 at west - adjust by 180
-    //  0 at south - adjust by 270
-    NSInteger adjust = 270;
-
-    angle -= adjust;
-    if (angle < 0) angle += 360;
-    angle = 359 - angle;
-
-    CGFloat value = self.minimum + angle / 359.0 * (self.maximum - self.minimum);
-
-    return value;
+    if      (value < self.minimum) value = self.minimum;
+    else if (value > self.maximum) value = self.maximum;
+    
+    _value = value;
+    
+    self.angle = [self angleFromValue:value];
+    
+    [self updateKnob];
+    [self updateLabel];
 }
 
-- (NSInteger)angleFromValue:(CGFloat)value
+- (UIColor *)backgroundColor
 {
-    NSInteger angle = floor(359.0 * (value - self.minimum) / (self.maximum - self.minimum));
+    return _color;
+}
 
-    //  0 at east - adjust by 0
-    //  0 at north - adjust by 90
-    //  0 at west - adjust by 180
-    //  0 at south - adjust by 270
-
-    NSInteger adjust = 270;
-    angle = 359 - angle;
-    angle += adjust;
-    if (angle >= 360) angle -= 360;
-
-    return angle;
+- (void)setBackgroundColor:(UIColor *)color
+{
+    _color = color;
 }
 
 #pragma mark - highlight
 
 - (void)highlight
 {
-    _trackLayer.backgroundColor = [UIColor purpleColor].CGColor;
+    _trackLayer.highlighted = YES;
+    _knobLayer.highlighted = YES;
+    [self updateKnob];
 }
 
 - (void)unhighlight
 {
-    _trackLayer.backgroundColor = [UIColor blueColor].CGColor;
+    _trackLayer.highlighted = NO;
+    _knobLayer.highlighted = NO;
+    [self updateKnob];
 }
 
 #pragma mark - point inside
 
 - (CGFloat)calculateDistanceFromCenter:(CGPoint)point
 {
-    CGPoint c = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+    CGRect bounds = [self actualBounds];
+    CGPoint c = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
     CGFloat dx = point.x - c.x;
     CGFloat dy = point.y - c.y;
     CGFloat d = sqrtf(dx * dx + dy * dy);
@@ -179,8 +177,9 @@ static CGFloat const kDefaultSlopDistance  = 30.0;
 {
     BOOL result = NO;
 
+    CGRect bounds = [self actualBounds];
     CGFloat distance = [self calculateDistanceFromCenter:point];
-    result = (distance <= 0.5 * self.bounds.size.width);
+    result = (distance <= 0.5 * bounds.size.width);
 
     return result;
 }
@@ -189,13 +188,71 @@ static CGFloat const kDefaultSlopDistance  = 30.0;
 {
     BOOL result = NO;
 
+    CGRect bounds = [self actualBounds];
     CGFloat distance = [self calculateDistanceFromCenter:point];
-    result = (distance <= (0.5 * self.bounds.size.width + self.slopDistance));
+    result = (distance <= (0.5 * bounds.size.width + self.slopDistance));
 
     return result;
 }
 
+#pragma mark - ui
+
+- (void)updateLayers
+{
+    CGRect bounds = [self actualBounds];
+    _trackLayer.frame = bounds;
+    
+    CGPoint position = [self pointFromAngle:self.angle];
+    CGFloat knobSize = self.knobSize;
+
+    _knobLayer.frame = CGRectMake(position.x - 0.5 * knobSize,
+                                  position.y - 0.5 * knobSize,
+                                  knobSize,
+                                  knobSize);
+    
+    [_trackLayer setNeedsDisplay];
+    [_knobLayer setNeedsDisplay];
+}
+
+- (void)updateKnob
+{
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    [self updateLayers];
+    [CATransaction commit];
+}
+
+- (void)updateLabel
+{
+    self.label.text = [NSString stringWithFormat:@"%.1f", self.value];
+}
+
 #pragma mark - knob
+
+- (CGFloat)valueFromAngle:(CGFloat)angle
+{
+    CGFloat adjust = self.orientation;
+    
+    angle -= adjust;
+    if (angle < 0) angle += 360.0;
+    angle = 359.0 - angle;
+    
+    CGFloat value = self.minimum + angle * (self.maximum - self.minimum) / 359.0;
+    
+    return value;
+}
+
+- (CGFloat)angleFromValue:(CGFloat)value
+{
+    CGFloat angle = 359.0 * (value - self.minimum) / (self.maximum - self.minimum);
+    
+    CGFloat adjust = self.orientation;
+    angle = 359.0 - angle;
+    angle += adjust;
+    if (angle >= 360.0) angle -= 360.0;
+    
+    return angle;
+}
 
 -(void)angleFromPoint:(CGPoint)point
 {
@@ -206,22 +263,17 @@ static CGFloat const kDefaultSlopDistance  = 30.0;
     int angle = floor(currentAngle);
     self.angle = angle;
 
-    self.label.text = [NSString stringWithFormat:@"%.1f", self.value];
-
-    [CATransaction begin];
-    [CATransaction setDisableActions:YES];
-
-    [self setLayerFrames];
-
-    [CATransaction commit];
+    [self updateKnob];
+    [self updateLabel];
 }
 
-- (CGPoint)pointFromAngle:(int)angle
+- (CGPoint)pointFromAngle:(CGFloat)angle
 {
     CGPoint center = CGPointMake(0.5 * self.frame.size.width,
                                  0.5 * self.frame.size.height);
 
-    CGFloat radius = 0.5 * self.frame.size.width;
+    CGRect bounds = [self actualBounds];
+    CGFloat radius = 0.5 * (bounds.size.width - self.knobSize);
 
     CGPoint result;
     result.y = round(center.y + radius * sin(DEGREES_TO_RADIANS(-angle))) ;
@@ -349,20 +401,16 @@ static CGFloat const kDefaultSlopDistance  = 30.0;
     slider.maximum = 1.0;
     slider.value = slider.minimum;
 
-    //NSInteger angle = [slider angleFromValue:slider.value];
-
-    for (NSInteger angle = 0; angle < 360; angle += 15)
+    for (CGFloat angle = 0.0; angle < 360.0; angle += 15.0)
     {
         CGFloat value = [slider valueFromAngle:angle];
-        NSLog(@"angle %3d, value %.3f, angle %d",
-              angle, value, [slider angleFromValue:value]);
+        CGFloat resultAngle = [slider angleFromValue:value];
+        if (resultAngle != angle)
+        {
+            failures++;
+            NSLog(@"### test failure: expected %.3f, got %.3f", angle, resultAngle);
+        }
     }
-
-//    for (CGFloat value = slider.minimum; value < slider.maximum; value += 0.1)
-//    {
-//        //slider.value = value;
-//        NSLog(@"value %.3f, angle %d", value, [slider angleFromValue:value]);
-//    }
 
     NSLog(@"--- testValue: %@", failures == 0 ? @"all passed" : [NSString stringWithFormat:@"%d failures", failures]);
 }

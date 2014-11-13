@@ -7,7 +7,7 @@
 
 @class KDGCircularSlider;
 
-@interface KDGCircularSliderKnobLayer : KDGCALayer
+@interface KDGCircularSliderTrackLayer : KDGCALayer
 
 @property (nonatomic, assign) BOOL highlighted;
 @property (nonatomic, weak) KDGCircularSlider *slider;

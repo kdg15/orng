@@ -41,8 +41,6 @@ static CGFloat const kDefaultSlopDistance  = 30.0;
     
     self.layer.backgroundColor = _swatchColor.CGColor;
     self.layer.cornerRadius = 0.5 * self.bounds.size.height;
-    //self.layer.borderColor = [UIColor whiteColor].CGColor;
-    //self.layer.borderWidth = 2.0;
     self.layer.shadowOpacity = 1.0;
     self.layer.shadowOffset = CGSizeMake(0.0, 0.0);
     self.layer.shadowColor = [UIColor blackColor].CGColor;
