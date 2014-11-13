@@ -154,6 +154,13 @@ static CGFloat const kDefaultSlopDistance  = 60.0;
     self.label.font = font;
 }
 
+#pragma mark - draw blocks
+
+- (void)setTrackDrawBlock:(KDGLayerDrawBlock)drawBlock
+{
+    self.trackLayer.drawBlock = drawBlock;
+}
+
 #pragma mark - highlight
 
 - (void)highlight

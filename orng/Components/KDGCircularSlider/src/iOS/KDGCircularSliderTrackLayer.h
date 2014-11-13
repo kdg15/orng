@@ -4,12 +4,13 @@
 //
 
 #import "KDGCALayer.h"
-
-@class KDGCircularSlider;
+#import "KDGCircularSlider.h"
 
 @interface KDGCircularSliderTrackLayer : KDGCALayer
 
 @property (nonatomic, assign) BOOL highlighted;
 @property (nonatomic, weak) KDGCircularSlider *slider;
+
+@property (nonatomic, copy) KDGLayerDrawBlock drawBlock;
 
 @end

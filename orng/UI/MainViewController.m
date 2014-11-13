@@ -34,6 +34,98 @@ static NSString * const kDummyViewSegue = @"DummyViewSegue";
     slider.minimum = 0.0;
     slider.maximum = 360.0;
     slider.value = slider.minimum;
+    
+    [slider setTrackDrawBlock:^(CALayer *layer, CGContextRef context) {
+        
+        CGContextSetFillColorWithColor(context, [UIColor orangeColor].CGColor);
+        CGContextFillEllipseInRect(context, layer.bounds);
+        
+        /*
+        CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+
+        CGFloat comps[] = {1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0};
+        CGFloat locs[] = {0, 1};
+        CGGradientRef gradient = CGGradientCreateWithColorComponents(space, comps, locs, 2);
+
+        CGPoint startCenter = CGPointMake(CGRectGetMidX(layer.bounds), CGRectGetMidY(layer.bounds));
+        CGPoint endCenter = startCenter;
+        CGFloat startRadius = 0;
+        CGFloat endRadius = 0.5 * layer.bounds.size.width;
+        
+        CGGradientDrawingOptions options = 0;
+        
+        CGContextDrawRadialGradient(context,
+                                    gradient,
+                                    startCenter,
+                                    startRadius,
+                                    endCenter,
+                                    endRadius,
+                                    options);
+        
+        CGGradientRelease(gradient);
+        */
+        
+        /*
+        CGFloat colors [] = {
+            1.0, 1.0, 1.0, 1.0,
+            1.0, 0.0, 0.0, 1.0
+        };
+        
+        CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
+        CGGradientRef gradient = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 2);
+        CGColorSpaceRelease(baseSpace), baseSpace = NULL;
+        
+        CGContextSetLineWidth(context, 40);
+        CGContextSetLineJoin(context, kCGLineJoinRound);
+        CGContextSetLineCap(context, kCGLineCapRound);
+        
+        UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:layer.bounds];
+        CGContextAddPath(context, path.CGPath);
+        //CGContextAddPath(context, [self pathForOverlayForMapRect:mapRect].CGPath);
+        CGContextReplacePathWithStrokedPath(context);
+        CGContextClip(context);
+        
+        //[self updateTouchablePathForMapRect:mapRect];
+        
+        // Define the start and end points for the gradient
+        // This determines the direction in which the gradient is drawn
+        CGRect rect = layer.bounds;
+        CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
+        CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
+        
+        CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
+        CGGradientRelease(gradient), gradient = NULL;
+         */
+        
+        CGFloat colors [] = {
+            1.0, 1.0, 1.0, 1.0,
+            1.0, 0.0, 0.0, 1.0
+        };
+        
+        CGRect rect = layer.bounds;
+        
+        CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
+        CGGradientRef gradient = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 2);
+        CGColorSpaceRelease(baseSpace), baseSpace = NULL;
+        
+        //CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        CGContextSaveGState(context);
+        CGContextAddEllipseInRect(context, rect);
+        CGContextClip(context);
+        
+        CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
+        CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
+        
+        CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
+        CGGradientRelease(gradient), gradient = NULL;
+        
+        CGContextRestoreGState(context);
+        
+        CGContextAddEllipseInRect(context, rect);
+        CGContextDrawPath(context, kCGPathStroke);
+    }];
+
     /*
     slider.backgroundColor = [UIColor appLightBlueColor];
     slider.highlightColor = [UIColor appBlueColor];

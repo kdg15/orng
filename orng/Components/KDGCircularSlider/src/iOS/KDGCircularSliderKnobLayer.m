@@ -4,22 +4,21 @@
 //
 
 #import "KDGCircularSliderKnobLayer.h"
-#import "KDGCircularSlider.h"
 #import <UIKit/UIKit.h>
 
 @implementation KDGCircularSliderKnobLayer
 
-- (void)drawInContext:(CGContextRef)ctx
+- (void)drawInContext:(CGContextRef)context
 {
     if (self.highlighted)
     {
-        CGContextSetFillColorWithColor(ctx, self.slider.knobHighlightColor.CGColor);
-        CGContextFillEllipseInRect(ctx, self.bounds);
+        CGContextSetFillColorWithColor(context, self.slider.knobHighlightColor.CGColor);
+        CGContextFillEllipseInRect(context, self.bounds);
     }
     else
     {
-        CGContextSetFillColorWithColor(ctx, self.slider.knobColor.CGColor);
-        CGContextFillEllipseInRect(ctx, self.bounds);
+        CGContextSetFillColorWithColor(context, self.slider.knobColor.CGColor);
+        CGContextFillEllipseInRect(context, self.bounds);
     }
 }
 

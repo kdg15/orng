@@ -4,8 +4,7 @@
 //
 
 #import "KDGCALayer.h"
-
-@class KDGCircularSlider;
+#import "KDGCircularSlider.h"
 
 @interface KDGCircularSliderKnobLayer : KDGCALayer
 

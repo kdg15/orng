@@ -4,35 +4,41 @@
 //
 
 #import "KDGCircularSliderTrackLayer.h"
-#import "KDGCircularSlider.h"
 #import <UIKit/UIKit.h>
 
 @implementation KDGCircularSliderTrackLayer
 
 #pragma mark - draw
 
-- (void)drawInContext:(CGContextRef)ctx
+- (void)drawInContext:(CGContextRef)context
 {
-    CGFloat inset = 0.5 * self.slider.knobSize;
-    CGRect pathRect = CGRectInset(self.bounds, inset, inset);
-    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:pathRect];
-
-    if (self.highlighted)
+    if (self.drawBlock)
     {
-        CGContextSetFillColorWithColor(ctx, self.slider.highlightColor.CGColor);
-        CGContextFillEllipseInRect(ctx, self.bounds);
-        CGContextSetStrokeColorWithColor(ctx, self.slider.trackHighlightColor.CGColor);
+        self.drawBlock(self, context);
     }
     else
     {
-        CGContextSetFillColorWithColor(ctx, self.slider.backgroundColor.CGColor);
-        CGContextFillEllipseInRect(ctx, self.bounds);
-        CGContextSetStrokeColorWithColor(ctx, self.slider.trackColor.CGColor);
+        CGFloat inset = 0.5 * self.slider.knobSize;
+        CGRect pathRect = CGRectInset(self.bounds, inset, inset);
+        UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:pathRect];
+        
+        if (self.highlighted)
+        {
+            CGContextSetFillColorWithColor(context, self.slider.highlightColor.CGColor);
+            CGContextFillEllipseInRect(context, self.bounds);
+            CGContextSetStrokeColorWithColor(context, self.slider.trackHighlightColor.CGColor);
+        }
+        else
+        {
+            CGContextSetFillColorWithColor(context, self.slider.backgroundColor.CGColor);
+            CGContextFillEllipseInRect(context, self.bounds);
+            CGContextSetStrokeColorWithColor(context, self.slider.trackColor.CGColor);
+        }
+        
+        CGContextSetLineWidth(context, self.slider.trackSize);
+        CGContextAddPath(context, path.CGPath);
+        CGContextStrokePath(context);
     }
-    
-    CGContextSetLineWidth(ctx, self.slider.trackSize);
-    CGContextAddPath(ctx, path.CGPath);
-    CGContextStrokePath(ctx);
 }
 
 @end

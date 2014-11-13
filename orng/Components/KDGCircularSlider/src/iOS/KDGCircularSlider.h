@@ -5,6 +5,8 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^KDGLayerDrawBlock)(CALayer *layer, CGContextRef context);
+
 @interface KDGCircularSlider : UIControl
 
 @property (nonatomic, assign) CGFloat minimum;
@@ -46,6 +48,8 @@
 @property (nonatomic, assign) CGFloat slopDistance;
 
 - (void)setFont:(UIFont *)font;
+
+- (void)setTrackDrawBlock:(KDGLayerDrawBlock)drawBlock;
 
 #pragma mark - tests;
 
