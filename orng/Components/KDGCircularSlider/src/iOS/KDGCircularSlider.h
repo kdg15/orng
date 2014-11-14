@@ -22,6 +22,7 @@ typedef void(^KDGLayerDrawBlock)(CALayer *layer, CGContextRef context);
 
 @property (nonatomic, assign) CGFloat knobSize;
 @property (nonatomic, assign) CGFloat trackSize;
+@property (nonatomic, assign) CGFloat trackMargin;
 
 /**
  Set the format for displaying the value in the label.

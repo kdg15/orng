@@ -18,7 +18,7 @@
     }
     else
     {
-        CGFloat inset = 0.5 * self.slider.knobSize;
+        CGFloat inset = 0.5 * self.slider.knobSize + self.slider.trackMargin;
         CGRect pathRect = CGRectInset(self.bounds, inset, inset);
         UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:pathRect];
         

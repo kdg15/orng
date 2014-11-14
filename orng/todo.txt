@@ -1,5 +1,9 @@
 todo
 ====
+- integrate new buttons into clock.
+- see how big circular slider needs to be for it to be more usable
+- try a pop up arc slider.
+- specify an arc range for the usable slider area on a circular slider.
 - rename command responder method to handleCommmand or something else.
 - need system for quickly accessing commands.
 - derived class of BackDoorViewController?

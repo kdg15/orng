@@ -8,8 +8,9 @@
 #import "KDGCircularSliderKnobLayer.h"
 #import "KDGUtilities.h"
 
-static CGFloat const kDefaultKnobSize      = 12.0;
+static CGFloat const kDefaultKnobSize      =  8.0;
 static CGFloat const kDefaultTrackSize     =  2.0;
+static CGFloat const kDefaultTrackMargin   =  2.0;
 static CGFloat const kDefaultSlopDistance  = 60.0;
 
 @interface KDGCircularSlider ()
@@ -66,6 +67,7 @@ static CGFloat const kDefaultSlopDistance  = 60.0;
 
     _knobSize = kDefaultKnobSize;
     _trackSize = kDefaultTrackSize;
+    _trackMargin = kDefaultTrackMargin;
     _slopDistance = kDefaultSlopDistance;
 
     _color               = [UIColor lightGrayColor];
@@ -290,7 +292,7 @@ static CGFloat const kDefaultSlopDistance  = 60.0;
                                  0.5 * self.frame.size.height);
 
     CGRect bounds = [self actualBounds];
-    CGFloat radius = 0.5 * (bounds.size.width - self.knobSize);
+    CGFloat radius = 0.5 * (bounds.size.width - self.knobSize) - self.trackMargin;
 
     CGPoint result;
     result.y = round(center.y + radius * sin(DEGREES_TO_RADIANS(-angle))) ;
