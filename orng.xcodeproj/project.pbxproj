@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C5C66381A1508170072AB64 /* KDGCircularSliderTrackLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C66371A1508170072AB64 /* KDGCircularSliderTrackLayer.m */; };
 		0C5C66401A150C820072AB64 /* KDGCALayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C663E1A150C820072AB64 /* KDGCALayer.m */; };
-		0C5E11E91A0D69BF00E2C7B4 /* KDGBaseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E11E81A0D69BF00E2C7B4 /* KDGBaseButton.m */; };
 		0C6196B11A141095006A9D45 /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6196B01A141095006A9D45 /* UIColor+AppColors.m */; };
 		0C73F00319FE92D400AABCD3 /* SampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C73F00219FE92D400AABCD3 /* SampleViewController.m */; };
 		0C73F00719FEDB1000AABCD3 /* UIColor+KDGUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C73F00619FEDB1000AABCD3 /* UIColor+KDGUtilities.m */; };
@@ -28,6 +26,14 @@
 		0CA5B94919C36740001322A0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CA5B94719C36740001322A0 /* LaunchScreen.xib */; };
 		0CA5B95519C36740001322A0 /* orngTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA5B95419C36740001322A0 /* orngTests.m */; };
 		0CAF705E1A1A81DE002B98C0 /* ScratchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAF705D1A1A81DE002B98C0 /* ScratchViewController.m */; };
+		0CAF706C1A1A8951002B98C0 /* KDGBaseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAF70641A1A8951002B98C0 /* KDGBaseButton.m */; };
+		0CAF706D1A1A8951002B98C0 /* KDGCircularSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAF70661A1A8951002B98C0 /* KDGCircularSlider.m */; };
+		0CAF706E1A1A8951002B98C0 /* KDGCircularSliderKnobLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAF70681A1A8951002B98C0 /* KDGCircularSliderKnobLayer.m */; };
+		0CAF706F1A1A8951002B98C0 /* KDGCircularSliderTrackLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAF706A1A1A8951002B98C0 /* KDGCircularSliderTrackLayer.m */; };
+		0CAF70761A1A89D8002B98C0 /* KDGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAF70711A1A89D8002B98C0 /* KDGButton.m */; };
+		0CAF70771A1A89D8002B98C0 /* KDGColorSwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAF70731A1A89D8002B98C0 /* KDGColorSwatch.m */; };
+		0CAF70781A1A89D8002B98C0 /* KDGColorSwatchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAF70751A1A89D8002B98C0 /* KDGColorSwatchButton.m */; };
+		0CAF707B1A1A8AB5002B98C0 /* KDGTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAF707A1A1A8AB5002B98C0 /* KDGTestView.m */; };
 		0CEE61891A04202500E6E561 /* UIView+KDGAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEE61881A04202500E6E561 /* UIView+KDGAnimation.m */; };
 		D3157F4819D50766008812CA /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3157F3E19D50766008812CA /* DataModel.m */; };
 		D3157F4919D50766008812CA /* ClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3157F4119D50766008812CA /* ClockViewController.m */; };
@@ -42,8 +48,6 @@
 		D37F833519C7D35C002D4C58 /* NixieOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F832B19C7D35C002D4C58 /* NixieOne-Regular.ttf */; };
 		D37F834619C7D408002D4C58 /* PoiretOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F834119C7D408002D4C58 /* PoiretOne-Regular.ttf */; };
 		D37F834819C7D408002D4C58 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F834419C7D408002D4C58 /* Righteous-Regular.ttf */; };
-		D3A082521A142A5700F2DA1A /* KDGCircularSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A082501A142A5700F2DA1A /* KDGCircularSlider.m */; };
-		D3A082551A14399000F2DA1A /* KDGCircularSliderKnobLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A082541A14399000F2DA1A /* KDGCircularSliderKnobLayer.m */; };
 		D3ACBCB519D625E600BE15CB /* KDGGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3ACBCB019D625E600BE15CB /* KDGGridView.m */; };
 		D3ACBCB619D625E600BE15CB /* KDGGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3ACBCB219D625E600BE15CB /* KDGGridViewCell.m */; };
 		D3E7037519FDABDA00E38E71 /* KDGCommandEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E7037319FDABDA00E38E71 /* KDGCommandEngine.m */; };
@@ -63,13 +67,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0C5C66361A1508170072AB64 /* KDGCircularSliderTrackLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGCircularSliderTrackLayer.h; sourceTree = "<group>"; };
-		0C5C66371A1508170072AB64 /* KDGCircularSliderTrackLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGCircularSliderTrackLayer.m; sourceTree = "<group>"; };
 		0C5C663A1A150C820072AB64 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0C5C663D1A150C820072AB64 /* KDGCALayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGCALayer.h; sourceTree = "<group>"; };
 		0C5C663E1A150C820072AB64 /* KDGCALayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGCALayer.m; sourceTree = "<group>"; };
-		0C5E11E71A0D69BF00E2C7B4 /* KDGBaseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGBaseButton.h; sourceTree = "<group>"; };
-		0C5E11E81A0D69BF00E2C7B4 /* KDGBaseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGBaseButton.m; sourceTree = "<group>"; };
 		0C6196AF1A141095006A9D45 /* UIColor+AppColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AppColors.h"; sourceTree = "<group>"; };
 		0C6196B01A141095006A9D45 /* UIColor+AppColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AppColors.m"; sourceTree = "<group>"; };
 		0C73F00119FE92D400AABCD3 /* SampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleViewController.h; sourceTree = "<group>"; };
@@ -105,6 +105,23 @@
 		0CA5B95419C36740001322A0 /* orngTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = orngTests.m; sourceTree = "<group>"; };
 		0CAF705C1A1A81DE002B98C0 /* ScratchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScratchViewController.h; sourceTree = "<group>"; };
 		0CAF705D1A1A81DE002B98C0 /* ScratchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScratchViewController.m; sourceTree = "<group>"; };
+		0CAF70601A1A8951002B98C0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0CAF70631A1A8951002B98C0 /* KDGBaseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGBaseButton.h; sourceTree = "<group>"; };
+		0CAF70641A1A8951002B98C0 /* KDGBaseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGBaseButton.m; sourceTree = "<group>"; };
+		0CAF70651A1A8951002B98C0 /* KDGCircularSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGCircularSlider.h; sourceTree = "<group>"; };
+		0CAF70661A1A8951002B98C0 /* KDGCircularSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGCircularSlider.m; sourceTree = "<group>"; };
+		0CAF70671A1A8951002B98C0 /* KDGCircularSliderKnobLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGCircularSliderKnobLayer.h; sourceTree = "<group>"; };
+		0CAF70681A1A8951002B98C0 /* KDGCircularSliderKnobLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGCircularSliderKnobLayer.m; sourceTree = "<group>"; };
+		0CAF70691A1A8951002B98C0 /* KDGCircularSliderTrackLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGCircularSliderTrackLayer.h; sourceTree = "<group>"; };
+		0CAF706A1A1A8951002B98C0 /* KDGCircularSliderTrackLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGCircularSliderTrackLayer.m; sourceTree = "<group>"; };
+		0CAF70701A1A89D8002B98C0 /* KDGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGButton.h; sourceTree = "<group>"; };
+		0CAF70711A1A89D8002B98C0 /* KDGButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGButton.m; sourceTree = "<group>"; };
+		0CAF70721A1A89D8002B98C0 /* KDGColorSwatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGColorSwatch.h; sourceTree = "<group>"; };
+		0CAF70731A1A89D8002B98C0 /* KDGColorSwatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGColorSwatch.m; sourceTree = "<group>"; };
+		0CAF70741A1A89D8002B98C0 /* KDGColorSwatchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGColorSwatchButton.h; sourceTree = "<group>"; };
+		0CAF70751A1A89D8002B98C0 /* KDGColorSwatchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGColorSwatchButton.m; sourceTree = "<group>"; };
+		0CAF70791A1A8AB5002B98C0 /* KDGTestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGTestView.h; sourceTree = "<group>"; };
+		0CAF707A1A1A8AB5002B98C0 /* KDGTestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGTestView.m; sourceTree = "<group>"; };
 		0CEE61871A04202500E6E561 /* UIView+KDGAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+KDGAnimation.h"; sourceTree = "<group>"; };
 		0CEE61881A04202500E6E561 /* UIView+KDGAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+KDGAnimation.m"; sourceTree = "<group>"; };
 		D3157F3D19D50766008812CA /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
@@ -126,11 +143,6 @@
 		D37F832B19C7D35C002D4C58 /* NixieOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NixieOne-Regular.ttf"; path = "Fonts/Nixie_One/NixieOne-Regular.ttf"; sourceTree = "<group>"; };
 		D37F834119C7D408002D4C58 /* PoiretOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoiretOne-Regular.ttf"; sourceTree = "<group>"; };
 		D37F834419C7D408002D4C58 /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Righteous-Regular.ttf"; sourceTree = "<group>"; };
-		D3A0824C1A142A5700F2DA1A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		D3A0824F1A142A5700F2DA1A /* KDGCircularSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGCircularSlider.h; sourceTree = "<group>"; };
-		D3A082501A142A5700F2DA1A /* KDGCircularSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGCircularSlider.m; sourceTree = "<group>"; };
-		D3A082531A14399000F2DA1A /* KDGCircularSliderKnobLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGCircularSliderKnobLayer.h; sourceTree = "<group>"; };
-		D3A082541A14399000F2DA1A /* KDGCircularSliderKnobLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGCircularSliderKnobLayer.m; sourceTree = "<group>"; };
 		D3ACBCAB19D625E600BE15CB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D3ACBCAF19D625E600BE15CB /* KDGGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGGridView.h; sourceTree = "<group>"; };
 		D3ACBCB019D625E600BE15CB /* KDGGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGGridView.m; sourceTree = "<group>"; };
@@ -370,6 +382,46 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0CAF705F1A1A8951002B98C0 /* KDGUIKit */ = {
+			isa = PBXGroup;
+			children = (
+				0CAF70601A1A8951002B98C0 /* README.md */,
+				0CAF70611A1A8951002B98C0 /* src */,
+			);
+			path = KDGUIKit;
+			sourceTree = "<group>";
+		};
+		0CAF70611A1A8951002B98C0 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				0CAF70621A1A8951002B98C0 /* iOS */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		0CAF70621A1A8951002B98C0 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				0CAF70631A1A8951002B98C0 /* KDGBaseButton.h */,
+				0CAF70641A1A8951002B98C0 /* KDGBaseButton.m */,
+				0CAF70701A1A89D8002B98C0 /* KDGButton.h */,
+				0CAF70711A1A89D8002B98C0 /* KDGButton.m */,
+				0CAF70651A1A8951002B98C0 /* KDGCircularSlider.h */,
+				0CAF70661A1A8951002B98C0 /* KDGCircularSlider.m */,
+				0CAF70671A1A8951002B98C0 /* KDGCircularSliderKnobLayer.h */,
+				0CAF70681A1A8951002B98C0 /* KDGCircularSliderKnobLayer.m */,
+				0CAF70691A1A8951002B98C0 /* KDGCircularSliderTrackLayer.h */,
+				0CAF706A1A1A8951002B98C0 /* KDGCircularSliderTrackLayer.m */,
+				0CAF70721A1A89D8002B98C0 /* KDGColorSwatch.h */,
+				0CAF70731A1A89D8002B98C0 /* KDGColorSwatch.m */,
+				0CAF70741A1A89D8002B98C0 /* KDGColorSwatchButton.h */,
+				0CAF70751A1A89D8002B98C0 /* KDGColorSwatchButton.m */,
+				0CAF70791A1A8AB5002B98C0 /* KDGTestView.h */,
+				0CAF707A1A1A8AB5002B98C0 /* KDGTestView.m */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		0CEE61861A04202500E6E561 /* UIView+ */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,8 +459,6 @@
 				0CAF705D1A1A81DE002B98C0 /* ScratchViewController.m */,
 				D3F703A619D8B2F500B55D16 /* TestViewCell.h */,
 				D3F703A719D8B2F500B55D16 /* TestViewCell.m */,
-				0C5E11E71A0D69BF00E2C7B4 /* KDGBaseButton.h */,
-				0C5E11E81A0D69BF00E2C7B4 /* KDGBaseButton.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -418,10 +468,10 @@
 			children = (
 				0C9EA8501A0987ED00DD4D97 /* KDGBackDoorView */,
 				0C5C66391A150C820072AB64 /* KDGCALayer */,
-				D3A0824B1A142A5700F2DA1A /* KDGCircularSlider */,
 				D3E7036E19FDABDA00E38E71 /* KDGCommandEngine */,
 				0C9EA8431A09229200DD4D97 /* KDGCoverVerticalOverCurrentContextAnimatedTransition */,
 				D3ACBCAA19D625E600BE15CB /* KDGGridView */,
+				0CAF705F1A1A8951002B98C0 /* KDGUIKit */,
 				D3157F5119D50DA9008812CA /* KDGUtilities */,
 			);
 			path = Components;
@@ -543,36 +593,6 @@
 			);
 			name = Righteous;
 			path = Fonts/Righteous;
-			sourceTree = "<group>";
-		};
-		D3A0824B1A142A5700F2DA1A /* KDGCircularSlider */ = {
-			isa = PBXGroup;
-			children = (
-				D3A0824C1A142A5700F2DA1A /* README.md */,
-				D3A0824D1A142A5700F2DA1A /* src */,
-			);
-			path = KDGCircularSlider;
-			sourceTree = "<group>";
-		};
-		D3A0824D1A142A5700F2DA1A /* src */ = {
-			isa = PBXGroup;
-			children = (
-				D3A0824E1A142A5700F2DA1A /* iOS */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		D3A0824E1A142A5700F2DA1A /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				D3A0824F1A142A5700F2DA1A /* KDGCircularSlider.h */,
-				D3A082501A142A5700F2DA1A /* KDGCircularSlider.m */,
-				D3A082531A14399000F2DA1A /* KDGCircularSliderKnobLayer.h */,
-				D3A082541A14399000F2DA1A /* KDGCircularSliderKnobLayer.m */,
-				0C5C66361A1508170072AB64 /* KDGCircularSliderTrackLayer.h */,
-				0C5C66371A1508170072AB64 /* KDGCircularSliderTrackLayer.m */,
-			);
-			path = iOS;
 			sourceTree = "<group>";
 		};
 		D3ACBCAA19D625E600BE15CB /* KDGGridView */ = {
@@ -758,30 +778,34 @@
 			files = (
 				0C9EA8591A0987ED00DD4D97 /* KDGBackDoorViewController.m in Sources */,
 				0C6196B11A141095006A9D45 /* UIColor+AppColors.m in Sources */,
-				D3A082551A14399000F2DA1A /* KDGCircularSliderKnobLayer.m in Sources */,
 				0C77664A1A0829A700D790D8 /* BaseViewController.m in Sources */,
 				D3ACBCB519D625E600BE15CB /* KDGGridView.m in Sources */,
 				D3157F4C19D50766008812CA /* MainViewController.m in Sources */,
 				0C5C66401A150C820072AB64 /* KDGCALayer.m in Sources */,
 				0CEE61891A04202500E6E561 /* UIView+KDGAnimation.m in Sources */,
-				0C5E11E91A0D69BF00E2C7B4 /* KDGBaseButton.m in Sources */,
 				D3ACBCB619D625E600BE15CB /* KDGGridViewCell.m in Sources */,
+				0CAF706E1A1A8951002B98C0 /* KDGCircularSliderKnobLayer.m in Sources */,
 				0C9EA83E1A0921B600DD4D97 /* UIScreen+KDGUtilities.m in Sources */,
 				0C9EA8481A09229200DD4D97 /* KDGCoverVerticalOverCurrentContextAnimatedTransition.m in Sources */,
 				0CAF705E1A1A81DE002B98C0 /* ScratchViewController.m in Sources */,
+				0CAF70781A1A89D8002B98C0 /* KDGColorSwatchButton.m in Sources */,
 				0CA5B93E19C36740001322A0 /* AppDelegate.m in Sources */,
 				D3E7037519FDABDA00E38E71 /* KDGCommandEngine.m in Sources */,
 				D3157F4819D50766008812CA /* DataModel.m in Sources */,
-				D3A082521A142A5700F2DA1A /* KDGCircularSlider.m in Sources */,
-				0C5C66381A1508170072AB64 /* KDGCircularSliderTrackLayer.m in Sources */,
 				D3157F4A19D50766008812CA /* ListViewController.m in Sources */,
 				0C9EA83D1A0921B600DD4D97 /* UIDevice+KDGUtilities.m in Sources */,
 				D3157F4F19D5084E008812CA /* GridViewController.m in Sources */,
+				0CAF70771A1A89D8002B98C0 /* KDGColorSwatch.m in Sources */,
 				0C9EA84C1A09283800DD4D97 /* UIImage+KDGImageEffects.m in Sources */,
 				D3F703A819D8B2F500B55D16 /* TestViewCell.m in Sources */,
 				0C73F00B19FEDB1C00AABCD3 /* KDGUtilities.mm in Sources */,
+				0CAF706C1A1A8951002B98C0 /* KDGBaseButton.m in Sources */,
 				0C73F00319FE92D400AABCD3 /* SampleViewController.m in Sources */,
+				0CAF707B1A1A8AB5002B98C0 /* KDGTestView.m in Sources */,
+				0CAF706F1A1A8951002B98C0 /* KDGCircularSliderTrackLayer.m in Sources */,
 				D3E7037B19FDB9DE00E38E71 /* CommandSystem.m in Sources */,
+				0CAF706D1A1A8951002B98C0 /* KDGCircularSlider.m in Sources */,
+				0CAF70761A1A89D8002B98C0 /* KDGButton.m in Sources */,
 				0C73F00719FEDB1000AABCD3 /* UIColor+KDGUtilities.m in Sources */,
 				0CA5B93B19C36740001322A0 /* main.m in Sources */,
 				D3157F4919D50766008812CA /* ClockViewController.m in Sources */,

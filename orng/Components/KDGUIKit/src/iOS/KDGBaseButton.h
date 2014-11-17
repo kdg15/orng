@@ -5,11 +5,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KDGColorSwatch : UIView
-
-@property (nonatomic, strong) UIColor *swatchColor;
-
-@end
+//@interface KDGColorSwatch : UIView
+//
+//@property (nonatomic, strong) UIColor *swatchColor;
+//
+//@end
 
 @interface KDGBaseButton : UIControl
 
@@ -31,20 +31,20 @@
 
 @end
 
-@interface KDGButton : KDGBaseButton
-
-@property (nonatomic, strong) NSString *text;
-@property (nonatomic, strong) UIColor *textColor;
-@property (nonatomic, strong) UIColor *textHighlightColor;
-
-@end
-
-@interface KDGColorSwatchButton : KDGBaseButton
-
-@property (nonatomic, strong) UIColor *swatchColor;
-
-@end
-
-@interface KDGTestView : UIView
-
-@end
+//@interface KDGButton : KDGBaseButton
+//
+//@property (nonatomic, strong) NSString *text;
+//@property (nonatomic, strong) UIColor *textColor;
+//@property (nonatomic, strong) UIColor *textHighlightColor;
+//
+//@end
+//
+//@interface KDGColorSwatchButton : KDGBaseButton
+//
+//@property (nonatomic, strong) UIColor *swatchColor;
+//
+//@end
+//
+//@interface KDGTestView : UIView
+//
+//@end

@@ -10,7 +10,7 @@
 #import "KDGUtilities.h"
 #import "UIView+KDGAnimation.h"
 #import "KDGBackDoorViewController.h"
-#import "KDGBaseButton.h"
+//#import "KDGBaseButton.h"
 
 static const CGFloat kWhiteSliderThreshold = 0.05;
 static const CGFloat kBlackSliderThreshold = 0.05;

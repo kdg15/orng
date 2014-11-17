@@ -5,7 +5,7 @@
 
 #import "ScratchViewController.h"
 #import "CommandSystem.h"
-#import "KDGBaseButton.h"
+#import "KDGTestView.h"
 #import "KDGCircularSlider.h"
 #import "KDGUtilities.h"
 
@@ -61,7 +61,7 @@
         
         static CGFloat const kThickness = 12;
         static CGFloat const kLineWidth = 1;
-        static CGFloat const kShadowWidth = 4;
+        //static CGFloat const kShadowWidth = 4;
         
         CGContextAddArc(context,
                         center.x, center.y,

@@ -43,7 +43,7 @@
     NSInteger b = blue  * 255;
     NSInteger a = alpha * 255;
     
-    return [NSString stringWithFormat:@"%d %d %d %d", r, g, b, a];
+    return [NSString stringWithFormat:@"%ld %ld %ld %ld", (long)r, (long)g, (long)b, (long)a];
 }
 
 - (void)kdgGetRed:(CGFloat *)red green:(CGFloat *)green blue:(CGFloat *)blue alpha:(CGFloat *)alpha
@@ -198,7 +198,7 @@
     {
         for (NSInteger c = 0; c <= 255; c++)
         {
-            NSString *colorString = [NSString stringWithFormat:@"%d %d %d %d", c, c, c, a];
+            NSString *colorString = [NSString stringWithFormat:@"%ld %ld %ld %ld", (long)c, (long)c, (long)c, (long)a];
             UIColor *color = [UIColor kdgColorWithString:colorString];
             NSString *resultString = [color kdgAsString];
             
@@ -211,7 +211,7 @@
         }
     }
     
-    NSLog(@"--- testColorStrings: %@", failures == 0 ? @"all passed" : [NSString stringWithFormat:@"%d failures", failures]);
+    NSLog(@"--- testColorStrings: %@", failures == 0 ? @"all passed" : [NSString stringWithFormat:@"%ld failures", (long)failures]);
 }
 
 @end

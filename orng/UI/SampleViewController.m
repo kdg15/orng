@@ -5,6 +5,7 @@
 
 #import "SampleViewController.h"
 #import "CommandSystem.h"
+#import "KDGColorSwatchButton.h"
 #import "UIColor+KDGUtilities.h"
 
 static const CGSize kButtonSize = { 40.0, 40.0 };

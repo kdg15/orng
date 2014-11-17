@@ -4,7 +4,7 @@
 //
 
 #import "BaseViewController.h"
-#import "KDGBaseButton.h"
+#import "KDGButton.h"
 #import "KDGCircularSlider.h"
 
 @interface SampleViewController : BaseViewController
