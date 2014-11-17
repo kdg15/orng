@@ -6,7 +6,7 @@
 #import "MainViewController.h"
 #import "CommandSystem.h"
 #import "DataModel.h"
-#import "DummyViewController.h"
+#import "SampleViewController.h"
 #import "KDGBackDoorViewController.h"
 #import "UIView+KDGAnimation.h"
 #import "KDGCircularSlider.h"

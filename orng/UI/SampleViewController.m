@@ -3,7 +3,7 @@
 //  Copyright (c) 2014 mitchkram. All rights reserved.
 //
 
-#import "DummyViewController.h"
+#import "SampleViewController.h"
 #import "CommandSystem.h"
 #import "UIColor+KDGUtilities.h"
 
@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, ColorSliderComponent)
     ColorSliderComponentBrightness
 };
 
-@interface DummyViewController ()
+@interface SampleViewController ()
 
 @property (nonatomic, strong) NSArray *samples;
 @property (nonatomic, strong) NSArray *settings;
@@ -38,7 +38,7 @@ typedef NS_ENUM(NSInteger, ColorSliderComponent)
 
 @end
 
-@implementation DummyViewController
+@implementation SampleViewController
 
 - (void)viewDidLoad
 {

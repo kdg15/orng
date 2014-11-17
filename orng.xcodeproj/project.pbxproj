@@ -11,7 +11,7 @@
 		0C5C66401A150C820072AB64 /* KDGCALayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C663E1A150C820072AB64 /* KDGCALayer.m */; };
 		0C5E11E91A0D69BF00E2C7B4 /* KDGBaseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E11E81A0D69BF00E2C7B4 /* KDGBaseButton.m */; };
 		0C6196B11A141095006A9D45 /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6196B01A141095006A9D45 /* UIColor+AppColors.m */; };
-		0C73F00319FE92D400AABCD3 /* DummyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C73F00219FE92D400AABCD3 /* DummyViewController.m */; };
+		0C73F00319FE92D400AABCD3 /* SampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C73F00219FE92D400AABCD3 /* SampleViewController.m */; };
 		0C73F00719FEDB1000AABCD3 /* UIColor+KDGUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C73F00619FEDB1000AABCD3 /* UIColor+KDGUtilities.m */; };
 		0C73F00B19FEDB1C00AABCD3 /* KDGUtilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C73F00A19FEDB1C00AABCD3 /* KDGUtilities.mm */; };
 		0C77664A1A0829A700D790D8 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7766491A0829A700D790D8 /* BaseViewController.m */; };
@@ -71,8 +71,8 @@
 		0C5E11E81A0D69BF00E2C7B4 /* KDGBaseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDGBaseButton.m; sourceTree = "<group>"; };
 		0C6196AF1A141095006A9D45 /* UIColor+AppColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AppColors.h"; sourceTree = "<group>"; };
 		0C6196B01A141095006A9D45 /* UIColor+AppColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AppColors.m"; sourceTree = "<group>"; };
-		0C73F00119FE92D400AABCD3 /* DummyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyViewController.h; sourceTree = "<group>"; };
-		0C73F00219FE92D400AABCD3 /* DummyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyViewController.m; sourceTree = "<group>"; };
+		0C73F00119FE92D400AABCD3 /* SampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleViewController.h; sourceTree = "<group>"; };
+		0C73F00219FE92D400AABCD3 /* SampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleViewController.m; sourceTree = "<group>"; };
 		0C73F00519FEDB1000AABCD3 /* UIColor+KDGUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+KDGUtilities.h"; sourceTree = "<group>"; };
 		0C73F00619FEDB1000AABCD3 /* UIColor+KDGUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+KDGUtilities.m"; sourceTree = "<group>"; };
 		0C73F00919FEDB1C00AABCD3 /* KDGUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDGUtilities.h; sourceTree = "<group>"; };
@@ -392,8 +392,8 @@
 				0C7766491A0829A700D790D8 /* BaseViewController.m */,
 				D3157F4019D50766008812CA /* ClockViewController.h */,
 				D3157F4119D50766008812CA /* ClockViewController.m */,
-				0C73F00119FE92D400AABCD3 /* DummyViewController.h */,
-				0C73F00219FE92D400AABCD3 /* DummyViewController.m */,
+				0C73F00119FE92D400AABCD3 /* SampleViewController.h */,
+				0C73F00219FE92D400AABCD3 /* SampleViewController.m */,
 				D3157F4219D50766008812CA /* ListViewController.h */,
 				D3157F4319D50766008812CA /* ListViewController.m */,
 				D3157F4619D50766008812CA /* MainViewController.h */,
@@ -774,7 +774,7 @@
 				0C9EA84C1A09283800DD4D97 /* UIImage+KDGImageEffects.m in Sources */,
 				D3F703A819D8B2F500B55D16 /* TestViewCell.m in Sources */,
 				0C73F00B19FEDB1C00AABCD3 /* KDGUtilities.mm in Sources */,
-				0C73F00319FE92D400AABCD3 /* DummyViewController.m in Sources */,
+				0C73F00319FE92D400AABCD3 /* SampleViewController.m in Sources */,
 				D3E7037B19FDB9DE00E38E71 /* CommandSystem.m in Sources */,
 				0C73F00719FEDB1000AABCD3 /* UIColor+KDGUtilities.m in Sources */,
 				0CA5B93B19C36740001322A0 /* main.m in Sources */,

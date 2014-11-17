@@ -7,8 +7,7 @@
 #import "KDGBaseButton.h"
 #import "KDGCircularSlider.h"
 
-//  todo: rename to SampleViewController
-@interface DummyViewController : BaseViewController
+@interface SampleViewController : BaseViewController
 
 @property (nonatomic, strong) IBOutlet UIView            *sampleView;
 @property (nonatomic, strong) IBOutlet UIView            *settingsView;
