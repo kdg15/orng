@@ -50,6 +50,13 @@ KDG_UTILITIES_EXTERN const float KDGRandomFloatInRange(float min, float max)
     return value;
 }
 
+#pragma mark - geometry
+
+KDG_UTILITIES_EXTERN const CGPoint KDGRectCenter(CGRect rect)
+{
+    return CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
+}
+
 #pragma mark - string
 
 KDG_UTILITIES_EXTERN const NSString * NSStringFromBOOL(BOOL b)
