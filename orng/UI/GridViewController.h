@@ -7,7 +7,7 @@
 #import "KDGGridView.h"
 #import "TestViewCell.h"
 
-@interface TestViewController : BaseViewController
+@interface GridViewController : BaseViewController
 
 @property (nonatomic, strong) IBOutlet KDGGridView *gridView;
 @property (nonatomic, strong) IBOutlet TestViewCell *gridCell;

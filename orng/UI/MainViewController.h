@@ -9,8 +9,9 @@
 
 - (IBAction)clockAction:(id)sender;
 - (IBAction)listAction:(id)sender;
-- (IBAction)testAction:(id)sender;
-- (IBAction)dummyAction:(id)sender;
+- (IBAction)gridAction:(id)sender;
+- (IBAction)sampleAction:(id)sender;
+- (IBAction)scratchAction:(id)sender;
 
 @end
 

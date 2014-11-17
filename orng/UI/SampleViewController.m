@@ -311,7 +311,7 @@ typedef NS_ENUM(NSInteger, ColorSliderComponent)
 - (IBAction)backAction:(id)sender
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command dismissDummyView]];
+    [commandEngine executeCommand:[Command dismissSampleView]];
 }
 
 - (IBAction)okayAction:(id)sender
@@ -522,7 +522,7 @@ typedef NS_ENUM(NSInteger, ColorSliderComponent)
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     Command *command = [commandEngine getCommandFromNotification:notification];
     
-    if ([command isEqualToCommand:[Command dismissDummyView]])
+    if ([command isEqualToCommand:[Command dismissSampleView]])
     {
         [self.navigationController popViewControllerAnimated:YES];
     }

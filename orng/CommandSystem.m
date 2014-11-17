@@ -31,11 +31,14 @@
 + (Command *)presentListView { return [[Command alloc] initWithName:@"presentListView"]; }
 + (Command *)dismissListView { return [[Command alloc] initWithName:@"dismissListView"]; }
 
-+ (Command *)presentTestView { return [[Command alloc] initWithName:@"presentTestView"]; }
-+ (Command *)dismissTestView { return [[Command alloc] initWithName:@"dismissTestView"]; }
++ (Command *)presentGridView { return [[Command alloc] initWithName:@"presentGridView"]; }
++ (Command *)dismissGridView { return [[Command alloc] initWithName:@"dismissGridView"]; }
 
-+ (Command *)presentDummyView { return [[Command alloc] initWithName:@"presentDummyView"]; }
-+ (Command *)dismissDummyView { return [[Command alloc] initWithName:@"dismissDummyView"]; }
++ (Command *)presentSampleView { return [[Command alloc] initWithName:@"presentSampleView"]; }
++ (Command *)dismissSampleView { return [[Command alloc] initWithName:@"dismissSampleView"]; }
+
++ (Command *)presentScratchView { return [[Command alloc] initWithName:@"presentScratchView"]; }
++ (Command *)dismissScratchView { return [[Command alloc] initWithName:@"dismissScratchView"]; }
 
 + (Command *)setBackDoorPrompt { return [[Command alloc] initWithName:@"setBackDoorPrompt" numberOfArguments:1]; }
 + (Command *)setBackDoorBackgroundColor { return [[Command alloc] initWithName:@"setBackDoorBackgroundColor" numberOfArguments:4]; }
@@ -82,12 +85,15 @@
     [self registerCommand:[Command presentListView]];
     [self registerCommand:[Command dismissListView]];
     
-    [self registerCommand:[Command presentTestView]];
-    [self registerCommand:[Command dismissTestView]];
+    [self registerCommand:[Command presentGridView]];
+    [self registerCommand:[Command dismissGridView]];
     
-    [self registerCommand:[Command presentDummyView]];
-    [self registerCommand:[Command dismissDummyView]];
-
+    [self registerCommand:[Command presentSampleView]];
+    [self registerCommand:[Command dismissSampleView]];
+    
+    [self registerCommand:[Command presentScratchView]];
+    [self registerCommand:[Command dismissScratchView]];
+    
     [self registerCommand:[Command setBackDoorPrompt]];
     [self registerCommand:[Command setBackDoorBackgroundColor]];
 }

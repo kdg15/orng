@@ -3,14 +3,14 @@
 //  Copyright (c) 2014 mitchkram. All rights reserved.
 //
 
-#import "TestViewController.h"
+#import "GridViewController.h"
 #import "CommandSystem.h"
 
-@interface TestViewController () <KDGGridViewDataSource, KDGGridViewDelegate, KDGCommandEngineResponder>
+@interface GridViewController () <KDGGridViewDataSource, KDGGridViewDelegate, KDGCommandEngineResponder>
 
 @end
 
-@implementation TestViewController
+@implementation GridViewController
 
 - (void)viewDidLoad
 {
@@ -79,7 +79,7 @@
 - (IBAction)backAction:(id)sender
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
-    [commandEngine executeCommand:[Command dismissTestView]];
+    [commandEngine executeCommand:[Command dismissGridView]];
 }
 
 #pragma mark - command system
@@ -89,7 +89,7 @@
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     Command *command = [commandEngine getCommandFromNotification:notification];
     
-    if ([command isEqualToCommand:[Command dismissTestView]])
+    if ([command isEqualToCommand:[Command dismissGridView]])
     {
         [self.navigationController popViewControllerAnimated:YES];
     }

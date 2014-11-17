@@ -30,11 +30,14 @@
 + (Command *)presentListView;
 + (Command *)dismissListView;
 
-+ (Command *)presentTestView;
-+ (Command *)dismissTestView;
++ (Command *)presentGridView;
++ (Command *)dismissGridView;
 
-+ (Command *)presentDummyView;
-+ (Command *)dismissDummyView;
++ (Command *)presentSampleView;
++ (Command *)dismissSampleView;
+
++ (Command *)presentScratchView;
++ (Command *)dismissScratchView;
 
 + (Command *)setBackDoorPrompt;
 + (Command *)setBackDoorBackgroundColor;

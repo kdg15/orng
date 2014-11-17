@@ -27,12 +27,13 @@
 		0CA5B94619C36740001322A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CA5B94519C36740001322A0 /* Images.xcassets */; };
 		0CA5B94919C36740001322A0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CA5B94719C36740001322A0 /* LaunchScreen.xib */; };
 		0CA5B95519C36740001322A0 /* orngTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA5B95419C36740001322A0 /* orngTests.m */; };
+		0CAF705E1A1A81DE002B98C0 /* ScratchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAF705D1A1A81DE002B98C0 /* ScratchViewController.m */; };
 		0CEE61891A04202500E6E561 /* UIView+KDGAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEE61881A04202500E6E561 /* UIView+KDGAnimation.m */; };
 		D3157F4819D50766008812CA /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3157F3E19D50766008812CA /* DataModel.m */; };
 		D3157F4919D50766008812CA /* ClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3157F4119D50766008812CA /* ClockViewController.m */; };
 		D3157F4A19D50766008812CA /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3157F4319D50766008812CA /* ListViewController.m */; };
 		D3157F4C19D50766008812CA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3157F4719D50766008812CA /* MainViewController.m */; };
-		D3157F4F19D5084E008812CA /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3157F4D19D5084E008812CA /* TestViewController.m */; };
+		D3157F4F19D5084E008812CA /* GridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3157F4D19D5084E008812CA /* GridViewController.m */; };
 		D378DD5A1A0AE88A004DB980 /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = D378DD581A0AE88A004DB980 /* todo.txt */; };
 		D37F832119C7D1FB002D4C58 /* Gruppo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F832019C7D1FB002D4C58 /* Gruppo-Regular.ttf */; };
 		D37F832E19C7D35C002D4C58 /* Audiowide-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F832419C7D35C002D4C58 /* Audiowide-Regular.ttf */; };
@@ -102,6 +103,8 @@
 		0CA5B94E19C36740001322A0 /* orngTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = orngTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CA5B95319C36740001322A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CA5B95419C36740001322A0 /* orngTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = orngTests.m; sourceTree = "<group>"; };
+		0CAF705C1A1A81DE002B98C0 /* ScratchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScratchViewController.h; sourceTree = "<group>"; };
+		0CAF705D1A1A81DE002B98C0 /* ScratchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScratchViewController.m; sourceTree = "<group>"; };
 		0CEE61871A04202500E6E561 /* UIView+KDGAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+KDGAnimation.h"; sourceTree = "<group>"; };
 		0CEE61881A04202500E6E561 /* UIView+KDGAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+KDGAnimation.m"; sourceTree = "<group>"; };
 		D3157F3D19D50766008812CA /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
@@ -112,8 +115,8 @@
 		D3157F4319D50766008812CA /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		D3157F4619D50766008812CA /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		D3157F4719D50766008812CA /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		D3157F4D19D5084E008812CA /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
-		D3157F4E19D5084E008812CA /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		D3157F4D19D5084E008812CA /* GridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridViewController.m; sourceTree = "<group>"; };
+		D3157F4E19D5084E008812CA /* GridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewController.h; sourceTree = "<group>"; };
 		D3157F5919D50DD9008812CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D378DD581A0AE88A004DB980 /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = todo.txt; path = orng/todo.txt; sourceTree = SOURCE_ROOT; };
 		D37F832019C7D1FB002D4C58 /* Gruppo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gruppo-Regular.ttf"; path = "Fonts/Gruppo/Gruppo-Regular.ttf"; sourceTree = "<group>"; };
@@ -392,16 +395,18 @@
 				0C7766491A0829A700D790D8 /* BaseViewController.m */,
 				D3157F4019D50766008812CA /* ClockViewController.h */,
 				D3157F4119D50766008812CA /* ClockViewController.m */,
-				0C73F00119FE92D400AABCD3 /* SampleViewController.h */,
-				0C73F00219FE92D400AABCD3 /* SampleViewController.m */,
+				D3157F4E19D5084E008812CA /* GridViewController.h */,
+				D3157F4D19D5084E008812CA /* GridViewController.m */,
 				D3157F4219D50766008812CA /* ListViewController.h */,
 				D3157F4319D50766008812CA /* ListViewController.m */,
 				D3157F4619D50766008812CA /* MainViewController.h */,
 				D3157F4719D50766008812CA /* MainViewController.m */,
+				0C73F00119FE92D400AABCD3 /* SampleViewController.h */,
+				0C73F00219FE92D400AABCD3 /* SampleViewController.m */,
+				0CAF705C1A1A81DE002B98C0 /* ScratchViewController.h */,
+				0CAF705D1A1A81DE002B98C0 /* ScratchViewController.m */,
 				D3F703A619D8B2F500B55D16 /* TestViewCell.h */,
 				D3F703A719D8B2F500B55D16 /* TestViewCell.m */,
-				D3157F4E19D5084E008812CA /* TestViewController.h */,
-				D3157F4D19D5084E008812CA /* TestViewController.m */,
 				0C5E11E71A0D69BF00E2C7B4 /* KDGBaseButton.h */,
 				0C5E11E81A0D69BF00E2C7B4 /* KDGBaseButton.m */,
 			);
@@ -763,6 +768,7 @@
 				D3ACBCB619D625E600BE15CB /* KDGGridViewCell.m in Sources */,
 				0C9EA83E1A0921B600DD4D97 /* UIScreen+KDGUtilities.m in Sources */,
 				0C9EA8481A09229200DD4D97 /* KDGCoverVerticalOverCurrentContextAnimatedTransition.m in Sources */,
+				0CAF705E1A1A81DE002B98C0 /* ScratchViewController.m in Sources */,
 				0CA5B93E19C36740001322A0 /* AppDelegate.m in Sources */,
 				D3E7037519FDABDA00E38E71 /* KDGCommandEngine.m in Sources */,
 				D3157F4819D50766008812CA /* DataModel.m in Sources */,
@@ -770,7 +776,7 @@
 				0C5C66381A1508170072AB64 /* KDGCircularSliderTrackLayer.m in Sources */,
 				D3157F4A19D50766008812CA /* ListViewController.m in Sources */,
 				0C9EA83D1A0921B600DD4D97 /* UIDevice+KDGUtilities.m in Sources */,
-				D3157F4F19D5084E008812CA /* TestViewController.m in Sources */,
+				D3157F4F19D5084E008812CA /* GridViewController.m in Sources */,
 				0C9EA84C1A09283800DD4D97 /* UIImage+KDGImageEffects.m in Sources */,
 				D3F703A819D8B2F500B55D16 /* TestViewCell.m in Sources */,
 				0C73F00B19FEDB1C00AABCD3 /* KDGUtilities.mm in Sources */,
