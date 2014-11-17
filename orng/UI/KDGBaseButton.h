@@ -44,3 +44,7 @@
 @property (nonatomic, strong) UIColor *swatchColor;
 
 @end
+
+@interface KDGTestView : UIView
+
+@end
