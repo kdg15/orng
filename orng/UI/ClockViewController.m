@@ -6,11 +6,11 @@
 #import "ClockViewController.h"
 #import "DataModel.h"
 #import "CommandSystem.h"
-#import "UIColor+KDGUtilities.h"
+#import "NSString+AppStrings.h"
 #import "KDGUtilities.h"
-#import "UIView+KDGAnimation.h"
 #import "KDGBackDoorViewController.h"
-//#import "KDGBaseButton.h"
+#import "UIColor+KDGUtilities.h"
+#import "UIView+KDGAnimation.h"
 
 static const CGFloat kWhiteSliderThreshold = 0.05;
 static const CGFloat kBlackSliderThreshold = 0.05;
@@ -103,12 +103,22 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 //        [button addTarget:self action:@selector(buttonRelease:) forControlEvents:UIControlEventTouchDragExit];
     }
 
-//    MyButton *myButton = [[MyButton alloc] initWithFrame:CGRectMake(100, 100, 40, 40)];
-//    myButton.layer.backgroundColor = [UIColor orangeColor].CGColor;
-//    myButton.layer.cornerRadius = 12.0;
-//    [self.view addSubview:myButton];
-//    myButton.hidden = NO;
-    //[myButton addTarget:self action:@selector(myButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    for (KDGButton *button in @[self.fontButton2,
+                                self.foregroundButton2,
+                                self.backgroundButton2,
+                                self.brightnessButton2,
+                                self.okayButton2,
+                                self.cancelButton2])
+    {
+        button.hidden = YES;
+    }
+
+    self.fontButton2.text = [NSString fontString];
+    self.foregroundButton2.text = @"f";
+    self.backgroundButton2.text = @"b";
+    self.brightnessButton2.text = [NSString brightnessString];
+    self.okayButton2.text = [NSString okayString];
+    self.cancelButton2.text = [NSString cancelString];
 
     [[CommandEngine sharedInstance] addResponder:self];
 }
@@ -215,7 +225,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
                                                                                        action:@selector(singleTapAction:)];
     singleTapGesture.numberOfTapsRequired = 1;
     singleTapGesture.numberOfTouchesRequired = 1;
-    [self.view addGestureRecognizer:singleTapGesture];
+    //[self.view addGestureRecognizer:singleTapGesture];
 }
 
 - (void)setUpFont
@@ -442,6 +452,17 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     {
         [button setBackgroundColor:color];
     }
+
+    for (KDGButton *button in @[self.fontButton2,
+                                self.foregroundButton2,
+                                self.backgroundButton2,
+                                self.brightnessButton2,
+                                self.okayButton2,
+                                self.cancelButton2])
+    {
+        [button setBackgroundColor:color];
+        [button setHighlightColor:[color kdgDarkerColor]];
+    }
 }
 
 - (void)updateBackgroundColor:(UIColor *)color
@@ -456,6 +477,16 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
                                self.okayButton])
     {
         [button setTitleColor:color forState:UIControlStateNormal];
+    }
+
+    for (KDGButton *button in @[self.fontButton2,
+                                self.foregroundButton2,
+                                self.backgroundButton2,
+                                self.brightnessButton2,
+                                self.okayButton2,
+                                self.cancelButton2])
+    {
+        [button setTextColor:color];
     }
 }
 
@@ -498,10 +529,10 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     {
         NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.4];
 
-        NSArray *views = @[self.fontButton,
-                           self.foregroundButton,
-                           self.backgroundButton,
-                           self.brightnessButton];
+        NSArray *views = @[self.fontButton2,
+                           self.foregroundButton2,
+                           self.backgroundButton2,
+                           self.brightnessButton2];
         
         CGPoint fromPoint = self.optionsButton.center;
 
@@ -621,10 +652,10 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
         NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.2];
         NSTimeInterval midDuration = [UIView kdgAdjustAnimationDuration:0.05];
 
-        NSArray *views = @[self.fontButton,
-                           self.foregroundButton,
-                           self.backgroundButton,
-                           self.brightnessButton];
+        NSArray *views = @[self.fontButton2,
+                           self.foregroundButton2,
+                           self.backgroundButton2,
+                           self.brightnessButton2];
         
         CGPoint toPoint = self.optionsButton.center;
         
@@ -693,10 +724,10 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     {
         CFTimeInterval duration = 0.3;
         
-        NSArray *views = @[self.fontButton,
-                           self.foregroundButton,
-                           self.backgroundButton,
-                           self.brightnessButton];
+        NSArray *views = @[self.fontButton2,
+                           self.foregroundButton2,
+                           self.backgroundButton2,
+                           self.brightnessButton2];
         
         [CATransaction begin];
         {
@@ -734,8 +765,8 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     {
         NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.4];
 
-        NSArray *views = @[self.cancelButton,
-                           self.okayButton,
+        NSArray *views = @[self.cancelButton2,
+                           self.okayButton2,
                            self.optionSlider];
         
         CGPoint fromPoint = self.optionSlider.center;
@@ -817,8 +848,8 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
         CFTimeInterval duration = 0.3;
         CFTimeInterval delay = 0.0;
         
-        NSArray *views = @[self.cancelButton,
-                           self.okayButton];
+        NSArray *views = @[self.cancelButton2,
+                           self.okayButton2];
         
         for (UIView *view in views)
         {
@@ -912,8 +943,8 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
         NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.2];
         NSTimeInterval midDuration = [UIView kdgAdjustAnimationDuration:0.05];
 
-        NSArray *views = @[self.cancelButton,
-                           self.okayButton,
+        NSArray *views = @[self.cancelButton2,
+                           self.okayButton2,
                            self.optionSlider];
         
         CGPoint toPoint = self.optionsButton.center;
@@ -983,8 +1014,8 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     {
         CFTimeInterval duration = 0.3;
         
-        NSArray *views = @[self.cancelButton,
-                           self.okayButton,
+        NSArray *views = @[self.cancelButton2,
+                           self.okayButton2,
                            self.optionSlider];
         
         [CATransaction begin];

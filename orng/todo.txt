@@ -1,6 +1,5 @@
 todo
 ====
-- integrate new buttons into clock.
 - see how big circular slider needs to be for it to be more usable
 - try a pop up arc slider.
 - specify an arc range for the usable slider area on a circular slider.
@@ -15,6 +14,8 @@ todo
 
 done
 ====
+- set up app strings.
+- integrate new buttons into clock.
 - create function to adjust all animation durations with global factor.
 - command to list all commands.
 - make commands for print, clear, and play log. then remove buttons from main view.

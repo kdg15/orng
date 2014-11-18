@@ -4,6 +4,7 @@
 //
 
 #import "BaseViewController.h"
+#import "KDGButton.h"
 
 @interface ClockViewController : BaseViewController
 
@@ -16,8 +17,14 @@
 @property (nonatomic, strong) IBOutlet UIButton *foregroundButton;
 @property (nonatomic, strong) IBOutlet UIButton *backgroundButton;
 @property (nonatomic, strong) IBOutlet UIButton *brightnessButton;
+@property (nonatomic, strong) IBOutlet KDGButton *fontButton2;
+@property (nonatomic, strong) IBOutlet KDGButton *foregroundButton2;
+@property (nonatomic, strong) IBOutlet KDGButton *backgroundButton2;
+@property (nonatomic, strong) IBOutlet KDGButton *brightnessButton2;
 @property (nonatomic, strong) IBOutlet UIButton *cancelButton;
 @property (nonatomic, strong) IBOutlet UIButton *okayButton;
+@property (nonatomic, strong) IBOutlet KDGButton *okayButton2;
+@property (nonatomic, strong) IBOutlet KDGButton *cancelButton2;
 
 - (IBAction)backAction:(id)sender;
 
