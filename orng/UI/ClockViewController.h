@@ -5,6 +5,7 @@
 
 #import "BaseViewController.h"
 #import "KDGButton.h"
+#import "KDGColorSwatchButton.h"
 
 @interface ClockViewController : BaseViewController
 
@@ -13,13 +14,9 @@
 @property (nonatomic, strong) IBOutlet UISlider *optionSlider;
 
 @property (nonatomic, strong) IBOutlet UIButton *optionsButton;
-@property (nonatomic, strong) IBOutlet UIButton *fontButton;
-@property (nonatomic, strong) IBOutlet UIButton *foregroundButton;
-@property (nonatomic, strong) IBOutlet UIButton *backgroundButton;
-@property (nonatomic, strong) IBOutlet UIButton *brightnessButton;
 @property (nonatomic, strong) IBOutlet KDGButton *fontButton2;
-@property (nonatomic, strong) IBOutlet KDGButton *foregroundButton2;
-@property (nonatomic, strong) IBOutlet KDGButton *backgroundButton2;
+@property (nonatomic, strong) IBOutlet KDGColorSwatchButton *foregroundButton2;
+@property (nonatomic, strong) IBOutlet KDGColorSwatchButton *backgroundButton2;
 @property (nonatomic, strong) IBOutlet KDGButton *brightnessButton2;
 @property (nonatomic, strong) IBOutlet UIButton *cancelButton;
 @property (nonatomic, strong) IBOutlet UIButton *okayButton;

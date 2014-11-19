@@ -84,10 +84,10 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     self.optionSlider.minimumValue = 0.0;
     self.optionSlider.maximumValue = 1.0;
 
-    for (UIButton *button in @[self.fontButton,
+    for (UIButton *button in @[/*self.fontButton,
                                self.foregroundButton,
                                self.backgroundButton,
-                               self.brightnessButton,
+                               self.brightnessButton,*/
                                self.cancelButton,
                                self.okayButton])
     {
@@ -103,19 +103,19 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 //        [button addTarget:self action:@selector(buttonRelease:) forControlEvents:UIControlEventTouchDragExit];
     }
 
-    for (KDGButton *button in @[self.fontButton2,
-                                self.foregroundButton2,
-                                self.backgroundButton2,
-                                self.brightnessButton2,
-                                self.okayButton2,
-                                self.cancelButton2])
+    for (UIView *button in @[self.fontButton2,
+                             self.foregroundButton2,
+                             self.backgroundButton2,
+                             self.brightnessButton2,
+                             self.okayButton2,
+                             self.cancelButton2])
     {
         button.hidden = YES;
     }
 
     self.fontButton2.text = [NSString fontString];
-    self.foregroundButton2.text = @"f";
-    self.backgroundButton2.text = @"b";
+    //self.foregroundButton2.text = @"f";
+    //self.backgroundButton2.text = @"b";
     self.brightnessButton2.text = [NSString brightnessString];
     self.okayButton2.text = [NSString okayString];
     self.cancelButton2.text = [NSString cancelString];
@@ -230,6 +230,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 
 - (void)setUpFont
 {
+    //self.timeLabel.backgroundColor = [UIColor lightGrayColor];
     self.timeLabel.adjustsFontSizeToFitWidth = YES;
     self.timeLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
     self.timeLabel.minimumScaleFactor = 12.0 / kFontSize;
@@ -444,51 +445,55 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     [self.backButton setTitleColor:color forState:UIControlStateNormal];
     [self.optionsButton setTitleColor:color forState:UIControlStateNormal];
     
-    for (UIButton *button in @[self.fontButton,
+    for (UIButton *button in @[/*self.fontButton,
                                self.foregroundButton,
                                self.backgroundButton,
-                               self.brightnessButton,
+                               self.brightnessButton,*/
                                self.cancelButton,
                                self.okayButton])
     {
-        [button setBackgroundColor:color];
+        //[button setBackgroundColor:color];
     }
 
-    for (KDGButton *button in @[self.fontButton2,
-                                self.foregroundButton2,
-                                self.backgroundButton2,
-                                self.brightnessButton2,
-                                self.okayButton2,
-                                self.cancelButton2])
+    for (KDGBaseButton *button in @[self.fontButton2,
+                                    //self.foregroundButton2,
+                                    //self.backgroundButton2,
+                                    self.brightnessButton2,
+                                    self.okayButton2,
+                                    self.cancelButton2])
     {
-        [button setBackgroundColor:color];
-        [button setHighlightColor:[color kdgDarkerColor]];
+        //[button setBackgroundColor:color];
+        //[button setHighlightColor:[color kdgDarkerColor]];
     }
+
+    self.foregroundButton2.swatchColor = color;
 }
 
 - (void)updateBackgroundColor:(UIColor *)color
 {
     self.view.backgroundColor = color;
 
-    for (UIButton *button in @[self.fontButton,
+    for (UIButton *button in @[/*self.fontButton,
                                self.foregroundButton,
                                self.backgroundButton,
-                               self.brightnessButton,
+                               self.brightnessButton,*/
                                self.cancelButton,
                                self.okayButton])
     {
-        [button setTitleColor:color forState:UIControlStateNormal];
+        //[button setTitleColor:color forState:UIControlStateNormal];
     }
 
     for (KDGButton *button in @[self.fontButton2,
-                                self.foregroundButton2,
-                                self.backgroundButton2,
+                                //self.foregroundButton2,
+                                //self.backgroundButton2,
                                 self.brightnessButton2,
                                 self.okayButton2,
                                 self.cancelButton2])
     {
-        [button setTextColor:color];
+        //[button setTextColor:color];
     }
+
+    self.backgroundButton2.swatchColor = color;
 }
 
 - (void)presentOptionsButton
@@ -607,6 +612,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     }
     else
     {
+        /*
         CFTimeInterval duration = 0.3;
         
         NSArray *views = @[self.fontButton,
@@ -643,6 +649,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
             }
         }
         [CATransaction commit];
+         */
     }
 }
 
@@ -1090,6 +1097,69 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     }
 }
 
+- (void)shrinkTimeView
+{
+    return;
+
+    NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.2];
+
+    UIView *view = self.timeLabel;
+
+    //  slide up time display and shrink a bit.
+    //
+    //CGPoint fromPoint = view.center;
+    //CGPoint toPoint = self.timeShrinkView.center;
+
+    CATransform3D fromTransform = CATransform3DMakeScale(1.0, 1.0, 1.0);
+    CATransform3D toTransform = CATransform3DMakeScale(0.8, 0.8, 1.0);
+    toTransform = CATransform3DTranslate(toTransform, 0.0, -60, 0.0);
+
+    //view.center = fromPoint;
+    view.layer.transform = fromTransform;
+
+    NSTimeInterval delay = 0.0;
+
+    [UIView animateWithDuration:duration
+                          delay:delay
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         //view.center = toPoint;
+                         view.layer.transform = toTransform;
+                     } completion:^(BOOL finished) {
+                     }];
+}
+
+- (void)restoreTimeView
+{
+    return;
+
+    NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.2];
+
+    UIView *view = self.timeLabel;
+
+    //  slide back time display and restore size.
+    //
+    //CGPoint fromPoint = self.timeShrinkView.center;
+    //CGPoint toPoint = view.center;
+
+    CATransform3D fromTransform = view.layer.transform;//CATransform3DMakeScale(1.0, 1.0, 1.0);
+    CATransform3D toTransform = CATransform3DIdentity;
+
+    //view.center = fromPoint;
+    view.layer.transform = fromTransform;
+
+    NSTimeInterval delay = 0.0;
+
+    [UIView animateWithDuration:duration
+                          delay:delay
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         //view.center = toPoint;
+                         view.layer.transform = toTransform;
+                     } completion:^(BOOL finished) {
+                     }];
+}
+
 //- (void)presentPressAnimation:(UIView *)view
 //{
 //    CGFloat scaleFactor = 1.2;
@@ -1295,11 +1365,13 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     else if ([command isEqualToCommand:[Command presentClockOptions]])
     {
         [self presentOptions];
+        [self shrinkTimeView];
         [self dismissOptionsButton];
     }
     else if ([command isEqualToCommand:[Command dismissClockOptions]])
     {
         [self dismissOptions];
+        [self restoreTimeView];
         [self presentOptionsButton];
     }
     else if ([command isEqualToCommand:[Command presentClockFontOptions]])
@@ -1313,6 +1385,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     else if ([command isEqualToCommand:[Command dismissClockFontOptions]])
     {
         [self dismissOptionSlider];
+        [self restoreTimeView];
         [self presentOptionsButton];
     }
     else if ([command isEqualToCommand:[Command presentClockForegroundOptions]])
@@ -1326,6 +1399,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     else if ([command isEqualToCommand:[Command dismissClockForegroundOptions]])
     {
         [self dismissOptionSlider];
+        [self restoreTimeView];
         [self presentOptionsButton];
     }
     else if ([command isEqualToCommand:[Command presentClockBackgroundOptions]])
@@ -1339,6 +1413,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     else if ([command isEqualToCommand:[Command dismissClockBackgroundOptions]])
     {
         [self dismissOptionSlider];
+        [self restoreTimeView];
         [self presentOptionsButton];
     }
     else if ([command isEqualToCommand:[Command dimScreenBrightness]])
