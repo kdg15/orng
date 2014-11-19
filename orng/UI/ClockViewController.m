@@ -225,14 +225,14 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
                                                                                        action:@selector(singleTapAction:)];
     singleTapGesture.numberOfTapsRequired = 1;
     singleTapGesture.numberOfTouchesRequired = 1;
-    //[self.view addGestureRecognizer:singleTapGesture];
+    [self.timeLabel addGestureRecognizer:singleTapGesture];
 }
 
 - (void)setUpFont
 {
     self.timeLabel.adjustsFontSizeToFitWidth = YES;
     self.timeLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-    self.timeLabel.minimumScaleFactor = 0.1;
+    self.timeLabel.minimumScaleFactor = 12.0 / kFontSize;
 
     NSString *fontName = [DataModel clockFontName];
     self.fontValue = [self calculateValueFromFontName:fontName];
@@ -421,6 +421,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 {
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     [commandEngine executeCommand:[Command dimScreenBrightness]];
+    self.brightnessTimer = nil;
 }
 
 #pragma mark - ui
@@ -1089,32 +1090,29 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     }
 }
 
-- (void)presentPressAnimation:(UIView *)view
-{
-    CGFloat scaleFactor = 1.2;
-    
-    [UIView animateWithDuration:0.2
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         view.transform = CGAffineTransformMakeScale(scaleFactor, scaleFactor);
-                     } completion:^(BOOL finished) {
-                         [UIView animateWithDuration:0.1
-                                               delay:0.0
-                                             options:UIViewAnimationOptionCurveLinear
-                                          animations:^{
-                                              view.transform = CGAffineTransformIdentity;
-                                          } completion:^(BOOL finished) {
-                                              //
-                                          }];
-                     }];
-}
+//- (void)presentPressAnimation:(UIView *)view
+//{
+//    CGFloat scaleFactor = 1.2;
+//    
+//    [UIView animateWithDuration:0.2
+//                          delay:0.0
+//                        options:UIViewAnimationOptionCurveLinear
+//                     animations:^{
+//                         view.transform = CGAffineTransformMakeScale(scaleFactor, scaleFactor);
+//                     } completion:^(BOOL finished) {
+//                         [UIView animateWithDuration:0.1
+//                                               delay:0.0
+//                                             options:UIViewAnimationOptionCurveLinear
+//                                          animations:^{
+//                                              view.transform = CGAffineTransformIdentity;
+//                                          } completion:^(BOOL finished) {
+//                                              //
+//                                          }];
+//                     }];
+//}
 
-#pragma mark - actions
-
-- (void)singleTapAction:(id)sender
+- (void)restoreScreenBrightness
 {
-    NSLog(@"singleTapAction...");
     if (self.brightnessDimmed)
     {
         [self startBrightnessTimer];
@@ -1123,8 +1121,17 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     }
 }
 
+#pragma mark - actions
+
+- (void)singleTapAction:(id)sender
+{
+    [self restoreScreenBrightness];
+}
+
 - (IBAction)optionsAction:(id)sender
 {
+    [self restoreScreenBrightness];
+
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     [commandEngine executeCommand:[Command presentClockOptions]];
 }
