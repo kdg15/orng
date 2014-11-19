@@ -1,7 +1,9 @@
 todo
 ====
+- slide up and shrink the time display when showing clock options.
 - see how big circular slider needs to be for it to be more usable
 - try a pop up arc slider.
+- add on/off state to KDGButton.
 - specify an arc range for the usable slider area on a circular slider.
 - rename command responder method to handleCommmand or something else.
 - need system for quickly accessing commands.
@@ -9,7 +11,6 @@ todo
 - command to clear prefs.
 - add undo/redo.
 - need indication when button pressed. change colour, draw ring or halo.
-- try UIView animation methods again, but do scaling/position on layer transform.
 - fix scrolling of back door output field.
 
 done
@@ -21,3 +22,4 @@ done
 - make commands for print, clear, and play log. then remove buttons from main view.
 - drop Command suffix from command names.
 - hook up back door debug controller.
+- try UIView animation methods again, but do scaling/position on layer transform.
