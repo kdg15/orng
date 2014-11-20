@@ -5,18 +5,14 @@
 
 #import <UIKit/UIKit.h>
 
-//@interface KDGColorSwatch : UIView
-//
-//@property (nonatomic, strong) UIColor *swatchColor;
-//
-//@end
-
 @interface KDGBaseButton : UIControl
 
 @property (nonatomic, strong) UIColor *highlightColor;
 @property (nonatomic, strong) UIColor *borderColor;
+@property (nonatomic, strong) UIColor *selectionColor;
 
 @property (nonatomic, assign) CGFloat borderWidth;
+@property (nonatomic, assign) CGFloat selectionBorderWidth;
 @property (nonatomic, assign) CGFloat shadowOpacity;
 @property (nonatomic, assign) CGFloat cornerRadius;
 
@@ -30,21 +26,3 @@
 - (void)unhighlight;
 
 @end
-
-//@interface KDGButton : KDGBaseButton
-//
-//@property (nonatomic, strong) NSString *text;
-//@property (nonatomic, strong) UIColor *textColor;
-//@property (nonatomic, strong) UIColor *textHighlightColor;
-//
-//@end
-//
-//@interface KDGColorSwatchButton : KDGBaseButton
-//
-//@property (nonatomic, strong) UIColor *swatchColor;
-//
-//@end
-//
-//@interface KDGTestView : UIView
-//
-//@end

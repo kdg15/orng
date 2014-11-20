@@ -136,7 +136,7 @@ typedef NS_ENUM(NSInteger, ColorSliderComponent)
     [button0 addTarget:self action:@selector(buttonTouchDragOutsideAction:) forControlEvents:UIControlEventTouchDragOutside];
     [button0 addTarget:self action:@selector(buttonTouchDragEnterAction:)   forControlEvents:UIControlEventTouchDragEnter];
     [button0 addTarget:self action:@selector(buttonTouchDragExitAction:)    forControlEvents:UIControlEventTouchDragExit];
-
+    
     button1.backgroundColor    = [UIColor kdgColorWithRed: 70 green:138 blue:207 alpha:255];
     button1.highlightColor     = [button1.backgroundColor kdgDarkerColor];
     
@@ -145,6 +145,8 @@ typedef NS_ENUM(NSInteger, ColorSliderComponent)
     
     button3.backgroundColor    = [UIColor kdgColorWithRed:238 green:174 blue: 56 alpha:255];
     button3.highlightColor     = [button3.backgroundColor kdgDarkerColor];
+
+    [button3 addTarget:self action:@selector(toggleButtonTouchUpInsideAction:) forControlEvents:UIControlEventTouchUpInside];
 
     [self.sampleView addSubview:button0];
     [self.sampleView addSubview:button1];
@@ -507,14 +509,20 @@ typedef NS_ENUM(NSInteger, ColorSliderComponent)
     }
 }
 
-- (void)buttonTouchDownAction:(UIButton *)button        { [self output:@"buttonTouchDownAction"]; }
-- (void)buttonTouchUpInsideAction:(UIButton *)button    { [self output:@"buttonTouchUpInsideAction"]; }
-- (void)buttonTouchUpOutsideAction:(UIButton *)button   { [self output:@"buttonTouchUpOutsideAction"]; }
-- (void)buttonTouchCancelAction:(UIButton *)button      { [self output:@"buttonTouchCancelAction"]; }
-- (void)buttonTouchDragInsideAction:(UIButton *)button  { [self output:@"buttonTouchDragInsideAction"]; }
-- (void)buttonTouchDragOutsideAction:(UIButton *)button { [self output:@"buttonTouchDragOutsideAction"]; }
-- (void)buttonTouchDragEnterAction:(UIButton *)button   { [self output:@"buttonTouchDragEnterAction"]; }
-- (void)buttonTouchDragExitAction:(UIButton *)button    { [self output:@"buttonTouchDragExitAction"]; }
+- (void)buttonTouchDownAction:(id)sender        { [self output:@"buttonTouchDownAction"]; }
+- (void)buttonTouchUpInsideAction:(id)sender    { [self output:@"buttonTouchUpInsideAction"]; }
+- (void)buttonTouchUpOutsideAction:(id)sender   { [self output:@"buttonTouchUpOutsideAction"]; }
+- (void)buttonTouchCancelAction:(id)sender      { [self output:@"buttonTouchCancelAction"]; }
+- (void)buttonTouchDragInsideAction:(id)sender  { [self output:@"buttonTouchDragInsideAction"]; }
+- (void)buttonTouchDragOutsideAction:(id)sender { [self output:@"buttonTouchDragOutsideAction"]; }
+- (void)buttonTouchDragEnterAction:(id)sender   { [self output:@"buttonTouchDragEnterAction"]; }
+- (void)buttonTouchDragExitAction:(id)sender    { [self output:@"buttonTouchDragExitAction"]; }
+
+- (void)toggleButtonTouchUpInsideAction:(id)sender
+{
+    KDGButton *button = (KDGButton *)sender;
+    button.selected = !button.selected;
+}
 
 #pragma mark - command system
 
