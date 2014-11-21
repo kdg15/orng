@@ -127,7 +127,7 @@ typedef NS_ENUM(NSInteger, ColorSliderComponent)
     buttonFrame = CGRectMake(position.x, position.y, 2 * buttonSize.width, buttonSize.height);
     KDGButton *button3 = [[KDGButton alloc] initWithFrame:buttonFrame];
     position.y += buttonSize.height + space.height;
-    
+
     [button0 addTarget:self action:@selector(buttonTouchDownAction:)        forControlEvents:UIControlEventTouchDown];
     [button0 addTarget:self action:@selector(buttonTouchUpInsideAction:)    forControlEvents:UIControlEventTouchUpInside];
     [button0 addTarget:self action:@selector(buttonTouchUpOutsideAction:)   forControlEvents:UIControlEventTouchUpOutside];
@@ -154,6 +154,11 @@ typedef NS_ENUM(NSInteger, ColorSliderComponent)
     [self.sampleView addSubview:button3];
     
     self.samples = @[button0, button1, button2, button3];
+
+    for (KDGButton *button in self.samples)
+    {
+        button.text = @"abk";
+    }
 
     {
         position = CGPointMake(0, self.settingsView.bounds.size.height - buttonSize.height);
