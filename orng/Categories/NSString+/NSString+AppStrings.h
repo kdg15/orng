@@ -10,6 +10,9 @@
 + (NSString *)okayString;
 + (NSString *)cancelString;
 
++ (NSString *)backString;
++ (NSString *)moreString;
+
 + (NSString *)fontString;
 + (NSString *)brightnessString;
 

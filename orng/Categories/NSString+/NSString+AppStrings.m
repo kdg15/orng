@@ -8,9 +8,12 @@
 @implementation NSString (AppStrings)
 
 + (NSString *)okayString   { return NSLocalizedString(@"ok", @"okay"); }
-+ (NSString *)cancelString { return NSLocalizedString(@"x", @"cancel"); }
++ (NSString *)cancelString { return NSLocalizedString(@"✕", @"cancel"); }
+
++ (NSString *)backString { return NSLocalizedString(@"❮", @"back"); }
++ (NSString *)moreString { return NSLocalizedString(@"⋯", @"more"); }
 
 + (NSString *)fontString        { return NSLocalizedString(@"ƒ", @"font"); }
-+ (NSString *)brightnessString  { return NSLocalizedString(@"*", @"brightness"); }
++ (NSString *)brightnessString  { return NSLocalizedString(@"☀︎", @"brightness"); }
 
 @end
