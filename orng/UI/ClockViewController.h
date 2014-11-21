@@ -21,6 +21,8 @@
 @property (nonatomic, strong) IBOutlet KDGButton *okayButton2;
 @property (nonatomic, strong) IBOutlet KDGButton *cancelButton2;
 
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *timeViewBottomConstraint;
+
 - (IBAction)backAction:(id)sender;
 
 - (IBAction)optionsAction:(id)sender;

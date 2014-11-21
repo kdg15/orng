@@ -89,12 +89,12 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     self.optionSlider.minimumValue = 0.0;
     self.optionSlider.maximumValue = 1.0;
 
-    for (KDGBaseButton *button in @[self.fontButton2,
-                                    self.foregroundButton2,
-                                    self.backgroundButton2,
-                                    self.brightnessButton2,
-                                    self.okayButton2,
-                                    self.cancelButton2])
+    for (KDGButton *button in @[self.fontButton2,
+                                self.foregroundButton2,
+                                self.backgroundButton2,
+                                self.brightnessButton2,
+                                self.okayButton2,
+                                self.cancelButton2])
     {
         button.hidden = YES;
         button.backgroundColor = [UIColor appLightBlueColor];
@@ -112,42 +112,6 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     self.cancelButton2.text = [NSString cancelString];
 
     [[CommandEngine sharedInstance] addResponder:self];
-}
-
-- (void)buttonPress:(UIButton *)button
-{
-    //NSLog(@"--- buttonPress");
-    //button.transform = CGAffineTransformMakeScale(1.25, 1.25);
-    
-    CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform.scale.x"];
-    scale.toValue = @1.2;
-    //rotate.autoreverses = YES;
-    //rotate.repeatCount = INFINITY;
-    scale.duration = 0.2;
-    scale.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-    
-    [button.layer addAnimation:scale forKey:@"myScaleUpAnimation"];
-}
-
-- (void)buttonRelease:(UIButton *)button
-{
-    //NSLog(@"--- buttonRelease");
-    //button.transform = CGAffineTransformMakeScale(1.0, 1.0);
-    //button.transform = CGAffineTransformIdentity;
-
-    CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform.scale.x"];
-    scale.toValue = @1.0;
-    //rotate.autoreverses = YES;
-    //rotate.repeatCount = INFINITY;
-    scale.duration = 0.2;
-    scale.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-    
-    [button.layer addAnimation:scale forKey:@"myScaleDownAnimation"];
-}
-
-- (void)myButtonAction:(UIButton *)button
-{
-    NSLog(@"pressed my button");
 }
 
 - (void)dealloc
@@ -221,7 +185,6 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 
 - (void)setUpFont
 {
-    //self.timeLabel.backgroundColor = [UIColor lightGrayColor];
     self.timeLabel.adjustsFontSizeToFitWidth = YES;
     self.timeLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
     self.timeLabel.minimumScaleFactor = 12.0 / kFontSize;
@@ -435,55 +398,12 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     self.timeLabel.textColor = color;
     [self.backButton setTitleColor:color forState:UIControlStateNormal];
     [self.optionsButton setTitleColor:color forState:UIControlStateNormal];
-    
-//    for (UIButton *button in @[/*self.fontButton,
-//                               self.foregroundButton,
-//                               self.backgroundButton,
-//                               self.brightnessButton,*/
-//                               self.cancelButton,
-//                               self.okayButton])
-//    {
-//        //[button setBackgroundColor:color];
-//    }
-
-//    for (KDGBaseButton *button in @[self.fontButton2,
-//                                    //self.foregroundButton2,
-//                                    //self.backgroundButton2,
-//                                    self.brightnessButton2,
-//                                    self.okayButton2,
-//                                    self.cancelButton2])
-//    {
-//        //[button setBackgroundColor:color];
-//        //[button setHighlightColor:[color kdgDarkerColor]];
-//    }
-
     self.foregroundButton2.swatchColor = color;
 }
 
 - (void)updateBackgroundColor:(UIColor *)color
 {
     self.view.backgroundColor = color;
-
-//    for (UIButton *button in @[/*self.fontButton,
-//                               self.foregroundButton,
-//                               self.backgroundButton,
-//                               self.brightnessButton,*/
-//                               self.cancelButton,
-//                               self.okayButton])
-//    {
-//        //[button setTitleColor:color forState:UIControlStateNormal];
-//    }
-
-//    for (KDGButton *button in @[self.fontButton2,
-//                                //self.foregroundButton2,
-//                                //self.backgroundButton2,
-//                                self.brightnessButton2,
-//                                self.okayButton2,
-//                                self.cancelButton2])
-//    {
-//        //[button setTextColor:color];
-//    }
-
     self.backgroundButton2.swatchColor = color;
 }
 
@@ -1090,87 +1010,25 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 
 - (void)shrinkTimeView
 {
-    return;
-
     NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.2];
 
-    UIView *view = self.timeLabel;
-
-    //  slide up time display and shrink a bit.
-    //
-    //CGPoint fromPoint = view.center;
-    //CGPoint toPoint = self.timeShrinkView.center;
-
-    CATransform3D fromTransform = CATransform3DMakeScale(1.0, 1.0, 1.0);
-    CATransform3D toTransform = CATransform3DMakeScale(0.8, 0.8, 1.0);
-    toTransform = CATransform3DTranslate(toTransform, 0.0, -60, 0.0);
-
-    //view.center = fromPoint;
-    view.layer.transform = fromTransform;
-
-    NSTimeInterval delay = 0.0;
-
-    [UIView animateWithDuration:duration
-                          delay:delay
-                        options:UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         //view.center = toPoint;
-                         view.layer.transform = toTransform;
-                     } completion:^(BOOL finished) {
-                     }];
+    self.timeViewBottomConstraint.constant = 120.0;
+    
+    [UIView animateWithDuration:duration animations:^{
+        [self.view layoutIfNeeded];
+    }];
 }
 
 - (void)restoreTimeView
 {
-    return;
-
     NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.2];
 
-    UIView *view = self.timeLabel;
+    self.timeViewBottomConstraint.constant = 40.0;
 
-    //  slide back time display and restore size.
-    //
-    //CGPoint fromPoint = self.timeShrinkView.center;
-    //CGPoint toPoint = view.center;
-
-    CATransform3D fromTransform = view.layer.transform;//CATransform3DMakeScale(1.0, 1.0, 1.0);
-    CATransform3D toTransform = CATransform3DIdentity;
-
-    //view.center = fromPoint;
-    view.layer.transform = fromTransform;
-
-    NSTimeInterval delay = 0.0;
-
-    [UIView animateWithDuration:duration
-                          delay:delay
-                        options:UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         //view.center = toPoint;
-                         view.layer.transform = toTransform;
-                     } completion:^(BOOL finished) {
-                     }];
+    [UIView animateWithDuration:duration animations:^{
+        [self.view layoutIfNeeded];
+    }];
 }
-
-//- (void)presentPressAnimation:(UIView *)view
-//{
-//    CGFloat scaleFactor = 1.2;
-//    
-//    [UIView animateWithDuration:0.2
-//                          delay:0.0
-//                        options:UIViewAnimationOptionCurveLinear
-//                     animations:^{
-//                         view.transform = CGAffineTransformMakeScale(scaleFactor, scaleFactor);
-//                     } completion:^(BOOL finished) {
-//                         [UIView animateWithDuration:0.1
-//                                               delay:0.0
-//                                             options:UIViewAnimationOptionCurveLinear
-//                                          animations:^{
-//                                              view.transform = CGAffineTransformIdentity;
-//                                          } completion:^(BOOL finished) {
-//                                              //
-//                                          }];
-//                     }];
-//}
 
 - (void)restoreScreenBrightness
 {
