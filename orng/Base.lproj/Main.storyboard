@@ -306,32 +306,6 @@
                                     <action selector="cancelAction:" destination="7V9-tp-wcj" eventType="touchUpInside" id="jY3-0Z-VmJ"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJx-6m-eFm">
-                                <rect key="frame" x="20" y="508" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="D3y-5Z-GqT"/>
-                                    <constraint firstAttribute="width" constant="40" id="oJD-lg-CRz"/>
-                                </constraints>
-                                <state key="normal" title="✘">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="cancelAction:" destination="7V9-tp-wcj" eventType="touchUpInside" id="yCv-0Z-kwv"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VlO-sc-M7s">
-                                <rect key="frame" x="260" y="508" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="9hy-Ak-2sK"/>
-                                    <constraint firstAttribute="height" constant="40" id="dPI-IK-W7v"/>
-                                </constraints>
-                                <state key="normal" title="✔︎">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="okayAction:" destination="7V9-tp-wcj" eventType="touchUpInside" id="kf8-zs-lKp"/>
-                                </connections>
-                            </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="uTY-ne-d0f" userLabel="option slider">
                                 <rect key="frame" x="66" y="513" width="188" height="31"/>
                                 <constraints>
@@ -346,15 +320,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="VlO-sc-M7s" secondAttribute="bottom" constant="20" id="7LW-gW-tkt"/>
                             <constraint firstItem="lBJ-9Y-WWT" firstAttribute="leading" secondItem="A3H-oD-duB" secondAttribute="leading" id="9yx-o3-VZx"/>
-                            <constraint firstAttribute="bottom" secondItem="OJx-6m-eFm" secondAttribute="bottom" constant="20" id="BuU-PY-ZCe"/>
                             <constraint firstAttribute="centerX" secondItem="DwC-UF-2Th" secondAttribute="centerX" constant="-120" id="EZg-pR-ynR"/>
                             <constraint firstItem="T36-Jd-DKN" firstAttribute="top" secondItem="ob8-Ne-U1d" secondAttribute="bottom" constant="20" id="EbT-Tq-IN2"/>
                             <constraint firstItem="n6a-Rn-Dw7" firstAttribute="leading" secondItem="A3H-oD-duB" secondAttribute="leading" id="EjU-WJ-BLf"/>
                             <constraint firstAttribute="centerX" secondItem="ob8-Ne-U1d" secondAttribute="centerX" constant="72" id="HY5-av-Nx4"/>
                             <constraint firstAttribute="bottom" secondItem="n6a-Rn-Dw7" secondAttribute="bottom" constant="40" id="Icg-Vb-ecb"/>
-                            <constraint firstAttribute="centerX" secondItem="VlO-sc-M7s" secondAttribute="centerX" constant="-120" id="MTu-Qc-tbm"/>
                             <constraint firstItem="T36-Jd-DKN" firstAttribute="top" secondItem="UAQ-Ln-iWF" secondAttribute="bottom" constant="20" id="Qld-vy-bql"/>
                             <constraint firstAttribute="centerX" secondItem="B74-E6-GSm" secondAttribute="centerX" id="Sue-zr-4bD"/>
                             <constraint firstItem="n6a-Rn-Dw7" firstAttribute="top" secondItem="A3H-oD-duB" secondAttribute="top" constant="60" id="ZI2-ym-Bnd"/>
@@ -364,7 +335,6 @@
                             <constraint firstAttribute="centerX" secondItem="uTY-ne-d0f" secondAttribute="centerX" id="dkS-NO-mkS"/>
                             <constraint firstItem="T36-Jd-DKN" firstAttribute="top" secondItem="DwC-UF-2Th" secondAttribute="bottom" constant="20" id="hIG-97-l3t"/>
                             <constraint firstItem="lBJ-9Y-WWT" firstAttribute="top" secondItem="A3H-oD-duB" secondAttribute="top" id="iGg-JK-NDY"/>
-                            <constraint firstAttribute="centerX" secondItem="OJx-6m-eFm" secondAttribute="centerX" constant="120" id="j3W-mr-fr6"/>
                             <constraint firstItem="B74-E6-GSm" firstAttribute="bottom" secondItem="A3H-oD-duB" secondAttribute="bottomMargin" id="pBy-Q4-Ow2"/>
                             <constraint firstItem="T36-Jd-DKN" firstAttribute="top" secondItem="D6W-xN-vi7" secondAttribute="bottom" constant="20" id="qa6-YN-Ecw"/>
                             <constraint firstAttribute="centerX" secondItem="D6W-xN-vi7" secondAttribute="centerX" constant="120" id="qfz-NW-Fy2"/>
@@ -379,11 +349,9 @@
                         <outlet property="backButton" destination="lBJ-9Y-WWT" id="03d-jA-qrt"/>
                         <outlet property="backgroundButton2" destination="UAQ-Ln-iWF" id="X5M-As-njx"/>
                         <outlet property="brightnessButton2" destination="KMw-P0-bkF" id="Sv5-Qf-Snh"/>
-                        <outlet property="cancelButton" destination="OJx-6m-eFm" id="7zc-tc-XdY"/>
                         <outlet property="cancelButton2" destination="D6W-xN-vi7" id="zSg-k4-TsW"/>
                         <outlet property="fontButton2" destination="ob8-Ne-U1d" id="UCx-3y-Nhf"/>
                         <outlet property="foregroundButton2" destination="HY8-VT-QFu" id="bcs-oL-F84"/>
-                        <outlet property="okayButton" destination="VlO-sc-M7s" id="y99-t1-uFl"/>
                         <outlet property="okayButton2" destination="DwC-UF-2Th" id="wwl-ef-yjj"/>
                         <outlet property="optionSlider" destination="uTY-ne-d0f" id="clq-Jo-P4D"/>
                         <outlet property="optionsButton" destination="B74-E6-GSm" id="41u-ET-f2n"/>

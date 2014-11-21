@@ -18,8 +18,6 @@
 @property (nonatomic, strong) IBOutlet KDGColorSwatchButton *foregroundButton2;
 @property (nonatomic, strong) IBOutlet KDGColorSwatchButton *backgroundButton2;
 @property (nonatomic, strong) IBOutlet KDGButton *brightnessButton2;
-@property (nonatomic, strong) IBOutlet UIButton *cancelButton;
-@property (nonatomic, strong) IBOutlet UIButton *okayButton;
 @property (nonatomic, strong) IBOutlet KDGButton *okayButton2;
 @property (nonatomic, strong) IBOutlet KDGButton *cancelButton2;
 

@@ -41,6 +41,7 @@
 		D3157F4C19D50766008812CA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3157F4719D50766008812CA /* MainViewController.m */; };
 		D3157F4F19D5084E008812CA /* GridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3157F4D19D5084E008812CA /* GridViewController.m */; };
 		D31CE23A1A1AE28C008D0CBC /* NSString+AppStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = D31CE2391A1AE28C008D0CBC /* NSString+AppStrings.m */; };
+		D3631A191A1ED0E300D08BA4 /* NSObject+KDGBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = D3631A181A1ED0E300D08BA4 /* NSObject+KDGBlocks.m */; };
 		D378DD5A1A0AE88A004DB980 /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = D378DD581A0AE88A004DB980 /* todo.txt */; };
 		D37F832119C7D1FB002D4C58 /* Gruppo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F832019C7D1FB002D4C58 /* Gruppo-Regular.ttf */; };
 		D37F832E19C7D35C002D4C58 /* Audiowide-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37F832419C7D35C002D4C58 /* Audiowide-Regular.ttf */; };
@@ -138,6 +139,8 @@
 		D3157F5919D50DD9008812CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D31CE2381A1AE28C008D0CBC /* NSString+AppStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AppStrings.h"; sourceTree = "<group>"; };
 		D31CE2391A1AE28C008D0CBC /* NSString+AppStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AppStrings.m"; sourceTree = "<group>"; };
+		D3631A171A1ED0E300D08BA4 /* NSObject+KDGBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KDGBlocks.h"; sourceTree = "<group>"; };
+		D3631A181A1ED0E300D08BA4 /* NSObject+KDGBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KDGBlocks.m"; sourceTree = "<group>"; };
 		D378DD581A0AE88A004DB980 /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = todo.txt; path = orng/todo.txt; sourceTree = SOURCE_ROOT; };
 		D37F832019C7D1FB002D4C58 /* Gruppo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gruppo-Regular.ttf"; path = "Fonts/Gruppo/Gruppo-Regular.ttf"; sourceTree = "<group>"; };
 		D37F832419C7D35C002D4C58 /* Audiowide-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Audiowide-Regular.ttf"; path = "Fonts/Audiowide/Audiowide-Regular.ttf"; sourceTree = "<group>"; };
@@ -503,6 +506,7 @@
 		D3157F5319D50DA9008812CA /* Cocoa */ = {
 			isa = PBXGroup;
 			children = (
+				D3631A161A1ED0E300D08BA4 /* NSObject+ */,
 				0C73F00819FEDB1C00AABCD3 /* Utilities */,
 			);
 			path = Cocoa;
@@ -534,6 +538,15 @@
 				D31CE2391A1AE28C008D0CBC /* NSString+AppStrings.m */,
 			);
 			path = "NSString+";
+			sourceTree = "<group>";
+		};
+		D3631A161A1ED0E300D08BA4 /* NSObject+ */ = {
+			isa = PBXGroup;
+			children = (
+				D3631A171A1ED0E300D08BA4 /* NSObject+KDGBlocks.h */,
+				D3631A181A1ED0E300D08BA4 /* NSObject+KDGBlocks.m */,
+			);
+			path = "NSObject+";
 			sourceTree = "<group>";
 		};
 		D37F832219C7D20B002D4C58 /* Fonts */ = {
@@ -811,6 +824,7 @@
 				D3157F4F19D5084E008812CA /* GridViewController.m in Sources */,
 				0CAF70771A1A89D8002B98C0 /* KDGColorSwatch.m in Sources */,
 				0C9EA84C1A09283800DD4D97 /* UIImage+KDGImageEffects.m in Sources */,
+				D3631A191A1ED0E300D08BA4 /* NSObject+KDGBlocks.m in Sources */,
 				D3F703A819D8B2F500B55D16 /* TestViewCell.m in Sources */,
 				0C73F00B19FEDB1C00AABCD3 /* KDGUtilities.mm in Sources */,
 				0CAF706C1A1A8951002B98C0 /* KDGBaseButton.m in Sources */,

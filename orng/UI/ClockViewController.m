@@ -7,10 +7,12 @@
 #import "DataModel.h"
 #import "CommandSystem.h"
 #import "NSString+AppStrings.h"
+#import "UIColor+AppColors.h"
 #import "KDGUtilities.h"
 #import "KDGBackDoorViewController.h"
 #import "UIColor+KDGUtilities.h"
 #import "UIView+KDGAnimation.h"
+#import "NSObject+KDGBlocks.h"
 
 static const CGFloat kWhiteSliderThreshold = 0.05;
 static const CGFloat kBlackSliderThreshold = 0.05;
@@ -80,42 +82,31 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     [self setUpBackgroundColor];
     [self setUpDateFormatter];
     //[self printFonts];
-    
+
+    [self.backButton setTitle:[NSString backString] forState:UIControlStateNormal];
+    [self.optionsButton setTitle:[NSString moreString] forState:UIControlStateNormal];
+
     self.optionSlider.minimumValue = 0.0;
     self.optionSlider.maximumValue = 1.0;
 
-    for (UIButton *button in @[/*self.fontButton,
-                               self.foregroundButton,
-                               self.backgroundButton,
-                               self.brightnessButton,*/
-                               self.cancelButton,
-                               self.okayButton])
+    for (KDGBaseButton *button in @[self.fontButton2,
+                                    self.foregroundButton2,
+                                    self.backgroundButton2,
+                                    self.brightnessButton2,
+                                    self.okayButton2,
+                                    self.cancelButton2])
     {
         button.hidden = YES;
-        button.layer.cornerRadius = 0.5 * button.bounds.size.width;
-        
-        //NSLog(@"button center = %@", NSStringFromCGPoint(button.center));
-        
-//        [button addTarget:self action:@selector(buttonPress:)   forControlEvents:UIControlEventTouchDown];
-//        [button addTarget:self action:@selector(buttonRelease:) forControlEvents:UIControlEventTouchUpInside];
-//        [button addTarget:self action:@selector(buttonRelease:) forControlEvents:UIControlEventTouchUpOutside];
-//        [button addTarget:self action:@selector(buttonRelease:) forControlEvents:UIControlEventTouchCancel];
-//        [button addTarget:self action:@selector(buttonRelease:) forControlEvents:UIControlEventTouchDragExit];
+        button.backgroundColor = [UIColor appLightBlueColor];
+        button.highlightColor = [button.backgroundColor kdgDarkerColor];
+        button.shadowOpacity = 1.0;
+        button.shadowOffset = CGSizeMake(0, 0);
+        button.shadowRadius = 0.5;
     }
 
-    for (UIView *button in @[self.fontButton2,
-                             self.foregroundButton2,
-                             self.backgroundButton2,
-                             self.brightnessButton2,
-                             self.okayButton2,
-                             self.cancelButton2])
-    {
-        button.hidden = YES;
-    }
+    self.brightnessButton2.selectionColor = [UIColor colorWithWhite:0.9 alpha:1.0];
 
     self.fontButton2.text = [NSString fontString];
-    //self.foregroundButton2.text = @"f";
-    //self.backgroundButton2.text = @"b";
     self.brightnessButton2.text = [NSString brightnessString];
     self.okayButton2.text = [NSString okayString];
     self.cancelButton2.text = [NSString cancelString];
@@ -445,26 +436,26 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     [self.backButton setTitleColor:color forState:UIControlStateNormal];
     [self.optionsButton setTitleColor:color forState:UIControlStateNormal];
     
-    for (UIButton *button in @[/*self.fontButton,
-                               self.foregroundButton,
-                               self.backgroundButton,
-                               self.brightnessButton,*/
-                               self.cancelButton,
-                               self.okayButton])
-    {
-        //[button setBackgroundColor:color];
-    }
+//    for (UIButton *button in @[/*self.fontButton,
+//                               self.foregroundButton,
+//                               self.backgroundButton,
+//                               self.brightnessButton,*/
+//                               self.cancelButton,
+//                               self.okayButton])
+//    {
+//        //[button setBackgroundColor:color];
+//    }
 
-    for (KDGBaseButton *button in @[self.fontButton2,
-                                    //self.foregroundButton2,
-                                    //self.backgroundButton2,
-                                    self.brightnessButton2,
-                                    self.okayButton2,
-                                    self.cancelButton2])
-    {
-        //[button setBackgroundColor:color];
-        //[button setHighlightColor:[color kdgDarkerColor]];
-    }
+//    for (KDGBaseButton *button in @[self.fontButton2,
+//                                    //self.foregroundButton2,
+//                                    //self.backgroundButton2,
+//                                    self.brightnessButton2,
+//                                    self.okayButton2,
+//                                    self.cancelButton2])
+//    {
+//        //[button setBackgroundColor:color];
+//        //[button setHighlightColor:[color kdgDarkerColor]];
+//    }
 
     self.foregroundButton2.swatchColor = color;
 }
@@ -473,25 +464,25 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 {
     self.view.backgroundColor = color;
 
-    for (UIButton *button in @[/*self.fontButton,
-                               self.foregroundButton,
-                               self.backgroundButton,
-                               self.brightnessButton,*/
-                               self.cancelButton,
-                               self.okayButton])
-    {
-        //[button setTitleColor:color forState:UIControlStateNormal];
-    }
+//    for (UIButton *button in @[/*self.fontButton,
+//                               self.foregroundButton,
+//                               self.backgroundButton,
+//                               self.brightnessButton,*/
+//                               self.cancelButton,
+//                               self.okayButton])
+//    {
+//        //[button setTitleColor:color forState:UIControlStateNormal];
+//    }
 
-    for (KDGButton *button in @[self.fontButton2,
-                                //self.foregroundButton2,
-                                //self.backgroundButton2,
-                                self.brightnessButton2,
-                                self.okayButton2,
-                                self.cancelButton2])
-    {
-        //[button setTextColor:color];
-    }
+//    for (KDGButton *button in @[self.fontButton2,
+//                                //self.foregroundButton2,
+//                                //self.backgroundButton2,
+//                                self.brightnessButton2,
+//                                self.okayButton2,
+//                                self.cancelButton2])
+//    {
+//        //[button setTextColor:color];
+//    }
 
     self.backgroundButton2.swatchColor = color;
 }
@@ -1240,29 +1231,34 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 
 - (IBAction)brightnessAction:(id)sender
 {
+    KDGButton *button = (KDGButton *)sender;
+    button.selected = !button.selected;
+
     [self stopOptionsTimer];
 
-    CommandEngine *commandEngine = [CommandEngine sharedInstance];
+    [self kdgPerformBlock:^{
+        CommandEngine *commandEngine = [CommandEngine sharedInstance];
 
-    if (self.brightnessTemporarilyRestored)
-    {
-        [self stopBrightnessTimer];
-        self.brightnessTemporarilyRestored = NO;
-        [commandEngine executeCommand:[Command restoreScreenBrightness]];
-    }
-    else
-    {
-        if (self.brightnessDimmed)
+        if (self.brightnessTemporarilyRestored)
         {
+            [self stopBrightnessTimer];
+            self.brightnessTemporarilyRestored = NO;
             [commandEngine executeCommand:[Command restoreScreenBrightness]];
         }
         else
         {
-            [commandEngine executeCommand:[Command dimScreenBrightness]];
+            if (self.brightnessDimmed)
+            {
+                [commandEngine executeCommand:[Command restoreScreenBrightness]];
+            }
+            else
+            {
+                [commandEngine executeCommand:[Command dimScreenBrightness]];
+            }
         }
-    }
-
-    [commandEngine executeCommand:[Command dismissClockOptions]];
+        
+        [commandEngine executeCommand:[Command dismissClockOptions]];
+    } afterDelay:self.brightnessButton2.selectionDuration];
 }
 
 - (IBAction)cancelAction:(id)sender
