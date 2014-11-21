@@ -2,21 +2,21 @@ todo
 ====
 - see how big circular slider needs to be for it to be more usable
 - try a pop up arc slider.
-- add on/off state to KDGButton.
 - specify an arc range for the usable slider area on a circular slider.
 - rename command responder method to handleCommmand or something else.
 - need system for quickly accessing commands.
 - derived class of BackDoorViewController?
 - command to clear prefs.
 - add undo/redo.
-- need indication when button pressed. change colour, draw ring or halo.
 - fix scrolling of back door output field.
 
 done
 ====
+- add on/off state to KDGButton.
 - hide the clock back arrow until options displayed.
 - slide up and shrink the time display when showing clock options.
 - set up app strings.
+- need indication when button pressed. change colour, draw ring or halo.
 - integrate new buttons into clock.
 - create function to adjust all animation durations with global factor.
 - command to list all commands.
