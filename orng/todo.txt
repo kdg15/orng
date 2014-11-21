@@ -1,6 +1,5 @@
 todo
 ====
-- slide up and shrink the time display when showing clock options.
 - see how big circular slider needs to be for it to be more usable
 - try a pop up arc slider.
 - add on/off state to KDGButton.
@@ -15,6 +14,8 @@ todo
 
 done
 ====
+- hide the clock back arrow until options displayed.
+- slide up and shrink the time display when showing clock options.
 - set up app strings.
 - integrate new buttons into clock.
 - create function to adjust all animation durations with global factor.

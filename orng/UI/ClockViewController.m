@@ -87,6 +87,8 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     self.optionSlider.minimumValue = 0.0;
     self.optionSlider.maximumValue = 1.0;
 
+    self.backButton.hidden = YES;
+
     for (KDGButton *button in @[self.fontButton,
                                 self.foregroundButton,
                                 self.backgroundButton,
@@ -403,6 +405,16 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 {
     self.view.backgroundColor = color;
     self.backgroundButton.swatchColor = color;
+}
+
+- (void)presentBackButton
+{
+    self.backButton.hidden = NO;
+}
+
+- (void)dismissBackButton
+{
+    self.backButton.hidden = YES;
 }
 
 - (void)presentOptionsButton
@@ -828,12 +840,14 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     }
     else if ([command isEqualToCommand:[Command presentClockOptions]])
     {
+        [self presentBackButton];
         [self presentOptions];
         [self shrinkTimeView];
         [self dismissOptionsButton];
     }
     else if ([command isEqualToCommand:[Command dismissClockOptions]])
     {
+        [self dismissBackButton];
         [self dismissOptions];
         [self restoreTimeView];
         [self presentOptionsButton];
@@ -848,6 +862,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     }
     else if ([command isEqualToCommand:[Command dismissClockFontOptions]])
     {
+        [self dismissBackButton];
         [self dismissOptionSlider];
         [self restoreTimeView];
         [self presentOptionsButton];
@@ -862,6 +877,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     }
     else if ([command isEqualToCommand:[Command dismissClockForegroundOptions]])
     {
+        [self dismissBackButton];
         [self dismissOptionSlider];
         [self restoreTimeView];
         [self presentOptionsButton];
@@ -876,6 +892,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     }
     else if ([command isEqualToCommand:[Command dismissClockBackgroundOptions]])
     {
+        [self dismissBackButton];
         [self dismissOptionSlider];
         [self restoreTimeView];
         [self presentOptionsButton];
