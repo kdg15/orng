@@ -89,12 +89,12 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     self.optionSlider.minimumValue = 0.0;
     self.optionSlider.maximumValue = 1.0;
 
-    for (KDGButton *button in @[self.fontButton2,
-                                self.foregroundButton2,
-                                self.backgroundButton2,
-                                self.brightnessButton2,
-                                self.okayButton2,
-                                self.cancelButton2])
+    for (KDGButton *button in @[self.fontButton,
+                                self.foregroundButton,
+                                self.backgroundButton,
+                                self.brightnessButton,
+                                self.okayButton,
+                                self.cancelButton])
     {
         button.hidden = YES;
         button.backgroundColor = [UIColor appLightBlueColor];
@@ -104,12 +104,12 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
         button.shadowRadius = 0.5;
     }
 
-    self.brightnessButton2.selectionColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+    self.brightnessButton.selectionColor = [UIColor colorWithWhite:0.9 alpha:1.0];
 
-    self.fontButton2.text = [NSString fontString];
-    self.brightnessButton2.text = [NSString brightnessString];
-    self.okayButton2.text = [NSString okayString];
-    self.cancelButton2.text = [NSString cancelString];
+    self.fontButton.text = [NSString fontString];
+    self.brightnessButton.text = [NSString brightnessString];
+    self.okayButton.text = [NSString okayString];
+    self.cancelButton.text = [NSString cancelString];
 
     [[CommandEngine sharedInstance] addResponder:self];
 }
@@ -398,13 +398,13 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     self.timeLabel.textColor = color;
     [self.backButton setTitleColor:color forState:UIControlStateNormal];
     [self.optionsButton setTitleColor:color forState:UIControlStateNormal];
-    self.foregroundButton2.swatchColor = color;
+    self.foregroundButton.swatchColor = color;
 }
 
 - (void)updateBackgroundColor:(UIColor *)color
 {
     self.view.backgroundColor = color;
-    self.backgroundButton2.swatchColor = color;
+    self.backgroundButton.swatchColor = color;
 }
 
 - (void)presentOptionsButton
@@ -446,10 +446,10 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     {
         NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.4];
 
-        NSArray *views = @[self.fontButton2,
-                           self.foregroundButton2,
-                           self.backgroundButton2,
-                           self.brightnessButton2];
+        NSArray *views = @[self.fontButton,
+                           self.foregroundButton,
+                           self.backgroundButton,
+                           self.brightnessButton];
         
         CGPoint fromPoint = self.optionsButton.center;
 
@@ -571,10 +571,10 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
         NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.2];
         NSTimeInterval midDuration = [UIView kdgAdjustAnimationDuration:0.05];
 
-        NSArray *views = @[self.fontButton2,
-                           self.foregroundButton2,
-                           self.backgroundButton2,
-                           self.brightnessButton2];
+        NSArray *views = @[self.fontButton,
+                           self.foregroundButton,
+                           self.backgroundButton,
+                           self.brightnessButton];
         
         CGPoint toPoint = self.optionsButton.center;
         
@@ -643,10 +643,10 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     {
         CFTimeInterval duration = 0.3;
         
-        NSArray *views = @[self.fontButton2,
-                           self.foregroundButton2,
-                           self.backgroundButton2,
-                           self.brightnessButton2];
+        NSArray *views = @[self.fontButton,
+                           self.foregroundButton,
+                           self.backgroundButton,
+                           self.brightnessButton];
         
         [CATransaction begin];
         {
@@ -684,8 +684,8 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     {
         NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.4];
 
-        NSArray *views = @[self.cancelButton2,
-                           self.okayButton2,
+        NSArray *views = @[self.cancelButton,
+                           self.okayButton,
                            self.optionSlider];
         
         CGPoint fromPoint = self.optionSlider.center;
@@ -767,8 +767,8 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
         CFTimeInterval duration = 0.3;
         CFTimeInterval delay = 0.0;
         
-        NSArray *views = @[self.cancelButton2,
-                           self.okayButton2];
+        NSArray *views = @[self.cancelButton,
+                           self.okayButton];
         
         for (UIView *view in views)
         {
@@ -862,8 +862,8 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
         NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.2];
         NSTimeInterval midDuration = [UIView kdgAdjustAnimationDuration:0.05];
 
-        NSArray *views = @[self.cancelButton2,
-                           self.okayButton2,
+        NSArray *views = @[self.cancelButton,
+                           self.okayButton,
                            self.optionSlider];
         
         CGPoint toPoint = self.optionsButton.center;
@@ -933,8 +933,8 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     {
         CFTimeInterval duration = 0.3;
         
-        NSArray *views = @[self.cancelButton2,
-                           self.okayButton2,
+        NSArray *views = @[self.cancelButton,
+                           self.okayButton,
                            self.optionSlider];
         
         [CATransaction begin];
@@ -1116,7 +1116,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
         }
         
         [commandEngine executeCommand:[Command dismissClockOptions]];
-    } afterDelay:self.brightnessButton2.selectionDuration];
+    } afterDelay:self.brightnessButton.selectionDuration];
 }
 
 - (IBAction)cancelAction:(id)sender

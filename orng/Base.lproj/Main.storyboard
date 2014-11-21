@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zo7-CC-fKL">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
     </dependencies>
     <scenes>
@@ -357,12 +356,12 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="backButton" destination="lBJ-9Y-WWT" id="03d-jA-qrt"/>
-                        <outlet property="backgroundButton2" destination="UAQ-Ln-iWF" id="X5M-As-njx"/>
-                        <outlet property="brightnessButton2" destination="KMw-P0-bkF" id="Sv5-Qf-Snh"/>
-                        <outlet property="cancelButton2" destination="D6W-xN-vi7" id="zSg-k4-TsW"/>
-                        <outlet property="fontButton2" destination="ob8-Ne-U1d" id="UCx-3y-Nhf"/>
-                        <outlet property="foregroundButton2" destination="HY8-VT-QFu" id="bcs-oL-F84"/>
-                        <outlet property="okayButton2" destination="DwC-UF-2Th" id="wwl-ef-yjj"/>
+                        <outlet property="backgroundButton" destination="UAQ-Ln-iWF" id="DW7-0E-yMO"/>
+                        <outlet property="brightnessButton" destination="KMw-P0-bkF" id="e3U-Zs-LjJ"/>
+                        <outlet property="cancelButton" destination="D6W-xN-vi7" id="xF5-FD-NwA"/>
+                        <outlet property="fontButton" destination="ob8-Ne-U1d" id="n21-Ud-Lnj"/>
+                        <outlet property="foregroundButton" destination="HY8-VT-QFu" id="5mz-SY-8Yv"/>
+                        <outlet property="okayButton" destination="DwC-UF-2Th" id="Chu-PN-nZw"/>
                         <outlet property="optionSlider" destination="uTY-ne-d0f" id="clq-Jo-P4D"/>
                         <outlet property="optionsButton" destination="B74-E6-GSm" id="41u-ET-f2n"/>
                         <outlet property="timeLabel" destination="n6a-Rn-Dw7" id="BGb-jd-5rO"/>

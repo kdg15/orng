@@ -14,12 +14,12 @@
 @property (nonatomic, strong) IBOutlet UISlider *optionSlider;
 
 @property (nonatomic, strong) IBOutlet UIButton *optionsButton;
-@property (nonatomic, strong) IBOutlet KDGButton *fontButton2;
-@property (nonatomic, strong) IBOutlet KDGColorSwatchButton *foregroundButton2;
-@property (nonatomic, strong) IBOutlet KDGColorSwatchButton *backgroundButton2;
-@property (nonatomic, strong) IBOutlet KDGButton *brightnessButton2;
-@property (nonatomic, strong) IBOutlet KDGButton *okayButton2;
-@property (nonatomic, strong) IBOutlet KDGButton *cancelButton2;
+@property (nonatomic, strong) IBOutlet KDGButton *fontButton;
+@property (nonatomic, strong) IBOutlet KDGColorSwatchButton *foregroundButton;
+@property (nonatomic, strong) IBOutlet KDGColorSwatchButton *backgroundButton;
+@property (nonatomic, strong) IBOutlet KDGButton *brightnessButton;
+@property (nonatomic, strong) IBOutlet KDGButton *okayButton;
+@property (nonatomic, strong) IBOutlet KDGButton *cancelButton;
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *timeViewBottomConstraint;
 
