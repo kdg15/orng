@@ -14,7 +14,12 @@
 @property (nonatomic, assign) CGFloat borderWidth;
 @property (nonatomic, assign) CGFloat selectionBorderWidth;
 @property (nonatomic, assign) CGFloat shadowOpacity;
+@property (nonatomic, assign) CGFloat shadowRadius;
 @property (nonatomic, assign) CGFloat cornerRadius;
+
+@property (nonatomic, assign) CGSize shadowOffset;
+
+@property (nonatomic, assign) NSTimeInterval selectionDuration;
 
 /**
  Distance beyond the control border where touch events are still considered to

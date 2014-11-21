@@ -10,7 +10,10 @@
 static CGFloat const kDefaultBorderWidth          = 0.0;
 static CGFloat const kDefaultSelectionBorderWidth = 3.0;
 static CGFloat const kDefaultShadowOpacity        = 0.0;
+static CGFloat const kDefaultShadowRadius         = 3.0;
 static CGFloat const kDefaultSlopDistance         = 30.0;
+
+static CGSize const kDefaultShadowOffset = { 2.0, 2.0 };
 
 static CFTimeInterval const kDefaultSelectionDuration = 0.2;
 
@@ -61,15 +64,21 @@ static CFTimeInterval const kDefaultSelectionDuration = 0.2;
     _selectionBorderWidth = kDefaultSelectionBorderWidth;
 
     _shadowOpacity = kDefaultShadowOpacity;
+    _shadowRadius = kDefaultShadowRadius;
     _cornerRadius  = 0.5 * self.bounds.size.height;
     _slopDistance  = kDefaultSlopDistance;
+
+    _shadowOffset = kDefaultShadowOffset;
+
+    _selectionDuration = kDefaultSelectionDuration;
     
     self.layer.backgroundColor = _color.CGColor;
     self.layer.cornerRadius = _cornerRadius;
     self.layer.borderColor = _borderColor.CGColor;
     self.layer.borderWidth = _borderWidth;
     self.layer.shadowOpacity = _shadowOpacity;
-    self.layer.shadowOffset = CGSizeMake(2.0, 2.0);
+    self.layer.shadowRadius = _shadowRadius;
+    self.layer.shadowOffset = _shadowOffset;
     
     _selectionLayer = [KDGCALayer layer];
     _selectionLayer.frame = self.bounds;
@@ -98,6 +107,12 @@ static CFTimeInterval const kDefaultSelectionDuration = 0.2;
     self.layer.borderColor = color.CGColor;
 }
 
+- (void)setSelectionColor:(UIColor *)color
+{
+    _selectionColor = color;
+    self.selectionLayer.borderColor = color.CGColor;
+}
+
 - (void)setBorderWidth:(CGFloat)width
 {
     _borderWidth = width;
@@ -110,10 +125,23 @@ static CFTimeInterval const kDefaultSelectionDuration = 0.2;
     self.layer.shadowOpacity = opacity;
 }
 
+- (void)setShadowRadius:(CGFloat)radius
+{
+    _shadowRadius = radius;
+    self.layer.shadowRadius = radius;
+}
+
 - (void)setCornerRadius:(CGFloat)radius
 {
     _cornerRadius = radius;
     self.layer.cornerRadius = radius;
+    self.selectionLayer.cornerRadius = radius;
+}
+
+- (void)setShadowOffset:(CGSize)offset
+{
+    _shadowOffset = offset;
+    self.layer.shadowOffset = offset;
 }
 
 - (void)setSelected:(BOOL)selected
@@ -121,7 +149,7 @@ static CFTimeInterval const kDefaultSelectionDuration = 0.2;
     [super setSelected:selected];
 
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"borderWidth"];
-    animation.duration = kDefaultSelectionDuration;
+    animation.duration = self.selectionDuration;
     animation.removedOnCompletion = NO;
     animation.fillMode = kCAFillModeBoth;
 
