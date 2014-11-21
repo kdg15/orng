@@ -12,6 +12,7 @@ static CGFloat const kDefaultSelectionBorderWidth = 3.0;
 static CGFloat const kDefaultShadowOpacity        = 0.0;
 static CGFloat const kDefaultShadowRadius         = 3.0;
 static CGFloat const kDefaultSlopDistance         = 30.0;
+static CGFloat const kDefaultSelectionOvershoot   = 1.5;
 
 static CGSize const kDefaultShadowOffset = { 2.0, 2.0 };
 
@@ -71,6 +72,7 @@ static CFTimeInterval const kDefaultSelectionDuration = 0.2;
     _shadowOffset = kDefaultShadowOffset;
 
     _selectionDuration = kDefaultSelectionDuration;
+    _selectionOvershoot = kDefaultSelectionOvershoot;
     
     self.layer.backgroundColor = _color.CGColor;
     self.layer.cornerRadius = _cornerRadius;
@@ -147,23 +149,31 @@ static CFTimeInterval const kDefaultSelectionDuration = 0.2;
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
-
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"borderWidth"];
+    
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"borderWidth"];
     animation.duration = self.selectionDuration;
     animation.removedOnCompletion = NO;
     animation.fillMode = kCAFillModeBoth;
-
+    
     if (selected)
     {
-        animation.fromValue = @0.0;
-        animation.toValue = [NSNumber numberWithFloat:self.selectionBorderWidth];
+        animation.keyTimes = [NSArray arrayWithObjects:@0.0, @0.75, @1.0, nil];
+        animation.values = [NSArray arrayWithObjects:
+                            @0.0,
+                            [NSNumber numberWithFloat:self.selectionBorderWidth * self.selectionOvershoot],
+                            [NSNumber numberWithFloat:self.selectionBorderWidth],
+                            nil];
     }
     else
     {
-        animation.fromValue = [NSNumber numberWithFloat:self.selectionBorderWidth];
-        animation.toValue = @0.0;
+        animation.keyTimes = [NSArray arrayWithObjects:@0.0, @0.25, @1.0, nil];
+        animation.values = [NSArray arrayWithObjects:
+                            [NSNumber numberWithFloat:self.selectionBorderWidth],
+                            [NSNumber numberWithFloat:self.selectionBorderWidth * self.selectionOvershoot],
+                            @0.0,
+                            nil];
     }
-
+    
     [self.selectionLayer addAnimation:animation forKey:nil];
 }
 

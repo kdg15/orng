@@ -21,6 +21,8 @@
 
 @property (nonatomic, assign) NSTimeInterval selectionDuration;
 
+@property (nonatomic, assign) CGFloat selectionOvershoot;
+
 /**
  Distance beyond the control border where touch events are still considered to
  be inside the control. Note this does not pertain to the intial touch down event.
