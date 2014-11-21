@@ -43,7 +43,7 @@
     _textHighlightColor = [UIColor lightGrayColor];
 
     self.label = [[UILabel alloc] initWithFrame:self.bounds];
-    self.label.text = @"kdg";
+    self.label.text = @"";
     self.label.textAlignment = NSTextAlignmentCenter;
     self.label.textColor = _textColor;
     

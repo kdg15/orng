@@ -3,9 +3,9 @@
 //  Copyright (c) 2014 mitchkram. All rights reserved.
 //
 
-#import "KDGBaseButton.h"
+#import "KDGButton.h"
 
-@interface KDGColorSwatchButton : KDGBaseButton
+@interface KDGColorSwatchButton : KDGButton
 
 @property (nonatomic, strong) UIColor *swatchColor;
 
