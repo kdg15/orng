@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zo7-CC-fKL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zo7-CC-fKL">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -359,8 +360,14 @@
                         <outlet property="backgroundButton" destination="UAQ-Ln-iWF" id="DW7-0E-yMO"/>
                         <outlet property="brightnessButton" destination="KMw-P0-bkF" id="e3U-Zs-LjJ"/>
                         <outlet property="cancelButton" destination="D6W-xN-vi7" id="xF5-FD-NwA"/>
+                        <outlet property="constraintBackgroundButtonX" destination="xZt-fV-xBq" id="pxw-tY-47U"/>
+                        <outlet property="constraintBackgroundButtonY" destination="Qld-vy-bql" id="xgl-dt-Fwm"/>
+                        <outlet property="constraintBrightnessButtonX" destination="dSA-sP-KQ5" id="aYg-gz-Hfd"/>
+                        <outlet property="constraintBrightnessButtonY" destination="zx6-SO-3eu" id="K2o-a1-ou8"/>
                         <outlet property="constraintFontButtonX" destination="HY5-av-Nx4" id="gwY-I0-qDr"/>
                         <outlet property="constraintFontButtonY" destination="EbT-Tq-IN2" id="Xko-MP-tOI"/>
+                        <outlet property="constraintForegroundButtonX" destination="ruK-Mv-LKg" id="VCk-fN-bjl"/>
+                        <outlet property="constraintForegroundButtonY" destination="yDL-sT-lcT" id="Gz2-eH-otE"/>
                         <outlet property="fontButton" destination="ob8-Ne-U1d" id="n21-Ud-Lnj"/>
                         <outlet property="foregroundButton" destination="HY8-VT-QFu" id="5mz-SY-8Yv"/>
                         <outlet property="okayButton" destination="DwC-UF-2Th" id="Chu-PN-nZw"/>

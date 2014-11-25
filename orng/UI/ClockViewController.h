@@ -26,6 +26,15 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *constraintFontButtonX;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *constraintFontButtonY;
 
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *constraintForegroundButtonX;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *constraintForegroundButtonY;
+
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *constraintBackgroundButtonX;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *constraintBackgroundButtonY;
+
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *constraintBrightnessButtonX;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *constraintBrightnessButtonY;
+
 - (IBAction)backAction:(id)sender;
 
 - (IBAction)optionsAction:(id)sender;

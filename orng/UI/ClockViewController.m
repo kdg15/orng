@@ -17,6 +17,9 @@
 static const CGFloat kWhiteSliderThreshold = 0.05;
 static const CGFloat kBlackSliderThreshold = 0.05;
 
+static const NSTimeInterval kAnimationDuration = 0.15;
+static const NSTimeInterval kAnimationDelay    = 0.1;
+
 typedef NS_ENUM(NSInteger, OptionsMode)
 {
     OptionsModeFont,
@@ -110,6 +113,40 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     self.brightnessButton.text = [NSString brightnessString];
     self.okayButton.text = [NSString okayString];
     self.cancelButton.text = [NSString cancelString];
+
+    /*
+    //  save the desired constraint constants.
+    //
+    NSArray *constraints = @[self.constraintFontButtonX,
+                             self.constraintFontButtonY,
+                             self.constraintForegroundButtonX,
+                             self.constraintForegroundButtonY,
+                             self.constraintBackgroundButtonX,
+                             self.constraintBackgroundButtonY,
+                             self.constraintBrightnessButtonX,
+                             self.constraintBrightnessButtonY];
+    
+    NSMutableDictionary *constraintDictionary = [NSMutableDictionary dictionaryWithCapacity:constraints.count];
+    for (NSLayoutConstraint *constraint in constraints)
+    {
+        //[constraintDictionary setObject:[NSNumber numberWithFloat:constraint.constant] forKey:(id <NSCopying>)constraint];
+        constraintDictionary[(id <NSCopying>)constraint] = [NSNumber numberWithFloat:constraint.constant];
+    }
+
+    NSLog(@"constraintDictionary = %@", constraintDictionary);
+     */
+
+    self.constraintFontButtonX.constant = 0.0;
+    self.constraintFontButtonY.constant = 0.0;
+    
+    self.constraintForegroundButtonX.constant = 0.0;
+    self.constraintForegroundButtonY.constant = 0.0;
+    
+    self.constraintBackgroundButtonX.constant = 0.0;
+    self.constraintBackgroundButtonY.constant = 0.0;
+    
+    self.constraintBrightnessButtonX.constant = 0.0;
+    self.constraintBrightnessButtonY.constant = 0.0;
 
     [[CommandEngine sharedInstance] addResponder:self];
 }
@@ -452,118 +489,97 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 
 - (void)presentOptions
 {
-    NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.4];
-
-    NSArray *views = @[/*self.fontButton,*/
+    NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:kAnimationDuration];
+    
+    NSArray *views = @[self.fontButton,
                        self.foregroundButton,
                        self.backgroundButton,
                        self.brightnessButton];
-
-    CGPoint fromPoint = self.optionsButton.center;
+    
+    [self.view layoutIfNeeded];
+    
+    self.constraintFontButtonX.constant = 72.0;
+    self.constraintFontButtonY.constant = 20.0;
+    
+    self.constraintForegroundButtonX.constant = 24.0;
+    self.constraintForegroundButtonY.constant = 20.0;
+    
+    self.constraintBackgroundButtonX.constant = -24.0;
+    self.constraintBackgroundButtonY.constant = 20.0;
+    
+    self.constraintBrightnessButtonX.constant = -72.0;
+    self.constraintBrightnessButtonY.constant = 20.0;
+    
+    __block NSInteger counter = views.count;
 
     for (UIView *view in views)
     {
-        CGPoint toPoint = view.center;
+        view.hidden = NO;
 
         CATransform3D fromTransform = CATransform3DMakeScale(0.1, 0.1, 1.0);
         CATransform3D toTransform = CATransform3DMakeScale(1.0, 1.0, 1.0);
-
-        view.center = fromPoint;
+        
         view.layer.transform = fromTransform;
-        view.hidden = NO;
-
-        NSTimeInterval delay = [UIView kdgAdjustAnimationDuration:KDGRandomFloatInRange(0.0, 0.15)];
-
+        
+        NSTimeInterval delay = [UIView kdgAdjustAnimationDuration:KDGRandomFloatInRange(0.0, kAnimationDelay)];
+        
         [UIView animateWithDuration:duration
                               delay:delay
-             usingSpringWithDamping:0.5
-              initialSpringVelocity:20.0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
-                             view.center = toPoint;
+                             [view layoutIfNeeded];
                              view.layer.transform = toTransform;
                          } completion:^(BOOL finished) {
-                             [self startOptionsTimer];
+                             counter--;
+                             if (counter == 0)
+                             {
+                                 [self startOptionsTimer];
+                             }
                          }];
-    }
-
-    views = @[self.fontButton];
-    for (UIView *view in views)
-    {
-        view.hidden = NO;
-
-        self.constraintFontButtonX.constant = 72.0;
-        self.constraintFontButtonY.constant = 20.0;
-
-        [UIView animateWithDuration:duration animations:^{
-            [self.view layoutIfNeeded];
-        }];
     }
 }
 
 - (void)dismissOptions
 {
-    NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.2];
-    NSTimeInterval midDuration = [UIView kdgAdjustAnimationDuration:0.05];
+    NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:kAnimationDuration];
 
-    NSArray *views = @[/*self.fontButton,*/
+    NSArray *views = @[self.fontButton,
                        self.foregroundButton,
                        self.backgroundButton,
                        self.brightnessButton];
 
-    CGPoint toPoint = self.optionsButton.center;
+    [self.view layoutIfNeeded];
+
+    self.constraintFontButtonX.constant = 0.0;
+    self.constraintFontButtonY.constant = 0.0;
+
+    self.constraintForegroundButtonX.constant = 0.0;
+    self.constraintForegroundButtonY.constant = 0.0;
+    
+    self.constraintBackgroundButtonX.constant = 0.0;
+    self.constraintBackgroundButtonY.constant = 0.0;
+    
+    self.constraintBrightnessButtonX.constant = 0.0;
+    self.constraintBrightnessButtonY.constant = 0.0;
 
     for (UIView *view in views)
     {
-        CGPoint fromPoint = view.center;
-        CGPoint midPoint = view.center;
-
         CATransform3D fromTransform = CATransform3DMakeScale(1.0, 1.0, 1.0);
-        CATransform3D midTransform = CATransform3DMakeScale(1.2, 1.2, 1.0);
         CATransform3D toTransform = CATransform3DMakeScale(0.1, 0.1, 1.0);
-
-        view.center = fromPoint;
+        
         view.layer.transform = fromTransform;
-
-        NSTimeInterval delay = [UIView kdgAdjustAnimationDuration:KDGRandomFloatInRange(0.0, 0.05)];
-
-        [UIView animateWithDuration:midDuration
-                              delay:delay
-                            options:UIViewAnimationOptionCurveLinear
-                         animations:^{
-                             view.center = midPoint;
-                             view.layer.transform = midTransform;
-                         } completion:^(BOOL finished) {
-                             [UIView animateWithDuration:duration - midDuration
-                                                   delay:0.0
-                                                 options:UIViewAnimationOptionCurveLinear
-                                              animations:^{
-                                                  view.center = toPoint;
-                                                  view.layer.transform = toTransform;
-                                              } completion:^(BOOL finished) {
-                                                  // hide it and then restore to original state.
-                                                  view.hidden = YES;
-                                                  view.center = fromPoint;
-                                                  view.layer.transform = fromTransform;
-                                              }];
-                         }];
-    }
-
-    views = @[self.fontButton];
-    for (UIView *view in views)
-    {
-        self.constraintFontButtonX.constant = 0.0;
-        self.constraintFontButtonY.constant = 0.0;
-
-        NSTimeInterval delay = 0;
+        
+        NSTimeInterval delay = [UIView kdgAdjustAnimationDuration:KDGRandomFloatInRange(0.0, kAnimationDelay)];
 
         [UIView animateWithDuration:duration
                               delay:delay
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
-                             [self.view layoutIfNeeded];
+                             [view layoutIfNeeded];
+                             view.layer.transform = toTransform;
                          } completion:^(BOOL finished) {
                              view.hidden = YES;
+                             view.layer.transform = fromTransform;
                          }];
     }
 }
