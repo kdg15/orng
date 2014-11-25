@@ -454,7 +454,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 {
     NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.4];
 
-    NSArray *views = @[self.fontButton,
+    NSArray *views = @[/*self.fontButton,*/
                        self.foregroundButton,
                        self.backgroundButton,
                        self.brightnessButton];
@@ -486,6 +486,19 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
                              [self startOptionsTimer];
                          }];
     }
+
+    views = @[self.fontButton];
+    for (UIView *view in views)
+    {
+        view.hidden = NO;
+
+        self.constraintFontButtonX.constant = 72.0;
+        self.constraintFontButtonY.constant = 20.0;
+
+        [UIView animateWithDuration:duration animations:^{
+            [self.view layoutIfNeeded];
+        }];
+    }
 }
 
 - (void)dismissOptions
@@ -493,7 +506,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.2];
     NSTimeInterval midDuration = [UIView kdgAdjustAnimationDuration:0.05];
 
-    NSArray *views = @[self.fontButton,
+    NSArray *views = @[/*self.fontButton,*/
                        self.foregroundButton,
                        self.backgroundButton,
                        self.brightnessButton];
@@ -533,6 +546,24 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
                                                   view.center = fromPoint;
                                                   view.layer.transform = fromTransform;
                                               }];
+                         }];
+    }
+
+    views = @[self.fontButton];
+    for (UIView *view in views)
+    {
+        self.constraintFontButtonX.constant = 0.0;
+        self.constraintFontButtonY.constant = 0.0;
+
+        NSTimeInterval delay = 0;
+
+        [UIView animateWithDuration:duration
+                              delay:delay
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             view.hidden = YES;
                          }];
     }
 }

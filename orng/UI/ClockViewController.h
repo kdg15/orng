@@ -23,6 +23,9 @@
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *timeViewBottomConstraint;
 
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *constraintFontButtonX;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *constraintFontButtonY;
+
 - (IBAction)backAction:(id)sender;
 
 - (IBAction)optionsAction:(id)sender;
