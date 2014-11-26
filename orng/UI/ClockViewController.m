@@ -862,6 +862,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 
 - (void)shrinkTimeView
 {
+    /*
     NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.2];
 
     self.timeViewBottomConstraint.constant = 120.0;
@@ -869,10 +870,12 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     [UIView animateWithDuration:duration animations:^{
         [self.view layoutIfNeeded];
     }];
+     */
 }
 
 - (void)restoreTimeView
 {
+    /*
     NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.2];
 
     self.timeViewBottomConstraint.constant = 40.0;
@@ -880,6 +883,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
     [UIView animateWithDuration:duration animations:^{
         [self.view layoutIfNeeded];
     }];
+     */
 }
 
 - (void)restoreScreenBrightness
