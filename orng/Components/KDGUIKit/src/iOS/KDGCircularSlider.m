@@ -431,7 +431,7 @@ static CGFloat const kDefaultSlopDistance  = 60.0;
         }
     }
 
-    NSLog(@"--- testValue: %@", failures == 0 ? @"all passed" : [NSString stringWithFormat:@"%d failures", failures]);
+    NSLog(@"--- testValue: %@", failures == 0 ? @"all passed" : [NSString stringWithFormat:@"%ld failures", failures]);
 }
 
 @end
