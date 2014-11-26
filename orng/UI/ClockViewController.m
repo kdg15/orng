@@ -48,6 +48,8 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 @property (nonatomic, assign) BOOL        brightnessDimmed;
 @property (nonatomic, assign) BOOL        brightnessTemporarilyRestored;
 
+@property (nonatomic, strong) UIView      *pressedOption;
+
 @property (nonatomic, strong) NSTimer     *timer;
 @property (nonatomic, strong) NSTimer     *optionsTimer;
 @property (nonatomic, strong) NSTimer     *brightnessTimer;
@@ -109,6 +111,12 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
         button.shadowOffset = CGSizeMake(0, 0);
         button.shadowRadius = 0.5;
     }
+
+    self.okayButton.backgroundColor = [UIColor kdgColorWithRed:102 green:184 blue: 77 alpha:255];
+    self.okayButton.highlightColor  = [self.okayButton.backgroundColor kdgDarkerColor];
+    
+    self.cancelButton.backgroundColor = [UIColor kdgColorWithRed:212 green: 84 blue: 76 alpha:255];
+    self.cancelButton.highlightColor  = [self.cancelButton.backgroundColor kdgDarkerColor];
 
     self.brightnessButton.selectionColor = [UIColor colorWithWhite:0.9 alpha:1.0];
 
@@ -631,8 +639,6 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
                                      toPoint:toPoint
                                    fromScale:CGSizeMake(0.1, 0.1)
                                      toScale:CGSizeMake(1.0, 1.0)];
-                
-                //[view kdgAddAnimateFadeIn:duration delay:0.0];
             }
         }
         [CATransaction commit];
@@ -759,8 +765,6 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
                                      toPoint:toPoint
                                    fromScale:CGSizeMake(1.0, 1.0)
                                      toScale:CGSizeMake(0.1, 0.1)];
-                
-                //[view kdgAddAnimateFadeOut:duration delay:0.0];
             }
         }
         [CATransaction commit];
@@ -769,94 +773,170 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 
 - (void)presentOptionSlider
 {
-    NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.4];
-
-    NSArray *views = @[self.cancelButton,
-                       self.okayButton,
-                       self.optionSlider];
-
-    CGPoint fromPoint = self.optionSlider.center;
-
-    for (UIView *view in views)
+    if (kUseUIViewAnimation)
     {
-        BOOL animate = YES;
-        if (animate)
+        NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.4];
+        
+        NSArray *views = @[self.cancelButton,
+                           self.okayButton,
+                           self.optionSlider];
+        
+        CGPoint fromPoint = self.optionSlider.center;
+        
+        for (UIView *view in views)
         {
-            CGPoint toPoint = view.center;
-
-            CATransform3D fromTransform = CATransform3DMakeScale(0.1, 0.1, 1.0);
-            CATransform3D toTransform = CATransform3DMakeScale(1.0, 1.0, 1.0);
-
-            view.center = fromPoint;
-            view.layer.transform = fromTransform;
-            view.hidden = NO;
-
-            NSTimeInterval delay = [UIView kdgAdjustAnimationDuration:KDGRandomFloatInRange(0.0, 0.15)];
-
-            [UIView animateWithDuration:duration
-                                  delay:delay
-                 usingSpringWithDamping:0.5
-                  initialSpringVelocity:20.0
-                                options:UIViewAnimationOptionCurveLinear
-                             animations:^{
-                                 view.center = toPoint;
-                                 view.layer.transform = toTransform;
-                             } completion:^(BOOL finished) {
-                             }];
+            BOOL animate = YES;
+            if (animate)
+            {
+                CGPoint toPoint = view.center;
+                
+                CATransform3D fromTransform = CATransform3DMakeScale(0.1, 0.1, 1.0);
+                CATransform3D toTransform = CATransform3DMakeScale(1.0, 1.0, 1.0);
+                
+                view.center = fromPoint;
+                view.layer.transform = fromTransform;
+                view.hidden = NO;
+                
+                NSTimeInterval delay = [UIView kdgAdjustAnimationDuration:KDGRandomFloatInRange(0.0, 0.15)];
+                
+                [UIView animateWithDuration:duration
+                                      delay:delay
+                     usingSpringWithDamping:0.5
+                      initialSpringVelocity:20.0
+                                    options:UIViewAnimationOptionCurveLinear
+                                 animations:^{
+                                     view.center = toPoint;
+                                     view.layer.transform = toTransform;
+                                 } completion:^(BOOL finished) {
+                                 }];
+            }
+            else
+            {
+                view.hidden = NO;
+                
+            }
         }
-        else
+    }
+    else
+    {
+        CFTimeInterval duration = [UIView kdgAdjustAnimationDuration:kAnimationDuration];
+        
+        NSArray *views = @[self.okayButton,
+                           self.cancelButton,
+                           self.optionSlider];
+        
+        for (UIView *view in views)
         {
             view.hidden = NO;
-
         }
+        
+        [CATransaction begin];
+        {
+            [CATransaction setCompletionBlock:^{
+                //  nothing to do.
+            }];
+            
+            for (UIView *view in views)
+            {
+                CFTimeInterval delay = 0.0;//KDGRandomFloatInRange(0.0, kAnimationDelay);
+                
+                CGPoint fromPoint = self.pressedOption.center;//self.optionSlider.center;
+                CGPoint toPoint = view.center;
+                
+                [view kdgAddAnimateTransform:duration
+                                       delay:delay
+                                   fromPoint:fromPoint
+                                     toPoint:toPoint
+                                   fromScale:CGSizeMake(1.0, 1.0)
+                                     toScale:CGSizeMake(1.0, 1.0)];
+            }
+        }
+        [CATransaction commit];
     }
 }
 
 - (void)dismissOptionSlider
 {
-    NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.2];
-    NSTimeInterval midDuration = [UIView kdgAdjustAnimationDuration:0.05];
-
-    NSArray *views = @[self.cancelButton,
-                       self.okayButton,
-                       self.optionSlider];
-
-    CGPoint toPoint = self.optionsButton.center;
-
-    for (UIView *view in views)
+    if (kUseUIViewAnimation)
     {
-        CGPoint fromPoint = view.center;
-        CGPoint midPoint = view.center;
-
-        CATransform3D fromTransform = CATransform3DMakeScale(1.0, 1.0, 1.0);
-        CATransform3D midTransform = CATransform3DMakeScale(1.2, 1.2, 1.0);
-        CATransform3D toTransform = CATransform3DMakeScale(0.1, 0.1, 1.0);
-
-        view.center = fromPoint;
-        view.layer.transform = fromTransform;
-
-        NSTimeInterval delay = [UIView kdgAdjustAnimationDuration:KDGRandomFloatInRange(0.0, 0.05)];
-
-        [UIView animateWithDuration:midDuration
-                              delay:delay
-                            options:UIViewAnimationOptionCurveLinear
-                         animations:^{
-                             view.center = midPoint;
-                             view.layer.transform = midTransform;
-                         } completion:^(BOOL finished) {
-                             [UIView animateWithDuration:duration - midDuration
-                                                   delay:0.0
-                                                 options:UIViewAnimationOptionCurveLinear
-                                              animations:^{
-                                                  view.center = toPoint;
-                                                  view.layer.transform = toTransform;
-                                              } completion:^(BOOL finished) {
-                                                  // hide it and then restore to original state.
-                                                  view.hidden = YES;
-                                                  view.center = fromPoint;
-                                                  view.layer.transform = fromTransform;
-                                              }];
-                         }];
+        NSTimeInterval duration = [UIView kdgAdjustAnimationDuration:0.2];
+        NSTimeInterval midDuration = [UIView kdgAdjustAnimationDuration:0.05];
+        
+        NSArray *views = @[self.cancelButton,
+                           self.okayButton,
+                           self.optionSlider];
+        
+        CGPoint toPoint = self.optionsButton.center;
+        
+        for (UIView *view in views)
+        {
+            CGPoint fromPoint = view.center;
+            CGPoint midPoint = view.center;
+            
+            CATransform3D fromTransform = CATransform3DMakeScale(1.0, 1.0, 1.0);
+            CATransform3D midTransform = CATransform3DMakeScale(1.2, 1.2, 1.0);
+            CATransform3D toTransform = CATransform3DMakeScale(0.1, 0.1, 1.0);
+            
+            view.center = fromPoint;
+            view.layer.transform = fromTransform;
+            
+            NSTimeInterval delay = [UIView kdgAdjustAnimationDuration:KDGRandomFloatInRange(0.0, 0.05)];
+            
+            [UIView animateWithDuration:midDuration
+                                  delay:delay
+                                options:UIViewAnimationOptionCurveLinear
+                             animations:^{
+                                 view.center = midPoint;
+                                 view.layer.transform = midTransform;
+                             } completion:^(BOOL finished) {
+                                 [UIView animateWithDuration:duration - midDuration
+                                                       delay:0.0
+                                                     options:UIViewAnimationOptionCurveLinear
+                                                  animations:^{
+                                                      view.center = toPoint;
+                                                      view.layer.transform = toTransform;
+                                                  } completion:^(BOOL finished) {
+                                                      // hide it and then restore to original state.
+                                                      view.hidden = YES;
+                                                      view.center = fromPoint;
+                                                      view.layer.transform = fromTransform;
+                                                  }];
+                             }];
+        }
+    }
+    else
+    {
+        CFTimeInterval duration = [UIView kdgAdjustAnimationDuration:kAnimationDuration];
+        
+        NSArray *views = @[self.okayButton,
+                           self.cancelButton,
+                           self.optionSlider];
+        
+        [CATransaction begin];
+        {
+            [CATransaction setCompletionBlock:^{
+                for (UIView *view in views)
+                {
+                    view.hidden = YES;
+                }
+            }];
+            
+            for (UIView *view in views)
+            {
+                CFTimeInterval delay = KDGRandomFloatInRange(0.0, kAnimationDelay);
+                
+                CGPoint fromPoint = view.center;
+                CGPoint toPoint = self.optionsButton.center;
+                
+                [view kdgAddAnimateTransform:duration
+                                       delay:delay
+                                   fromPoint:fromPoint
+                                     toPoint:toPoint
+                                   fromScale:CGSizeMake(1.0, 1.0)
+                                     toScale:CGSizeMake(0.1, 0.1)];
+            }
+        }
+        [CATransaction commit];
     }
 }
 
@@ -924,6 +1004,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 
 - (IBAction)fontAction:(id)sender
 {
+    self.pressedOption = sender;
     [self stopOptionsTimer];
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     [commandEngine executeCommand:[Command presentClockFontOptions]];
@@ -931,6 +1012,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 
 - (IBAction)foregroundAction:(id)sender
 {
+    self.pressedOption = sender;
     [self stopOptionsTimer];
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     [commandEngine executeCommand:[Command presentClockForegroundOptions]];
@@ -938,6 +1020,7 @@ static NSTimeInterval kBrightnessTimerInterval = 3.0;
 
 - (IBAction)backgroundAction:(id)sender
 {
+    self.pressedOption = sender;
     [self stopOptionsTimer];
     CommandEngine *commandEngine = [CommandEngine sharedInstance];
     [commandEngine executeCommand:[Command presentClockBackgroundOptions]];
